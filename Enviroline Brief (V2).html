@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enviroline Shoot Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#333132; --orange:#faa62f; --tangerine:#f7b52d; --white:#ffffff;
+    --bg:#1b191a;
+    --text:#f1efed; --text2:#a7a3a1; --canvas:#2a2829; --soft:#242223;
+    --surface:#3a3738; --border:#403d3e; --accent:#faa62f; --accent-soft:rgba(250,166,47,.13);
+    --done:#faa62f; --charcoal2:#403e3f; --charcoal-line:rgba(255,255,255,.14);
+    --line-strong:#5f5c5d;
+    --shadow:0 1px 2px rgba(0,0,0,.30),0 6px 18px rgba(0,0,0,.30);
+    --head:"Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    --sans:"Roboto",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;background:var(--bg);color-scheme:dark}
+  body{font-family:var(--sans);color:var(--text);background:var(--bg);font-size:16px;line-height:1.5;font-weight:400;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  h1,h2,h3,.eyebrow,.sec-title,.wordmark,.chip b{font-family:var(--head)}
+
+  /* wordmark bar */
+  .brandbar{background:var(--charcoal);border-bottom:1px solid var(--charcoal-line)}
+  .brandbar .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px;gap:16px;flex-wrap:wrap}
+  .wordmark{font-weight:800;font-size:20px;letter-spacing:.02em;color:#fff;text-transform:uppercase}
+  .wordmark .mk{color:var(--orange)}
+  .brandbar .tag{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:500}
+
+  /* hero */
+  header .hero{background:var(--charcoal);color:#fff;padding:30px 0 34px}
+  .eyebrow{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:700}
+  .hero h1{font-size:44px;line-height:1.02;margin:12px 0 10px;letter-spacing:.01em;text-transform:uppercase;color:#fff}
+  .hero .sub{color:rgba(255,255,255,.72);font-size:16.5px;max-width:660px;font-weight:300}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .chip{display:flex;align-items:baseline;gap:7px;background:var(--charcoal2);border:1px solid var(--charcoal-line);border-radius:8px;padding:9px 13px}
+  .chip b{font-size:20px;font-weight:800;color:var(--orange);letter-spacing:0}
+  .chip span{color:rgba(255,255,255,.72);font-weight:400;font-size:13.5px}
+  .prog{margin-top:24px;max-width:520px}
+  .prog-top{display:flex;justify-content:space-between;font-size:12.5px;font-weight:500;margin-bottom:6px;color:rgba(255,255,255,.72)}
+  .prog-track{height:8px;background:var(--charcoal2);border-radius:99px;overflow:hidden}
+  .prog-fill{height:100%;width:0;background:var(--orange);border-radius:99px;transition:width .35s ease}
+
+  /* tabs */
+  nav.tabs{position:sticky;top:0;z-index:40;background:rgba(27,25,26,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .tabs-inner{display:flex;gap:2px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tab{border:none;background:none;padding:15px 16px;font-size:15px;font-weight:600;font-family:var(--sans);color:var(--text2);cursor:pointer;border-bottom:2.5px solid transparent;white-space:nowrap;min-height:44px;user-select:none}
+  .tab:hover{color:var(--text)}
+  .tab:focus-visible{outline:2px solid var(--orange);outline-offset:-2px;border-radius:4px}
+  .tab.active{color:#fff;border-bottom-color:var(--orange)}
+
+  main{padding:34px 0 90px}
+  .panel{display:none;animation:fade .3s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .sec-title{font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--text2);font-weight:700;margin:6px 0 15px}
+  .sec-title.mt{margin-top:34px}
+
+  .card{background:var(--canvas);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+  .card + .card{margin-top:16px}
+
+  /* client view */
+  .lead{background:var(--canvas);color:var(--text);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:12px;padding:22px 24px;font-size:17px;font-weight:300;line-height:1.55}
+  .lead b{font-weight:600;color:var(--text)}
+  .lead .hl{color:var(--orange);font-weight:600}
+  .cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+  .cv-block{background:var(--canvas);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);padding:20px 22px}
+  .cv-block h3{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px}
+  .cv-block .big{font-family:var(--head);font-size:19px;font-weight:700;text-transform:uppercase;letter-spacing:.01em;margin-bottom:10px;color:var(--text)}
+  .cv-block p{font-size:15px;color:var(--text);font-weight:300;line-height:1.55}
+  .cv-list{list-style:none;margin-top:10px}
+  .cv-list li{position:relative;padding:5px 0 5px 20px;font-size:14.5px;font-weight:300}
+  .cv-list li::before{content:"";position:absolute;left:0;top:12px;width:7px;height:7px;border-radius:2px;background:var(--orange)}
+  details.more{margin-top:12px;border-top:1px dashed var(--border);padding-top:10px}
+  details.more>summary{list-style:none;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:7px}
+  details.more>summary::-webkit-details-marker{display:none}
+  details.more>summary .chev{font-size:11px;transition:transform .2s}
+  details.more[open]>summary .chev{transform:rotate(180deg)}
+  details.more .inner{padding-top:10px}
+  .pointer{display:flex;gap:11px;align-items:flex-start;background:var(--accent-soft);border:1px solid rgba(250,166,47,.32);border-radius:10px;padding:13px 16px;font-size:14.5px;margin-top:16px;font-weight:400}
+  .pointer .ic{color:var(--done);font-weight:800;font-family:var(--head)}
+
+  /* info table */
+  .info{width:100%;border-collapse:collapse}
+  .info tr+tr{border-top:1px solid var(--border)}
+  .info th{text-align:left;vertical-align:top;padding:14px 18px;width:150px;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);background:var(--soft);font-weight:700;font-family:var(--head)}
+  .info td{padding:14px 18px;font-size:15px;font-weight:300}
+
+  /* checklists */
+  .cg-head{display:flex;align-items:center;justify-content:space-between;padding:15px 16px 9px;gap:10px}
+  .cg-head h3{font-size:15px;font-family:var(--head);text-transform:uppercase;letter-spacing:.03em;font-weight:700}
+  .cg-head .pill{font-size:12px;font-weight:600;color:var(--text2);background:var(--soft);border:1px solid var(--border);border-radius:99px;padding:3px 10px;white-space:nowrap}
+  .checkgroup{padding:2px 8px 12px}
+  .item{display:flex;align-items:flex-start;gap:12px;padding:10px 12px;border-radius:8px;cursor:pointer;transition:background .12s}
+  .item:hover{background:var(--soft)}
+  .item input{appearance:none;-webkit-appearance:none;width:21px;height:21px;min-width:21px;margin-top:1px;border:2px solid var(--line-strong);border-radius:6px;cursor:pointer;position:relative;transition:.15s}
+  .item input:checked{background:var(--done);border-color:var(--done)}
+  .item input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .item span{font-size:15px;flex:1;font-weight:400}
+  .item.done span{color:var(--text2);text-decoration:line-through}
+
+  /* video cards */
+  .grouphead{font-family:var(--head);text-transform:uppercase;letter-spacing:.06em;font-size:12.5px;font-weight:700;color:var(--text2);margin:26px 0 12px}
+  .grouphead:first-child{margin-top:4px}
+  .vcard{margin-bottom:12px}
+  .vcard>summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;gap:15px}
+  .vcard>summary::-webkit-details-marker{display:none}
+  .vnum{width:40px;height:40px;min-width:40px;border-radius:9px;background:var(--accent-soft);color:var(--done);font-family:var(--head);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center}
+  .vhead{flex:1;min-width:0}
+  .vhead .vt{font-size:16.5px;font-weight:600;letter-spacing:0;font-family:var(--head)}
+  .vhead .vm{font-size:12.5px;color:var(--text2);margin-top:3px}
+  .vhead .vm .badge{display:inline-block;background:var(--soft);border:1px solid var(--border);border-radius:5px;padding:1px 7px;margin:2px 6px 0 0;font-weight:500}
+  .chev{color:var(--text2);transition:transform .2s;font-size:12px}
+  .vcard[open] .chev{transform:rotate(180deg)}
+  .vbody{padding:2px 18px 20px;border-top:1px solid var(--border)}
+  .vrow{margin-top:17px}
+  .vrow .rl{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);font-weight:700;font-family:var(--head);margin-bottom:7px}
+  .hook{background:var(--accent-soft);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:11px 14px;font-size:14.5px;font-style:italic}
+  .tp{list-style:none}
+  .tp li{position:relative;padding:5px 0 5px 18px;font-size:14.5px;font-weight:300}
+  .tp li::before{content:"";position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;background:var(--orange)}
+  .cta{font-size:14.5px;font-weight:500;color:var(--done)}
+  .script>summary{cursor:pointer;list-style:none;padding:11px 13px;font-size:14px;font-weight:600;color:var(--done);display:flex;align-items:center;gap:8px;background:var(--soft);border:1px solid var(--border);border-radius:8px}
+  .script>summary::-webkit-details-marker{display:none}
+  .script[open]>summary{border-radius:8px 8px 0 0}
+  .script .stext{padding:12px 14px;font-size:14.5px;line-height:1.7;white-space:pre-wrap;border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;background:var(--canvas)}
+  .notecall{display:flex;gap:9px;align-items:flex-start;background:var(--soft);border:1px solid var(--border);border-radius:8px;padding:11px 14px;font-size:14px;font-weight:300}
+  .notecall .ic{color:var(--done);font-weight:800;font-family:var(--head)}
+  .notecall b{font-weight:600}
+  .eq{display:flex;flex-wrap:wrap;gap:8px}
+  .eq span{font-size:13px;font-weight:500;background:var(--surface);border-radius:6px;padding:5px 11px}
+
+  /* run sheet */
+  .run{position:relative;padding-left:4px}
+  .rblock{display:flex;gap:16px;padding:2px 0}
+  .rleft{display:flex;flex-direction:column;align-items:center}
+  .rdot{width:34px;height:34px;min-width:34px;border-radius:50%;background:var(--canvas);border:2px solid var(--line-strong);color:var(--text2);font-family:var(--head);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;transition:.2s;z-index:2}
+  .rline{flex:1;width:2px;background:var(--border);margin:2px 0}
+  .rblock.done .rdot{background:var(--done);border-color:var(--done);color:#fff}
+  .rcontent{flex:1;padding-bottom:16px}
+  .rcard{background:var(--canvas);border:1px solid var(--border);border-radius:10px;padding:13px 16px;cursor:pointer;display:flex;gap:13px;align-items:flex-start;transition:border-color .15s}
+  .rcard:hover{border-color:var(--orange)}
+  .rcard input{appearance:none;-webkit-appearance:none;width:21px;height:21px;min-width:21px;margin-top:2px;border:2px solid var(--line-strong);border-radius:6px;cursor:pointer;position:relative}
+  .rcard input:checked{background:var(--done);border-color:var(--done)}
+  .rcard input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .rtime{font-size:12px;font-weight:700;color:var(--done);font-family:var(--head);letter-spacing:.03em}
+  .rcard .rb{font-size:15px;font-weight:600;margin-top:2px;font-family:var(--head)}
+  .rcard .rn{font-size:13.5px;color:var(--text2);margin-top:4px;font-weight:300}
+  .rblock.done .rb{text-decoration:line-through;color:var(--text2)}
+
+  .foot{text-align:center;color:var(--text2);font-size:13px;margin-top:40px;font-weight:300}
+
+  @media (max-width:720px){
+    .cv-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 16px}
+    .hero h1{font-size:32px}
+    .hero{padding:26px 0 28px}
+    .info th{width:104px;font-size:11.5px;padding:11px 12px}
+    .info td{padding:11px 12px;font-size:14px}
+    .lead{font-size:15.5px;padding:18px}
+    .tab{padding:14px 13px;font-size:14px}
+    .vhead .vt{font-size:15.5px}
+  }
+  @media print{
+    nav.tabs,.prog,.foot{display:none!important}
+    .panel{display:block!important}
+    .brandbar,header .hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .vbody{display:block!important}
+    body{background:#fff}
+  }
+  .vlink{color:var(--orange);cursor:pointer;text-decoration:none;border-bottom:1px solid rgba(250,166,47,.35);transition:.15s}
+  .vlink:hover,.vlink:focus-visible{border-bottom-color:var(--orange);outline:none}
+  .rlinks{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 2px 0}
+  .rlink{font-family:var(--head);font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--orange);background:var(--accent-soft);border:1px solid rgba(250,166,47,.3);border-radius:20px;padding:5px 12px;cursor:pointer;transition:.15s}
+  .rlink:hover,.rlink:focus-visible{background:rgba(250,166,47,.22);outline:none}
+  .vcard{scroll-margin-top:72px}
+  .vcard.flash{box-shadow:0 0 0 2px var(--orange),0 8px 22px rgba(0,0,0,.35)}
+</style>
+</head>
+<body>
+<div class="brandbar"><div class="wrap">
+  <div class="wordmark">WhiteKey<span class="mk"> Marketing</span></div>
+  <div class="tag">Shoot Brief</div>
+</div></div>
+
+<header>
+  <div class="hero"><div class="wrap">
+    <h1>Enviroline</h1>
+    <p class="sub">Brand shoot for Enviroline capturing trade vehicle fit-outs &amp; water jetters. Rugged, trusted, Australian-made. One 7-hour shoot on-site at 52 Vallance St, St Marys NSW 2760.</p>
+    <div class="chips">
+      <div class="chip"><b>9</b><span>core videos</span></div>
+      <div class="chip"><b>+2</b><span>promo edits</span></div>
+      <div class="chip"><b>120</b><span>photos</span></div>
+      <div class="chip"><b>7</b><span>hr shoot</span></div>
+      <div class="chip"><b>1</b><span>testimonial</span></div>
+    </div>
+  </div></div>
+  <nav class="tabs"><div class="wrap"><div class="tabs-inner" id="tabs" role="tablist">
+    <div class="tab active" role="tab" tabindex="0" data-t="client">Client View</div>
+    <div class="tab" role="tab" tabindex="0" data-t="photo">Photography (120)</div>
+    <div class="tab" role="tab" tabindex="0" data-t="videos">Videos (9 + 2)</div>
+    <div class="tab" role="tab" tabindex="0" data-t="run">Run Sheet</div>
+  </div></div></nav>
+</header>
+
+<main class="wrap">
+  <!-- CLIENT VIEW / OVERVIEW -->
+  <section class="panel active" id="client">
+    <div class="lead">We're capturing <b class="hl">up to 9 videos</b>, <b class="hl">2 bonus promo edits</b> and <b class="hl">up to 120 photos</b> in a single day at your St Marys site, then a quick testimonial at the end. Everything below is the short version. Tap any section to open more detail, or use the tabs above for the full scripts, shot lists and timing.</div>
+
+    <div class="sec-title mt">The shoot at a glance</div>
+    <div class="card">
+      <table class="info">
+        <tr><th>Client</th><td>Enviroline</td></tr>
+        <tr><th>Industry</th><td>Trades, vehicle fit-outs and water jetters</td></tr>
+        <tr><th>Location</th><td>On-site at Enviroline, 52 Vallance St, St Marys NSW 2760</td></tr>
+        <tr><th>Date</th><td>Monday 20 July 2026 · 7-hour shoot · 2-person crew (photographer + videographer)</td></tr>
+        <tr><th>Deliverables</th><td>9 short-form videos, plus 2 b-roll-only promo edits (under 20s, no charge), plus a short WhiteKey testimonial, plus up to 120 photos. 12 business day turnaround, one revision, delivered via Dropbox.</td></tr>
+        <tr><th>Format</th><td>Most b-roll shot in 16x9 and framed for vertical. Talking head shot in 9x16 (vertical) and framed for square, so it works across every platform.</td></tr>
+      </table>
+    </div>
+
+    <div class="sec-title mt">What we're capturing</div>
+    <div class="cv-grid">
+      <div class="cv-block">
+        <h3>Photography</h3>
+        <div class="big">Up to 120 photos</div>
+        <p>Clean, industrial, proof-of-build shots across your two ute fit-outs, the standalone jetters, the factory floor and the team.</p>
+        <ul class="cv-list">
+          <li>Plumbing &amp; sparky ute fit-outs</li>
+          <li>Hornet and Viper jetters, hero + detail</li>
+          <li>Factory and build capability</li>
+          <li>Team headshots + website / ad assets</li>
+        </ul>
+        <details class="more"><summary>Show a bit more <span class="chev">▼</span></summary><div class="inner">
+          <ul class="cv-list">
+            <li>Ute hero exteriors, drawers, toolboxes, latches and finish detail</li>
+            <li>Jetter close-ups, side-by-side Viper comparison</li>
+            <li>Welding, laser cutter, crane and team in action</li>
+            <li>5 sales team headshots on the plain white boardroom wall</li>
+          </ul>
+        </div></details>
+      </div>
+      <div class="cv-block">
+        <h3>Videography</h3>
+        <div class="big">9 videos + 2 bonus edits</div>
+        <p>A mix of walkthroughs, product highlights and short-form pieces, plus two bonus b-roll-only promo edits at no charge.</p>
+        <ul class="cv-list">
+          <li><a class="vlink" data-goto="1" tabindex="0" role="link">1. One-Stop Shop Walkthrough</a></li>
+          <li><a class="vlink" data-goto="2" tabindex="0" role="link">2. Tradie Pain-Point / Supplier Headache</a></li>
+          <li><a class="vlink" data-goto="3" tabindex="0" role="link">3. Who We Are</a></li>
+          <li><a class="vlink" data-goto="4" tabindex="0" role="link">4. Customer Process (Enquiry to Delivery)</a></li>
+          <li><a class="vlink" data-goto="5" tabindex="0" role="link">5. Hornet Bolt-Down Jetter</a></li>
+          <li><a class="vlink" data-goto="6" tabindex="0" role="link">6. Viper Product Highlight (VS2 + VS3)</a></li>
+          <li><a class="vlink" data-goto="7" tabindex="0" role="link">7. Your Ute Reflects Your Brand</a></li>
+          <li><a class="vlink" data-goto="8" tabindex="0" role="link">8. Plumbing Ute Highlight</a></li>
+          <li><a class="vlink" data-goto="9" tabindex="0" role="link">9. Sparky / Trade Ute Highlight</a></li>
+        </ul>
+        <details class="more"><summary>Show the bonus pieces <span class="chev">▼</span></summary><div class="inner">
+          <ul class="cv-list">
+            <li><a class="vlink" data-goto="B1" tabindex="0" role="link">Bonus: Plumbing Ute Promo Edit (b-roll only, under 20s)</a></li>
+            <li><a class="vlink" data-goto="B2" tabindex="0" role="link">Bonus: Sparky Ute Promo Edit (b-roll only, under 20s)</a></li>
+            <li><a class="vlink" data-goto="T" tabindex="0" role="link">Plus a short WhiteKey testimonial with the owner/founder, filmed at the end of the day</a></li>
+          </ul>
+        </div></details>
+      </div>
+    </div>
+
+    <div class="pointer"><div>Click any video above to jump straight to its script, talking points and shot list, or open the <b>Photography</b> and <b>Videos</b> tabs for everything.</div></div>
+
+    <div class="sec-title mt">The day, start to finish</div>
+    <div class="card"><div class="checkgroup" id="cv-run"></div></div>
+    <div class="pointer"><div>Full timing and shot-by-shot notes are in the <b>Run Sheet</b> tab.</div></div>
+
+    <div class="foot">Tap any item on the other tabs to check it off during the shoot.</div>
+  </section>
+
+  <!-- PHOTO -->
+  <section class="panel" id="photo">
+    <div class="sec-title">Photography, up to 120 frames</div>
+    <div id="photoGroups"></div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section class="panel" id="videos">
+    <div class="sec-title">Tap a video to open its script, talking points, B-roll checklist and kit</div>
+    <div id="videoCards"></div>
+  </section>
+
+  <!-- RUN SHEET -->
+  <section class="panel" id="run">
+    <div class="sec-title">Shoot day run sheet, suggested order, work top to bottom</div>
+    <div class="run" id="runList"></div>
+    <div class="foot">Times are a guide. Plumbing ute is captured first because it ships out on 21 July. Talking-head takes are shot before b-roll so the creator can picture the b-roll from what was said.</div>
+  </section>
+</main>
+
+<script>
+const PHOTO_GROUPS = [
+  {title:"Product & fit-out coverage", items:[
+    `U10 plumbing ute hero exterior`,
+    `U10 drawers, toolbox storage, jetter integration, latches, runners, finish details`,
+    `Plumbing fit-out: two toolboxes plus jetter if available`,
+    `Sparky/trade fit-out: two long boxes, racking/storage. Empty or drawers/shelves, no product fill. Temporary packout only if the order allows`,
+    `Vehicles: two new white unbranded Hiluxes. Possible van with a jetter on a slide`,
+    `Hornet bolt-down jetter: standalone hero + detail. 120kg bolt-down, no installed customer demo. Testing-bay shots possible but loud`,
+    `Viper VS2: installed/standalone + detail passes`,
+    `Viper VS3: installed/standalone + detail passes`,
+    `ECO-50: standalone hero + detail passes`,
+    `Side-by-side Viper comparison if both are available together`,
+    `Sparky van`
+  ]},
+  {title:"Factory & capability", items:[
+    `Factory establishing shots (low priority, capture only with spare time)`,
+    `Build stations, welding, laser cutter, crane, sub-assembly`,
+    `Team in action, hands-on details, tool use, quality control`,
+    `\"Built in Sydney\" and \"Australian-made\" proof through real process visuals`,
+    `Branding/signage where available`
+  ]},
+  {title:"People", items:[
+    `Nominated presenter on-floor and/or walking through product`,
+    `Jetter presenter with the units for the product talking points`,
+    `Sales team headshots, 5 people, plain white boardroom wall`,
+    `Nominated staff in tradie-style B-roll if confirmed`,
+    `Technicians/factory staff in natural action shots. QA technician headshot possible, not yet confirmed`
+  ]},
+  {title:"Sales & website assets", items:[
+    `Clean hero images for website/product pages`,
+    `Detail shots for ads`,
+    `Process and capability shots for sales collateral`,
+    `Fit-out organisation shots that show productivity, security and professionalism`
+  ]}
+];
+
+const VIDEOS = [
+  {n:"1", group:"Core deliverables (9)", t:"One-Stop Shop Walkthrough", meta:["Vertical","Up to 1 min","Talking Head + B-Roll"],
+   type:"PRO · Medium up to 1 min · Talking Head + B-Roll",
+   note:"Scripted, fronted by the nominated presenter. Q&A framing on plumber pain points, in-house build, why the U10, finance and quoting. Overlaps with Videos 3 and 4, keep the scripts distinct.",
+   hook:`Are you tired of juggling multiple suppliers just to get your vehicle, fit-out, jetter, finance, and delivery sorted?`,
+   tp:[`What does Enviroline handle end-to-end?`,`How does the process work from enquiry to delivery?`,`How do vehicle sourcing, fit-out, wrap, finance, registration, and delivery come together?`,`Why does this save tradies time?`],
+   broll:[`Presenter walking through the factory`,`Vehicle hero shots`,`Drawers opening`,`Jetter install details`,`Team working`,`Finished ute reveal`],
+   eq:[`Teleprompter`,`Gimbal`,`Wireless lav mic`,`LED panel`],
+   cta:`Get a quote at enviroline.net.au.`,
+   script:[
+     ["",`\"Are you tired of juggling multiple suppliers just to get your vehicle, fit-out, water jetter, finance, and delivery sorted?\"`],
+     ["",`At Enviroline, we take care of the entire process from start to finish. We source your vehicle, install your fit-out, organise the vehicle wrap, assist with finance, handle registration, and deliver your ute ready to hit the road.`],
+     ["",`That means one point of contact, one streamlined process, and no chasing multiple suppliers or trying to coordinate everything yourself.`],
+     ["",`Whether you're starting out or upgrading your fleet, we make it easy so you can stay focused on running your business while we build the complete solution for you.`],
+     ["",`If you're ready to make your next vehicle setup simple, get a quote today at enviroline.net.au.`]
+   ]},
+  {n:"2", group:"Core deliverables (9)", t:"Tradie Pain-Point / Supplier Headache", meta:["Vertical","Up to 1 min","Conceptual, Ads Style"],
+   type:"PRO · Medium up to 1 min · Conceptual, Ads Style",
+   note:"Salesperson-led. Frames tradie pain (sourcing, scams, lost time, missed jobs), then Enviroline as the fix.",
+   hook:`Every time you chase another supplier, you lose time on the tools.`,
+   tp:[`What problems do tradies face when they have to deal with too many suppliers?`,`How do supplier confusion, parts delays, warranty headaches, lost jobs, and costs blowing out affect their day?`,`How does Enviroline put the process under one roof?`],
+   broll:[`Tradie on phone`,`Messy ute/van`,`Frustrated search for tools`,`Cut to calm Enviroline factory`,`Organised fit-out`,`Clean finished vehicle`],
+   eq:[`Teleprompter`,`Wireless lav mic`,`LED panel`],
+   cta:`Stop chasing suppliers. Get it sorted with Enviroline.`,
+   script:[
+     ["",`Every time you chase another supplier... you're losing time on the tools.`],
+     ["",`\"Has my ute arrived?\" \"Any update on the jetter?\" \"Who's handling the wiring?\" \"What do you mean it's delayed?\"`],
+     ["",`One supplier blames another. Warranties become a nightmare. Jobs get pushed back... and suddenly the costs start blowing out.`],
+     ["",`Instead of making money, you're spending your day chasing answers.`],
+     ["",`At Enviroline, we do it differently. One team. One point of contact.`],
+     ["",`We source the vehicle, build the fit-out, install your jetter, organise the accessories, complete the branding, and deliver it work-ready. We even offer in-house financing through Enviroline Finance. No supplier headaches. No wasted time.`],
+     ["",`Just a complete trade vehicle built to get you back on the tools faster.`],
+     ["",`Talk to the team today and get your complete trade vehicle solution.`]
+   ]},
+  {n:"3", group:"Core deliverables (9)", t:"Who We Are", meta:["Vertical","Up to 1 min","Talking Head + B-Roll"],
+   type:"PRO · Medium up to 1 min · Talking Head + B-Roll",
+   note:"Rework the tone, the previous version felt stiff and corporate. Shoot on gimbal for a premium feel.",
+   hook:`For over 50 years, Enviroline has helped tradies get work-ready vehicles built for the real world.`,
+   tp:[`How long has Enviroline been in the industry?`,`What does Australian-made mean for build quality?`,`What happens inside the Sydney-based warehouse?`,`What trade vehicle fit-outs, water jetters, and pipe maintenance solutions does Enviroline offer?`,`How are the products built for durability, innovation, and performance?`],
+   broll:[`Factory process`,`Staff in action`,`Vehicles`,`Jetters`,`Detail shots`,`Quality control`,`Clean hero wides`],
+   eq:[`Teleprompter`,`Gimbal`,`Wireless lav mic`,`LED panel`],
+   cta:`See how it's built. Get in touch with Enviroline.`,
+   script:[
+     ["",`For over 50 years, Enviroline has been building Australian trade solutions that work as hard as you do.`],
+     ["",`Proudly Australian owned and operated, every build starts right here in our Sydney factory.`],
+     ["",`From vehicle fit-outs to industry-leading water jetters, we deliver complete solutions built to handle the toughest jobs.`],
+     ["",`Built to last with high quality materials, our builds are trusted by businesses across Australia.`],
+     ["",`Whether you're running one vehicle or an entire fleet, Enviroline helps keep your business moving.`],
+     ["",`See how it's built. Get in touch with Enviroline.`]
+   ]},
+  {n:"4", group:"Core deliverables (9)", t:"Customer Process / From Enquiry to Delivery", meta:["Vertical","Up to 1 min","Narrative"],
+   type:"PRO · Medium up to 1 min · Narrative",
+   note:"Customer-perspective angle. Overlaps with Videos 1 and 3, differentiate in the script and edit.",
+   hook:`Here's how we take a bare vehicle and turn it into a work-ready trade setup.`,
+   tp:[`What happens after a customer first enquires?`,`How do you assess what the customer needs?`,`How does Enviroline handle vehicle sourcing, custom fit-out, jetter/accessories, wrap/branding, finance, registration, and delivery?`],
+   broll:[`Bare vehicle`,`Parts/fit-out build`,`Drawers and storage`,`Jetter mounting`,`Finished handover, keys`,`Hero shot`],
+   eq:[`Teleprompter`,`Wireless lav mic`,`LED panel`],
+   cta:`Start your build at enviroline.net.au.`,
+   script:[
+     ["",`Here's how we take a bare vehicle and turn it into a work-ready trade setup.`],
+     ["",`It all starts with a conversation. We get to know your trade, how you work, and what you need to get the job done.`],
+     ["",`From there, we can source your new vehicle, then our team gets to work building the setup that's designed around you.`],
+     ["",`Vehicle fit-out? Sorted. Water jetter and accessories? Installed. Storage, lighting, roof racks, and everything else you need? We've got it covered.`],
+     ["",`We'll even organise the branding, finance, registration, and final checks, so your vehicle arrives ready to hit the road.`],
+     ["",`One team. One point of contact. One complete trade vehicle solution.`],
+     ["",`Start your build at enviroline.net.au.`]
+   ]},
+  {n:"5", group:"Core deliverables (9)", t:"Hornet Bolt-Down Jetter", meta:["Vertical","Up to 1 min","Talking Head + B-Roll"],
+   type:"PRO · Medium up to 1 min · Talking Head + B-Roll",
+   note:"Presented on talking points rather than a script. Script is client-written. Cover maintenance vs commercial plumber use cases.",
+   hook:`40 horsepower. 5000 PSI. Built to clear the tough stuff and stay neat on the ute.`,
+   tp:[`What is the Hornet 40EFI bolt-down jetter and what type of plumber is it best suited for?`,`What makes it a strong option for domestic and light commercial drain-clearing work?`,`Can you explain the key specs (40hp, 5000 PSI, 35 LPM) in a simple way for plumbers?`,`Why is the compact bolt-down design useful for a work-ready ute setup?`],
+   broll:[`Hornet installed wide`,`Controls`,`Hose reels`,`Fittings`,`Bolt-down points`,`Service items`,`Close-ups`,`\"Ready-to-work\" reveal`],
+   eq:[`Teleprompter`,`Wireless lav mic`,`LED panel`],
+   cta:`Ask Enviroline if the Hornet is right for your setup.`,
+   script:[
+     ["",`Need more power to tackle tough blockages? Meet the Hornet 40EFI.`],
+     ["",`If you're ready to step up your drain cleaning game, the Hornet 40EFI delivers serious performance in a compact, ute-friendly package.`],
+     ["",`Powered by a 40 horsepower fuel-injected Vanguard engine, it pumps out 35 litres per minute at over 5,000 PSI, giving you the flow and pressure to clear stubborn blockages faster.`],
+     ["",`It comes complete with the accessories you need to get started, plus a FREE 80-metre remote control for added convenience on the job.`],
+     ["",`With a heavy-duty stainless steel frame, easy front-access servicing, and simple bolt-down installation, it's built for hardworking plumbers who need reliability every day.`],
+     ["",`Ready to upgrade your jetting setup? Contact Enviroline today.`]
+   ]},
+  {n:"6", group:"Core deliverables (9)", t:"Viper Product Highlight (VS2 + VS3)", meta:["Vertical","Up to 1 min","Talking Head + B-Roll"],
+   type:"PRO · Medium up to 1 min · Talking Head + B-Roll",
+   note:"Presented on talking points, client-written script. One combined product video, VS2 is the entry-level pick, step up to VS3 for more power.",
+   hook:`VS2 or VS3? Here's how to choose the right Viper for your jobs.`,
+   tp:[`What's the main difference between the Viper VS2 and VS3?`,`What type of plumber or job is the VS2 best suited for?`,`When would you step up to the VS3 instead?`,`If a plumber is unsure which Viper to choose, what should they consider before deciding?`],
+   broll:[`VS2 and VS3 side-by-side`,`Detail passes`,`Installed angles`,`Controls`,`Hose/fittings`,`Quick graphic/spec comparison`,`Finished ute shot`],
+   eq:[`Teleprompter`,`Wireless lav mic`,`LED panel`],
+   cta:`Tell Enviroline your jobs and they'll match the right unit.`,
+   script:[
+     ["",`Looking for a compact water jetter that doesn't compromise on performance?`],
+     ["",`Meet the Viper VS2, built for plumbers who need a reliable, compact drain cleaning solution that's ready to work.`],
+     ["",`Powered by a 27 horsepower Honda GX690 engine, it delivers 23 litres per minute at 5,000 PSI, giving you the power to tackle blocked drains with confidence.`],
+     ["",`It comes complete with all the accessories you need to get started, plus an 80-metre remote control for greater convenience on every job.`],
+     ["",`With a heavy-duty stainless steel frame, compact bolt-down design, and easy front-access servicing, the VS2 fits neatly onto your ute or van without wasting valuable space.`],
+     ["",`Want more power? Upgrade to the Viper VS3. Powered by the fuel-injected Honda iGX800 engine, it delivers an impressive 32 litres per minute at 4,300 PSI, giving you even faster, more effective drain cleaning performance.`],
+     ["",`Upgrade your jetting setup with Enviroline. Contact us today.`]
+   ]},
+  {n:"7", group:"Core deliverables (9)", t:"Your Ute Reflects Your Brand", meta:["Vertical","Up to 1 min","Conceptual, Viral Style"],
+   type:"PRO · Medium up to 1 min · Conceptual, Viral Style",
+   note:"Top-funnel and educational, not a hard sell. Flagged as a strong concept by both the client and our team.",
+   hook:`Your ute says a lot before you even start the job.`,
+   tp:[`Why does a clean, organised setup build trust with customers?`,`How does better storage save time on site?`,`How does a quality fit-out reflect the quality of a tradie's workmanship?`,`Why does a work-ready vehicle help tradies show up more professionally?`],
+   broll:[`Messy/unstyled setup if available, then clean Enviroline build`,`Drawers opening`,`Tools organised`,`Finished vehicle`,`Tradie arriving confidently`],
+   eq:[`Teleprompter`,`Wireless lav mic`,`LED panel`],
+   cta:`Build a setup that matches your standard.`,
+   script:[
+     ["",`Your ute tells people a lot before you've even started the job.`],
+     ["",`When you pull up on site, your vehicle is the first thing your customer sees.`],
+     ["",`A clean, organised setup shows you take pride in your work and run a professional business. But it's not just about looking good. It's about making your day easier.`],
+     ["",`With smart storage and a place for everything, you're not wasting time digging around the back of the ute looking for your gear. Everything's where you need it, when you need it.`],
+     ["",`Whether you're a plumber, sparky, or running any trade business, a quality fit-out helps you stay organised, work faster, and turn up ready for the job.`],
+     ["",`At Enviroline, we build trade setups that work as hard as you do.`],
+     ["",`So build a setup that matches your standard. Contact Enviroline today.`]
+   ]},
+  {n:"8", group:"Core deliverables (9)", t:"Plumbing Fit-out Highlight (U10 Plumbing Ute)", meta:["Vertical","Up to 1 min","Promo"],
+   type:"PRO · Medium up to 1 min · Promo",
+   note:"Client-written promo, mostly b-roll with a script. This replaced the optional 'which jetter is better' concept. Fit-out shown as capability, no product fill.",
+   broll:[`Full vehicle/fit-out hero shot`,`Slow gimbal push-in`,`Water jetter features`,`Toolboxes opening/closing`,`Shelving`,`Drawers`,`Hands grabbing tools`,`Locks, hinges, handles`,`Racking`,`Finish details`,`Clean final hero reveal`],
+   eq:[`Teleprompter`,`Gimbal`,`LED panel`],
+   script:[
+     ["",`This is the Enviroline U10 Plumbing Ute, a complete turnkey solution for plumbers who want to get straight to work.`],
+     ["",`Packed with everything you need on the job, the U10 comes equipped with a high-performance water jetting package, including all the accessories to tackle blocked drains with confidence.`],
+     ["",`Built on your choice of chassis, it features two heavy-duty 3mm aluminium toolboxes with central locking and automatic LED door lighting as standard, keeping your tools secure, organised, and easy to access.`],
+     ["",`Need more storage or want to customise your setup? Add internal shelving, drawer systems, roof racks, towbar upgrades, and full vinyl wrapping to make it your own.`],
+     ["",`From sourcing the vehicle to building the fit-out, installing the equipment, wrapping, and arranging finance, Enviroline handles the entire process under one roof.`],
+     ["",`Get your business moving with the U10 Plumbing Ute.`],
+     ["",`Order yours today with Enviroline Group.`]
+   ]},
+  {n:"9", group:"Core deliverables (9)", t:"Sparky / Trade Fit-out Highlight (U10 Electrical Ute)", meta:["Vertical","Up to 1 min","Promo"],
+   type:"PRO · Medium up to 1 min · Promo",
+   note:"Client-written promo, mostly b-roll with a script.",
+   broll:[`Full vehicle/fit-out hero shot`,`Slow gimbal push-in`,`Toolboxes opening/closing`,`Shelving`,`Drawers`,`Cable/tool organisation`,`Hands grabbing tools`,`Locks, hinges, handles`,`Racking`,`Finish details`,`Clean final hero reveal`],
+   eq:[`Teleprompter`,`Gimbal`,`LED panel`],
+   script:[
+     ["",`This is the Enviroline U10 Electrical Ute, a complete turnkey solution built for electricians who want to spend less time organising and more time on the tools.`],
+     ["",`Designed around the way sparkies work, the ute gives you a smart, organised setup with secure storage for your tools, equipment, and everyday essentials.`],
+     ["",`Built for the demands of the trade, it features two heavy-duty 3mm aluminium toolboxes with central locking and automatic LED door lighting as standard, keeping your gear protected and easy to access.`],
+     ["",`Customise your setup with internal shelving, drawer systems, tradie roof racks, towbar upgrades, and full vinyl wrapping to match your business.`],
+     ["",`No chasing multiple suppliers. No coordinating different installers. Enviroline handles the vehicle, fit-out, branding, and finance, all under one roof.`],
+     ["",`A complete electrical ute solution, ready to get to work.`],
+     ["",`Order yours today with Enviroline.`]
+   ]},
+  {n:"B1", group:"Extra promo edits, b-roll only, no charge", t:"Plumbing Ute Promo Edit", meta:["Vertical","Under 20s","B-roll only"],
+   type:"PRO · Short-form sub-30s · Promo (B-roll only, under 20s)",
+   note:"Extra creative for ad-set variety, confirmed at no charge (normally valued at $450). No script. Cut alongside the footage captured for Video 8.",
+   broll:[`Full vehicle/fit-out hero shot`,`Slow gimbal push-in`,`Water jetter features`,`Toolboxes opening/closing`,`Shelving`,`Drawers`,`Hands grabbing tools`,`Locks, hinges, handles`,`Racking`,`Finish details`,`Clean final hero reveal`],
+   eq:[`Gimbal`,`LED panel`]},
+  {n:"B2", group:"Extra promo edits, b-roll only, no charge", t:"Sparky Ute Promo Edit", meta:["Vertical","Under 20s","B-roll only"],
+   type:"PRO · Short-form sub-30s · Promo (B-roll only, under 20s)",
+   note:"Extra creative for ad-set variety, confirmed at no charge (normally valued at $450). No script. Cut alongside the footage captured for Video 9.",
+   broll:[`Full vehicle/fit-out hero shot`,`Slow gimbal push-in`,`Toolboxes opening/closing`,`Shelving`,`Drawers`,`Cable/tool organisation`,`Hands grabbing tools`,`Locks, hinges, handles`,`Racking`,`Finish details`,`Clean final hero reveal`],
+   eq:[`Gimbal`,`LED panel`]},
+  {n:"T", group:"For WhiteKey (filmed after the shoot)", t:"Client Testimonial for WhiteKey", meta:["Vertical","Short-form","Talking Head"],
+   type:"PRO · Short-form sub-30s · Talking Head",
+   note:"Filmed at the end of the day as part of the goodwill arrangement. The owner/founder (Brent or Troy) on camera. For WhiteKey's own use, not an Enviroline deliverable.",
+   tp:[`Why did you choose WhiteKey?`,`What has working with the team been like?`,`What difference or results have you seen?`,`Who would you recommend WhiteKey to?`],
+   broll:[`Presenter to camera in a clean part of the site`,`A few cutaways of the finished utes`,`The shoot in progress`],
+   eq:[`Wireless lav mic`,`LED panel`]}
+];
+
+const RUN = [
+  ["1","8:30","Setup & quick briefing","Roughly 20 minutes. Site walk, block the front-of-building backdrop, lighting and audio check, confirm which vehicles are on site, and run a quick team briefing to align on the day and shot priorities."],
+  ["2","9:00","Plumbing ute first","Video 8 + Plumbing Ute Promo Edit + plumbing ute photos. Shoot the talking-head lines first, then b-roll. This vehicle ships out on 21 July, so capture it before anything else.",["8","B1"]],
+  ["3","10:15","Sparky ute","Video 9 + Sparky Ute Promo Edit + sparky ute photos. Talking head first, then b-roll. Toolbox packout only if the customer order allows, otherwise show it empty.",["9","B2"]],
+  ["4","11:15","Jetter product videos","Hornet (V5) and Viper VS2+VS3 (V6) talking points first, then b-roll, plus standalone jetter photos. Testing bay is loud, watch audio.",["5","6"]],
+  ["5","12:30","Scripted talking heads","Videos 1, 2, 3, 4 and 7 with the presenter in the soundproof office/boardroom. Teleprompter required for every scripted take. Gimbal for Who We Are.",["1","2","3","4","7"]],
+  ["6","14:00","Factory & capability B-roll","Build stations, welding, laser cutter, crane, team in action. Shot after the talking heads so the creator can match b-roll to what was said. Capture as time allows."],
+  ["7","14:30","Tradie B-roll & driving shots","Nominated staff in tradie gear, plus nearby parks and Ropes Crossing streets for driving footage."],
+  ["8","15:00","Team headshots","Five sales team headshots on the plain white boardroom wall. Possible QA technician headshot."],
+  ["9","15:20","WhiteKey testimonial","Owner/founder (Brent or Troy) to camera about working with WhiteKey. Film last.",["T"]],
+  ["10","15:30","Wrap & backup","Check the shot list against the brief, back up all footage, quick debrief."]
+];
+
+const CVRUN = [
+  "Setup & quick briefing",
+  "Plumbing ute first (ships out 21 July)",
+  "Sparky ute",
+  "Jetter product videos (Hornet + Viper)",
+  "Scripted talking-head videos",
+  "Factory & capability b-roll",
+  "Tradie b-roll & driving shots",
+  "Team headshots",
+  "WhiteKey testimonial",
+  "Wrap & backup"
+];
+
+/* ---- state (safe for sandboxed embeds) ---- */
+const KEY="enviroline_brief_v1";
+let state={};
+try{state=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){state={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function itemHTML(id,label){
+  const on=state[id]?"checked":"";
+  const cls=state[id]?"item done":"item";
+  return `<label class="${cls}" data-id="${id}"><input type="checkbox" ${on}><span>${label}</span></label>`;
+}
+
+/* client-view day-at-a-glance (read-only list) */
+document.getElementById("cv-run").innerHTML =
+  `<div class="cg-head"><h3>The day, in order</h3><span class="pill">10 blocks</span></div>` +
+  CVRUN.map((r,i)=>`<div class="item" style="cursor:default"><input type="checkbox" disabled style="opacity:.35"><span><b>${i+1}.</b> ${esc(r)}</span></div>`).join("");
+
+/* photo groups */
+document.getElementById("photoGroups").innerHTML = PHOTO_GROUPS.map((g,gi)=>{
+  const items=g.items.map((p,i)=>itemHTML(`photo-${gi}-${i}`, esc(p))).join("");
+  return `<div class="card checkgroup"><div class="cg-head"><h3>${esc(g.title)}</h3><span class="pill" id="pc-${gi}"></span></div>${items}</div>`;
+}).join("");
+
+/* video cards, grouped */
+let lastGroup="";
+document.getElementById("videoCards").innerHTML = VIDEOS.map(v=>{
+  let head="";
+  if(v.group!==lastGroup){head=`<div class="grouphead">${esc(v.group)}</div>`;lastGroup=v.group;}
+  const scriptBlock = v.script ? `<div class="vrow"><div class="rl">Script, client-written, do not alter</div>
+      <details class="script"><summary>Show script</summary><div class="stext">${v.script.map(s=>(s[0]?`<b>${esc(s[0])}</b>\n`:"")+esc(s[1])).join("\n\n")}</div></details></div>` : "";
+  const hookBlock = v.hook ? `<div class="vrow"><div class="rl">Hook</div><div class="hook">${esc(v.hook)}</div></div>` : "";
+  const tpBlock = v.tp ? `<div class="vrow"><div class="rl">Talking points</div><ul class="tp">${v.tp.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>` : "";
+  const ctaBlock = v.cta ? `<div class="vrow"><div class="rl">CTA</div><div class="cta">${esc(v.cta)}</div></div>` : "";
+  const broll = v.broll.map((b,i)=>itemHTML(`broll-${v.n}-${i}`, esc(b))).join("");
+  return head + `<details class="card vcard" id="v-${v.n}">
+    <summary>
+      <div class="vnum">${esc(v.n)}</div>
+      <div class="vhead"><div class="vt">${esc(v.t)}</div>
+        <div class="vm">${v.meta.map(m=>`<span class="badge">${esc(m)}</span>`).join("")}</div></div>
+      <div class="chev">▼</div>
+    </summary>
+    <div class="vbody">
+      <div class="vrow"><div class="rl">Type</div><div>${esc(v.type)}</div></div>
+      ${v.note?`<div class="vrow"><div class="notecall"><div><b>Notes.</b> ${esc(v.note)}</div></div></div>`:""}
+      ${hookBlock}
+      ${tpBlock}
+      ${scriptBlock}
+      <div class="vrow"><div class="rl">B-Roll checklist</div><div class="checkgroup" style="padding:0">${broll}</div></div>
+      <div class="vrow"><div class="rl">Equipment</div><div class="eq">${v.eq.map(e=>`<span>${esc(e)}</span>`).join("")}</div></div>
+      ${ctaBlock}
+    </div>
+  </details>`;
+}).join("");
+
+/* run sheet */
+function vidLabel(n){if(n==="T")return "Testimonial";if(/^B/.test(n))return "Bonus "+n;return "Video "+n;}
+function vidChip(n){return `<a class="vlink rlink" data-goto="${esc(n)}" tabindex="0" role="link">${esc(vidLabel(n))}</a>`;}
+document.getElementById("runList").innerHTML = RUN.map((r,i)=>{
+  const id="run-"+r[0];
+  const done=state[id]?"done":"";
+  const last=i===RUN.length-1;
+  const links=(r[4]&&r[4].length)?`<div class="rlinks">${r[4].map(vidChip).join("")}</div>`:"";
+  return `<div class="rblock ${done}" data-id="${id}">
+    <div class="rleft"><div class="rdot">${esc(r[0])}</div>${last?"":'<div class="rline"></div>'}</div>
+    <div class="rcontent"><label class="rcard"><input type="checkbox" ${state[id]?"checked":""}>
+      <div><div class="rtime">${esc(r[1])}</div><div class="rb">${esc(r[2])}</div><div class="rn">${esc(r[3])}</div></div></label>${links}</div>
+  </div>`;
+}).join("");
+
+/* counts + progress */
+function updateCounts(){
+  PHOTO_GROUPS.forEach((g,gi)=>{
+    const el=document.getElementById("pc-"+gi);if(!el)return;
+    el.textContent=g.items.length+" shots";
+  });
+}
+
+/* events */
+document.addEventListener("change",e=>{
+  if(e.target.type!=="checkbox"||e.target.disabled)return;
+  const host=e.target.closest("[data-id]");if(!host)return;
+  state[host.dataset.id]=e.target.checked;
+  host.classList.toggle("done",e.target.checked);
+  save();updateCounts();
+});
+
+/* tabs */
+function activateTab(b){
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  b.classList.add("active");
+  const panel=document.getElementById(b.dataset.t);if(panel)panel.classList.add("active");
+  window.scrollTo({top:0,behavior:"auto"});
+}
+document.getElementById("tabs").addEventListener("click",e=>{
+  const b=e.target.closest(".tab");if(b)activateTab(b);
+});
+document.getElementById("tabs").addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const b=e.target.closest(".tab");if(b){e.preventDefault();activateTab(b);}
+});
+
+/* cross-links: jump to and open a specific video */
+function goToVideo(n){
+  const tab=document.querySelector('.tab[data-t="videos"]');
+  if(tab)activateTab(tab);
+  const el=document.getElementById("v-"+n);
+  if(!el)return;
+  el.open=true;
+  requestAnimationFrame(()=>{
+    el.scrollIntoView({behavior:"smooth",block:"start"});
+    el.classList.add("flash");
+    setTimeout(()=>el.classList.remove("flash"),1400);
+  });
+}
+document.addEventListener("click",e=>{
+  const a=e.target.closest("[data-goto]");
+  if(a){e.preventDefault();goToVideo(a.getAttribute("data-goto"));}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const a=e.target.closest("[data-goto]");
+  if(a){e.preventDefault();goToVideo(a.getAttribute("data-goto"));}
+});
+
+updateCounts();
+</script>
+</body>
+</html>

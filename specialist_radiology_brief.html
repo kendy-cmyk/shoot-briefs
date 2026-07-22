@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Specialist Radiology PET CT Launch Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#333132; --orange:#faa62f; --tangerine:#f7b52d; --white:#ffffff;
+    --bg:#1b191a;
+    --text:#f1efed; --text2:#a7a3a1; --canvas:#2a2829; --soft:#242223;
+    --surface:#3a3738; --border:#403d3e; --accent:#faa62f; --accent-soft:rgba(250,166,47,.13);
+    --done:#faa62f; --charcoal2:#403e3f; --charcoal-line:rgba(255,255,255,.14);
+    --line-strong:#5f5c5d;
+    --shadow:0 1px 2px rgba(0,0,0,.30),0 6px 18px rgba(0,0,0,.30);
+    --head:"Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    --sans:"Roboto",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;background:var(--bg);color-scheme:dark}
+  body{font-family:var(--sans);color:var(--text);background:var(--bg);font-size:16px;line-height:1.5;font-weight:400;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  h1,h2,h3,.eyebrow,.sec-title,.wordmark,.chip b{font-family:var(--head)}
+
+  /* wordmark bar */
+  .brandbar{background:var(--charcoal);border-bottom:1px solid var(--charcoal-line)}
+  .brandbar .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px;gap:16px;flex-wrap:wrap}
+  .wordmark{font-weight:800;font-size:20px;letter-spacing:.02em;color:#fff;text-transform:uppercase}
+  .wordmark .mk{color:var(--orange)}
+  .brandbar .tag{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:500}
+
+  /* hero */
+  header .hero{background:var(--charcoal);color:#fff;padding:30px 0 34px}
+  .eyebrow{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:700}
+  .hero h1{font-size:44px;line-height:1.02;margin:12px 0 10px;letter-spacing:.01em;text-transform:uppercase;color:#fff}
+  .hero .sub{color:rgba(255,255,255,.72);font-size:16.5px;max-width:660px;font-weight:300}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .chip{display:flex;align-items:baseline;gap:7px;background:var(--charcoal2);border:1px solid var(--charcoal-line);border-radius:8px;padding:9px 13px}
+  .chip b{font-size:20px;font-weight:800;color:var(--orange);letter-spacing:0}
+  .chip span{color:rgba(255,255,255,.72);font-weight:400;font-size:13.5px}
+  .prog{margin-top:24px;max-width:520px}
+  .prog-top{display:flex;justify-content:space-between;font-size:12.5px;font-weight:500;margin-bottom:6px;color:rgba(255,255,255,.72)}
+  .prog-track{height:8px;background:var(--charcoal2);border-radius:99px;overflow:hidden}
+  .prog-fill{height:100%;width:0;background:var(--orange);border-radius:99px;transition:width .35s ease}
+
+  /* tabs */
+  nav.tabs{position:sticky;top:0;z-index:40;background:rgba(27,25,26,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .tabs-inner{display:flex;gap:2px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tab{border:none;background:none;padding:15px 16px;font-size:15px;font-weight:600;font-family:var(--sans);color:var(--text2);cursor:pointer;border-bottom:2.5px solid transparent;white-space:nowrap;min-height:44px;user-select:none}
+  .tab:hover{color:var(--text)}
+  .tab:focus-visible{outline:2px solid var(--orange);outline-offset:-2px;border-radius:4px}
+  .tab.active{color:#fff;border-bottom-color:var(--orange)}
+
+  main{padding:34px 0 90px}
+  .panel{display:none;animation:fade .3s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .sec-title{font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--text2);font-weight:700;margin:6px 0 15px}
+  .sec-title.mt{margin-top:34px}
+
+  .card{background:var(--canvas);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+  .card + .card{margin-top:16px}
+
+  /* client view */
+  .lead{background:var(--canvas);color:var(--text);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:12px;padding:22px 24px;font-size:17px;font-weight:300;line-height:1.55}
+  .lead b{font-weight:600;color:var(--text)}
+  .lead .hl{color:var(--orange);font-weight:600}
+  .cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+  .cv-block{background:var(--canvas);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);padding:20px 22px}
+  .cv-block h3{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px}
+  .cv-block .big{font-family:var(--head);font-size:19px;font-weight:700;text-transform:uppercase;letter-spacing:.01em;margin-bottom:10px;color:var(--text)}
+  .cv-block p{font-size:15px;color:var(--text);font-weight:300;line-height:1.55}
+  .cv-list{list-style:none;margin-top:10px}
+  .cv-list li{position:relative;padding:5px 0 5px 20px;font-size:14.5px;font-weight:300}
+  .cv-list li::before{content:"";position:absolute;left:0;top:12px;width:7px;height:7px;border-radius:2px;background:var(--orange)}
+  details.more{margin-top:12px;border-top:1px dashed var(--border);padding-top:10px}
+  details.more>summary{list-style:none;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:7px}
+  details.more>summary::-webkit-details-marker{display:none}
+  details.more>summary .chev{font-size:11px;transition:transform .2s}
+  details.more[open]>summary .chev{transform:rotate(180deg)}
+  details.more .inner{padding-top:10px}
+  .pointer{display:flex;gap:11px;align-items:flex-start;background:var(--accent-soft);border:1px solid rgba(250,166,47,.32);border-radius:10px;padding:13px 16px;font-size:14.5px;margin-top:16px;font-weight:400}
+  .pointer .ic{color:var(--done);font-weight:800;font-family:var(--head)}
+
+  /* info table */
+  .info{width:100%;border-collapse:collapse}
+  .info tr+tr{border-top:1px solid var(--border)}
+  .info th{text-align:left;vertical-align:top;padding:14px 18px;width:150px;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);background:var(--soft);font-weight:700;font-family:var(--head)}
+  .info td{padding:14px 18px;font-size:15px;font-weight:300}
+
+  /* checklists */
+  .cg-head{display:flex;align-items:center;justify-content:space-between;padding:15px 16px 9px;gap:10px}
+  .cg-head h3{font-size:15px;font-family:var(--head);text-transform:uppercase;letter-spacing:.03em;font-weight:700}
+  .cg-head .pill{font-size:12px;font-weight:600;color:var(--text2);background:var(--soft);border:1px solid var(--border);border-radius:99px;padding:3px 10px;white-space:nowrap}
+  .checkgroup{padding:2px 8px 12px}
+  .item{display:flex;align-items:flex-start;gap:12px;padding:10px 12px;border-radius:8px;cursor:pointer;transition:background .12s}
+  .item:hover{background:var(--soft)}
+  .item input{appearance:none;-webkit-appearance:none;width:21px;height:21px;min-width:21px;margin-top:1px;border:2px solid var(--line-strong);border-radius:6px;cursor:pointer;position:relative;transition:.15s}
+  .item input:checked{background:var(--done);border-color:var(--done)}
+  .item input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .item span{font-size:15px;flex:1;font-weight:400}
+  .item.done span{color:var(--text2);text-decoration:line-through}
+
+  /* video cards */
+  .grouphead{font-family:var(--head);text-transform:uppercase;letter-spacing:.06em;font-size:12.5px;font-weight:700;color:var(--text2);margin:26px 0 12px}
+  .grouphead:first-child{margin-top:4px}
+  .vcard{margin-bottom:12px}
+  .vcard>summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;gap:15px}
+  .vcard>summary::-webkit-details-marker{display:none}
+  .vnum{width:40px;height:40px;min-width:40px;border-radius:9px;background:var(--accent-soft);color:var(--done);font-family:var(--head);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center}
+  .vhead{flex:1;min-width:0}
+  .vhead .vt{font-size:16.5px;font-weight:600;letter-spacing:0;font-family:var(--head)}
+  .vhead .vm{font-size:12.5px;color:var(--text2);margin-top:3px}
+  .vhead .vm .badge{display:inline-block;background:var(--soft);border:1px solid var(--border);border-radius:5px;padding:1px 7px;margin:2px 6px 0 0;font-weight:500}
+  .chev{color:var(--text2);transition:transform .2s;font-size:12px}
+  .vcard[open] .chev{transform:rotate(180deg)}
+  .vbody{padding:2px 18px 20px;border-top:1px solid var(--border)}
+  .vrow{margin-top:17px}
+  .vrow .rl{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);font-weight:700;font-family:var(--head);margin-bottom:7px}
+  .hook{background:var(--accent-soft);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:11px 14px;font-size:14.5px;font-style:italic}
+  .tp{list-style:none}
+  .tp li{position:relative;padding:5px 0 5px 18px;font-size:14.5px;font-weight:300}
+  .tp li::before{content:"";position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;background:var(--orange)}
+  .cta{font-size:14.5px;font-weight:500;color:var(--done)}
+  .script>summary{cursor:pointer;list-style:none;padding:11px 13px;font-size:14px;font-weight:600;color:var(--done);display:flex;align-items:center;gap:8px;background:var(--soft);border:1px solid var(--border);border-radius:8px}
+  .script>summary::-webkit-details-marker{display:none}
+  .script[open]>summary{border-radius:8px 8px 0 0}
+  .script .stext{padding:12px 14px;font-size:14.5px;line-height:1.7;white-space:pre-wrap;border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;background:var(--canvas)}
+  .notecall{display:flex;gap:9px;align-items:flex-start;background:var(--soft);border:1px solid var(--border);border-radius:8px;padding:11px 14px;font-size:14px;font-weight:300}
+  .notecall .ic{color:var(--done);font-weight:800;font-family:var(--head)}
+  .notecall b{font-weight:600}
+  .eq{display:flex;flex-wrap:wrap;gap:8px}
+  .eq span{font-size:13px;font-weight:500;background:var(--surface);border-radius:6px;padding:5px 11px}
+
+  /* run sheet */
+  .run{position:relative;padding-left:4px}
+  .rblock{display:flex;gap:16px;padding:2px 0}
+  .rleft{display:flex;flex-direction:column;align-items:center}
+  .rdot{width:34px;height:34px;min-width:34px;border-radius:50%;background:var(--canvas);border:2px solid var(--line-strong);color:var(--text2);font-family:var(--head);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;transition:.2s;z-index:2}
+  .rline{flex:1;width:2px;background:var(--border);margin:2px 0}
+  .rblock.done .rdot{background:var(--done);border-color:var(--done);color:#fff}
+  .rcontent{flex:1;padding-bottom:16px}
+  .rcard{background:var(--canvas);border:1px solid var(--border);border-radius:10px;padding:13px 16px;cursor:pointer;display:flex;gap:13px;align-items:flex-start;transition:border-color .15s}
+  .rcard:hover{border-color:var(--orange)}
+  .rcard input{appearance:none;-webkit-appearance:none;width:21px;height:21px;min-width:21px;margin-top:2px;border:2px solid var(--line-strong);border-radius:6px;cursor:pointer;position:relative}
+  .rcard input:checked{background:var(--done);border-color:var(--done)}
+  .rcard input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .rtime{font-size:12px;font-weight:700;color:var(--done);font-family:var(--head);letter-spacing:.03em}
+  .rcard .rb{font-size:15px;font-weight:600;margin-top:2px;font-family:var(--head)}
+  .rcard .rn{font-size:13.5px;color:var(--text2);margin-top:4px;font-weight:300}
+  .rcard .rsplit{margin-top:8px}
+  .rcard .rsplit .sl{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;color:var(--text2);font-weight:300;margin-top:6px}
+  .rblock.done .rb{text-decoration:line-through;color:var(--text2)}
+  .rtag{display:inline-block;font-family:var(--head);font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;border-radius:5px;padding:2px 7px;white-space:nowrap;margin-top:1px}
+  .rtag.pro{background:var(--accent-soft);color:var(--orange);border:1px solid rgba(250,166,47,.32)}
+  .rtag.ugc{background:rgba(255,255,255,.08);color:var(--text);border:1px solid var(--border)}
+
+  .foot{text-align:center;color:var(--text2);font-size:13px;margin-top:40px;font-weight:300}
+
+  @media (max-width:720px){
+    .cv-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 16px}
+    .hero h1{font-size:32px}
+    .hero{padding:26px 0 28px}
+    .info th{width:104px;font-size:11.5px;padding:11px 12px}
+    .info td{padding:11px 12px;font-size:14px}
+    .lead{font-size:15.5px;padding:18px}
+    .tab{padding:14px 13px;font-size:14px}
+    .vhead .vt{font-size:15.5px}
+  }
+  @media print{
+    nav.tabs,.prog,.foot{display:none!important}
+    .panel{display:block!important}
+    .brandbar,header .hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .vbody{display:block!important}
+    body{background:#fff}
+  }
+  .vlink{color:var(--orange);cursor:pointer;text-decoration:none;border-bottom:1px solid rgba(250,166,47,.35);transition:.15s}
+  .vlink:hover,.vlink:focus-visible{border-bottom-color:var(--orange);outline:none}
+  .rlinks{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 2px 0}
+  .rlink{font-family:var(--head);font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--orange);background:var(--accent-soft);border:1px solid rgba(250,166,47,.3);border-radius:20px;padding:5px 12px;cursor:pointer;transition:.15s}
+  .rlink:hover,.rlink:focus-visible{background:rgba(250,166,47,.22);outline:none}
+  .vcard{scroll-margin-top:72px}
+  .vcard.flash{box-shadow:0 0 0 2px var(--orange),0 8px 22px rgba(0,0,0,.35)}
+  .cvlink{color:inherit;cursor:pointer;text-decoration:none;border-bottom:1px solid rgba(250,166,47,.35);transition:.15s}
+  .cvlink:hover,.cvlink:focus-visible{color:var(--orange);border-bottom-color:var(--orange);outline:none}
+  .rblock{scroll-margin-top:72px}
+  .rblock.flash .rcard{box-shadow:0 0 0 2px var(--orange),0 8px 22px rgba(0,0,0,.35)}
+  .rvids{display:flex;flex-direction:column;gap:8px;margin:12px 0 2px 0}
+  .rvid{background:var(--accent-soft);border:1px solid rgba(250,166,47,.3);border-radius:10px;overflow:hidden}
+  .rvid>summary{list-style:none;cursor:pointer;padding:9px 13px;display:flex;align-items:center;gap:10px;font-family:var(--head);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--orange)}
+  .rvid>summary::-webkit-details-marker{display:none}
+  .rvid>summary .chev{margin-left:auto;color:var(--orange)}
+  .rvid[open]>summary .chev{transform:rotate(180deg)}
+  .rvtag{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;background:var(--orange);color:#1b191a;border-radius:5px;font-size:11px;font-weight:800}
+  .rvbody{padding:2px 14px 14px;border-top:1px solid rgba(250,166,47,.25)}
+  .rvsub{font-size:11.5px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;font-weight:700;font-family:var(--head);margin:11px 0 2px}
+  .rvrow{margin-top:12px;font-size:14px;font-weight:300;color:var(--text)}
+  .rvrow>b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);font-family:var(--head);font-weight:700;margin-bottom:5px}
+</style>
+</head>
+<body>
+<div class="brandbar"><div class="wrap">
+  <div class="wordmark">WhiteKey<span class="mk"> Marketing</span></div>
+  <div class="tag">Shoot Brief</div>
+</div></div>
+
+<header>
+  <div class="hero"><div class="wrap">
+    <h1>Specialist Radiology</h1>
+    <p class="sub">Two creators on the ground for the United Imaging PET CT launch night at the Gosford clinic. One's on photos, the promo, the highlight and the sit-down interviews. The other's grabbing casual vox-pop and handheld b-roll. Thursday 23 July 2026, from 5:30pm.</p>
+    <div class="chips">
+      <div class="chip"><b>2</b><span>creators</span></div>
+      <div class="chip"><b>1</b><span>promo</span></div>
+      <div class="chip"><b>1</b><span>highlight</span></div>
+      <div class="chip"><b>4</b><span>pro interviews</span></div>
+      <div class="chip"><b>8</b><span>UGC interviews</span></div>
+      <div class="chip"><b>50+</b><span>photos</span></div>
+      <div class="chip"><b>3</b><span>hr coverage</span></div>
+    </div>
+  </div></div>
+  <nav class="tabs"><div class="wrap"><div class="tabs-inner" id="tabs" role="tablist">
+    <div class="tab active" role="tab" tabindex="0" data-t="client">Client View</div>
+    <div class="tab" role="tab" tabindex="0" data-t="photo">Photography</div>
+    <div class="tab" role="tab" tabindex="0" data-t="pro">Pro Videos</div>
+    <div class="tab" role="tab" tabindex="0" data-t="ugc">UGC</div>
+    <div class="tab" role="tab" tabindex="0" data-t="run">Run Sheet</div>
+  </div></div></nav>
+</header>
+
+<main class="wrap">
+  <!-- CLIENT VIEW / OVERVIEW -->
+  <section class="panel active" id="client">
+    <div class="lead">We're bringing <b class="hl">two creators</b> to your <b class="hl">United Imaging PET CT launch night</b> in Gosford. The night has two jobs: show the new machine to the <b class="hl">referring doctors and oncologists</b> in the room, and build <b class="hl">social content</b> that reaches patients across the Central Coast. One creator handles the polished track: <b class="hl">photos</b>, a <b class="hl">promo</b>, the <b class="hl">event highlight</b> and <b class="hl">four sit-down interviews</b>. The other grabs <b class="hl">casual vox-pop</b> and handheld b-roll for social. What's below is the short version. Tap any section for more, or use the tabs up top for the full shot list, questions and run sheet.</div>
+
+    <div class="sec-title mt">The shoot at a glance</div>
+    <div class="card">
+      <table class="info">
+        <tr><th>Client</th><td>Specialist Radiology</td></tr>
+        <tr><th>Industry</th><td>Medical imaging and radiology.</td></tr>
+        <tr><th>Location</th><td>Suite 13-14A/16 Watt St, Gosford NSW 2250</td></tr>
+        <tr><th>Date</th><td>Thursday 23 July 2026</td></tr>
+        <tr><th>Format</th><td>Pro b-roll shot landscape. Interviews shot vertical for social, framed with safe margins so they crop cleanly to landscape if you ever need it. Promo and highlight delivered vertical, with a horizontal cut where it helps. UGC handheld and phone-style.</td></tr>
+      </table>
+    </div>
+
+    <div class="pointer"><div><b class="ic">Patient privacy.</b> This is the client's hard rule and a serious breach if we miss it. No patient names or details visible on any monitor, screen, worklist or paperwork, and no identifiable patients in frame without consent. Check every machine and reception shot before you press record.</div></div>
+
+    <div class="sec-title mt">What we're capturing</div>
+    <div class="cv-grid">
+      <div class="cv-block">
+        <h3>Pro creator</h3>
+        <div class="big">Photos, promo, highlight, 4 interviews</div>
+        <p>The polished track. Full photo gallery, a promo, a highlight of the night, and four sit-down interviews with the team and the referring doctors.</p>
+        <ul class="cv-list">
+          <li><a class="vlink" data-goto="1" tabindex="0" role="link">1. Promo</a></li>
+          <li><a class="vlink" data-goto="2" tabindex="0" role="link">2. Event Highlight / Recap</a></li>
+          <li><a class="vlink" data-goto="3" tabindex="0" role="link">3. Dr Remy Lin interview (radiologist)</a></li>
+          <li><a class="vlink" data-goto="4" tabindex="0" role="link">4. Jose Gutierrez interview (United Imaging)</a></li>
+          <li><a class="vlink" data-goto="5" tabindex="0" role="link">5. Referring doctor / oncologist interview</a></li>
+        </ul>
+        <details class="more"><summary>Show the fourth interview <span class="chev">▼</span></summary><div class="inner">
+          <ul class="cv-list">
+            <li><a class="vlink" data-goto="6" tabindex="0" role="link">6. Host / Specialist Radiology leadership</a></li>
+            <li>Plus 50+ edited photos, see the Photography tab</li>
+          </ul>
+        </div></details>
+      </div>
+      <div class="cv-block">
+        <h3>UGC creator</h3>
+        <div class="big">8 vox-pop interviews + b-roll</div>
+        <p>The social track. Fast, first-person clips with guests, doctors and the team, plus handheld b-roll of the room.</p>
+        <ul class="cv-list">
+          <li><a class="vlink" data-goto="U" tabindex="0" role="link">8 casual vox-pop interviews</a></li>
+          <li>Handheld, phone-style b-roll of the night</li>
+          <li>Machine reveal and first-reaction clips</li>
+          <li>Crowd energy and candid moments</li>
+        </ul>
+        <details class="more"><summary>How the two split <span class="chev">▼</span></summary><div class="inner">
+          <ul class="cv-list">
+            <li>UGC creator sits in on the pro interviews first</li>
+            <li>Then peels off for vox-pop while the pro creator gets stills and b-roll</li>
+            <li>Full timing is in the Run Sheet tab</li>
+          </ul>
+        </div></details>
+      </div>
+    </div>
+
+    <div class="pointer"><div>Click any video above to jump to its angle, interview questions and b-roll list, or open the <b>Pro Videos</b>, <b>UGC</b> and <b>Photography</b> tabs for everything.</div></div>
+
+    <div class="sec-title mt">The night, start to finish</div>
+    <div class="card"><div class="checkgroup" id="cv-run"></div></div>
+    <div class="pointer"><div>Full timing, the creator split and shot-by-shot notes are in the <b>Run Sheet</b> tab.</div></div>
+
+    <div class="foot">Tap any item on the other tabs to check it off during the shoot.</div>
+  </section>
+
+  <!-- PHOTO -->
+  <section class="panel" id="photo">
+    <div class="sec-title">Pro creator · event photography · target 50+ edited photos</div>
+    <div id="photoGroups"></div>
+  </section>
+
+  <!-- PRO VIDEOS -->
+  <section class="panel" id="pro">
+    <div class="sec-title">Pro creator · tap a video to open its angle, interview questions, b-roll checklist and kit</div>
+    <div id="proCards"></div>
+  </section>
+
+  <!-- UGC -->
+  <section class="panel" id="ugc">
+    <div class="sec-title">UGC creator · casual vox-pop · target 8 clips + handheld b-roll</div>
+    <div id="ugcWrap"></div>
+  </section>
+
+  <!-- RUN SHEET -->
+  <section class="panel" id="run">
+    <div class="sec-title">Event run sheet · suggested order · PRO and UGC split shown per block</div>
+    <div class="run" id="runList"></div>
+    <div class="foot">Times are a guide. Pro interviews are booked before 7:30pm because the Specialist Radiology contact leaves between 7:30 and 8:00pm. Confirm interview subjects on the night before pulling them aside.</div>
+  </section>
+</main>
+
+<script>
+const PHOTO_GROUPS = [
+  {title:"Arrivals & atmosphere", items:[
+    `Exterior and signage establishing shots`,
+    `Reception area set up: podium, microphone, projector, seating`,
+    `Catering table and food details`,
+    `Name tags, welcome signage and any branded collateral`,
+    `Guests arriving and being greeted`,
+    `Wide shots of the room filling up`
+  ]},
+  {title:"Formalities & speeches", items:[
+    `Host at the podium, mic'd up`,
+    `Dr Remy Lin presenting on the United machine`,
+    `Jose Gutierrez (United Imaging) presenting`,
+    `Projector presentation on the screen`,
+    `Audience listening and reacting`,
+    `Applause and key moments`
+  ]},
+  {title:"The machine (PET room)", items:[
+    `PET CT machine hero shot`,
+    `Machine detail and control shots`,
+    `Team members with the machine`,
+    `Guests touring and viewing the machine`,
+    `Signage or branding in the PET room`,
+    `Privacy check: no patient names or data visible on any monitor, screen or paperwork`
+  ]},
+  {title:"People & candids", items:[
+    `Internal team members, individuals and small groups`,
+    `Referring doctors and practice managers mingling`,
+    `Handshakes and conversations`,
+    `Key attendees: Head of CT, operations manager, office manager`,
+    `Group shot of the Specialist Radiology team`
+  ]},
+  {title:"Brand & social assets", items:[
+    `Clean hero frames of the space for social and web`,
+    `Detail shots for the recap and posts`,
+    `Candid people-enjoying-the-night frames`,
+    `Any signage and branding for reference`
+  ]}
+];
+
+const CORE = [
+  `Tell us your name and your role at Specialist Radiology Group.`,
+  `In simple terms, what is this new United Imaging PET CT and what does it do?`,
+  `What does having this technology here in Gosford mean for patients on the Central Coast?`,
+  `Before this arrived, what did patients have to do to get this kind of scan?`,
+  `What are you most excited about now that it is running?`,
+  `What difference will this make to how quickly patients get answers?`
+];
+
+const PRO_VIDEOS = [
+  {n:"1", group:"Signature videos", t:"Promo", meta:["Vertical + Horizontal","30 to 60s","Branded"],
+   type:"PRO · Promo · Polished",
+   note:"Not tied to the night. We cut it from the best machine shots, clean b-roll and the strongest lines from the four interviews. This is the piece Specialist Radiology reuses on the website and in the social drive aimed at patients across the Central Coast, so keep the event references light and keep the machine front and centre.",
+   broll:[`PET CT machine hero and slow detail shots`,`Clinical space, clean and well lit`,`Team at work near the machine`,`Establishing shots of the Gosford clinic`,`Patient-journey style cutaways if available`],
+   eq:[`Gimbal`,`Wireless lav mic for interviews`,`LED panel`,`Tripod for locked-off machine shots`]},
+  {n:"2", group:"Signature videos", t:"Event Highlight / Recap", meta:["Vertical + Horizontal","30 to 60s","Event coverage"],
+   type:"PRO · Event recap · B-roll, speeches and candids",
+   note:"The recap of the night. A short, punchy edit of arrivals, the speeches, the machine tour and the room. Grab plenty of clean b-roll across the whole night so the edit's got options.",
+   tpLabel:"Event highlight questions (separate from the 4 interviews)",
+   tp:[`In one line, what is tonight all about?`,`What does it mean to finally have this machine here in Gosford?`,`How does it feel to see the room this full tonight?`,`Give us a soundbite: why does this matter for patients across the Central Coast?`,`Sum up the night in a few words.`],
+   broll:[`Exterior and signage establishing shot`,`Guests arriving and mingling`,`Reception wide: podium and projector`,`Speeches: host, Dr Remy Lin and Jose Gutierrez, plus audience`,`Applause and reactions`,`PET room: machine hero and details`,`Guests touring the machine`,`Catering and atmosphere details`,`Group and candid moments`],
+   eq:[`Gimbal`,`Wireless lav mic for speeches`,`LED panel`,`Audio recorder for the podium`]},
+  {n:"3", group:"Pro interviews (polished, 4)", t:"Dr Remy Lin, Radiologist", meta:["Vertical","Polished","Talking head"],
+   type:"PRO · Polished interview · Clinical angle",
+   note:"Dr Remy Lin is a radiologist from New Zealand, up to speak about the United machine and how it performs in practice. He's a confirmed speaker, so treat him as a locked interview. Grab him right after his talk while it's fresh.",
+   tp:CORE,
+   angle:[`What conditions does this machine help detect, and how does it change the way you diagnose?`,`You've seen it running overseas. How does the image quality and detectability compare?`],
+   broll:[`2 to 3 cutaways of Dr Lin near the machine`,`Hands and detail cutaways`,`Wide of the subject in the space`],
+   eq:[`Wireless lav mic`,`LED panel`,`Gimbal`]},
+  {n:"4", group:"Pro interviews (polished, 4)", t:"Jose Gutierrez, United Imaging", meta:["Vertical","Polished","Talking head"],
+   type:"PRO · Polished interview · The machine angle",
+   note:"Jose Gutierrez is the National Sales Manager for PET CT at United Imaging, the brand behind the machine, and the second confirmed speaker. Best subject for what makes this machine one of the best on the market. Grab him right after his talk.",
+   tp:CORE,
+   angle:[`What makes this United Imaging PET CT stand out from the machines clinics usually run?`,`Why does it matter that a machine like this is now on the Central Coast?`],
+   broll:[`2 to 3 cutaways of Jose near the machine`,`Machine detail cutaways`,`Wide of the subject in the space`],
+   eq:[`Wireless lav mic`,`LED panel`,`Gimbal`]},
+  {n:"5", group:"Pro interviews (polished, 4)", t:"Referring doctor / oncologist", meta:["Vertical","Polished","Talking head"],
+   type:"PRO · Polished interview · Patient-referral angle",
+   note:"An outside referring doctor or oncologist from the room. This is the most important angle of the night, because these are the people the event is built to win over. Best subject for the what-it-means-for-patients line. Confirm on the night.",
+   tp:CORE,
+   angle:[`What does having this machine locally mean for the patients you refer?`,`What would make you send your patients here for a PET CT?`],
+   broll:[`2 to 3 cutaways of the subject at the event`,`Reaction and conversation cutaways`,`Wide of the subject in the space`],
+   eq:[`Wireless lav mic`,`LED panel`,`Gimbal`]},
+  {n:"6", group:"Pro interviews (polished, 4)", t:"Host / Specialist Radiology leadership", meta:["Vertical","Polished","Talking head"],
+   type:"PRO · Polished interview · Behind-the-scenes angle",
+   note:"The host is mic'd up on the night and speaks about the machine, so he's an easy grab. The Head of CT, Anh Tran (operations manager) or the Gosford office manager also work here. Good for the behind-the-scenes and why-Gosford angle. Confirm on the night.",
+   tp:CORE,
+   angle:[`What did it take to bring this machine to Gosford?`,`What are you most proud of about tonight?`],
+   broll:[`2 to 3 cutaways of the subject at the event`,`Detail cutaways of the space`,`Wide of the subject in the room`],
+   eq:[`Wireless lav mic`,`LED panel`,`Gimbal`]}
+];
+
+const UGC_Q = [
+  `Say hi and tell us who you are in one line.`,
+  `What brings you here tonight?`,
+  `First reaction when you saw the new machine?`,
+  `Finish this sentence: "This machine means..."`,
+  `Why does having this in Gosford matter to you?`,
+  `What would you say to someone who needs this kind of scan?`,
+  `One word to describe tonight.`,
+  `Anything you want to say to the Specialist Radiology team?`
+];
+
+const UGC_SLOTS = [
+  `Referring doctor #1`,
+  `Referring doctor #2 or oncologist`,
+  `Practice or office manager`,
+  `Internal team member #1`,
+  `Internal team member #2`,
+  `Guest or attendee #1`,
+  `Guest or attendee #2`,
+  `Wildcard: best energy in the room`
+];
+
+const UGC_BROLL = [
+  `Handheld walk-through of the room`,
+  `Guests mingling and reacting, phone-style`,
+  `Machine reveal reactions`,
+  `Selfie-style pieces to camera`,
+  `Food, drinks and atmosphere close-ups`,
+  `Quick pans of the crowd and the space`
+];
+
+const RUN = [
+  {n:"1",time:"5:00pm",title:"Arrival & setup",who:"both",note:"Both creators in early. Walk the reception area and the PET room, check the light and audio near the podium, and grab clean 'before' shots: room setup, catering, signage and details before guests turn up.",links:["1","2"]},
+  {n:"2",time:"5:30pm",title:"Arrivals & atmosphere",who:"split",pro:"Candid stills and highlight / promo b-roll as guests arrive and mingle.",ugc:"Warm-up vox-pop. Catch a few guests near the door for quick 'what brings you here' clips.",links:["1","2","U"]},
+  {n:"3",time:"6:00pm",title:"Formal start & speeches",who:"split",pro:"Cover the podium: the host first, then Dr Remy Lin and Jose Gutierrez. Get the audience and the projector. Watch the podium audio.",ugc:"Grab audience reactions and quick energy clips from the crowd.",links:["3","4"]},
+  {n:"4",time:"6:45pm",title:"PET room tours & the machine",who:"split",pro:"Hero and detail stills of the PET CT machine, plus team and guests around it. Privacy: no patient names or data on any monitor, screen or paperwork.",ugc:"Film guests' first reactions to the machine. Capture the 'first reaction' clips here.",links:["1","2","U"]},
+  {n:"5",time:"7:00pm",title:"Pro interviews (4)",who:"split",pro:"Grab the four subjects to a quiet spot: Dr Remy Lin, Jose Gutierrez, a referring doctor or oncologist, and the host or a Specialist Radiology lead. Catch the two speakers right after their talks. Shoot before the contact leaves 7:30 to 8:00.",ugc:"UGC creator sits in on the pro interviews to learn the subjects and get overlap coverage, then peels off.",links:["3","4","5","6"]},
+  {n:"6",time:"7:20pm",title:"Split: stills + UGC round",who:"split",pro:"Content creator gets remaining stills and b-roll toward the 50 photo gallery.",ugc:"UGC creator runs the ~8 vox-pop interviews plus their own handheld b-roll.",links:["U"]},
+  {n:"7",time:"7:45pm",title:"Candids, groups & final coverage",who:"both",note:"Group shots, more mingling and any remaining b-roll from both creators as the night winds down.",links:["1","2","U"]},
+  {n:"8",time:"8:15pm",title:"Wrap & backup",who:"both",note:"Final room shots, back up all footage from both creators, and a quick check against the shot list before leaving.",links:[]}
+];
+
+const CVRUN = [
+  "Arrival & setup (both)",
+  "Arrivals & atmosphere (split)",
+  "Formal start & speeches (split)",
+  "PET room tours & the machine (split)",
+  "Pro interviews, UGC sits in (split)",
+  "Split: stills + UGC vox-pop round",
+  "Candids, groups & final coverage (both)",
+  "Wrap & backup (both)"
+];
+
+
+/* ---- state (safe for sandboxed embeds) ---- */
+const KEY="specrad_petct_brief_v7";
+let state={};
+try{state=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){state={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function itemHTML(id,label){
+  const on=state[id]?"checked":"";
+  const cls=state[id]?"item done":"item";
+  return `<label class="${cls}" data-id="${id}"><input type="checkbox" ${on}><span>${label}</span></label>`;
+}
+
+/* client-view day-at-a-glance (read-only list) */
+document.getElementById("cv-run").innerHTML =
+  `<div class="cg-head"><h3>The night, in order</h3><span class="pill">8 blocks</span></div>` +
+  CVRUN.map((r,i)=>{const n=RUN[i].n;const id="run-"+n;const done=state[id]?"done":"";return `<div class="item ${done}" data-id="${id}"><input type="checkbox" ${state[id]?"checked":""}><span class="cvlink" data-runlink="${n}" tabindex="0" role="link"><b>${i+1}.</b> ${esc(r)}</span></div>`;}).join("");
+
+/* photo groups */
+document.getElementById("photoGroups").innerHTML = PHOTO_GROUPS.map((g,gi)=>{
+  const items=g.items.map((p,i)=>itemHTML(`photo-${gi}-${i}`, esc(p))).join("");
+  return `<div class="card checkgroup"><div class="cg-head"><h3>${esc(g.title)}</h3><span class="pill" id="pc-${gi}"></span></div>${items}</div>`;
+}).join("");
+
+/* pro video cards, grouped */
+let lastGroup="";
+document.getElementById("proCards").innerHTML = PRO_VIDEOS.map(v=>{
+  let head="";
+  if(v.group!==lastGroup){head=`<div class="grouphead">${esc(v.group)}</div>`;lastGroup=v.group;}
+  const hookBlock = v.hook ? `<div class="vrow"><div class="rl">Hook</div><div class="hook">${esc(v.hook)}</div></div>` : "";
+  const tpBlock = v.tp ? `<div class="vrow"><div class="rl">${v.tpLabel||(v.angle?"Core questions (ask all 4 subjects)":"Talking points")}</div><ul class="tp">${v.tp.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>` : "";
+  const angleBlock = v.angle ? `<div class="vrow"><div class="rl">Role-specific angle (pick one or two)</div><ul class="tp">${v.angle.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>` : "";
+  const broll = v.broll.map((b,i)=>itemHTML(`broll-${v.n}-${i}`, esc(b))).join("");
+  return head + `<details class="card vcard" id="v-${v.n}">
+    <summary>
+      <div class="vnum">${esc(v.n)}</div>
+      <div class="vhead"><div class="vt">${esc(v.t)}</div>
+        <div class="vm">${v.meta.map(m=>`<span class="badge">${esc(m)}</span>`).join("")}</div></div>
+      <div class="chev">▼</div>
+    </summary>
+    <div class="vbody">
+      <div class="vrow"><div class="rl">Type</div><div>${esc(v.type)}</div></div>
+      ${v.note?`<div class="vrow"><div class="notecall"><div><b>Notes.</b> ${esc(v.note)}</div></div></div>`:""}
+      ${hookBlock}
+      ${tpBlock}
+      ${angleBlock}
+      <div class="vrow"><div class="rl">B-Roll checklist</div><div class="checkgroup" style="padding:0">${broll}</div></div>
+      <div class="vrow"><div class="rl">Equipment</div><div class="eq">${v.eq.map(e=>`<span>${esc(e)}</span>`).join("")}</div></div>
+    </div>
+  </details>`;
+}).join("");
+
+/* UGC tab */
+const ugcQuestions = `<ul class="tp" style="padding:2px 16px 14px">${UGC_Q.map(q=>`<li>${esc(q)}</li>`).join("")}</ul>`;
+const ugcSlots = UGC_SLOTS.map((s,i)=>itemHTML(`ugc-slot-${i}`, esc(s))).join("");
+const ugcBroll = UGC_BROLL.map((b,i)=>itemHTML(`ugc-broll-${i}`, esc(b))).join("");
+document.getElementById("ugcWrap").innerHTML =
+  `<div class="notecall" style="margin-bottom:16px"><div><b>How it runs.</b> The UGC creator sits in on the pro interviews first, then peels off for the vox-pop and handheld b-roll while the pro creator gets stills. Keep it fast and first-person. One or two questions a person is plenty.</div></div>
+   <div class="grouphead">UGC interview script</div>
+   <div class="card"><div class="cg-head"><h3>Ask fast, keep it shareable</h3><span class="pill">${UGC_Q.length} questions</span></div>${ugcQuestions}</div>
+   <div class="grouphead">8 UGC interviews to collect</div>
+   <div class="card checkgroup"><div class="cg-head"><h3>Suggested mix, swap freely on the night</h3><span class="pill">${UGC_SLOTS.length} clips</span></div>${ugcSlots}</div>
+   <div class="grouphead">UGC b-roll (handheld)</div>
+   <div class="card checkgroup"><div class="cg-head"><h3>Phone-style coverage</h3><span class="pill">${UGC_BROLL.length} items</span></div>${ugcBroll}</div>`;
+
+/* run sheet */
+const VNAME={};PRO_VIDEOS.forEach(v=>VNAME[v.n]=v.t);
+function vidLabel(n){if(n==="U")return "UGC vox-pop";return VNAME[n]||("Video "+n);}
+function vidChip(n){return `<a class="vlink rlink" data-goto="${esc(n)}" tabindex="0" role="link">${esc(vidLabel(n))}</a>`;}
+function runVidToggle(n){
+  if(n==="U"){
+    return `<details class="rvid"><summary><span class="rvtag">UGC</span> UGC vox-pop <span class="chev">▼</span></summary><div class="rvbody"><div class="rvrow"><b>How it runs</b>Ask fast and first-person. One or two questions a person is plenty.</div><div class="rvrow"><b>Questions</b><ul class="tp">${UGC_Q.map(q=>`<li>${esc(q)}</li>`).join("")}</ul></div><div class="rvrow"><b>Handheld b-roll checklist</b><div class="checkgroup" style="padding:0">${UGC_BROLL.map((b,i)=>itemHTML(`ugc-broll-${i}`, esc(b))).join("")}</div></div></div></details>`;
+  }
+  const v=PRO_VIDEOS.find(x=>x.n===n);if(!v)return "";
+  const hookBlock=v.hook?`<div class="rvrow"><b>Hook</b><div class="hook">${esc(v.hook)}</div></div>`:"";
+  const tpLabel=v.tpLabel||(v.angle?"Core questions (ask all 4 subjects)":"Talking points");
+  const tpBlock=v.tp?`<div class="rvrow"><b>${tpLabel}</b><ul class="tp">${v.tp.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>`:"";
+  const angleBlock=v.angle?`<div class="rvrow"><b>Role-specific angle (pick one or two)</b><ul class="tp">${v.angle.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>`:"";
+  const brollBlock=`<div class="rvrow"><b>B-roll checklist</b><div class="checkgroup" style="padding:0">${v.broll.map((b,i)=>itemHTML(`broll-${v.n}-${i}`, esc(b))).join("")}</div></div>`;
+  return `<details class="rvid"><summary><span class="rvtag">${esc(v.n)}</span> ${esc(v.t)} <span class="chev">▼</span></summary><div class="rvbody"><div class="rvsub">${esc(v.type)}</div>${v.note?`<div class="rvrow"><b>Notes</b>${esc(v.note)}</div>`:""}${hookBlock}${tpBlock}${angleBlock}${brollBlock}</div></details>`;
+}
+document.getElementById("runList").innerHTML = RUN.map((r,i)=>{
+  const id="run-"+r.n;
+  const done=state[id]?"done":"";
+  const last=i===RUN.length-1;
+  const links=(r.links&&r.links.length)?`<div class="rvids">${r.links.map(runVidToggle).join("")}</div>`:"";
+  const body = r.who==="split"
+    ? `<div class="rsplit"><div class="sl"><span class="rtag pro">Pro</span><span>${esc(r.pro)}</span></div><div class="sl"><span class="rtag ugc">UGC</span><span>${esc(r.ugc)}</span></div></div>`
+    : `<div class="rn">${esc(r.note)}</div>`;
+  return `<div class="rblock ${done}" data-id="${id}">
+    <div class="rleft"><div class="rdot">${esc(r.n)}</div>${last?"":'<div class="rline"></div>'}</div>
+    <div class="rcontent"><label class="rcard"><input type="checkbox" ${state[id]?"checked":""}>
+      <div style="flex:1"><div class="rtime">${esc(r.time)}</div><div class="rb">${esc(r.title)}</div>${body}</div></label>${links}</div>
+  </div>`;
+}).join("");
+
+/* counts */
+function updateCounts(){
+  PHOTO_GROUPS.forEach((g,gi)=>{
+    const el=document.getElementById("pc-"+gi);if(!el)return;
+    el.textContent=g.items.length+" shots";
+  });
+}
+
+/* events */
+document.addEventListener("change",e=>{
+  if(e.target.type!=="checkbox"||e.target.disabled)return;
+  const host=e.target.closest("[data-id]");if(!host)return;
+  const id=host.dataset.id;const val=e.target.checked;
+  state[id]=val;
+  document.querySelectorAll('[data-id="'+id+'"]').forEach(el=>{
+    el.classList.toggle("done",val);
+    const cb=el.querySelector('input[type=checkbox]');
+    if(cb&&cb!==e.target)cb.checked=val;
+  });
+  save();updateCounts();
+});
+
+/* tabs */
+function activateTab(b){
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  b.classList.add("active");
+  const panel=document.getElementById(b.dataset.t);if(panel)panel.classList.add("active");
+  window.scrollTo({top:0,behavior:"auto"});
+}
+document.getElementById("tabs").addEventListener("click",e=>{
+  const b=e.target.closest(".tab");if(b)activateTab(b);
+});
+document.getElementById("tabs").addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const b=e.target.closest(".tab");if(b){e.preventDefault();activateTab(b);}
+});
+
+/* cross-links: jump to pro video card, or the UGC tab */
+function goToVideo(n){
+  if(n==="U"){
+    const tab=document.querySelector('.tab[data-t="ugc"]');
+    if(tab)activateTab(tab);
+    return;
+  }
+  const tab=document.querySelector('.tab[data-t="pro"]');
+  if(tab)activateTab(tab);
+  const el=document.getElementById("v-"+n);
+  if(!el)return;
+  el.open=true;
+  requestAnimationFrame(()=>{
+    el.scrollIntoView({behavior:"smooth",block:"start"});
+    el.classList.add("flash");
+    setTimeout(()=>el.classList.remove("flash"),1400);
+  });
+}
+document.addEventListener("click",e=>{
+  const a=e.target.closest("[data-goto]");
+  if(a){e.preventDefault();goToVideo(a.getAttribute("data-goto"));}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const a=e.target.closest("[data-goto]");
+  if(a){e.preventDefault();goToVideo(a.getAttribute("data-goto"));}
+});
+
+/* cross-links: jump to the matching run sheet block */
+function goToRun(n){
+  const tab=document.querySelector('.tab[data-t="run"]');
+  if(tab)activateTab(tab);
+  const el=document.querySelector('.rblock[data-id="run-'+n+'"]');
+  if(!el)return;
+  requestAnimationFrame(()=>{
+    el.scrollIntoView({behavior:"smooth",block:"start"});
+    el.classList.add("flash");
+    setTimeout(()=>el.classList.remove("flash"),1400);
+  });
+}
+document.addEventListener("click",e=>{
+  const a=e.target.closest("[data-runlink]");
+  if(a){e.preventDefault();goToRun(a.getAttribute("data-runlink"));}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const a=e.target.closest("[data-runlink]");
+  if(a){e.preventDefault();goToRun(a.getAttribute("data-runlink"));}
+});
+
+updateCounts();
+</script>
+</body>
+</html>

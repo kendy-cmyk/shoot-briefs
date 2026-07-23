@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Current Kings Shoot Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#333132; --orange:#faa62f; --tangerine:#f7b52d; --white:#ffffff;
+    --bg:#1b191a;
+    --text:#f1efed; --text2:#a7a3a1; --canvas:#2a2829; --soft:#242223;
+    --surface:#3a3738; --border:#403d3e; --accent:#faa62f; --accent-soft:rgba(250,166,47,.13);
+    --done:#faa62f; --charcoal2:#403e3f; --charcoal-line:rgba(255,255,255,.14);
+    --line-strong:#5f5c5d;
+    --shadow:0 1px 2px rgba(0,0,0,.30),0 6px 18px rgba(0,0,0,.30);
+    --head:"Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    --sans:"Roboto",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;background:var(--bg);color-scheme:dark}
+  body{font-family:var(--sans);color:var(--text);background:var(--bg);font-size:16px;line-height:1.5;font-weight:400;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  h1,h2,h3,.eyebrow,.sec-title,.wordmark,.chip b{font-family:var(--head)}
+
+  .brandbar{background:var(--charcoal);border-bottom:1px solid var(--charcoal-line)}
+  .brandbar .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px;gap:16px;flex-wrap:wrap}
+  .wordmark{font-weight:800;font-size:20px;letter-spacing:.02em;color:#fff;text-transform:uppercase}
+  .wordmark .mk{color:var(--orange)}
+  .brandbar .tag{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:500}
+
+  header .hero{background:var(--charcoal);color:#fff;padding:30px 0 34px}
+  .eyebrow{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:700}
+  .hero h1{font-size:44px;line-height:1.02;margin:12px 0 10px;letter-spacing:.01em;text-transform:uppercase;color:#fff}
+  .hero .sub{color:rgba(255,255,255,.72);font-size:16.5px;max-width:660px;font-weight:300}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .chip{display:flex;align-items:baseline;gap:7px;background:var(--charcoal2);border:1px solid var(--charcoal-line);border-radius:8px;padding:9px 13px}
+  .chip b{font-size:20px;font-weight:800;color:var(--orange);letter-spacing:0}
+  .chip span{color:rgba(255,255,255,.72);font-weight:400;font-size:13.5px}
+
+  nav.tabs{position:sticky;top:0;z-index:40;background:rgba(27,25,26,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .tabs-inner{display:flex;gap:2px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tab{border:none;background:none;padding:15px 16px;font-size:15px;font-weight:600;font-family:var(--sans);color:var(--text2);cursor:pointer;border-bottom:2.5px solid transparent;white-space:nowrap;min-height:44px;user-select:none}
+  .tab:hover{color:var(--text)}
+  .tab:focus-visible{outline:2px solid var(--orange);outline-offset:-2px;border-radius:4px}
+  .tab.active{color:#fff;border-bottom-color:var(--orange)}
+
+  main{padding:34px 0 90px}
+  .panel{display:none;animation:fade .3s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .sec-title{font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--text2);font-weight:700;margin:6px 0 15px}
+  .sec-title.mt{margin-top:34px}
+
+  .card{background:var(--canvas);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+  .card + .card{margin-top:16px}
+
+  .lead{background:var(--canvas);color:var(--text);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:12px;padding:22px 24px;font-size:17px;font-weight:300;line-height:1.55}
+  .lead b{font-weight:600;color:var(--text)}
+  .lead .hl{color:var(--orange);font-weight:600}
+  .cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+  .cv-block{background:var(--canvas);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);padding:20px 22px}
+  .cv-block h3{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px}
+  .cv-block .big{font-family:var(--head);font-size:19px;font-weight:700;text-transform:uppercase;letter-spacing:.01em;margin-bottom:10px;color:var(--text)}
+  .cv-block p{font-size:15px;color:var(--text);font-weight:300;line-height:1.55}
+  .cv-list{list-style:none;margin-top:10px}
+  .cv-list li{position:relative;padding:5px 0 5px 20px;font-size:14.5px;font-weight:300}
+  .cv-list li::before{content:"";position:absolute;left:0;top:12px;width:7px;height:7px;border-radius:2px;background:var(--orange)}
+  details.more{margin-top:12px;border-top:1px dashed var(--border);padding-top:10px}
+  details.more>summary{list-style:none;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:7px}
+  details.more>summary::-webkit-details-marker{display:none}
+  details.more>summary .chev{font-size:11px;transition:transform .2s}
+  details.more[open]>summary .chev{transform:rotate(180deg)}
+  details.more .inner{padding-top:10px}
+  .pointer{display:flex;gap:11px;align-items:flex-start;background:var(--accent-soft);border:1px solid rgba(250,166,47,.32);border-radius:10px;padding:13px 16px;font-size:14.5px;margin-top:16px;font-weight:400}
+  .pointer .ic{color:var(--done);font-weight:800;font-family:var(--head)}
+
+  .info{width:100%;border-collapse:collapse}
+  .info tr+tr{border-top:1px solid var(--border)}
+  .info th{text-align:left;vertical-align:top;padding:14px 18px;width:150px;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);background:var(--soft);font-weight:700;font-family:var(--head)}
+  .info td{padding:14px 18px;font-size:15px;font-weight:300}
+
+  .cg-head{display:flex;align-items:center;justify-content:space-between;padding:15px 16px 9px;gap:10px}
+  .cg-head h3{font-size:15px;font-family:var(--head);text-transform:uppercase;letter-spacing:.03em;font-weight:700}
+  .cg-head .pill{font-size:12px;font-weight:600;color:var(--text2);background:var(--soft);border:1px solid var(--border);border-radius:99px;padding:3px 10px;white-space:nowrap}
+  .checkgroup{padding:2px 8px 12px}
+  .item{display:flex;align-items:flex-start;gap:12px;padding:10px 12px;border-radius:8px;cursor:pointer;transition:background .12s}
+  .item:hover{background:var(--soft)}
+  .item input{appearance:none;-webkit-appearance:none;width:21px;height:21px;min-width:21px;margin-top:1px;border:2px solid var(--line-strong);border-radius:6px;cursor:pointer;position:relative;transition:.15s}
+  .item input:checked{background:var(--done);border-color:var(--done)}
+  .item input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .item span{font-size:15px;flex:1;font-weight:400}
+  .item.done span{color:var(--text2);text-decoration:line-through}
+
+  .grouphead{font-family:var(--head);text-transform:uppercase;letter-spacing:.06em;font-size:12.5px;font-weight:700;color:var(--text2);margin:26px 0 12px}
+  .grouphead:first-child{margin-top:4px}
+  .vcard{margin-bottom:12px}
+  .vcard>summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;gap:15px}
+  .vcard>summary::-webkit-details-marker{display:none}
+  .vnum{width:44px;height:40px;min-width:44px;border-radius:9px;background:var(--accent-soft);color:var(--done);font-family:var(--head);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .vhead{flex:1;min-width:0}
+  .vhead .vt{font-size:16.5px;font-weight:600;letter-spacing:0;font-family:var(--head)}
+  .vhead .vm{font-size:12.5px;color:var(--text2);margin-top:3px}
+  .vhead .vm .badge{display:inline-block;background:var(--soft);border:1px solid var(--border);border-radius:5px;padding:1px 7px;margin:2px 6px 0 0;font-weight:500}
+  .chev{color:var(--text2);transition:transform .2s;font-size:12px}
+  .vcard[open] .chev{transform:rotate(180deg)}
+  .vbody{padding:2px 18px 20px;border-top:1px solid var(--border)}
+  .vrow{margin-top:17px}
+  .vrow .rl{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);font-weight:700;font-family:var(--head);margin-bottom:7px}
+  .hook{background:var(--accent-soft);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:11px 14px;font-size:14.5px;font-style:italic}
+  .tp{list-style:none}
+  .tp li{position:relative;padding:5px 0 5px 18px;font-size:14.5px;font-weight:300}
+  .tp li::before{content:"";position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;background:var(--orange)}
+  .cta{font-size:14.5px;font-weight:500;color:var(--done)}
+  .script>summary{cursor:pointer;list-style:none;padding:11px 13px;font-size:14px;font-weight:600;color:var(--done);display:flex;align-items:center;gap:8px;background:var(--soft);border:1px solid var(--border);border-radius:8px}
+  .script>summary::-webkit-details-marker{display:none}
+  .script[open]>summary{border-radius:8px 8px 0 0}
+  .script .stext{padding:12px 14px;font-size:14.5px;line-height:1.7;white-space:pre-wrap;border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;background:var(--canvas)}
+  .notecall{display:flex;gap:9px;align-items:flex-start;background:var(--soft);border:1px solid var(--border);border-radius:8px;padding:11px 14px;font-size:14px;font-weight:300}
+  .notecall .ic{color:var(--done);font-weight:800;font-family:var(--head)}
+  .notecall b{font-weight:600}
+  .eq{display:flex;flex-wrap:wrap;gap:8px}
+  .eq span{font-size:13px;font-weight:500;background:var(--surface);border-radius:6px;padding:5px 11px}
+
+  .run{position:relative;padding-left:4px}
+  .rblock{display:flex;gap:16px;padding:2px 0}
+  .rleft{display:flex;flex-direction:column;align-items:center}
+  .rdot{width:34px;height:34px;min-width:34px;border-radius:50%;background:var(--canvas);border:2px solid var(--line-strong);color:var(--text2);font-family:var(--head);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;transition:.2s;z-index:2}
+  .rline{flex:1;width:2px;background:var(--border);margin:2px 0}
+  .rblock.done .rdot{background:var(--done);border-color:var(--done);color:#fff}
+  .rcontent{flex:1;padding-bottom:16px}
+  .rcard{background:var(--canvas);border:1px solid var(--border);border-radius:10px;padding:13px 16px;cursor:pointer;display:flex;gap:13px;align-items:flex-start;transition:border-color .15s}
+  .rcard:hover{border-color:var(--orange)}
+  .rcard input{appearance:none;-webkit-appearance:none;width:21px;height:21px;min-width:21px;margin-top:2px;border:2px solid var(--line-strong);border-radius:6px;cursor:pointer;position:relative}
+  .rcard input:checked{background:var(--done);border-color:var(--done)}
+  .rcard input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .rtime{font-size:12px;font-weight:700;color:var(--done);font-family:var(--head);letter-spacing:.03em}
+  .rcard .rb{font-size:15px;font-weight:600;margin-top:2px;font-family:var(--head)}
+  .rcard .rn{font-size:13.5px;color:var(--text2);margin-top:4px;font-weight:300}
+  .rblock.done .rb{text-decoration:line-through;color:var(--text2)}
+
+  .foot{text-align:center;color:var(--text2);font-size:13px;margin-top:40px;font-weight:300}
+
+  @media (max-width:720px){
+    .cv-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 16px}
+    .hero h1{font-size:32px}
+    .hero{padding:26px 0 28px}
+    .info th{width:104px;font-size:11.5px;padding:11px 12px}
+    .info td{padding:11px 12px;font-size:14px}
+    .lead{font-size:15.5px;padding:18px}
+    .tab{padding:14px 13px;font-size:14px}
+    .vhead .vt{font-size:15.5px}
+  }
+  @media print{
+    nav.tabs,.foot{display:none!important}
+    .panel{display:block!important}
+    .brandbar,header .hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .vbody{display:block!important}
+    body{background:#fff}
+  }
+  .vlink{color:var(--orange);cursor:pointer;text-decoration:none;border-bottom:1px solid rgba(250,166,47,.35);transition:.15s}
+  .vlink:hover,.vlink:focus-visible{border-bottom-color:var(--orange);outline:none}
+  .rlinks{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 2px 0}
+  .rlink{font-family:var(--head);font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--orange);background:var(--accent-soft);border:1px solid rgba(250,166,47,.3);border-radius:20px;padding:5px 12px;cursor:pointer;transition:.15s}
+  .rlink:hover,.rlink:focus-visible{background:rgba(250,166,47,.22);outline:none}
+  .vcard{scroll-margin-top:72px}
+  .vcard.flash{box-shadow:0 0 0 2px var(--orange),0 8px 22px rgba(0,0,0,.35)}
+</style>
+</head>
+<body>
+<div class="brandbar"><div class="wrap">
+  <div class="wordmark">WhiteKey<span class="mk"> Marketing</span></div>
+  <div class="tag">Shoot Brief</div>
+</div></div>
+
+<header>
+  <div class="hero"><div class="wrap">
+    <h1>Current Kings</h1>
+    <p class="sub">Full-day content shoot for Current Kings Electrical across four live job sites in Sydney's south-west. Safety, precision and trust, captured on the tools. One five-hour shoot on 24 July 2026.</p>
+    <div class="chips">
+      <div class="chip"><b>12</b><span>videos</span></div>
+      <div class="chip"><b>4</b><span>locations</span></div>
+      <div class="chip"><b>5</b><span>hr shoot</span></div>
+      <div class="chip"><b>1</b><span>testimonial</span></div>
+      <div class="chip"><b>+1</b><span>WhiteKey piece</span></div>
+    </div>
+  </div></div>
+  <nav class="tabs"><div class="wrap"><div class="tabs-inner" id="tabs" role="tablist">
+    <div class="tab active" role="tab" tabindex="0" data-t="client">Client View</div>
+    <div class="tab" role="tab" tabindex="0" data-t="photo">Photography</div>
+    <div class="tab" role="tab" tabindex="0" data-t="videos">Videos (12 + 1)</div>
+    <div class="tab" role="tab" tabindex="0" data-t="run">Run Sheet</div>
+  </div></div></nav>
+</header>
+
+<main class="wrap">
+  <section class="panel active" id="client">
+    <div class="lead">We're capturing a full morning of content for <b class="hl">Current Kings Electrical</b> across <b class="hl">four live job sites</b>, Tahmoor to Cobbitty, in a single five-hour shoot. That gives us <b class="hl">12 short-form videos</b>, one client testimonial, per-location promo reels and a full photography shot list covering the team, the work and safety on site. Everything below is the short version. Tap any section to open more detail, or use the tabs above for the full scripts, shot lists and timing.</div>
+
+    <div class="sec-title mt">The shoot at a glance</div>
+    <div class="card">
+      <table class="info">
+        <tr><th>Client</th><td>Current Kings Electrical</td></tr>
+        <tr><th>Industry</th><td>Trades (Electrical)</td></tr>
+        <tr><th>Location</th><td>Four sites across Sydney's south-west: Tahmoor, Thirlmere, Theresa Park and Cobbitty. Full addresses in the Run Sheet.</td></tr>
+        <tr><th>Date</th><td>Friday 24 July 2026 &middot; 8:00 AM to 1:00 PM &middot; solo shooter (Mike)</td></tr>
+        <tr><th>Deliverables</th><td>12 vertical short-form videos: brand intro, promo, a day-in-the-life piece, meet-the-team, trend reel, two safety talking heads, one testimonial and four location promos. Plus one WhiteKey piece filmed on site, plus the full photography shot list.</td></tr>
+        <tr><th>Format</th><td>All vertical (9x16). B-roll slow-mo, no audio, collated by location. Music and branding per the editor notes in the Run Sheet tab.</td></tr>
+        <tr><th>Kit</th><td>Camera, wireless mic, tripod, drone.</td></tr>
+      </table>
+    </div>
+
+    <div class="sec-title mt">What we're capturing</div>
+    <div class="cv-grid">
+      <div class="cv-block">
+        <h3>Photography</h3>
+        <div class="big">Full shot list</div>
+        <p>Bright, clean coverage of the team, the brand, the work and site safety across all four locations.</p>
+        <ul class="cv-list">
+          <li>Team &amp; brand shots</li>
+          <li>Branded content: vehicles, uniforms, tools</li>
+          <li>On-the-job action</li>
+          <li>Safety &amp; PPE</li>
+          <li>Wide and drone property shots</li>
+        </ul>
+        <details class="more"><summary>Show a bit more <span class="chev">&#9660;</span></summary><div class="inner">
+          <ul class="cv-list">
+            <li>Individual headshots and portraits with tools</li>
+            <li>Switchboard, lighting and power-point close-ups</li>
+            <li>Lockout/tagout and safety briefings</li>
+            <li>Exterior shots of completed work</li>
+          </ul>
+        </div></details>
+      </div>
+      <div class="cv-block">
+        <h3>Videography</h3>
+        <div class="big">12 videos + 1 WhiteKey piece</div>
+        <p>A mix of talking-head pieces, product-style promos, testimonials and per-location reels.</p>
+        <ul class="cv-list">
+          <li><a class="vlink" data-goto="1" tabindex="0" role="link">1. Current Kings Electrical Introduction</a></li>
+          <li><a class="vlink" data-goto="2" tabindex="0" role="link">2. Overall Promo Reel</a></li>
+          <li><a class="vlink" data-goto="3" tabindex="0" role="link">3. A Day in the Life as a Sparky</a></li>
+          <li><a class="vlink" data-goto="4" tabindex="0" role="link">4. Meet the Team Reel</a></li>
+          <li><a class="vlink" data-goto="5" tabindex="0" role="link">5. Why Proper Wiring Matters</a></li>
+          <li><a class="vlink" data-goto="6" tabindex="0" role="link">6. Trend Reel</a></li>
+          <li><a class="vlink" data-goto="7" tabindex="0" role="link">7. Top 3 Electrical Safety Tips</a></li>
+          <li><a class="vlink" data-goto="8" tabindex="0" role="link">8. Testimonial Reel</a></li>
+        </ul>
+        <details class="more"><summary>Show location promos &amp; the WhiteKey piece <span class="chev">&#9660;</span></summary><div class="inner">
+          <ul class="cv-list">
+            <li><a class="vlink" data-goto="L1" tabindex="0" role="link">Location 1 promo, Musgrove Residence</a></li>
+            <li><a class="vlink" data-goto="L2" tabindex="0" role="link">Location 2 promo, Naomi Torres</a></li>
+            <li><a class="vlink" data-goto="L3" tabindex="0" role="link">Location 3 promo, Mr &amp; Mrs Coco</a></li>
+            <li><a class="vlink" data-goto="L4" tabindex="0" role="link">Location 4 promo, Cobbitty</a></li>
+            <li><a class="vlink" data-goto="W" tabindex="0" role="link">WhiteKey: What the Tradie Sees vs What the Customer Sees</a></li>
+          </ul>
+        </div></details>
+      </div>
+    </div>
+
+    <div class="pointer"><div>Click any video above to jump straight to its script, talking points and shot list, or open the <b>Photography</b> and <b>Videos</b> tabs for everything.</div></div>
+
+    <div class="sec-title mt">The day, start to finish</div>
+    <div class="card"><div class="checkgroup" id="cv-run"></div></div>
+    <div class="pointer"><div>Full timing and shot-by-shot notes are in the <b>Run Sheet</b> tab.</div></div>
+
+    <div class="foot">Tap any item on the other tabs to check it off during the shoot.</div>
+  </section>
+
+  <section class="panel" id="photo">
+    <div class="sec-title">Photography shot list</div>
+    <div id="photoGroups"></div>
+  </section>
+
+  <section class="panel" id="videos">
+    <div class="sec-title">Tap a video to open its script, talking points, B-roll checklist and kit</div>
+    <div id="videoCards"></div>
+  </section>
+
+  <section class="panel" id="run">
+    <div class="sec-title">Shoot day run sheet, suggested order, work top to bottom</div>
+    <div class="run" id="runList"></div>
+    <div class="foot">Times are a guide. Shoot the Day in the Life talking head first at Location 2, then the b-roll, so the creator can match footage to what was said. Scripted talking heads (Intro, Why Proper Wiring, Safety Tips) and the WhiteKey piece are captured at whichever site has the cleanest audio and setup.</div>
+
+    <div class="sec-title mt">Post-shoot notes</div>
+    <div class="card" style="padding:16px 18px">
+      <div class="vrow" style="margin-top:0"><div class="rl">For the content creator</div>
+        <div class="notecall"><div>Organise Dropbox by location, then b-roll and drone. Folders: 1. 13D Park St, Tahmoor. 2. 46 Roy Crescent, Thirlmere. 3. 35 McKee Rd, Theresa Park. 4. 33 Bangor Terrace, Cobbitty. 5. B-roll. 6. Drone.</div></div>
+      </div>
+      <div class="vrow"><div class="rl">For the editor</div>
+        <div class="notecall"><div>Add collated b-roll, slow-mo, no audio. Music from the <a class="vlink" href="https://open.spotify.com/playlist/6vDGVr652ztNWKZuHvsFvx" target="_blank" rel="noopener">Spotify playlist</a>. Font: Montserrat. <a class="vlink" href="https://www.dropbox.com/scl/fo/l7x5lj4s3v9go600ryk24/AO_m_HVWyxxXBxjKuhPfQQc?rlkey=cw3m8lstvt7mtpms91k171szp&dl=0" target="_blank" rel="noopener">Client logo pack</a>.</div></div>
+      </div>
+      <div class="vrow"><div class="rl">Client brand palette (Current Kings)</div>
+        <div class="eq"><span>Purple #3e1a56</span><span>Pink #ffcdff</span><span>White #ffffff</span><span>Grey #e6e7e8</span><span>Black #000000</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+const PHOTO_GROUPS = [
+  {title:"Team & brand shots", items:[
+    `Full team standing in front of a branded vehicle`,
+    `Team walking toward the camera`,
+    `Casual team interaction and conversation`,
+    `Professional headshots`,
+    `Portraits with tools and equipment`,
+    `Electricians in uniform beside work vehicles`,
+    `Action portraits while working`
+  ]},
+  {title:"Branded content", items:[
+    `Company vehicles`,
+    `Vehicle fleet lineup`,
+    `Logo on uniforms`,
+    `Branded tools and equipment`,
+    `Team loading vehicles for the day`
+  ]},
+  {title:"On-the-job action", items:[
+    `Installing power points`,
+    `Replacing light fittings`,
+    `Switchboard inspections`,
+    `Testing electrical circuits`,
+    `Electrician explaining work to the homeowner`,
+    `Using testing equipment`,
+    `Electrical safety checks`,
+    `Data collection and reporting`
+  ]},
+  {title:"Safety & professionalism", items:[
+    `PPE equipment close-ups`,
+    `Hard hats and safety glasses`,
+    `Lockout/tagout procedures`,
+    `Safety briefing before work`,
+    `Team discussing site safety`
+  ]},
+  {title:"Wide shots", items:[
+    `Company vehicles arriving on site`,
+    `Commercial or acreage projects from above`,
+    `Team working on large installations`,
+    `Exterior property shots showcasing completed work`
+  ]}
+];
+
+const VIDEOS = [
+  {n:"1", group:"Core deliverables", t:"Current Kings Electrical Introduction", meta:["Vertical","Up to 1 min","Talking Head + B-Roll"],
+   type:"PRO \u00b7 Medium up to 1 min \u00b7 Talking Head + B-Roll",
+   note:"The brand sizzle. Fronted by a team member to camera, cut with action b-roll from across the day.",
+   ref:"https://www.instagram.com/reel/DOe6RsvABYH/",
+   broll:[`Team walking to camera`,`Branded vehicle`,`Electricians working`,`Switchboard close-ups`,`Finished install reveal`],
+   eq:[`Wireless mic`,`Tripod`,`Teleprompter`],
+   cta:`Book a licensed electrician with Current Kings Electrical.`,
+   script:[
+     ["",`We are Current Kings Electrical.`],
+     ["",`For over 10 years, we've been helping Sydney homes and businesses with reliable, professional electrical services. From installations and upgrades to maintenance and emergency call-outs, our qualified team delivers quality workmanship you can trust.`],
+     ["",`No matter the size of the job, we're committed to making the process simple, safe, and stress-free.`],
+     ["",`Current Kings Electrical. Powering Sydney with quality and reliability.`]
+   ]},
+  {n:"2", group:"Core deliverables", t:"Overall Promo Reel", meta:["Vertical","Short-form","Promo, b-roll only"],
+   type:"PRO \u00b7 Short-form sub-30s \u00b7 Promo (b-roll only)",
+   note:"Clean exterior and walkthrough montage from across all four sites. Editing style: clean, with cut-outs.",
+   ref:"https://www.instagram.com/p/DWXYSrAk4Vp/",
+   broll:[`Team walking to the site`,`Branded vehicle arrival`,`Close-up details of tools and equipment`,`Electricians working, action shots`,`Switchboard and install close-ups`,`Wide site and exterior shots`,`Drone exterior shots (if available)`,`Finished work reveals`],
+   eq:[`Drone`]},
+  {n:"3", group:"Core deliverables", t:"A Day in the Life as a Sparky", meta:["Vertical","Up to 1 min","Talking Head + B-Roll"],
+   type:"PRO \u00b7 Medium up to 1 min \u00b7 Talking Head + B-Roll",
+   note:"One video, filmed at Location 2 (Naomi Torres, Thirlmere). Jesse to camera, covering the location, the scope of works and what a day on site looks like. Shoot the talking head first so the b-roll can be matched to what was said.",
+   ref:"https://www.instagram.com/p/DQdZu-tgVP0/",
+   tp:[`Where are we today and what's the scope of works on this site?`,`Walk us through the process from start to finish.`,`What happens after the job is done?`],
+   broll:[`Site walkthrough`,`Team working`,`Tools and install work`,`Client on site`,`Finished work`],
+   eq:[`Wireless mic`,`Tripod`]},
+  {n:"4", group:"Core deliverables", t:"Meet the Team Reel", meta:["Vertical","Short-form","Promo"],
+   type:"PRO \u00b7 Short-form sub-30s \u00b7 Promo",
+   note:"A montage of individual team headshots. Capture while the full team is on site at Location 4.",
+   ref:"https://www.instagram.com/reel/DMTwzhLhwid/",
+   broll:[`Individual team headshots, each member to camera`,`Team walking together toward camera`,`Casual team interaction and banter`,`Portraits with tools and equipment`,`Team beside branded vehicles`,`Group hero shot with company logo end-frame`],
+   eq:[`Tripod`]},
+  {n:"5", group:"Core deliverables", t:"Why Proper Wiring Matters", meta:["Vertical","Up to 1 min","Talking Head + B-Roll"],
+   type:"PRO \u00b7 Medium up to 1 min \u00b7 Talking Head + B-Roll",
+   note:"Educational talking head. Add b-roll of the team fixing wires, working, brainstorming, or talking to the homeowner.",
+   hook:`Faulty wiring is a leading cause of house fires.`,
+   broll:[`Team fixing wires`,`Team working`,`Brainstorming on site`,`Talking to the homeowner`,`Switchboard close-ups`],
+   eq:[`Wireless mic`,`Tripod`],
+   cta:`If you're unsure about your wiring, contact Current Kings Electrical for a professional assessment.`,
+   script:[
+     ["",`Faulty or outdated wiring is a leading cause of electrical fires.`],
+     ["",`Aging wiring and worn components can create serious safety hazards, often without warning.`],
+     ["",`Watch for flickering lights, frequent tripping, or burning smells, especially in older homes.`],
+     ["",`If you're unsure about your wiring, contact Current Kings Electrical for a professional assessment.`]
+   ]},
+  {n:"6", group:"Core deliverables", t:"Trend Reel", meta:["Vertical","Short-form","Conceptual, viral style"],
+   type:"PRO \u00b7 Short-form sub-30s \u00b7 Conceptual, viral style",
+   note:"Trend format. POV: you've been waiting for a sign to find a good sparky. Team pointing at the sky. Capture with the full team on site.",
+   ref:"https://www.instagram.com/reel/DZBCPZ3yMEa/",
+   broll:[`Team together pointing at the sky`,`Reaction and hero framing`],
+   eq:[`Tripod`]},
+  {n:"7", group:"Core deliverables", t:"Top 3 Electrical Safety Tips for Homeowners", meta:["Vertical","Up to 1 min","Talking Head + B-Roll"],
+   type:"PRO \u00b7 Medium up to 1 min \u00b7 Talking Head + B-Roll",
+   note:"Educational talking head with suggested cutaways listed in the b-roll checklist.",
+   hook:`Here are three simple electrical safety tips every homeowner should know.`,
+   broll:[`Close-up of an overloaded power board`,`Damaged extension lead or frayed cord`,`Old non-compliant switchboard next to a modern compliant one (missing safety switches/RCDs, ceramic fuses, deterioration)`,`Licensed electrician carrying out a switchboard inspection`],
+   eq:[`Wireless mic`,`Tripod`],
+   cta:`For professional electrical services and expert advice, get in touch with Current Kings Electrical today.`,
+   script:[
+     ["",`Here are three simple electrical safety tips for your home.`],
+     ["",`One: don't overload power boards or extension leads.`],
+     ["",`Two: check cords and plugs regularly for wear or damage.`],
+     ["",`Three: if your home is older, have a licensed electrician inspect your wiring and switchboard.`],
+     ["",`Simple steps that help keep your home and family safe.`]
+   ]},
+  {n:"8", group:"Core deliverables", t:"Testimonial Reel", meta:["Vertical","Short-form","Talking Head"],
+   type:"PRO \u00b7 Short-form sub-30s \u00b7 Talking Head (interview)",
+   note:"One testimonial with Naomi Torres, filmed at Location 2 (Thirlmere). This is the only testimonial; it does not cover the other locations. Keep the questions short and let the client talk.",
+   ref:"https://www.instagram.com/p/DZWO6ENCMIH/",
+   tp:[`What electrical service did Current Kings complete for you?`,`How was your overall experience working with the team?`,`Would you recommend Current Kings to others, and why?`],
+   broll:[`Client to camera`,`Cutaways of the finished work`,`Team with the client`],
+   eq:[`Wireless mic`,`Tripod`]},
+  {n:"L1", group:"Location promo reels, b-roll only", t:"Location 1 Promo, Musgrove Residence", meta:["Vertical","Short-form","Promo, b-roll only"],
+   type:"PRO \u00b7 Short-form sub-30s \u00b7 Promo (b-roll only)",
+   note:"13D Park St, Tahmoor. Vertical exterior and walkthrough. Keep it clean, show wide spaces and details.",
+   broll:[`Drone exterior (if available)`,`Customer greeting`,`Switchboard`,`Feature light installation`,`Switches and power points`,`Fan installation`,`Garden lighting`,`Home automation`,`TV installation`,`Stair lighting`,`Level 2 works, out front on the power lines`],
+   eq:[`Drone`]},
+  {n:"L2", group:"Location promo reels, b-roll only", t:"Location 2 Promo, Naomi Torres", meta:["Vertical","Short-form","Promo, b-roll only"],
+   type:"PRO \u00b7 Short-form sub-30s \u00b7 Promo (b-roll only)",
+   note:"46 Roy Crescent, Thirlmere. Vertical exterior and walkthrough. Keep it clean, show wide spaces and details.",
+   broll:[`Drone exterior (if available)`,`Customer greeting`,`Feature light installation`,`Switches and power points`,`LED mirrors`,`Fan installation`,`Testimonial`],
+   eq:[`Drone`]},
+  {n:"L3", group:"Location promo reels, b-roll only", t:"Location 3 Promo, Mr & Mrs Coco", meta:["Vertical","Short-form","Promo, b-roll only"],
+   type:"PRO \u00b7 Short-form sub-30s \u00b7 Promo (b-roll only)",
+   note:"35 McKee Rd, Theresa Park. Acreage property, good for drone. Vertical exterior and walkthrough, show wide spaces and details.",
+   broll:[`Drone exterior (if time and weather allow)`,`Acreage property shots`,`Customer greeting`,`Switchboard inspection`,`Bollard lighting`,`Fan installation`],
+   eq:[`Drone`]},
+  {n:"L4", group:"Location promo reels, b-roll only", t:"Location 4 Promo, Cobbitty", meta:["Vertical","Short-form","Promo, b-roll only"],
+   type:"PRO · Short-form sub-30s · Promo (b-roll only)",
+   note:"33 Bangor Terrace, Cobbitty. New construction site. Vertical exterior and walkthrough, show wide spaces and finished detail.",
+   broll:[`Drone exterior (if available)`,`Review plans`,`Installation of power points, switches and downlights`,`Weatherproof power points`,`Switchboard build`],
+   eq:[`Drone`]},
+  {n:"W", group:"For WhiteKey (filmed on site)", t:"What the Tradie Sees vs What the Customer Sees", meta:["Vertical","Up to 1 min","Conceptual, ads style"],
+   type:"PRO · Medium up to 1 min · Conceptual, ads style",
+   note:"WhiteKey's own piece, filmed on site. Open on close-ups of wiring, tools and switchboards with the on-screen text 'What the tradie sees'. Cut to the presenter with 'What the customer sees'. Layer in the electrician explaining the job, the team working safely, client interaction, and WhiteKey filming on site.",
+   hook:`A sparky sees wiring. A customer sees one question: can I trust this business?`,
+   broll:[`Close-ups of wiring, tools, switchboards`,`Presenter to camera`,`Electrician explaining the job`,`Team working safely`,`Client interaction`,`WhiteKey filming on site`],
+   eq:[`Wireless mic`,`Tripod`],
+   cta:`That's how White Key Marketing turns real work into a stronger brand.`,
+   script:[
+     ["",`The technical work might be impressive, but most customers won't understand everything happening on site.`],
+     ["",`That's where the content strategy comes in.`],
+     ["",`We turn the process into something people can understand: the problem, the solution, the team behind it and why the work matters.`],
+     ["",`Because good trade content doesn't just show the job.`],
+     ["",`It translates expertise into trust.`]
+   ]}
+];
+
+const RUN = [
+  ["1","8:00","Location 1. Musgrove Residence, Tahmoor","13D Park St, Tahmoor. Young woman and child on site. Branded vehicle arrival, team walking shot, customer greeting, switchboard close-ups, feature light install, switches and power points, fan install, garden lighting, home automation, TV install, stair lighting, Level 2 works out front on the power lines, and safety b-roll. Flow: 8:00 arrival and exteriors, 8:15 greeting and branded arrival, 8:30 install action and close-ups, 8:50 walkthrough and detail pickups.",["L1"]],
+  ["2","9:00","Travel to Thirlmere","From 13D Park St, Tahmoor to 46 Roy Crescent, Thirlmere. About 10 minutes."],
+  ["3","9:10","Location 2. Naomi Torres, Thirlmere","46 Roy Crescent, Thirlmere. Couple in their 40s to 50s. Customer greeting, feature light install, switches and power points, LED mirrors, fan install, and the team explaining work to the homeowner. Testimonial confirmed here. Day in the Life talking head. Flow: 9:10 arrival and exteriors, 9:20 greeting and interaction, 9:35 electrical b-roll and detail, 9:50 testimonial and talking head.",["3","8","L2"]],
+  ["4","10:10","Travel to Theresa Park","From 46 Roy Crescent, Thirlmere to 35 McKee Rd, Theresa Park. About 45 minutes."],
+  ["5","10:55","Location 3. Mr & Mrs Coco, Theresa Park","35 McKee Rd, Theresa Park. Elderly couple, acreage property. Exterior acreage shots, branded vehicle arriving, customer greeting, switchboard inspection, bollard lighting, fan install, safety checks, and the electrician explaining work. Drone shots if time and weather allow. Flow: 10:55 arrival and property shots, 11:05 greeting and interaction, 11:20 switchboard, lighting and fan b-roll, 11:35 hero shots and detail pickups.",["L3"]],
+  ["6","11:45","Travel to Cobbitty","From 35 McKee Rd, Theresa Park to 33 Bangor Terrace, Cobbitty. About 25 minutes."],
+  ["7","12:10","Location 4. Cobbitty new construction","33 Bangor Terrace, Cobbitty. New construction site. Exterior site shots, team reviewing plans, install of power points, switches and downlights, weatherproof power points, switchboard build, team working together, clean workmanship close-ups, and safety and PPE shots. Full team is together here, so capture the team group hero shot, the company logo end-frame, the Meet the Team reel and the Trend reel. Flow: 12:10 arrival and site establishing, 12:20 plan review and team discussion, 12:35 install, switchboard and close-up work, 12:50 team hero, logo shot and final pickups.",["4","6","L4"]]
+];
+
+const CVRUN = [
+  "Location 1. Musgrove Residence, Tahmoor",
+  "Travel to Thirlmere",
+  "Location 2. Naomi Torres, Thirlmere",
+  "Travel to Theresa Park",
+  "Location 3. Mr & Mrs Coco, Theresa Park",
+  "Travel to Cobbitty",
+  "Location 4. Cobbitty new construction"
+];
+
+/* ---- state (safe for sandboxed embeds) ---- */
+const KEY="current_kings_brief_v1";
+let state={};
+try{state=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){state={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function itemHTML(id,label){
+  const on=state[id]?"checked":"";
+  const cls=state[id]?"item done":"item";
+  return `<label class="${cls}" data-id="${id}"><input type="checkbox" ${on}><span>${label}</span></label>`;
+}
+
+document.getElementById("cv-run").innerHTML =
+  `<div class="cg-head"><h3>The day, in order</h3><span class="pill">7 blocks</span></div>` +
+  CVRUN.map((r,i)=>`<div class="item" style="cursor:default"><input type="checkbox" disabled style="opacity:.35"><span><b>${i+1}.</b> ${esc(r)}</span></div>`).join("");
+
+document.getElementById("photoGroups").innerHTML = PHOTO_GROUPS.map((g,gi)=>{
+  const items=g.items.map((p,i)=>itemHTML(`photo-${gi}-${i}`, esc(p))).join("");
+  return `<div class="card checkgroup"><div class="cg-head"><h3>${esc(g.title)}</h3><span class="pill" id="pc-${gi}"></span></div>${items}</div>`;
+}).join("");
+
+let lastGroup="";
+document.getElementById("videoCards").innerHTML = VIDEOS.map(v=>{
+  let head="";
+  if(v.group!==lastGroup){head=`<div class="grouphead">${esc(v.group)}</div>`;lastGroup=v.group;}
+  const scriptBlock = v.script ? `<div class="vrow"><div class="rl">Script, client-written, do not alter</div>
+      <details class="script"><summary>Show script</summary><div class="stext">${v.script.map(s=>(s[0]?`<b>${esc(s[0])}</b>\n`:"")+esc(s[1])).join("\n\n")}</div></details></div>` : "";
+  const hookBlock = v.hook ? `<div class="vrow"><div class="rl">Hook</div><div class="hook">${esc(v.hook)}</div></div>` : "";
+  const tpBlock = v.tp ? `<div class="vrow"><div class="rl">Talking points</div><ul class="tp">${v.tp.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>` : "";
+  const ctaBlock = v.cta ? `<div class="vrow"><div class="rl">CTA</div><div class="cta">${esc(v.cta)}</div></div>` : "";
+  const refBlock = v.ref ? `<div class="vrow"><div class="rl">Reference</div><div><a class="vlink" href="${esc(v.ref)}" target="_blank" rel="noopener">Sample reel</a></div></div>` : "";
+  const broll = v.broll.map((b,i)=>itemHTML(`broll-${v.n}-${i}`, esc(b))).join("");
+  return head + `<details class="card vcard" id="v-${v.n}">
+    <summary>
+      <div class="vnum">${esc(v.n)}</div>
+      <div class="vhead"><div class="vt">${esc(v.t)}</div>
+        <div class="vm">${v.meta.map(m=>`<span class="badge">${esc(m)}</span>`).join("")}</div></div>
+      <div class="chev">▼</div>
+    </summary>
+    <div class="vbody">
+      <div class="vrow"><div class="rl">Type</div><div>${esc(v.type)}</div></div>
+      ${v.note?`<div class="vrow"><div class="notecall"><div><b>Notes.</b> ${esc(v.note)}</div></div></div>`:""}
+      ${hookBlock}
+      ${tpBlock}
+      ${scriptBlock}
+      <div class="vrow"><div class="rl">B-Roll checklist</div><div class="checkgroup" style="padding:0">${broll}</div></div>
+      <div class="vrow"><div class="rl">Equipment</div><div class="eq">${v.eq.map(e=>`<span>${esc(e)}</span>`).join("")}</div></div>
+      ${ctaBlock}
+      ${refBlock}
+    </div>
+  </details>`;
+}).join("");
+
+function vidLabel(n){if(n==="W")return "WhiteKey";if(/^L/.test(n))return "Loc "+n.slice(1)+" promo";return "Video "+n;}
+function vidChip(n){return `<a class="vlink rlink" data-goto="${esc(n)}" tabindex="0" role="link">${esc(vidLabel(n))}</a>`;}
+document.getElementById("runList").innerHTML = RUN.map((r,i)=>{
+  const id="run-"+r[0];
+  const done=state[id]?"done":"";
+  const last=i===RUN.length-1;
+  const links=(r[4]&&r[4].length)?`<div class="rlinks">${r[4].map(vidChip).join("")}</div>`:"";
+  return `<div class="rblock ${done}" data-id="${id}">
+    <div class="rleft"><div class="rdot">${esc(r[0])}</div>${last?"":'<div class="rline"></div>'}</div>
+    <div class="rcontent"><label class="rcard"><input type="checkbox" ${state[id]?"checked":""}>
+      <div><div class="rtime">${esc(r[1])}</div><div class="rb">${esc(r[2])}</div><div class="rn">${esc(r[3])}</div></div></label>${links}</div>
+  </div>`;
+}).join("");
+
+function updateCounts(){
+  PHOTO_GROUPS.forEach((g,gi)=>{
+    const el=document.getElementById("pc-"+gi);if(!el)return;
+    el.textContent=g.items.length+" shots";
+  });
+}
+
+document.addEventListener("change",e=>{
+  if(e.target.type!=="checkbox"||e.target.disabled)return;
+  const host=e.target.closest("[data-id]");if(!host)return;
+  state[host.dataset.id]=e.target.checked;
+  host.classList.toggle("done",e.target.checked);
+  save();updateCounts();
+});
+
+function activateTab(b){
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  b.classList.add("active");
+  const panel=document.getElementById(b.dataset.t);if(panel)panel.classList.add("active");
+  window.scrollTo({top:0,behavior:"auto"});
+}
+document.getElementById("tabs").addEventListener("click",e=>{
+  const b=e.target.closest(".tab");if(b)activateTab(b);
+});
+document.getElementById("tabs").addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const b=e.target.closest(".tab");if(b){e.preventDefault();activateTab(b);}
+});
+
+function goToVideo(n){
+  const tab=document.querySelector('.tab[data-t="videos"]');
+  if(tab)activateTab(tab);
+  const el=document.getElementById("v-"+n);
+  if(!el)return;
+  el.open=true;
+  requestAnimationFrame(()=>{
+    el.scrollIntoView({behavior:"smooth",block:"start"});
+    el.classList.add("flash");
+    setTimeout(()=>el.classList.remove("flash"),1400);
+  });
+}
+document.addEventListener("click",e=>{
+  const a=e.target.closest("[data-goto]");
+  if(a){e.preventDefault();goToVideo(a.getAttribute("data-goto"));}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const a=e.target.closest("[data-goto]");
+  if(a){e.preventDefault();goToVideo(a.getAttribute("data-goto"));}
+});
+
+updateCounts();
+</script>
+</body>
+</html>

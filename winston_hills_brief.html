@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Winston Hills Hawks Women in League Round Shoot Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#333132; --orange:#faa62f; --tangerine:#f7b52d; --white:#ffffff;
+    --bg:#1b191a;
+    --text:#f1efed; --text2:#a7a3a1; --canvas:#2a2829; --soft:#242223;
+    --surface:#3a3738; --border:#403d3e; --accent:#faa62f; --accent-soft:rgba(250,166,47,.13);
+    --done:#faa62f; --charcoal2:#403e3f; --charcoal-line:rgba(255,255,255,.14);
+    --line-strong:#5f5c5d;
+    --shadow:0 1px 2px rgba(0,0,0,.30),0 6px 18px rgba(0,0,0,.30);
+    --head:"Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    --sans:"Roboto",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;background:var(--bg);color-scheme:dark}
+  body{font-family:var(--sans);color:var(--text);background:var(--bg);font-size:16px;line-height:1.5;font-weight:400;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  h1,h2,h3,.eyebrow,.sec-title,.wordmark,.chip b{font-family:var(--head)}
+
+  /* wordmark bar */
+  .brandbar{background:var(--charcoal);border-bottom:1px solid var(--charcoal-line)}
+  .brandbar .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px;gap:16px;flex-wrap:wrap}
+  .wordmark{font-weight:800;font-size:20px;letter-spacing:.02em;color:#fff;text-transform:uppercase}
+  .wordmark .mk{color:var(--orange)}
+  .brandbar .tag{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:500}
+
+  /* hero */
+  header .hero{background:var(--charcoal);color:#fff;padding:30px 0 34px}
+  .eyebrow{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:700}
+  .hero h1{font-size:44px;line-height:1.02;margin:12px 0 10px;letter-spacing:.01em;text-transform:uppercase;color:#fff}
+  .hero .sub{color:rgba(255,255,255,.72);font-size:16.5px;max-width:660px;font-weight:300}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .chip{display:flex;align-items:baseline;gap:7px;background:var(--charcoal2);border:1px solid var(--charcoal-line);border-radius:8px;padding:9px 13px}
+  .chip b{font-size:20px;font-weight:800;color:var(--orange);letter-spacing:0}
+  .chip span{color:rgba(255,255,255,.72);font-weight:400;font-size:13.5px}
+  .prog{margin-top:24px;max-width:520px}
+  .prog-top{display:flex;justify-content:space-between;font-size:12.5px;font-weight:500;margin-bottom:6px;color:rgba(255,255,255,.72)}
+  .prog-track{height:8px;background:var(--charcoal2);border-radius:99px;overflow:hidden}
+  .prog-fill{height:100%;width:0;background:var(--orange);border-radius:99px;transition:width .35s ease}
+
+  /* tabs */
+  nav.tabs{position:sticky;top:0;z-index:40;background:rgba(27,25,26,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .tabs-inner{display:flex;gap:2px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tab{border:none;background:none;padding:15px 16px;font-size:15px;font-weight:600;font-family:var(--sans);color:var(--text2);cursor:pointer;border-bottom:2.5px solid transparent;white-space:nowrap;min-height:44px;user-select:none}
+  .tab:hover{color:var(--text)}
+  .tab:focus-visible{outline:2px solid var(--orange);outline-offset:-2px;border-radius:4px}
+  .tab.active{color:#fff;border-bottom-color:var(--orange)}
+
+  main{padding:34px 0 90px}
+  .panel{display:none;animation:fade .3s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .sec-title{font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--text2);font-weight:700;margin:6px 0 15px}
+  .sec-title.mt{margin-top:34px}
+
+  .card{background:var(--canvas);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+  .card + .card{margin-top:16px}
+
+  /* client view */
+  .lead{background:var(--canvas);color:var(--text);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:12px;padding:22px 24px;font-size:17px;font-weight:300;line-height:1.55}
+  .lead b{font-weight:600;color:var(--text)}
+  .lead .hl{color:var(--orange);font-weight:600}
+  .cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+  .cv-block{background:var(--canvas);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);padding:20px 22px}
+  .cv-block h3{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px}
+  .cv-block .big{font-family:var(--head);font-size:19px;font-weight:700;text-transform:uppercase;letter-spacing:.01em;margin-bottom:10px;color:var(--text)}
+  .cv-block p{font-size:15px;color:var(--text);font-weight:300;line-height:1.55}
+  .cv-list{list-style:none;margin-top:10px}
+  .cv-list li{position:relative;padding:5px 0 5px 20px;font-size:14.5px;font-weight:300}
+  .cv-list li::before{content:"";position:absolute;left:0;top:12px;width:7px;height:7px;border-radius:2px;background:var(--orange)}
+  details.more{margin-top:12px;border-top:1px dashed var(--border);padding-top:10px}
+  details.more>summary{list-style:none;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:7px}
+  details.more>summary::-webkit-details-marker{display:none}
+  details.more>summary .chev{font-size:11px;transition:transform .2s}
+  details.more[open]>summary .chev{transform:rotate(180deg)}
+  details.more .inner{padding-top:10px}
+  .pointer{display:flex;gap:11px;align-items:flex-start;background:var(--accent-soft);border:1px solid rgba(250,166,47,.32);border-radius:10px;padding:13px 16px;font-size:14.5px;margin-top:16px;font-weight:400}
+  .pointer .ic{color:var(--done);font-weight:800;font-family:var(--head)}
+
+  /* info table */
+  .info{width:100%;border-collapse:collapse}
+  .info tr+tr{border-top:1px solid var(--border)}
+  .info th{text-align:left;vertical-align:top;padding:14px 18px;width:150px;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);background:var(--soft);font-weight:700;font-family:var(--head)}
+  .info td{padding:14px 18px;font-size:15px;font-weight:300}
+
+  /* checklists */
+  .cg-head{display:flex;align-items:center;justify-content:space-between;padding:15px 16px 9px;gap:10px}
+  .cg-head h3{font-size:15px;font-family:var(--head);text-transform:uppercase;letter-spacing:.03em;font-weight:700}
+  .cg-head .pill{font-size:12px;font-weight:600;color:var(--text2);background:var(--soft);border:1px solid var(--border);border-radius:99px;padding:3px 10px;white-space:nowrap}
+  .checkgroup{padding:2px 8px 12px}
+  .item{display:flex;align-items:flex-start;gap:12px;padding:10px 12px;border-radius:8px;cursor:pointer;transition:background .12s}
+  .item:hover{background:var(--soft)}
+  .item input{appearance:none;-webkit-appearance:none;width:21px;height:21px;min-width:21px;margin-top:1px;border:2px solid var(--line-strong);border-radius:6px;cursor:pointer;position:relative;transition:.15s}
+  .item input:checked{background:var(--done);border-color:var(--done)}
+  .item input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .item span{font-size:15px;flex:1;font-weight:400}
+  .item.done span{color:var(--text2);text-decoration:line-through}
+
+  /* video cards */
+  .grouphead{font-family:var(--head);text-transform:uppercase;letter-spacing:.06em;font-size:12.5px;font-weight:700;color:var(--text2);margin:26px 0 12px}
+  .grouphead:first-child{margin-top:4px}
+  .vcard{margin-bottom:12px}
+  .vcard>summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;gap:15px}
+  .vcard>summary::-webkit-details-marker{display:none}
+  .vnum{width:40px;height:40px;min-width:40px;border-radius:9px;background:var(--accent-soft);color:var(--done);font-family:var(--head);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center}
+  .vhead{flex:1;min-width:0}
+  .vhead .vt{font-size:16.5px;font-weight:600;letter-spacing:0;font-family:var(--head)}
+  .vhead .vm{font-size:12.5px;color:var(--text2);margin-top:3px}
+  .vhead .vm .badge{display:inline-block;background:var(--soft);border:1px solid var(--border);border-radius:5px;padding:1px 7px;margin:2px 6px 0 0;font-weight:500}
+  .chev{color:var(--text2);transition:transform .2s;font-size:12px}
+  .vcard[open] .chev{transform:rotate(180deg)}
+  .vbody{padding:2px 18px 20px;border-top:1px solid var(--border)}
+  .vrow{margin-top:17px}
+  .vrow .rl{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);font-weight:700;font-family:var(--head);margin-bottom:7px}
+  .hook{background:var(--accent-soft);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:11px 14px;font-size:14.5px;font-style:italic}
+  .tp{list-style:none}
+  .tp li{position:relative;padding:5px 0 5px 18px;font-size:14.5px;font-weight:300}
+  .tp li::before{content:"";position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;background:var(--orange)}
+  .cta{font-size:14.5px;font-weight:500;color:var(--done)}
+  .script>summary{cursor:pointer;list-style:none;padding:11px 13px;font-size:14px;font-weight:600;color:var(--done);display:flex;align-items:center;gap:8px;background:var(--soft);border:1px solid var(--border);border-radius:8px}
+  .script>summary::-webkit-details-marker{display:none}
+  .script[open]>summary{border-radius:8px 8px 0 0}
+  .script .stext{padding:12px 14px;font-size:14.5px;line-height:1.7;white-space:pre-wrap;border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;background:var(--canvas)}
+  .notecall{display:flex;gap:9px;align-items:flex-start;background:var(--soft);border:1px solid var(--border);border-radius:8px;padding:11px 14px;font-size:14px;font-weight:300}
+  .notecall .ic{color:var(--done);font-weight:800;font-family:var(--head)}
+  .notecall b{font-weight:600}
+  .eq{display:flex;flex-wrap:wrap;gap:8px}
+  .eq span{font-size:13px;font-weight:500;background:var(--surface);border-radius:6px;padding:5px 11px}
+
+  /* run sheet */
+  .run{position:relative;padding-left:4px}
+  .rblock{display:flex;gap:16px;padding:2px 0}
+  .rleft{display:flex;flex-direction:column;align-items:center}
+  .rdot{width:34px;height:34px;min-width:34px;border-radius:50%;background:var(--canvas);border:2px solid var(--line-strong);color:var(--text2);font-family:var(--head);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;transition:.2s;z-index:2}
+  .rline{flex:1;width:2px;background:var(--border);margin:2px 0}
+  .rblock.done .rdot{background:var(--done);border-color:var(--done);color:#fff}
+  .rcontent{flex:1;padding-bottom:16px}
+  .rcard{background:var(--canvas);border:1px solid var(--border);border-radius:10px;padding:13px 16px;cursor:pointer;display:flex;gap:13px;align-items:flex-start;transition:border-color .15s}
+  .rcard:hover{border-color:var(--orange)}
+  .rcard input{appearance:none;-webkit-appearance:none;width:21px;height:21px;min-width:21px;margin-top:2px;border:2px solid var(--line-strong);border-radius:6px;cursor:pointer;position:relative}
+  .rcard input:checked{background:var(--done);border-color:var(--done)}
+  .rcard input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .rtime{font-size:12px;font-weight:700;color:var(--done);font-family:var(--head);letter-spacing:.03em}
+  .rcard .rb{font-size:15px;font-weight:600;margin-top:2px;font-family:var(--head)}
+  .rcard .rn{font-size:13.5px;color:var(--text2);margin-top:4px;font-weight:300}
+  .rcard .rsplit{margin-top:8px}
+  .rcard .rsplit .sl{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;color:var(--text2);font-weight:300;margin-top:6px}
+  .rblock.done .rb{text-decoration:line-through;color:var(--text2)}
+  .rtag{display:inline-block;font-family:var(--head);font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;border-radius:5px;padding:2px 7px;white-space:nowrap;margin-top:1px}
+  .rtag.pro{background:var(--accent-soft);color:var(--orange);border:1px solid rgba(250,166,47,.32)}
+  .rtag.ugc{background:rgba(255,255,255,.08);color:var(--text);border:1px solid var(--border)}
+
+  .foot{text-align:center;color:var(--text2);font-size:13px;margin-top:40px;font-weight:300}
+
+  @media (max-width:720px){
+    .cv-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 16px}
+    .hero h1{font-size:32px}
+    .hero{padding:26px 0 28px}
+    .info th{width:104px;font-size:11.5px;padding:11px 12px}
+    .info td{padding:11px 12px;font-size:14px}
+    .lead{font-size:15.5px;padding:18px}
+    .tab{padding:14px 13px;font-size:14px}
+    .vhead .vt{font-size:15.5px}
+  }
+  @media print{
+    nav.tabs,.prog,.foot{display:none!important}
+    .panel{display:block!important}
+    .brandbar,header .hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .vbody{display:block!important}
+    body{background:#fff}
+  }
+  .vlink{color:var(--orange);cursor:pointer;text-decoration:none;border-bottom:1px solid rgba(250,166,47,.35);transition:.15s}
+  .vlink:hover,.vlink:focus-visible{border-bottom-color:var(--orange);outline:none}
+  .rlinks{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 2px 0}
+  .rlink{font-family:var(--head);font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--orange);background:var(--accent-soft);border:1px solid rgba(250,166,47,.3);border-radius:20px;padding:5px 12px;cursor:pointer;transition:.15s}
+  .rlink:hover,.rlink:focus-visible{background:rgba(250,166,47,.22);outline:none}
+  .vcard{scroll-margin-top:72px}
+  .vcard.flash{box-shadow:0 0 0 2px var(--orange),0 8px 22px rgba(0,0,0,.35)}
+  .cvlink{color:inherit;cursor:pointer;text-decoration:none;border-bottom:1px solid rgba(250,166,47,.35);transition:.15s}
+  .cvlink:hover,.cvlink:focus-visible{color:var(--orange);border-bottom-color:var(--orange);outline:none}
+  .rblock{scroll-margin-top:72px}
+  .rblock.flash .rcard{box-shadow:0 0 0 2px var(--orange),0 8px 22px rgba(0,0,0,.35)}
+  .rvids{display:flex;flex-direction:column;gap:8px;margin:12px 0 2px 0}
+  .rvid{background:var(--accent-soft);border:1px solid rgba(250,166,47,.3);border-radius:10px;overflow:hidden}
+  .rvid>summary{list-style:none;cursor:pointer;padding:9px 13px;display:flex;align-items:center;gap:10px;font-family:var(--head);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--orange)}
+  .rvid>summary::-webkit-details-marker{display:none}
+  .rvid>summary .chev{margin-left:auto;color:var(--orange)}
+  .rvid[open]>summary .chev{transform:rotate(180deg)}
+  .rvtag{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;background:var(--orange);color:#1b191a;border-radius:5px;font-size:11px;font-weight:800}
+  .rvbody{padding:2px 14px 14px;border-top:1px solid rgba(250,166,47,.25)}
+  .rvsub{font-size:11.5px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;font-weight:700;font-family:var(--head);margin:11px 0 2px}
+  .rvrow{margin-top:12px;font-size:14px;font-weight:300;color:var(--text)}
+  .rvrow>b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);font-family:var(--head);font-weight:700;margin-bottom:5px}
+
+  .vhead .vm .badge.core{background:var(--accent-soft);color:var(--orange);border-color:rgba(250,166,47,.32)}
+  .vhead .vm .badge.opt{color:var(--text2)}
+  .scen{margin-top:14px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--soft)}
+  .scen-h{font-family:var(--head);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--text);padding:10px 14px;border-bottom:1px solid var(--border)}
+  .scen>.script{margin:12px 14px}
+  .scen>.vrow{margin:12px 14px 14px}
+  .reflink{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(250,166,47,.35);word-break:break-all;font-size:13.5px}
+  .reflink:hover,.reflink:focus-visible{border-bottom-color:var(--orange);outline:none}
+  .cvlink{color:inherit;cursor:pointer;text-decoration:none;border-bottom:1px solid rgba(250,166,47,.35);transition:.15s}
+  .cvlink:hover,.cvlink:focus-visible{color:var(--orange);border-bottom-color:var(--orange);outline:none}
+</style>
+</head>
+<body>
+<div class="brandbar"><div class="wrap">
+  <div class="wordmark">WhiteKey<span class="mk"> Marketing</span></div>
+  <div class="tag">Shoot Brief</div>
+</div></div>
+
+<header>
+  <div class="hero"><div class="wrap">
+    <h1>Winston Hills Hawks</h1>
+    <p class="sub">Full-day Women in League Round coverage at Richie Benaud Oval. Sunday 26 July 2026, 9:00am to 5:00pm.</p>
+    <div class="chips">
+      <div class="chip"><b>3</b><span>crew</span></div>
+      <div class="chip"><b>7</b><span>pro reels</span></div>
+      <div class="chip"><b>10</b><span>UGC reels</span></div>
+      <div class="chip"><b>150</b><span>photos</span></div>
+      <div class="chip"><b>8</b><span>hr coverage</span></div>
+    </div>
+  </div></div>
+  <nav class="tabs"><div class="wrap"><div class="tabs-inner" id="tabs" role="tablist">
+    <div class="tab active" role="tab" tabindex="0" data-t="client">Client View</div>
+    <div class="tab" role="tab" tabindex="0" data-t="photo">Photography</div>
+    <div class="tab" role="tab" tabindex="0" data-t="pro">Pro Videos</div>
+    <div class="tab" role="tab" tabindex="0" data-t="ugc">UGC</div>
+    <div class="tab" role="tab" tabindex="0" data-t="run">Run Sheet</div>
+  </div></div></nav>
+</header>
+
+<main class="wrap">
+  <section class="panel active" id="client">
+    <div class="lead">Full-day coverage of the <b class="hl">Winston Hills Hawks Women in League Round</b> at Richie Benaud Oval. We're delivering <b class="hl">150 photos</b>, <b class="hl">7 professional reels</b> and <b class="hl">10 UGC reels</b>. Tap any section below for detail, or use the tabs up top for the full shot list, scripts and run sheet.</div>
+
+    <div class="sec-title mt">The shoot at a glance</div>
+    <div class="card">
+      <table class="info">
+        <tr><th>Client</th><td>Winston Hills Hawks</td></tr>
+        <tr><th>Industry</th><td>Community sport, junior rugby league.</td></tr>
+        <tr><th>Location</th><td>Richie Benaud Oval, 1A Pennant Hills Road, North Parramatta</td></tr>
+        <tr><th>Date</th><td>Sunday 26 July 2026, 9:00am to 5:00pm</td></tr>
+        <tr><th>Call times</th><td>Kendy 8:45am · Mike 12:45pm · Rachel 12:45pm</td></tr>
+        <tr><th>Deliverables</th><td>150 photos, 7 professional reels, 10 UGC reels.</td></tr>
+        <tr><th>Format</th><td>Reels shot vertical for social. Promo and highlights can also cut to landscape where it helps. Shoot to the client's brand: bright and light, always captioned.</td></tr>
+      </table>
+    </div>
+
+    <div class="sec-title mt">What we're capturing</div>
+    <div class="cv-grid">
+      <div class="cv-block">
+        <h3>Photography</h3>
+        <div class="big">150 edited photos</div>
+        <p>Across the whole day: atmosphere, players and teams, the Women in League focus, and community moments.</p>
+        <ul class="cv-list">
+          <li>Atmosphere and location</li>
+          <li>Player and team moments</li>
+          <li>Women in League focus</li>
+          <li>Community moments</li>
+        </ul>
+        <details class="more"><summary>What's in each group <span class="chev">▼</span></summary><div class="inner">
+          <ul class="cv-list">
+            <li>Female players, mums, volunteers and female officials</li>
+            <li>Sponsor and branding visibility</li>
+            <li>See the Photography tab for the full frame checklist</li>
+          </ul>
+        </div></details>
+      </div>
+      <div class="cv-block">
+        <h3>Pro video, Kendy and Mike</h3>
+        <div class="big">7 professional reels</div>
+        <p>The polished track. Promo, testimonials, interviews, highlights and a scripted safety message.</p>
+        <ul class="cv-list">
+          <li><a class="vlink" data-goto="1" tabindex="0" role="link">1. Describe Winston Hills Hawks</a></li>
+          <li><a class="vlink" data-goto="2" tabindex="0" role="link">2. Women in League Round promo</a></li>
+          <li><a class="vlink" data-goto="3" tabindex="0" role="link">3. Parent testimonials</a></li>
+          <li><a class="vlink" data-goto="4" tabindex="0" role="link">4. Coach interview</a></li>
+          <li><a class="vlink" data-goto="5" tabindex="0" role="link">5. Player highlights</a></li>
+        </ul>
+        <details class="more"><summary>Show the last two <span class="chev">▼</span></summary><div class="inner">
+          <ul class="cv-list">
+            <li><a class="vlink" data-goto="6" tabindex="0" role="link">6. Players warming up</a></li>
+            <li><a class="vlink" data-goto="7" tabindex="0" role="link">7. NSW Melee Policy (scripted)</a></li>
+          </ul>
+        </div></details>
+      </div>
+      <div class="cv-block">
+        <h3>UGC, Rachel</h3>
+        <div class="big">10 UGC reels</div>
+        <p>Presenter-led social pieces. Rachel films the first and last line to camera and voices over the middle.</p>
+        <ul class="cv-list">
+          <li><a class="vlink" data-goto="U2" tabindex="0" role="link">Give rugby league a go</a></li>
+          <li><a class="vlink" data-goto="U3" tabindex="0" role="link">You don't have to play</a></li>
+          <li><a class="vlink" data-goto="U4" tabindex="0" role="link">More than a club</a></li>
+          <li><a class="vlink" data-goto="U9" tabindex="0" role="link">Everyone films the try</a></li>
+          <li><a class="vlink" data-goto="U10" tabindex="0" role="link">We're filming belonging</a></li>
+        </ul>
+        <details class="more"><summary>Optional pieces if time allows <span class="chev">▼</span></summary><div class="inner">
+          <ul class="cv-list">
+            <li><a class="vlink" data-goto="U1" tabindex="0" role="link">The best part about the Hawks</a></li>
+            <li><a class="vlink" data-goto="U5" tabindex="0" role="link">Come to a game</a></li>
+            <li><a class="vlink" data-goto="U6" tabindex="0" role="link">Your new rugby league family</a></li>
+            <li><a class="vlink" data-goto="U7" tabindex="0" role="link">Three reasons families love the Hawks</a></li>
+            <li><a class="vlink" data-goto="U8" tabindex="0" role="link">Everyone has a reason</a></li>
+          </ul>
+        </div></details>
+      </div>
+    </div>
+
+    <div class="pointer"><div>Click any video above to jump to its script, questions and b-roll list, or open the <b>Pro Videos</b>, <b>UGC</b> and <b>Photography</b> tabs for everything.</div></div>
+
+    <div class="sec-title mt">The day, start to finish</div>
+    <div class="card"><div class="checkgroup" id="cv-run"></div></div>
+    <div class="pointer"><div>Full timing and shot-by-shot notes are in the <b>Run Sheet</b> tab.</div></div>
+
+    <div class="foot">Tap any item on the other tabs to check it off during the shoot.</div>
+  </section>
+
+  <section class="panel" id="photo">
+    <div class="sec-title">Target 150 edited photos across the day</div>
+    <div id="photoGroups"></div>
+  </section>
+
+  <section class="panel" id="pro">
+    <div class="sec-title">Kendy and Mike, tap a reel to open its script, talking points and b-roll checklist</div>
+    <div id="proCards"></div>
+  </section>
+
+  <section class="panel" id="ugc">
+    <div class="sec-title">Rachel, presenter-led social pieces, 10 reels</div>
+    <div id="ugcWrap"></div>
+  </section>
+
+  <section class="panel" id="run">
+    <div class="sec-title">Day run sheet, suggested order, camera and presenter split shown per block</div>
+    <div class="run" id="runList"></div>
+    <div class="foot">Times follow the Round 13 hosting schedule. Confirm the mums' touch game start time with the committee. It is currently mapped to about 3:45pm off the back of the 3:00pm U14 Boys game.</div>
+  </section>
+</main>
+
+<script>
+const PHOTO_GROUPS = [
+  {title:"Atmosphere and location", items:[
+    `Wide shots of Richie Benaud Oval`,`Signage, field setup and game-day details`,`Crowd arriving and gathering around the oval`,`Families and supporters on the sidelines`,`Club colours, jerseys and branded details`
+  ]},
+  {title:"Player and team moments", items:[
+    `Players warming up`,`Boots, jerseys, hands, passing balls and pre-game details`,`Team huddles and pep talks`,`Players running onto the field`,`Sideline encouragement`,`Celebratory moments after strong plays`,`Natural smiles and team bonding`
+  ]},
+  {title:"Women in League focus", items:[
+    `Female players in action`,`Women supporting from the sidelines`,`Volunteers helping around the grounds`,`Mums and families supporting players`,`Female leaders, coaches or club representatives`,`Group shots of women involved in the day`
+  ]},
+  {title:"Community moments", items:[
+    `Supporters cheering`,`Kids and families enjoying the day`,`Players interacting with supporters`,`Candid moments of pride, support and celebration`,`Post-game team interactions`
+  ]},
+  {title:"Sponsor and brand", items:[
+    `Sponsor banners and branded tents`,`Signage and branding for reference`,`Clean hero frames of the ground for social and web`,`Detail shots for the recap and posts`
+  ]}
+];
+
+const PRO_VIDEOS = [
+  {n:"1", group:"Core reels", t:"Describe Winston Hills Hawks", meta:["Sub-30s","Talking head + b-roll"],
+   type:"PRO · Short-form sub-30s · Talking head plus b-roll. The club through the kids' eyes.",
+   tp:[`What do you love most about the Winston Hills community?`,`Who's your favourite NRL player?`,`Favourite memory with the club so far?`,`What would you tell someone thinking about joining?`],
+   tpMore:[`What position do you play and why?`,`What's the best thing a coach has taught you?`,`Who's your best mate at the club?`,`If you could describe the Hawks in one word, what would it be?`,`What do you do straight after a win?`],
+   broll:[`Kids in Hawks jerseys mid-game`,`Huddles`,`Passing drills`,`High-fives on the sideline`]},
+  {n:"2", group:"Core reels", t:"Women in League Round (Overall Promo)", meta:["Up to 1 min","Promo"],
+   type:"PRO · Up to 1 min · Promo. The sizzle reel for the day.",
+   broll:[`Wide oval`,`Players warming up`,`Women and girls involved in the club`,`Game-day action`,`Crowd cheering`,`Team celebration`],
+   reference:[`https://www.instagram.com/p/Dal9f9FDJXX/`],
+   music:`https://open.spotify.com/track/0kosUz0jePvjiz4ctmR6wL`},
+  {n:"3", group:"Core reels", t:"Testimonial from Parents (1 to 5 parents)", meta:["Sub-30s","Talking head + b-roll"],
+   type:"PRO · Short-form sub-30s · Talking head plus b-roll. Social proof from real parents.",
+   tp:[`What positive changes have you seen in your child since joining the Hawks?`,`What has rugby league taught your child?`,`What's one thing new parents should know before signing up?`],
+   tpMore:[`What made you choose Winston Hills Hawks?`,`How has the club supported your family off the field?`,`What would you say to a parent who's on the fence?`,`How have the coaches helped your child grow?`,`What does game day feel like for your family?`],
+   broll:[`Parent watching from the sideline`,`Child running onto the field`,`Family reactions`],
+   reference:[`https://www.instagram.com/p/DYIwaRZPYvR/`],
+   note:"One video per parent."},
+  {n:"4", group:"Core reels", t:"Interview with Coaches", meta:["Sub-30s","Talking head + b-roll"],
+   type:"PRO · Short-form sub-30s · Talking head plus b-roll. The people who set the club's standard.",
+   tp:[`What's one thing people should know about the Hawks?`,`Favourite club tradition?`,`What do you enjoy most about coaching?`,`What values do you try to instil in your team?`],
+   tpMore:[`What does a good season look like beyond the scoreboard?`,`Tell us about a player who's grown this year.`,`Why does Women in League Round matter to this club?`,`What do you say to a kid who's nervous on day one?`,`What makes the Hawks culture different?`],
+   broll:[`Coach directing players`,`Sideline instruction`,`Huddle pep talk`]},
+  {n:"5", group:"Core reels", t:"Player Highlight (choose 5 players)", meta:["Sub-30s","Talking head + b-roll"],
+   type:"PRO · Short-form sub-30s · Talking head plus b-roll. Individual player stories.",
+   tp:[`Introduce yourself and your position.`,`How did you hear about Winston Hills Hawks?`,`Biggest improvement?`,`What makes the Hawks different from other clubs you've been part of?`],
+   tpMore:[`What's your favourite thing about game day?`,`Who do you look up to at the club?`,`What's one goal for this season?`,`What would you tell a friend thinking of joining?`,`Best moment you've had on this field?`],
+   broll:[`Player in action`,`Warm-up`,`Celebrating with the team`],
+   reference:[`https://www.tiktok.com/@playmakerproduction/video/7631396601407393045`,`https://www.tiktok.com/@3ptag/video/7463393692586380552`],
+   note:"One video each player."},
+  {n:"6", group:"Core reels", t:"Players Warming Up", meta:["Sub-30s","Promo"],
+   type:"PRO · Short-form sub-30s · Promo. Energy and anticipation before kickoff.",
+   broll:[`Players stretching`,`Huddling`,`Laughing`,`Drills`,`Boots and ball close-ups`],
+   reference:[`https://www.tiktok.com/@trainbyrob/video/7116939905095175430`]},
+  {n:"7", group:"Scripted safety message", t:"NSW Melee Policy (Talking Head)", meta:["Sub-30s","Talking head","Scripted"],
+   type:"PRO · Short-form sub-30s · Talking head, scripted. Club safety and respect message.",
+   scenarios:[
+     {label:"Scenario A: Official or talking head", scriptLabel:"Client script (client-written, do not alter)", script:`"At Winston Hills Hawks, we're proud to play hard. But always with respect. If a melee breaks out, don't get involved. Stay calm, walk away, and let the referee manage the situation. Remember, players and team officials must not leave the bench or playing area to join an altercation. Doing so can lead to automatic send-offs, lengthy suspensions, and even competition point penalties for your team. Protect your teammates, respect the game, and be a Hawk we're all proud of. Play tough. Play fair. Play with respect."`, fallback:[`What does playing hard but with respect look like at the Hawks?`,`If a melee breaks out on the field, what should players do?`,`Why is it so important to stay out of it and let the referee manage it?`,`What can happen if a player or official leaves the bench to join in?`,`What does being a Hawk we're all proud of mean to you?`]},
+     {label:"Scenario B: Coach", scriptLabel:"Coach script (WKM spoken draft)", script:`"I'm a coach here at Winston Hills Hawks, and my job is to keep these kids safe. So here's the rule. If a melee breaks out, you don't run in. You stay calm, you step back, and you let the ref do their job. Leave the bench or the field to join in and you're looking at a send-off, a suspension, maybe points off the team. That's not who we are. We play hard, we play fair, and we look after each other. That's what makes us Hawks."`, fallback:[`Can you introduce yourself and your role at the club?`,`As a coach, what's your first job when things get heated?`,`What's the rule you give players the moment a melee starts?`,`What's the cost to the team if someone runs in off the bench?`,`How would you sum up the standard the Hawks play to?`]},
+     {label:"Scenario C: Player or parent (UGC)", scriptLabel:"Player or parent script (WKM spoken draft)", script:`"Footy gets heated. It happens. But here's the thing at the Hawks. When a scuffle breaks out, we don't pile in. We stay calm and let the ref sort it out. Because running in off the bench isn't brave, it just gets you sent off and your team punished. We'd rather win the right way. Play tough, play fair, and respect the game."`, fallback:[`Footy gets heated sometimes. How do the Hawks handle it when a scuffle breaks out?`,`Why don't you pile in when it kicks off?`,`What happens if someone runs in off the bench?`,`What do you mean when you say you'd rather win the right way?`,`How would you describe the way the Hawks play?`]}
+   ],
+   note:"Pick the scenario that fits the talent on the day. If they freeze on the script, switch to the matching questions and let them answer in their own words, same beats: stay out of it, let the ref manage it, leaving the bench costs the team, play hard but fair. Film in a quieter spot for clean audio, game-day background."}
+];
+
+const UGC_VIDEOS = [
+  {n:"1", optional:true, t:"The best part about the Hawks?", meta:["Sub-30s","Scripted"], type:"UGC · Short-form sub-30s · Talking head, scripted.",
+   script:`"The best part about the Hawks? It's not just the footy. It's the people. Every weekend feels like catching up with family. The kids make friends, parents connect, and everyone cheers each other on. If you're looking for a club where everyone belongs, come join the Winston Hills Hawks."`},
+  {n:"2", optional:false, t:"Thinking about giving rugby league a go?", meta:["Sub-30s","Scripted"], type:"UGC · Short-form sub-30s · Talking head, scripted.",
+   script:`"Thinking about giving rugby league a go? Winston Hills Hawks is a great place to learn, improve, and have fun. Great coaches, supportive teammates, and an awesome club culture. Come down and be part of something special."`},
+  {n:"3", optional:false, t:"You don't have to play to be part of the Hawks", meta:["Sub-30s","Scripted"], type:"UGC · Short-form sub-30s · Talking head, scripted.",
+   script:`"You don't have to play to be part of the Hawks. Our volunteers, coaches, managers, and supporters are what make this club thrive. If you want to give back, meet great people, and make a difference, we'd love to have you on the team."`},
+  {n:"4", optional:false, t:"Looking for more than just a rugby league club?", meta:["Sub-30s","Scripted"], type:"UGC · Short-form sub-30s · Talking head, scripted.",
+   script:`"Looking for more than just a rugby league club? At Winston Hills Hawks, you're joining a community. From lifelong friendships to unforgettable game days, there's a place here for everyone. Players, parents, volunteers, and supporters. Come and see why so many families call the Hawks home. We'd love to welcome you."`},
+  {n:"5", optional:true, t:"The best way to experience the Hawks? Come to a game", meta:["Sub-30s","Scripted"], type:"UGC · Short-form sub-30s · Talking head, scripted.",
+   script:`"The best way to experience the Hawks? Come to a game. Feel the atmosphere, meet our families, and see what makes this club so special. Whether you're looking to play, volunteer, or support, there's a place for you at Winston Hills Hawks."`},
+  {n:"6", optional:true, t:"You just found your new rugby league family", meta:["Sub-30s","Scripted"], type:"UGC · Short-form sub-30s · Talking head, scripted.",
+   script:`"This is Winston Hills Hawks. It's where kids build confidence, friendships grow, and every weekend feels like a community event. Whether you're stepping onto the field for the first time or looking for a new club, there's a place for you here. Come join the Hawks. We can't wait to meet you."`},
+  {n:"7", optional:true, t:"Three reasons families love Winston Hills Hawks", meta:["Sub-30s","Scripted"], type:"UGC · Short-form sub-30s · Talking head, scripted.",
+   script:`"Three reasons families love Winston Hills Hawks. Number one, amazing coaches who care about every player. Number two, a welcoming community that feels like family. And number three, so much fun on and off the field. If you're looking for a club where everyone belongs, come and join the Hawks."`},
+  {n:"8", optional:true, t:"Everyone has a reason why they love the Hawks", meta:["Sub-30s","Scripted"], type:"UGC · Short-form sub-30s · Talking head, scripted.",
+   script:`"Everyone has a reason why they love the Hawks. Some love the footy. Some love the friendships. Some love the community. For me, it's the people. The support, the memories, and the feeling that you belong. That's why I love the Hawks."`},
+  {n:"9", optional:false, t:"Everyone films the try", meta:["Sub-30s","Conceptual","Viral style"], type:"UGC · Short-form sub-30s · Conceptual, viral style.",
+   hook:`Everyone films the try. We film what happens after.`,
+   script:`"The coach celebrating the kid who almost gave up. The parent cheering from the sideline. The team making room for the new player. Because the moments that grow a club usually happen away from the scoreboard. That's what White Key captures."`,
+   endText:`We don't just film the game. We film why people stay.`,
+   broll:[`Coach with a young player`,`Parent cheering from the sideline`,`Team welcoming a new kid`,`Candid after-play moments`]},
+  {n:"10", optional:false, t:"We're not filming rugby. We're filming belonging.", meta:["Up to 1 min","Conceptual","Presenter"], type:"UGC · Up to 1 min · Conceptual, narrative, presenter.",
+   hook:`Today, we're not just filming rugby league. We're filming the reason people keep coming back.`,
+   script:`"When you market a community sports club, the game is only one part of the story. The real content is happening around the field. It's the coach encouraging a young player. The parents cheering from the sidelines. The volunteers setting everything up before anyone arrives. And the kids building confidence, friendships and memories every weekend. Anyone can film a try or a tackle. Our job is to capture what the club actually feels like, so families watching online can picture themselves becoming part of it. Because for a club like Winston Hills Hawks, the strongest message isn't just come and play rugby. It's, there's a place for you here."`,
+   cta:`At White Key Marketing, we don't just capture the action. We capture what makes people care.`,
+   shots:[`White Key team checking the brief beside the field`,`Presenter delivering the hook with training behind`,`Coach speaking with a young player`,`Parents cheering or chatting on the sidelines`,`Volunteers preparing equipment`,`Players laughing together`,`White Key camera operator filming`,`Team reviewing footage on camera or phone`,`Final wide of the field and club community`],
+   reference:[`https://www.instagram.com/p/DawQrHljGQq/`,`https://www.instagram.com/p/DaJoxW9jQh7/`],
+   music:`https://open.spotify.com/playlist/37i9dQZF1EIdDyy28MYSyS`,
+   note:"Presenter piece for Rachel. Film beside the field with a game or training behind. Editing: always captions."}
+];
+
+const UGC_BROLL = [
+  `Kids running onto the field, filmed vertical`,
+  `Parents cheering and reacting on the sideline`,
+  `Coach talking to players in a huddle`,
+  `High-fives, fist bumps and handshakes after a play`,
+  `Volunteers setting up, canteen and gear`,
+  `Close-ups: boots, ball, jerseys, hands taping up`,
+  `Warm-up drills, slow and steady`,
+  `Crowd atmosphere pans, flags and club colours`,
+  `Siblings and families watching together`,
+  `A try being scored and the celebration after`,
+  `Water breaks and bench moments`,
+  `Wide establishing shot of the oval with people in it`,
+  `Candid laughing between teammates`,
+  `Post-game three cheers or team huddle`,
+  `A player walking off with a parent, arm around the shoulder`
+];
+
+const RUN = [
+  {n:"1",time:"8:45am",title:"Arrival and setup",who:"note",note:"Kendy on site. Park, unload, assemble camera, mic, check batteries and cards. One camera ready by 9:00am.",links:[]},
+  {n:"2",time:"9:00am",title:"Opening atmosphere (Kendy solo)",who:"note",note:"Wide oval, signage, sponsor tents, crowd arriving. First non-Hawks games (U6, U8) for atmosphere and warm-up b-roll. Start banking UGC b-roll now while it is quiet.",links:["6","UB"]},
+  {n:"3",time:"9:50am",title:"First Hawks fixtures (Kendy solo)",who:"note",note:"Hawks U6 (1), U6 (2) and U8. Hawks action is the priority. Grab stills and clips in the same pass, hero moments over full coverage. Bank sideline and family b-roll between plays.",links:[]},
+  {n:"4",time:"10:40am",title:"Player and team moments (Kendy solo)",who:"note",note:"U6 (1), U7 and U9 games. Families, sideline, huddles, portraits between Hawks fixtures. Keep building the UGC b-roll library and the photo groups.",links:["UB"]},
+  {n:"5",time:"11:30am",title:"Hawks U9 plus community and sponsor visibility (Kendy solo)",who:"note",note:"Sponsor banners, branded tents, volunteers. Parent testimonials and the coach interview only if talent is comfortable and there is a genuine gap.",links:["3","4"]},
+  {n:"6",time:"12:20pm",title:"U10 game and midday coverage (Kendy solo)",who:"note",note:"Player highlights, strong photo options for feed graphics.",links:["5"]},
+  {n:"7",time:"1:00pm",title:"Mike and Rachel join",who:"note",note:"Second camera on. Mic check and brief Rachel. From here it is two cameras plus presenter for the peak block.",links:[]},
+  {n:"8",time:"1:10pm",title:"U12 Girls Tag (Hawks, Women in League)",who:"split",pro:"Two cameras split: one on priority WIL action and stills, one on b-roll.",ugc:"Films the community and family UGC pieces with the girls' game behind her.",links:["U2","U3","U4"]},
+  {n:"9",time:"2:00pm",title:"U14 Girls Tag (Hawks, Women in League)",who:"split",pro:"WIL hero content. Women, mums, volunteers, female officials. Two cameras on action.",ugc:"Films the belonging presenter piece.",links:["2","U10"]},
+  {n:"10",time:"2:45pm",title:"Priority talking head",who:"split",pro:"One camera pulls for the talking head while the other stays on the field.",ugc:"Talent delivers the NSW Melee Policy message in a quieter spot.",links:["7"]},
+  {n:"11",time:"3:00pm",title:"U14 Boys (Hawks flagship)",who:"split",pro:"Biggest crowd. Two cameras: energy, hero moments, celebrations. Overall Promo b-roll.",ugc:"Grabs crowd energy and any remaining UGC pieces.",links:["2"]},
+  {n:"12",time:"3:45pm",title:"Mums' touch game (Women in League centerpiece)",who:"split",pro:"Full capture, both cameras. The emotional peak of the day.",ugc:"Films closing UGC pieces.",links:[]},
+  {n:"13",time:"4:30pm",title:"Pickups and wrap",who:"note",note:"Missed sponsor signage, final wide shots, community moments, extra vertical footage, and after-the-try candid moments. Back up all footage and check against the shot list before leaving.",links:["U9"]}
+];
+
+const CVRUN = [
+  "Arrival and setup",
+  "Opening atmosphere",
+  "First Hawks fixtures",
+  "Player and team moments",
+  "Hawks U9, community and sponsor",
+  "U10 and midday coverage",
+  "Afternoon crew on, presenter briefed",
+  "U12 Girls Tag",
+  "U14 Girls Tag",
+  "Priority talking head",
+  "U14 Boys, the flagship",
+  "Mums' touch game, the centerpiece",
+  "Pickups and wrap"
+];
+
+const KEY="wh_hawks_wil_brief_v1";
+let state={};
+try{state=JSON.parse(localStorage.getItem(KEY))||{};}catch(e){state={};}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function itemHTML(id,label){return `<label class="item ${state[id]?'done':''}" data-id="${id}"><input type="checkbox" ${state[id]?'checked':''}><span>${label}</span></label>`;}
+
+function linkList(arr){return arr.map(r=>`<a class="reflink" href="${esc(r)}" target="_blank" rel="noopener">${esc(r)}</a>`).join("<br>");}
+
+// PHOTO
+document.getElementById("photoGroups").innerHTML = PHOTO_GROUPS.map(g=>{
+  return `<div class="grouphead">${esc(g.title)}</div><div class="checkgroup">${g.items.map((it,i)=>itemHTML(`photo-${esc(g.title)}-${i}`, esc(it))).join("")}</div>`;
+}).join("");
+
+// PRO CARDS
+(function(){
+  let lastGroup=null;
+  document.getElementById("proCards").innerHTML = PRO_VIDEOS.map(v=>{
+    let head="";
+    if(v.group!==lastGroup){head=`<div class="grouphead">${esc(v.group)}</div>`;lastGroup=v.group;}
+    const noteB=v.note?`<div class="vrow"><div class="notecall"><div><b>Notes.</b> ${esc(v.note)}</div></div></div>`:"";
+    const hookB=v.hook?`<div class="vrow"><div class="rl">Hook</div><div class="hook">${esc(v.hook)}</div></div>`:"";
+    const tpB=v.tp?`<div class="vrow"><div class="rl">Talking points</div><ul class="tp">${v.tp.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>`:"";
+    const tpMoreB=v.tpMore?`<div class="vrow"><div class="rl">More question options</div><ul class="tp">${v.tpMore.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>`:"";
+    const scriptB=v.script?`<div class="vrow"><div class="rl">Script</div><details class="script"><summary>Client script (client-written, do not alter)</summary><div class="stext">${esc(v.script)}</div></details></div>`:"";
+    const scenB=v.scenarios?v.scenarios.map(s=>`<div class="scen"><div class="scen-h">${esc(s.label)}</div><details class="script"><summary>${esc(s.scriptLabel)}</summary><div class="stext">${esc(s.script)}</div></details><div class="vrow"><div class="rl">Questions if they freeze on the script</div><ul class="tp">${s.fallback.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div></div>`).join(""):"";
+    const refB=v.reference?`<div class="vrow"><div class="rl">Reference</div><div>${linkList(v.reference)}</div></div>`:"";
+    const musicB=v.music?`<div class="vrow"><div class="rl">Music</div><div>${linkList([v.music])}</div></div>`:"";
+    const brollB=v.broll?`<div class="vrow"><div class="rl">B-roll checklist</div><div class="checkgroup" style="padding:0;border:0;background:transparent">${v.broll.map((b,i)=>itemHTML(`broll-${v.n}-${i}`, esc(b))).join("")}</div></div>`:"";
+    return head+`<details class="card vcard" id="v-${v.n}"><summary><div class="vnum">${esc(v.n)}</div><div class="vhead"><div class="vt">${esc(v.t)}</div><div class="vm">${v.meta.map(m=>`<span class="badge">${esc(m)}</span>`).join("")}</div></div><div class="chev">▼</div></summary><div class="vbody"><div class="vrow"><div class="rl">Type</div><div>${esc(v.type)}</div></div>${noteB}${hookB}${tpB}${tpMoreB}${scriptB}${scenB}${refB}${musicB}${brollB}</div></details>`;
+  }).join("");
+})();
+
+// UGC CARDS
+document.getElementById("ugcWrap").innerHTML =
+  `<div class="notecall" style="margin-bottom:12px"><div><b>How Rachel shoots these.</b> She does not memorise the full scripts. On camera she films only the first line and the last line of each piece. Everything in between is voiceover, recorded after and laid over b-roll. Nail the opening hook and the closing line to camera, read the middle naturally in VO.</div></div>`
+  + `<div class="notecall" style="margin-bottom:16px"><div><b>Core vs optional (per CAM).</b> Core pieces: 2, 3, 4, 9, 10. Shoot these first. Optional if time allows: 1, 5, 6, 7, 8.</div></div>`
+  + `<div class="grouphead">UGC b-roll library</div><div class="notecall" style="margin-bottom:12px"><div><b>Bank these anytime.</b> Phone-style vertical b-roll for the UGC pieces. Kendy can grab most of this through the quiet morning before Rachel arrives, then top up in the afternoon.</div></div><div class="checkgroup">`
+  + UGC_BROLL.map((b,i)=>itemHTML(`ugclib-${i}`, esc(b))).join("")
+  + `</div>`
+  + UGC_VIDEOS.map(v=>{
+    const badge=v.optional?`<span class="badge opt">Optional</span>`:`<span class="badge core">Core</span>`;
+    const noteB=v.note?`<div class="vrow"><div class="notecall"><div><b>Notes.</b> ${esc(v.note)}</div></div></div>`:"";
+    const hookB=v.hook?`<div class="vrow"><div class="rl">Hook</div><div class="hook">${esc(v.hook)}</div></div>`:"";
+    const scriptB=v.script?`<div class="vrow"><div class="rl">Script</div><details class="script"><summary>Client script (client-written, do not alter)</summary><div class="stext">${esc(v.script)}</div></details></div>`:"";
+    const endB=v.endText?`<div class="vrow"><div class="rl">End text</div><div class="hook">${esc(v.endText)}</div></div>`:"";
+    const ctaB=v.cta?`<div class="vrow"><div class="rl">Closing line</div><div class="hook">${esc(v.cta)}</div></div>`:"";
+    const shotsB=v.shots?`<div class="vrow"><div class="rl">Shots to capture</div><div class="checkgroup" style="padding:0;border:0;background:transparent">${v.shots.map((b,i)=>itemHTML(`ugcshot-${v.n}-${i}`, esc(b))).join("")}</div></div>`:"";
+    const brollB=v.broll?`<div class="vrow"><div class="rl">B-roll checklist</div><div class="checkgroup" style="padding:0;border:0;background:transparent">${v.broll.map((b,i)=>itemHTML(`ugcbroll-${v.n}-${i}`, esc(b))).join("")}</div></div>`:"";
+    const refB=v.reference?`<div class="vrow"><div class="rl">Reference</div><div>${linkList(v.reference)}</div></div>`:"";
+    const musicB=v.music?`<div class="vrow"><div class="rl">Music</div><div>${linkList([v.music])}</div></div>`:"";
+    return `<details class="card vcard" id="vu-${v.n}"><summary><div class="vnum">${esc(v.n)}</div><div class="vhead"><div class="vt">${esc(v.t)}</div><div class="vm">${badge}${v.meta.map(m=>`<span class="badge">${esc(m)}</span>`).join("")}</div></div><div class="chev">▼</div></summary><div class="vbody"><div class="vrow"><div class="rl">Type</div><div>${esc(v.type)}</div></div>${noteB}${hookB}${scriptB}${endB}${ctaB}${shotsB}${brollB}${refB}${musicB}</div></details>`;
+  }).join("");
+
+// VIDEO TOGGLE inside run sheet (shared b-roll ids sync with pro cards)
+function vidToggleCode(code){
+  if(code==="UB"){
+    return `<details class="rvid"><summary><span class="rvtag">B-roll</span> UGC b-roll to bank now <span class="chev">▼</span></summary><div class="rvbody"><div class="rvsub">Phone-style vertical b-roll for the UGC pieces. Grab these while the morning is quiet.</div><div class="checkgroup" style="padding:0;border:0;background:transparent">${UGC_BROLL.map((b,i)=>itemHTML(`ugclib-${i}`, esc(b))).join("")}</div></div></details>`;
+  }
+  if(/^U\d+$/.test(code)){
+    const v=UGC_VIDEOS.find(x=>x.n===code.slice(1)); if(!v)return "";
+    const hookB=v.hook?`<div class="rvrow"><b>Hook</b><div class="hook">${esc(v.hook)}</div></div>`:"";
+    const scriptB=v.script?`<div class="rvrow"><b>Script</b><div class="stext">${esc(v.script)}</div></div>`:"";
+    const noteB=v.note?`<div class="rvrow"><b>Notes</b><div>${esc(v.note)}</div></div>`:"";
+    return `<details class="rvid"><summary><span class="rvtag">U${esc(v.n)}</span> ${esc(v.t)} <span class="chev">▼</span></summary><div class="rvbody"><div class="rvsub">${esc(v.type)}</div>${hookB}${scriptB}${noteB}</div></details>`;
+  }
+  const v=PRO_VIDEOS.find(x=>x.n===code); if(!v)return "";
+  const hookB=v.hook?`<div class="rvrow"><b>Hook</b><div class="hook">${esc(v.hook)}</div></div>`:"";
+  const tpB=v.tp?`<div class="rvrow"><b>Talking points</b><ul class="tp">${v.tp.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>`:"";
+  const scriptB=v.script?`<div class="rvrow"><b>Script</b><div class="stext">${esc(v.script)}</div></div>`:"";
+  const scenB=v.scenarios?v.scenarios.map(s=>`<div class="rvrow"><b>${esc(s.label)}</b><div class="stext">${esc(s.script)}</div></div>`).join(""):"";
+  const brollB=v.broll?`<div class="rvrow"><b>B-roll checklist</b><div class="checkgroup" style="padding:0;border:0;background:transparent">${v.broll.map((b,i)=>itemHTML(`broll-${v.n}-${i}`, esc(b))).join("")}</div></div>`:"";
+  return `<details class="rvid"><summary><span class="rvtag">${esc(v.n)}</span> ${esc(v.t)} <span class="chev">▼</span></summary><div class="rvbody"><div class="rvsub">${esc(v.type)}</div>${hookB}${tpB}${scriptB}${scenB}${brollB}</div></details>`;
+}
+
+// RUN LIST
+document.getElementById("runList").innerHTML = RUN.map((r,i)=>{
+  const id="run-"+r.n; const done=state[id]?"done":""; const last=i===RUN.length-1;
+  const links=(r.links&&r.links.length)?`<div class="rvids">${r.links.map(vidToggleCode).join("")}</div>`:"";
+  const body = r.who==="split"
+    ? `<div class="rsplit"><div class="sl"><span class="rtag pro">Cameras</span><span>${esc(r.pro)}</span></div><div class="sl"><span class="rtag ugc">Rachel</span><span>${esc(r.ugc)}</span></div></div>`
+    : `<div class="rn">${esc(r.note)}</div>`;
+  return `<div class="rblock ${done}" data-id="${id}"><div class="rleft"><div class="rdot">${esc(r.n)}</div>${last?"":'<div class="rline"></div>'}</div><div class="rcontent"><label class="rcard"><input type="checkbox" ${state[id]?"checked":""}><div style="flex:1"><div class="rtime">${esc(r.time)}</div><div class="rb">${esc(r.title)}</div>${body}</div></label>${links}</div></div>`;
+}).join("");
+
+// CV RUN (client view summary) — checkable and links to the matching run sheet block
+document.getElementById("cv-run").innerHTML = CVRUN.map((t,i)=>{
+  const n=RUN[i].n; const id="run-"+n; const done=state[id]?'done':'';
+  return `<div class="item ${done}" data-id="${id}"><input type="checkbox" ${state[id]?'checked':''}><span class="cvlink" data-runlink="${n}" tabindex="0" role="link"><b>${esc(RUN[i].time)}</b> · ${esc(t)}</span></div>`;
+}).join("");
+
+// COUNTS
+function updateCounts(){
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const scope=el.getAttribute('data-count');
+    const boxes=document.querySelectorAll(scope+' input[type=checkbox]');
+    let done=0; boxes.forEach(b=>{if(b.checked)done++;});
+    el.textContent=done+"/"+boxes.length;
+  });
+}
+
+// TWO-WAY SYNC on checkbox change
+document.addEventListener("change", e=>{
+  const cb=e.target;
+  if(cb.type!=="checkbox") return;
+  const wrap=cb.closest("[data-id]");
+  if(!wrap) return;
+  const id=wrap.getAttribute("data-id");
+  state[id]=cb.checked; save();
+  document.querySelectorAll('[data-id="'+CSS.escape(id)+'"]').forEach(w=>{
+    w.classList.toggle("done", cb.checked);
+    const box=w.querySelector('input[type=checkbox]');
+    if(box && box!==cb) box.checked=cb.checked;
+  });
+  updateCounts();
+});
+
+// TABS
+function activateTab(tab){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  tab.classList.add('active');
+  const p=document.getElementById(tab.getAttribute('data-t'));
+  if(p)p.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.getElementById('tabs').addEventListener('click', e=>{
+  const tab=e.target.closest('.tab'); if(tab)activateTab(tab);
+});
+document.getElementById('tabs').addEventListener('keydown', e=>{
+  if(e.key==="Enter"||e.key===" "){const tab=e.target.closest('.tab'); if(tab){e.preventDefault();activateTab(tab);}}
+});
+
+// JUMP TO VIDEO
+function flash(el){el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),1400);}
+function goToVideo(code){
+  code=String(code);
+  let tabName="pro", elId="v-"+code;
+  if(/^U\d+$/.test(code)){tabName="ugc"; elId="vu-"+code.slice(1);}
+  const tab=document.querySelector('.tab[data-t="'+tabName+'"]'); if(tab)activateTab(tab);
+  const el=document.getElementById(elId); if(!el)return;
+  el.open=true;
+  requestAnimationFrame(()=>{el.scrollIntoView({behavior:'smooth',block:'start'});flash(el);});
+}
+document.addEventListener('click', e=>{
+  const g=e.target.closest('[data-goto]'); if(g){e.preventDefault();goToVideo(g.getAttribute('data-goto'));}
+});
+document.addEventListener('keydown', e=>{
+  if(e.key==="Enter"||e.key===" "){const g=e.target.closest('[data-goto]'); if(g){e.preventDefault();goToVideo(g.getAttribute('data-goto'));}}
+});
+
+// JUMP TO RUN SHEET BLOCK
+function goToRun(n){
+  const tab=document.querySelector('.tab[data-t="run"]'); if(tab)activateTab(tab);
+  const el=document.querySelector('.rblock[data-id="run-'+n+'"]'); if(!el)return;
+  requestAnimationFrame(()=>{el.scrollIntoView({behavior:'smooth',block:'start'});el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),1400);});
+}
+document.addEventListener('click', e=>{
+  const a=e.target.closest('[data-runlink]'); if(a){e.preventDefault();goToRun(a.getAttribute('data-runlink'));}
+});
+document.addEventListener('keydown', e=>{
+  if(e.key==="Enter"||e.key===" "){const a=e.target.closest('[data-runlink]'); if(a){e.preventDefault();goToRun(a.getAttribute('data-runlink'));}}
+});
+
+updateCounts();
+</script>
+</body>
+</html>

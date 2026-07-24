@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canley Heights Nights Shoot Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#333132; --orange:#faa62f; --tangerine:#f7b52d; --white:#ffffff;
+    --bg:#1b191a;
+    --text:#f1efed; --text2:#a7a3a1; --canvas:#2a2829; --soft:#242223;
+    --surface:#3a3738; --border:#403d3e; --accent:#faa62f; --accent-soft:rgba(250,166,47,.13);
+    --done:#faa62f; --charcoal2:#403e3f; --charcoal-line:rgba(255,255,255,.14);
+    --line-strong:#5f5c5d;
+    --shadow:0 1px 2px rgba(0,0,0,.30),0 6px 18px rgba(0,0,0,.30);
+    --head:"Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    --sans:"Roboto",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;background:var(--bg);color-scheme:dark}
+  body{font-family:var(--sans);color:var(--text);background:var(--bg);font-size:16px;line-height:1.5;font-weight:400;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  h1,h2,h3,.eyebrow,.sec-title,.wordmark,.chip b{font-family:var(--head)}
+
+  /* wordmark bar */
+  .brandbar{background:var(--charcoal);border-bottom:1px solid var(--charcoal-line)}
+  .brandbar .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px;gap:16px;flex-wrap:wrap}
+  .wordmark{font-weight:800;font-size:20px;letter-spacing:.02em;color:#fff;text-transform:uppercase}
+  .wordmark .mk{color:var(--orange)}
+  .brandbar .tag{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:500}
+
+  /* hero */
+  header .hero{background:var(--charcoal);color:#fff;padding:30px 0 34px}
+  .eyebrow{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:700}
+  .hero h1{font-size:44px;line-height:1.02;margin:12px 0 10px;letter-spacing:.01em;text-transform:uppercase;color:#fff}
+  .hero .sub{color:rgba(255,255,255,.72);font-size:16.5px;max-width:660px;font-weight:300}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .chip{display:flex;align-items:baseline;gap:7px;background:var(--charcoal2);border:1px solid var(--charcoal-line);border-radius:8px;padding:9px 13px}
+  .chip b{font-size:20px;font-weight:800;color:var(--orange);letter-spacing:0}
+  .chip span{color:rgba(255,255,255,.72);font-weight:400;font-size:13.5px}
+  .prog{margin-top:24px;max-width:520px}
+  .prog-top{display:flex;justify-content:space-between;font-size:12.5px;font-weight:500;margin-bottom:6px;color:rgba(255,255,255,.72)}
+  .prog-track{height:8px;background:var(--charcoal2);border-radius:99px;overflow:hidden}
+  .prog-fill{height:100%;width:0;background:var(--orange);border-radius:99px;transition:width .35s ease}
+
+  /* tabs */
+  nav.tabs{position:sticky;top:0;z-index:40;background:rgba(27,25,26,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .tabs-inner{display:flex;gap:2px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tab{border:none;background:none;padding:15px 16px;font-size:15px;font-weight:600;font-family:var(--sans);color:var(--text2);cursor:pointer;border-bottom:2.5px solid transparent;white-space:nowrap;min-height:44px;user-select:none}
+  .tab:hover{color:var(--text)}
+  .tab:focus-visible{outline:2px solid var(--orange);outline-offset:-2px;border-radius:4px}
+  .tab.active{color:#fff;border-bottom-color:var(--orange)}
+
+  main{padding:34px 0 90px}
+  .panel{display:none;animation:fade .3s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .sec-title{font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--text2);font-weight:700;margin:6px 0 15px}
+  .sec-title.mt{margin-top:34px}
+
+  .card{background:var(--canvas);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+  .card + .card{margin-top:16px}
+
+  /* client view */
+  .lead{background:var(--canvas);color:var(--text);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:12px;padding:22px 24px;font-size:17px;font-weight:300;line-height:1.55}
+  .lead b{font-weight:600;color:var(--text)}
+  .lead .hl{color:var(--orange);font-weight:600}
+  .cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+  .cv-block{background:var(--canvas);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);padding:20px 22px}
+  .cv-block h3{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px}
+  .cv-block .big{font-family:var(--head);font-size:19px;font-weight:700;text-transform:uppercase;letter-spacing:.01em;margin-bottom:10px;color:var(--text)}
+  .cv-block p{font-size:15px;color:var(--text);font-weight:300;line-height:1.55}
+  .cv-list{list-style:none;margin-top:10px}
+  .cv-list li{position:relative;padding:5px 0 5px 20px;font-size:14.5px;font-weight:300}
+  .cv-list li::before{content:"";position:absolute;left:0;top:12px;width:7px;height:7px;border-radius:2px;background:var(--orange)}
+  details.more{margin-top:12px;border-top:1px dashed var(--border);padding-top:10px}
+  details.more>summary{list-style:none;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:7px}
+  details.more>summary::-webkit-details-marker{display:none}
+  details.more>summary .chev{font-size:11px;transition:transform .2s}
+  details.more[open]>summary .chev{transform:rotate(180deg)}
+  details.more .inner{padding-top:10px}
+  .pointer{display:flex;gap:11px;align-items:flex-start;background:var(--accent-soft);border:1px solid rgba(250,166,47,.32);border-radius:10px;padding:13px 16px;font-size:14.5px;margin-top:16px;font-weight:400}
+  .pointer .ic{color:var(--done);font-weight:800;font-family:var(--head)}
+
+  /* info table */
+  .info{width:100%;border-collapse:collapse}
+  .info tr+tr{border-top:1px solid var(--border)}
+  .info th{text-align:left;vertical-align:top;padding:14px 18px;width:150px;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);background:var(--soft);font-weight:700;font-family:var(--head)}
+  .info td{padding:14px 18px;font-size:15px;font-weight:300}
+
+  /* checklists */
+  .cg-head{display:flex;align-items:center;justify-content:space-between;padding:15px 16px 9px;gap:10px}
+  .cg-head h3{font-size:15px;font-family:var(--head);text-transform:uppercase;letter-spacing:.03em;font-weight:700}
+  .cg-head .pill{font-size:12px;font-weight:600;color:var(--text2);background:var(--soft);border:1px solid var(--border);border-radius:99px;padding:3px 10px;white-space:nowrap}
+  .checkgroup{padding:2px 8px 12px}
+  .item{display:flex;align-items:flex-start;gap:12px;padding:10px 12px;border-radius:8px;cursor:pointer;transition:background .12s}
+  .item:hover{background:var(--soft)}
+  .item input{appearance:none;-webkit-appearance:none;width:21px;height:21px;min-width:21px;margin-top:1px;border:2px solid var(--line-strong);border-radius:6px;cursor:pointer;position:relative;transition:.15s}
+  .item input:checked{background:var(--done);border-color:var(--done)}
+  .item input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .item span{font-size:15px;flex:1;font-weight:400}
+  .item.done span{color:var(--text2);text-decoration:line-through}
+
+  /* video cards */
+  .grouphead{font-family:var(--head);text-transform:uppercase;letter-spacing:.06em;font-size:12.5px;font-weight:700;color:var(--text2);margin:26px 0 12px}
+  .grouphead:first-child{margin-top:4px}
+  .vcard{margin-bottom:12px}
+  .vcard>summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;gap:15px}
+  .vcard>summary::-webkit-details-marker{display:none}
+  .vnum{width:40px;height:40px;min-width:40px;border-radius:9px;background:var(--accent-soft);color:var(--done);font-family:var(--head);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center}
+  .vhead{flex:1;min-width:0}
+  .vhead .vt{font-size:16.5px;font-weight:600;letter-spacing:0;font-family:var(--head)}
+  .vhead .vm{font-size:12.5px;color:var(--text2);margin-top:3px}
+  .vhead .vm .badge{display:inline-block;background:var(--soft);border:1px solid var(--border);border-radius:5px;padding:1px 7px;margin:2px 6px 0 0;font-weight:500}
+  .chev{color:var(--text2);transition:transform .2s;font-size:12px}
+  .vcard[open] .chev{transform:rotate(180deg)}
+  .vbody{padding:2px 18px 20px;border-top:1px solid var(--border)}
+  .vrow{margin-top:17px}
+  .vrow .rl{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);font-weight:700;font-family:var(--head);margin-bottom:7px}
+  .hook{background:var(--accent-soft);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:11px 14px;font-size:14.5px;font-style:italic}
+  .tp{list-style:none}
+  .tp li{position:relative;padding:5px 0 5px 18px;font-size:14.5px;font-weight:300}
+  .tp li::before{content:"";position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;background:var(--orange)}
+  .cta{font-size:14.5px;font-weight:500;color:var(--done)}
+  .script>summary{cursor:pointer;list-style:none;padding:11px 13px;font-size:14px;font-weight:600;color:var(--done);display:flex;align-items:center;gap:8px;background:var(--soft);border:1px solid var(--border);border-radius:8px}
+  .script>summary::-webkit-details-marker{display:none}
+  .script[open]>summary{border-radius:8px 8px 0 0}
+  .script .stext{padding:12px 14px;font-size:14.5px;line-height:1.7;white-space:pre-wrap;border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;background:var(--canvas)}
+  .notecall{display:flex;gap:9px;align-items:flex-start;background:var(--soft);border:1px solid var(--border);border-radius:8px;padding:11px 14px;font-size:14px;font-weight:300}
+  .notecall .ic{color:var(--done);font-weight:800;font-family:var(--head)}
+  .notecall b{font-weight:600}
+  .eq{display:flex;flex-wrap:wrap;gap:8px}
+  .eq span{font-size:13px;font-weight:500;background:var(--surface);border-radius:6px;padding:5px 11px}
+
+  /* run sheet */
+  .run{position:relative;padding-left:4px}
+  .rblock{display:flex;gap:16px;padding:2px 0}
+  .rleft{display:flex;flex-direction:column;align-items:center}
+  .rdot{width:34px;height:34px;min-width:34px;border-radius:50%;background:var(--canvas);border:2px solid var(--line-strong);color:var(--text2);font-family:var(--head);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;transition:.2s;z-index:2}
+  .rline{flex:1;width:2px;background:var(--border);margin:2px 0}
+  .rblock.done .rdot{background:var(--done);border-color:var(--done);color:#fff}
+  .rcontent{flex:1;padding-bottom:16px}
+  .rcard{background:var(--canvas);border:1px solid var(--border);border-radius:10px;padding:13px 16px;cursor:pointer;display:flex;gap:13px;align-items:flex-start;transition:border-color .15s}
+  .rcard:hover{border-color:var(--orange)}
+  .rcard input{appearance:none;-webkit-appearance:none;width:21px;height:21px;min-width:21px;margin-top:2px;border:2px solid var(--line-strong);border-radius:6px;cursor:pointer;position:relative}
+  .rcard input:checked{background:var(--done);border-color:var(--done)}
+  .rcard input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .rtime{font-size:12px;font-weight:700;color:var(--done);font-family:var(--head);letter-spacing:.03em}
+  .rcard .rb{font-size:15px;font-weight:600;margin-top:2px;font-family:var(--head)}
+  .rcard .rn{font-size:13.5px;color:var(--text2);margin-top:4px;font-weight:300}
+  .rcard .rsplit{margin-top:8px}
+  .rcard .rsplit .sl{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;color:var(--text2);font-weight:300;margin-top:6px}
+  .rblock.done .rb{text-decoration:line-through;color:var(--text2)}
+  .rtag{display:inline-block;font-family:var(--head);font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;border-radius:5px;padding:2px 7px;white-space:nowrap;margin-top:1px}
+  .rtag.pro{background:var(--accent-soft);color:var(--orange);border:1px solid rgba(250,166,47,.32)}
+  .rtag.ugc{background:rgba(255,255,255,.08);color:var(--text);border:1px solid var(--border)}
+
+  .foot{text-align:center;color:var(--text2);font-size:13px;margin-top:40px;font-weight:300}
+
+  @media (max-width:720px){
+    .cv-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 16px}
+    .hero h1{font-size:32px}
+    .hero{padding:26px 0 28px}
+    .info th{width:104px;font-size:11.5px;padding:11px 12px}
+    .info td{padding:11px 12px;font-size:14px}
+    .lead{font-size:15.5px;padding:18px}
+    .tab{padding:14px 13px;font-size:14px}
+    .vhead .vt{font-size:15.5px}
+  }
+  @media print{
+    nav.tabs,.prog,.foot{display:none!important}
+    .panel{display:block!important}
+    .brandbar,header .hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .vbody{display:block!important}
+    body{background:#fff}
+  }
+  .vlink{color:var(--orange);cursor:pointer;text-decoration:none;border-bottom:1px solid rgba(250,166,47,.35);transition:.15s}
+  .vlink:hover,.vlink:focus-visible{border-bottom-color:var(--orange);outline:none}
+  .rlinks{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 2px 0}
+  .rlink{font-family:var(--head);font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--orange);background:var(--accent-soft);border:1px solid rgba(250,166,47,.3);border-radius:20px;padding:5px 12px;cursor:pointer;transition:.15s}
+  .rlink:hover,.rlink:focus-visible{background:rgba(250,166,47,.22);outline:none}
+  .vcard{scroll-margin-top:72px}
+  .vcard.flash{box-shadow:0 0 0 2px var(--orange),0 8px 22px rgba(0,0,0,.35)}
+  .cvlink{color:inherit;cursor:pointer;text-decoration:none;border-bottom:1px solid rgba(250,166,47,.35);transition:.15s}
+  .cvlink:hover,.cvlink:focus-visible{color:var(--orange);border-bottom-color:var(--orange);outline:none}
+  .rblock{scroll-margin-top:72px}
+  .rblock.flash .rcard{box-shadow:0 0 0 2px var(--orange),0 8px 22px rgba(0,0,0,.35)}
+  .rvids{display:flex;flex-direction:column;gap:8px;margin:12px 0 2px 0}
+  .rvid{background:var(--accent-soft);border:1px solid rgba(250,166,47,.3);border-radius:10px;overflow:hidden}
+  .rvid>summary{list-style:none;cursor:pointer;padding:9px 13px;display:flex;align-items:center;gap:10px;font-family:var(--head);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--orange)}
+  .rvid>summary::-webkit-details-marker{display:none}
+  .rvid>summary .chev{margin-left:auto;color:var(--orange)}
+  .rvid[open]>summary .chev{transform:rotate(180deg)}
+  .rvtag{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;background:var(--orange);color:#1b191a;border-radius:5px;font-size:11px;font-weight:800}
+  .rvbody{padding:2px 14px 14px;border-top:1px solid rgba(250,166,47,.25)}
+  .rvsub{font-size:11.5px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;font-weight:700;font-family:var(--head);margin:11px 0 2px}
+  .rvrow{margin-top:12px;font-size:14px;font-weight:300;color:var(--text)}
+  .rvrow>b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);font-family:var(--head);font-weight:700;margin-bottom:5px}
+</style>
+</head>
+<body>
+<style id="canley-add">
+  .scriptbox{display:flex;flex-direction:column;gap:6px;background:var(--soft);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:8px;padding:12px 14px;font-size:14.5px;font-weight:300;line-height:1.55;color:var(--text)}
+  .scriptbox span{display:block}
+  .reflink{font-size:13px;font-weight:500}
+  .reflink a{color:var(--orange);text-decoration:none}
+  .reflink a:hover{text-decoration:underline}
+  .reflink a:focus-visible{outline:2px solid var(--orange);outline-offset:2px;border-radius:3px}
+  .musicnote{margin-top:16px}
+  .deliverbar{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}
+  .deliverbar .badge{font-size:12px}
+  .blockfocus{font-size:14.5px;font-weight:300;line-height:1.55;color:var(--text2);margin:2px 0 12px}
+  .shootnow{margin:0 0 12px}
+</style>
+<div class="brandbar"><div class="wrap">
+  <div class="wordmark">WhiteKey<span class="mk"> Marketing</span></div>
+  <div class="tag">Shoot Brief</div>
+</div></div>
+
+<header>
+  <div class="hero"><div class="wrap">
+    <div class="eyebrow">Roar &amp; Explore · Community Event</div>
+    <h1>Canley Heights Nights</h1>
+    <p class="sub">Full-day coverage of the dinosaur-themed community event in Canley Heights Town Square. Three creators on the ground: Mike on photography, drone and the hero event reels, Kendy on community interviews, the day-vs-night street reel and a reel for each of the nine venues, and Rachel on fast UGC social clips. Friday 25 July 2026, 2:00pm to 7:00pm.</p>
+    <div class="chips">
+      <div class="chip"><b>3</b><span>creators</span></div>
+      <div class="chip"><b>20</b><span>social reels</span></div>
+      <div class="chip"><b>9</b><span>venue reels</span></div>
+      <div class="chip"><b>1</b><span>hero vlog</span></div>
+      <div class="chip"><b>6</b><span>food stalls</span></div>
+      <div class="chip"><b>5hr</b><span>on the day</span></div>
+    </div>
+  </div></div>
+  <nav class="tabs"><div class="wrap"><div class="tabs-inner" id="tabs" role="tablist">
+    <div class="tab active" role="tab" tabindex="0" data-t="client">Client View</div>
+    <div class="tab" role="tab" tabindex="0" data-t="mike">Mike</div>
+    <div class="tab" role="tab" tabindex="0" data-t="kendy">Kendy</div>
+    <div class="tab" role="tab" tabindex="0" data-t="rachel">Rachel</div>
+  </div></div></nav>
+</header>
+
+<main class="wrap">
+  <!-- CLIENT VIEW / OVERVIEW -->
+  <section class="panel active" id="client">
+    <div class="lead">We're covering <b class="hl">Canley Heights Nights</b>, the dinosaur-themed community event in the town square. Three creators are on the day. <b class="hl">Mike</b> holds the square with photography, the drone and the hero and event reels. <b class="hl">Kendy</b> works the venue trail: a reel for each of the <b class="hl">nine venues</b>, the community interviews and the day-vs-night street piece. <b class="hl">Rachel</b> is our UGC creator for fast, first-person social clips. Each creator has their own tab up top with their schedule for the day and exactly what to shoot at each time.</div>
+
+    <div class="sec-title mt">The shoot at a glance</div>
+    <div class="card">
+      <table class="info">
+        <tr><th>Client</th><td>Canley Heights Nights, the precinct and its participating venues</td></tr>
+        <tr><th>Industry</th><td>Community event and hospitality</td></tr>
+        <tr><th>Location</th><td>Canley Heights Town Square, Town Centre Marquee area, next to Bambu Cafe and Dessert</td></tr>
+        <tr><th>Date</th><td>25 July 2026, 2:00pm to 7:00pm</td></tr>
+        <tr><th>Deliverables</th><td>Event photography, 6 hero and event reels, community interviews, a day-vs-night street reel, 9 venue reels, 3 UGC reels and 2 WKM internal reels</td></tr>
+        <tr><th>Format</th><td>All reels vertical. Drone captured day and night. Venue reels run roughly 10 to 25 seconds each.</td></tr>
+      </table>
+    </div>
+
+    <div class="pointer"><div><b class="ic">Filming permission.</b> This event is full of kids and families. Only film the face-painting station and identifiable children with parental permission. Check before you record.</div></div>
+
+    <div class="sec-title mt">The three creators</div>
+    <div class="cv-grid">
+      <div class="cv-block">
+        <h3>Mike</h3>
+        <div class="big">Photo, drone &amp; hero reels</div>
+        <p>Holds the town square all day. Full event photography, the day and night drone, and six hero and event reels including the Roar and Explore vlog.</p>
+        <ul class="cv-list">
+          <li><a class="vlink" data-goto="M2" tabindex="0" role="link">Roar &amp; Explore hero vlog</a></li>
+          <li><a class="vlink" data-goto="M3" tabindex="0" role="link">Cook-wants-to-be-customer reel</a></li>
+          <li>Photography, drone and event b-roll</li>
+        </ul>
+        <div class="pointer" style="margin-top:12px"><div><a class="vlink" data-tab="mike" tabindex="0" role="link"><b>Open Mike's day →</b></a></div></div>
+      </div>
+      <div class="cv-block">
+        <h3>Kendy</h3>
+        <div class="big">9 venue reels + street</div>
+        <p>Works the venue trail with Rachel. A reel for each of the nine venues, the community interviews and the day-vs-night street piece.</p>
+        <ul class="cv-list">
+          <li><a class="vlink" data-goto="K7" tabindex="0" role="link">Community interviews (with Rachel)</a></li>
+          <li><a class="vlink" data-goto="K8" tabindex="0" role="link">Canley Heights day vs night</a></li>
+          <li>Nine venue reels, V1 to V9</li>
+        </ul>
+        <div class="pointer" style="margin-top:12px"><div><a class="vlink" data-tab="kendy" tabindex="0" role="link"><b>Open Kendy's day →</b></a></div></div>
+      </div>
+      <div class="cv-block">
+        <h3>Rachel</h3>
+        <div class="big">UGC &amp; first-person clips</div>
+        <p>The social track. Fast, phone-style clips: the pho eating competition, a food reaction and a dino-event trend, plus the hero-vlog talking head and handheld b-roll.</p>
+        <ul class="cv-list">
+          <li><a class="vlink" data-goto="R1" tabindex="0" role="link">Pho eating competition UGC</a></li>
+          <li><a class="vlink" data-goto="R2" tabindex="0" role="link">Food reaction to an iconic dish</a></li>
+          <li>Handheld, phone-style event b-roll</li>
+        </ul>
+        <div class="pointer" style="margin-top:12px"><div><a class="vlink" data-tab="rachel" tabindex="0" role="link"><b>Open Rachel's day →</b></a></div></div>
+      </div>
+    </div>
+
+    <div class="sec-title mt">The day, start to finish</div>
+    <div class="card"><div class="checkgroup" id="cv-run"></div></div>
+    <div class="pointer"><div>Each creator's tab breaks this down into their own schedule, with the exact shots, scripts and b-roll for their part of the day.</div></div>
+
+    <div class="sec-title mt">WKM internal marketing</div>
+    <div class="lead" style="margin-bottom:16px">Two internal reels cut from the day's footage after the event. These sit inside Kendy's day and are shot alongside Rachel: a whip-pan transition clip at midday, sunset and night (same direction each time so they cut together), plus behind-the-scenes of the White Key team filming. See the <a class="vlink" data-tab="kendy" tabindex="0" role="link"><b>Kendy tab</b></a> for the timing.</div>
+
+    <div class="foot">Tap any item on a creator's tab to check it off during the shoot.</div>
+  </section>
+
+  <!-- PERSON TABS -->
+  <section class="panel" id="mike"><div class="sched" id="sched-mike"></div></section>
+  <section class="panel" id="kendy"><div class="sched" id="sched-kendy"></div></section>
+  <section class="panel" id="rachel"><div class="sched" id="sched-rachel"></div></section>
+</main>
+<script>
+const PRO_VIDEOS = [
+  {n:"M1", t:"Drone shots", meta:["B-roll source","Day + night"],
+   type:"Mike · Drone · Plates for other edits",
+   note:"Drone plates feed the other videos and the day-vs-night piece. Get the event overhead and the street or strip, in daylight and at night.",
+   broll:[`Event overhead, day and night`,`Street and strip shots, day and night`,`Night drone pass of the whole town square`,`Wide footprint and crowd scale`]},
+  {n:"M2", t:"Roar and Explore hero vlog", meta:["Vertical Reel","Hero"],
+   type:"Mike · Hero vlog · Presenter talking head + VO (Rachel presents)",
+   hook:"POV We spent the day at Canley Heights.",
+   scriptLabel:"Talking head script (WKM-written, read-aloud checked)",
+   script:[`Today Canley Heights turned into a full-blown family day out at their Roar and Explore event, and I'm here for all of it. Come along with me.`,`First stop, the dino experience. Obviously the kids are loving it.`,`Then things got serious. The local restaurants of Canley Heights Nights, all serving food in one town square, and a pho eating competition to spice up the day.`,`And as the sun goes down, the live music kicks in and this turns into a proper night out.`,`One day, six restaurants and packed with families. This is Canley Heights Nights.`],
+   lists:[
+     {label:"Shoot notes", items:[`Presenter mic'd. Grab talking-head segments at natural breaks: opening, midday, sunset.`,`Capture walking and POV transitions between zones (dino area to food stalls to stage) to stitch the day together.`,`Prioritise b-roll density during food stall openings and the eating competition. These are the peak visual moments.`,`Grab one clean wide shot at each time of day: midday, late afternoon, evening.`,`Get restaurant reps or owners on camera briefly at their stall when it opens, even just serving.`,`Cover the pho eating competition hard: build-up, mid-competition and the winner moment.`]},
+     {label:"Edit notes", items:[`Structure chronologically: midday family fun, afternoon food stalls and competition, evening entertainment.`,`Use presenter VO as the throughline over b-roll.`,`Keep natural audio where possible: laughing, chatter, cheering.`,`Keep pacing lively through the food and competition section, then slow slightly for the evening close.`]}
+   ],
+   broll:[`Presenter walking and POV transitions between zones`,`Wide shots at midday, late afternoon and evening`,`Food stall openings and owners serving`,`Pho competition build-up and winner`,`Evening live music and atmosphere`]},
+  {n:"M3", t:"Cook wants to be the customer", meta:["Vertical Reel","Trend"],
+   type:"Mike · Trend reel · Funny",
+   hook:"When you want to be the customer and not the worker.",
+   note:"Follow the inspo reel for the format.",
+   lists:[{label:"Shots", items:[`Chef or owner preparing food while watching customers enjoy the food and the day.`,`Acting reaction: cook sad they can't eat the delicious food or join the games.`,`Then the chef, after their shift window, having fun with the dinosaur and the event.`]}],
+   inspo:["https://www.instagram.com/reel/DWPO7mejM3t/"],
+   broll:[`Chef or owner at work`,`Customers enjoying food nearby`,`Dino and event moments for the payoff`]},
+  {n:"M4", t:"You look happier", meta:["Vertical Reel","Trend"],
+   type:"Mike · Trend reel · Happy families",
+   scriptLabel:"On-screen text",
+   script:[`You look happier.`,`Yeah, nothing beats watching my kids having fun with their community.`],
+   lists:[{label:"Shots", items:[`Panning shots and b-roll of the event.`,`Dino activities.`,`Backs and far-away shots of kids and families having fun.`,`Community talking and interacting across a range of activities.`]}],
+   inspo:["https://www.instagram.com/reel/DLubiDLM-3S/"],
+   broll:[`Families and kids from behind and at distance`,`Dino activity wide shots`,`Community interaction cutaways`]},
+  {n:"M5", t:"Roar and Explore day montage", meta:["Vertical Reel","Additional"],
+   type:"Mike · Montage · Day of activities",
+   scriptLabel:"On-screen text",
+   script:[`Roar and Explore at Canley Heights`],
+   note:"If possible, keep to the dino-theme activities.",
+   lists:[{label:"Shots", items:[`Dinosaur and kid-activity focused footage.`,`B-roll of the day: activities, games, food, action, movement, dancing, DJ.`]}],
+   inspo:["https://www.instagram.com/reel/DQkIPSiEb29/"],
+   broll:[`Dino theme activity footage`,`High-energy day b-roll`,`Games, food and dancing cutaways`]},
+  {n:"M6", t:"Face painting station", meta:["Vertical Reel","Additional"],
+   type:"Mike · Additional · Face painting + families",
+   note:"Only with parental filming permission.",
+   scriptLabel:"On-screen text",
+   script:[`The painted faces of Canley Heights`],
+   lists:[{label:"Shots", items:[`Brush loading paint and the painting process.`,`Reactions to the finished face paint.`,`General interactions and painted faces.`]}],
+   inspo:["https://www.instagram.com/reel/C6VD3TNL15Z/"],
+   broll:[`Painting process close-ups`,`Finished designs`,`Kid and parent reactions (with permission)`]},
+
+  {n:"K7", t:"Community interviews & food reactions", meta:["Vertical Reel","Vox-pop"],
+   type:"Kendy · Community interviews · Rachel presenting",
+   hook:"Interviewing the Canley Heights community.",
+   scriptLabel:"Opening talking head (Rachel)",
+   script:[`Today we're at Canley Heights Nights, the Roar and Explore event. Let's see what the community has to say.`],
+   lists:[
+     {label:"Questions", items:[`What's your favourite part of today so far?`,`Have you tried any of the food? What did you think?`,`Food reaction or taste test: what's the first flavour that hits you, and what do you rate it?`,`What brought you out to Canley Heights today?`,`One word to describe today?`,`Would you come back for another one of these?`,`Anything else you want to share?`]},
+     {label:"Shoot notes", items:[`Interview 4 to 6 people across the day. Mix it up: families, couples, groups of friends, different ages.`,`Grab interviews at different spots (food stalls, dino area, stage) for visual variety.`,`Keep it loose and unscripted. Two or three questions per person max.`]},
+     {label:"Edit notes", items:[`Subtitle every answer. This is a scroll-stopper edit.`,`Keep answers short, 3 to 5 seconds each. Cut rambling and dead air.`,`Mix answers across questions where the contrast works.`,`Keep it tight, 20 to 30 seconds total.`]}
+   ],
+   broll:[`Interview subjects near food stalls, dino area and stage`,`Food reaction and taste-test cutaways`,`Crowd and atmosphere behind the subjects`]},
+  {n:"K8", t:"Canley Heights 2:00pm vs 6:00pm", meta:["Vertical Reel","Day vs night"],
+   type:"Kendy · Street reel · General street, not event focused",
+   scriptLabel:"On-screen text",
+   script:[`Canley Heights`,`2:00 PM vs 6:00 PM`],
+   note:"Show the same locations by day and night to sell how inviting Canley Heights is at any time.",
+   lists:[{label:"Shots", items:[`Capture the same shots in daylight and at night.`,`Mostly exterior shots of the street, community and lively venues.`,`Can include event moments: community interacting, street dynamic, venues.`,`First clip in daylight, ideally with a Canley Heights Nights sign.`,`Second as aesthetic as possible. Pair with drone shots and a short montage of people, location and vibe.`]}],
+   inspo:["https://www.instagram.com/reel/DYB3PcICpKf/"],
+   broll:[`Matched day and night exteriors`,`Street and venue exteriors`,`Drone day and night plates`]},
+
+  {n:"V1", t:"Bambu Cafe & Desserts", meta:["Vertical Reel","Venue"],
+   type:"Venue walkthrough · General cafe",
+   hook:"Coffee, dessert and every meal in between.",
+   scriptLabel:"Sample script (WKM-written)",
+   script:[`Enjoy your day from morning to night with Vietnamese iced coffee, dessert bowls and every meal in between.`,`This is Bambu Cafe and Desserts. Open at two locations, Bambu is here any time of day, the perfect spot to catch up, unwind or enjoy live music.`,`Find this family business at Canley Heights.`],
+   lists:[{label:"Shots", items:[`Interior wide shot for atmosphere.`,`Venue and customer interaction.`,`Drinks or desserts being prepared, whatever's active.`,`Counter or menu board for context.`,`Quick reaction if there's time to try something (optional).`]}],
+   broll:[`Interior atmosphere`,`Drinks and dessert prep`,`Counter and menu board`]},
+  {n:"V2", t:"Huong Xua", meta:["Vertical Reel","Venue"],
+   type:"Venue reel · The restaurant behind the competition",
+   hook:"The restaurant behind the iconic Pho Eating Competitions.",
+   scriptLabel:"Sample script (WKM-written)",
+   script:[`This is Huong Xua. They're the ones behind tonight's iconic Pho Eating Competition.`,`This isn't new for them. They've been running pho challenges for years.`,`Now we know why the locals choose Huong Xua for the challenges. Their authentic flavours are too good to miss, and a community favourite.`,`Come by Huong Xua in Canley Heights for authentic Vietnamese cuisine.`],
+   lists:[
+     {label:"Shots", items:[`Signage or exterior to open.`,`Kitchen prep action.`,`Clean close-up of a regular bowl of pho for contrast against the competition bowl later.`,`A staff hype line on camera, genuine excitement about the competition.`]},
+     {label:"Edit notes", items:[`Keep it tight, 20 to 25 seconds. This is a hype piece, not a full tour.`]}
+   ],
+   broll:[`Signage and exterior`,`Kitchen prep`,`Regular bowl of pho for contrast`]},
+  {n:"V3", t:"Phuong Nam Noodle House", meta:["Vertical Reel","Venue"],
+   type:"Venue reel · Walk-and-talk, presenter led",
+   hook:"Locally loved noodles since 2012.",
+   scriptLabel:"Sample script (WKM-written)",
+   script:[`This is Phuong Nam noodle house, feeding Canley Heights since 2012.`,`Proper Vietnamese noodle soups, made the traditional way.`,`If you're after authentic, honest, homestyle noodles, this is it.`,`Come try for yourself at Phuong Nam in Canley Heights.`],
+   lists:[
+     {label:"Shots", items:[`Exterior or signage shot.`,`General interior and kitchen activity on arrival.`,`Food on tables or in the kitchen.`,`Wide of the dining space or counter.`,`5 seconds with staff or owner if available, quick and natural.`]},
+     {label:"Edit notes", items:[`Keep it fast, 15 to 20 seconds.`,`Lead with the walk-up or signage.`,`Close on a staff line or general atmosphere.`]}
+   ],
+   broll:[`Exterior and signage`,`Kitchen and interior activity`,`Dining space wide`]},
+  {n:"V4", t:"Hi Tieu 51", meta:["Vertical Reel","Venue"],
+   type:"Venue reel · General walkthrough with food atmosphere",
+   scriptLabel:"Sample script (WKM-written)",
+   script:[`This is Hi Tieu 51, a local favourite for noodle soup.`,`Known for flavourful dishes like the Sizzling Beef Hot Plate and the Sate Beef Rice Noodle Soup.`,`If you haven't tried it, add it to the list. Hi Tieu 51.`],
+   note:"Ask the owner which item to highlight.",
+   lists:[
+     {label:"Shots", items:[`Steam and food preparation.`,`General interior.`,`Wide of the venue and dining area.`,`Kitchen activity if accessible, ideally catching a signature dish.`]},
+     {label:"Edit notes", items:[`Let food and steam visuals breathe if captured, otherwise lead with the walk-up.`,`Natural ambient sound where possible.`,`If a signature dish is captured, make it the visual anchor.`]}
+   ],
+   broll:[`Steam and food prep`,`Interior and dining area`,`Signature dish if being served`]},
+  {n:"V5", t:"Canley Heights Hotel", meta:["Vertical Reel","Venue"],
+   type:"Venue reel · General walkthrough",
+   scriptLabel:"Sample script (WKM-written)",
+   script:[`This is Canley Heights Hotel, a local hot spot right on Canley Vale Road.`,`Mouth-watering steaks, burgers and blackboard specials, paired with 12 beers on tap, premium wines and a proper cocktail list. Catch the games over your meal on the screens.`,`Good food, good drinks and a great crowd. Run to Canley Heights Hotel.`],
+   lists:[
+     {label:"Shots", items:[`Wide of the bar and bistro area.`,`General food and drink shots, whatever's being served or poured.`,`Sports bar atmosphere, screens for context.`,`Kitchen and food prep.`,`To-camera line to close.`]},
+     {label:"Edit notes", items:[`Open on the wide bar shot.`,`Keep pacing relaxed and confident.`,`No need for one specific dish. General food and drink energy is enough.`,`Close on the to-camera line.`]}
+   ],
+   broll:[`Bar and bistro wide`,`Food and drink being served`,`Sports bar atmosphere`]},
+  {n:"V6", t:"Pho Hien", meta:["Vertical Reel","Venue"],
+   type:"Venue reel · Quick, simple capture",
+   note:"Understaffed on the day, so float this venue whenever Anna signals it's clear. Confirm menu highlights with the owner.",
+   scriptLabel:"Sample script (WKM-written)",
+   script:[`This is Pho Hien, a local pho favourite you can't miss, right here on Canley Vale Road.`,`Special Pho, Bun Rieu, Prawn Spring Rolls, a menu that covers all the Vietnamese classics.`,`Simple, consistent, honest food. That's why locals keep coming back.`],
+   lists:[
+     {label:"Shots", items:[`Quick signage shot.`,`General interior or food shot, whatever's ready.`,`No specific dish required.`,`Keep the visit efficient, ready to shoot whenever a window opens.`]},
+     {label:"Edit notes", items:[`Short and simple, 10 to 15 seconds.`,`Relaxed, confident pacing.`,`No big music buildup.`]}
+   ],
+   broll:[`Signage`,`Interior or ready food`,`Quick atmosphere`]},
+  {n:"V7", t:"Neo Bar", meta:["Vertical Reel","Venue","Opens 5pm"],
+   type:"Venue reel · General walkthrough",
+   hook:"Where to start your night in Canley Heights.",
+   scriptLabel:"Sample script (WKM-written)",
+   script:[`If you're looking for a spot to go out after the sun goes down in Canley Heights, this is Neo Bar.`,`Cocktails, a DJ, share plates to keep you going, and a crowd that brings the energy all night.`,`Neo Bar is your next stop if you're staying out tonight.`],
+   lists:[
+     {label:"Shots", items:[`Interior wide for atmosphere.`,`Bar and drinks activity, whatever's being made.`,`DJ booth and lighting if active.`,`To-camera line to close.`]},
+     {label:"Edit notes", items:[`Slightly moodier, nightlife pacing.`,`Can use past content from the last event.`]}
+   ],
+   broll:[`Interior atmosphere`,`Bar and drinks`,`DJ and lighting`]},
+  {n:"V8", t:"VIP Karaoke", meta:["Vertical Reel","Venue","Opens 5pm"],
+   type:"Venue reel · POV walk-in reveal",
+   hook:"POV: karaoke just became the plan.",
+   scriptLabel:"Sample script (WKM-written)",
+   script:[`POV: you're in Canley Heights and karaoke just became the plan.`,`At VIP Karaoke you get your own private karaoke room, plus a delicious dinner, drinks and a bar before and after you sing your hearts out.`,`Bring your friends, your family, or the coworkers who owe you a night out. VIP Karaoke, right here in Canley Heights.`],
+   lists:[
+     {label:"Shots", items:[`Room reveal as the karaoke door opens.`,`Mic pickup close-up.`,`Disco and party lighting.`,`Song screen if visible for context.`,`Kitchen and bar shots.`,`Food and drink prep.`]},
+     {label:"Edit notes", items:[`Lead with the POV walk-in and reveal.`,`Keep the dinner-and-drinks angle in the line. Don't oversell it as purely late-night karaoke.`]}
+   ],
+   broll:[`Room reveal`,`Disco and party lighting`,`Food and drink prep`]},
+  {n:"V9", t:"Ace Shawarma Shisha Bar", meta:["Vertical Reel","Venue","Opens 5pm"],
+   type:"Venue reel · General capture, ASMR-leaning",
+   hook:"Canley Heights' late-night spot.",
+   scriptLabel:"Sample script (WKM-written)",
+   script:[`If you're looking for your post-night-out feed, you need to come to Ace Shawarma.`,`This is the spot for good food, good shisha and a laid-back vibe.`,`Perfect for dinner or to end your night. Ace Shawarma is open until 3am.`,`Find us at Canley Heights.`],
+   lists:[
+     {label:"Shots", items:[`General food prep, whatever's active.`,`Shisha and interior atmosphere.`,`A bite or reaction if trying something (optional).`]},
+     {label:"Edit notes", items:[`Let ambient and atmosphere shots breathe.`,`Minimal narration, natural sound where possible.`,`Close on a simple to-camera or atmosphere shot.`]}
+   ],
+   broll:[`Food prep`,`Shisha and interior atmosphere`,`Simple to-camera close`]}
+];
+
+const UGC_VIDEOS = [
+  {n:"R1", t:"Pho eating competition", meta:["Vertical Reel","UGC"],
+   type:"Rachel · UGC · Vlog-style selfie + b-roll",
+   scriptLabel:"Selfie talking head",
+   script:[`Come with me to my first ever pho eating competition!`],
+   lists:[{label:"Shots", items:[`Shot on the countdown: the person, a wide of the crowd counting down, contestants anticipating the Go.`,`Contestants preparing before the competition starts.`,`Pan across the competitors during the game.`,`Arrival and serving of the food.`]}],
+   inspo:["https://www.instagram.com/reel/CskAU2-pu8o/","https://www.instagram.com/reel/DZDIuZeuDdW/"],
+   broll:[`Countdown and contestants`,`Prep before the start`,`Food arrival and serving`]},
+  {n:"R2", t:"Food reaction", meta:["Vertical Reel","UGC"],
+   type:"Rachel · UGC · Positive reaction to an iconic dish",
+   scriptLabel:"On-screen text (fill in the dish)",
+   script:[`The only acceptable reaction to trying ______`],
+   note:"Say the name of the product and the shop in the clip (it will be cropped out) so editors know how to name it.",
+   lists:[{label:"Shots", items:[`Reaction shot to one of the meals. Ask staff or the community for the best item to feature.`,`Keep the person far enough away to feel candid, real and organic.`,`The UGC creator can be the reaction if the community doesn't want to.`,`Exaggerated, genuinely enjoying reaction to the item.`]}],
+   inspo:["https://www.instagram.com/reel/DYKR8fqt0Fo/"],
+   broll:[`Candid reaction to the dish`,`The dish itself, close-up`]},
+  {n:"R3", t:"I'm not going to a dino event (trend)", meta:["Vertical Reel","UGC","Low priority"],
+   type:"Rachel · UGC · Trending reel format",
+   scriptLabel:"On-screen hook",
+   script:[`I am not going to a Dino-Theme Event. I am an adult!`],
+   note:"Open on a panning or low-energy shot of the event, then swap to a montage of high-energy shots and the UGC creator enjoying it. The point is FOMO.",
+   lists:[{label:"Shots", items:[`Refer to the inspo to understand the trend.`,`Selfie-style clips of the UGC having fun.`,`Different activities, especially face painting and eating, anything that makes the event look fun and lively.`]}],
+   inspo:["https://www.instagram.com/reel/DZxHYMxomAM/"],
+   broll:[`Low-energy opener`,`High-energy montage`,`Selfie-style fun clips`]},
+  {n:"W1", t:"Same event. Three different stories.", meta:["WKM internal"],
+   type:"WKM internal · Marketing reel",
+   hook:"This is the same event, but we're filming three completely different campaigns.",
+   scriptLabel:"Script",
+   script:[`At midday, we're capturing family fun.`,`At sunset, we're capturing atmosphere.`,`And at night, we're capturing the kind of energy that makes people wish they were here.`,`Same location. Same day. Different story.`,`That's how White Key turns one event into content that keeps working long after it ends.`],
+   lists:[
+     {label:"End text", items:[`One event. Multiple campaigns. Maximum content.`]},
+     {label:"Filming idea", items:[`Shoot the three times of day and connect them with a whip pan: end each clip on a fast whip in the same direction, then start the next one on a whip in from the same direction so it swipes straight into the next time of day.`,`Keep the whip consistent: same direction, same speed, roughly the same spot each time, so the three clips cut together cleanly.`,`Finish with fast footage of the White Key team filming the crowd, food stalls and entertainment.`]}
+   ],
+   broll:[`Whip-pan transition clip at midday, sunset and night (same direction each time)`,`White Key team filming the event`]},
+  {n:"W2", t:"Can your event pass the 3-second test?", meta:["Vertical Reel","WKM internal"],
+   type:"WKM internal · Marketing reel",
+   hook:"If your event content can't stop someone in three seconds, the rest doesn't matter.",
+   scriptLabel:"Script",
+   script:[`That's why we lead with the biggest reaction, the best food moment or the exact second the event comes alive.`,`Then we build the story around it.`,`At White Key, we don't save the strongest shot for the end.`,`We put it first.`],
+   lists:[
+     {label:"End text", items:[`Hook first. Story second. Scroll stopped.`]},
+     {label:"Filming idea", items:[`Start with the presenter delivering the hook, then cut straight to the strongest crowd reaction, food-competition moment or night-light reveal.`,`Finish with the White Key team filming the event.`]}
+   ],
+   broll:[`Strongest crowd reaction`,`Best food moment`,`Night-light reveal`,`White Key team filming`]}
+];
+
+const MUSIC_URL = "https://open.spotify.com/playlist/7bu7BZEusLNJSaAuUUZBKn";
+
+/* per-person schedules, in each creator's own perspective */
+const SCHEDULE = {
+  mike:{
+    name:"Mike",
+    role:"Photo, drone & hero reels",
+    intro:"You hold the town square all day. You are the polished track: photography, the drone and the hero and event reels. You barely leave the square, so own it. Shoot photos constantly, grab your reel b-roll between the big moments, and lock in your day and night drone passes.",
+    deliver:["Full event photography","M1 drone","M2 hero vlog","M3 trend","M4 trend","M5 montage","M6 face painting"],
+    blocks:[
+      {time:"2:00pm", title:"Kickoff at the square",
+       focus:"Get on site and start straight away. Day establishing wides of the full setup, then your first day drone pass over the footprint and the surrounding streets. Grab Rachel's opening talking head for the hero vlog while she is fresh.",
+       shotLabel:"Shoot now", shots:[`Wide establishing of the full square setup: marquees, stage, signage`,`First day drone pass of the footprint and streets`,`Opening crowd wide shot`,`Rachel's hero-vlog opening talking head`],
+       videos:["M2","M1"]},
+      {time:"2:00 to 4:20pm", title:"Hold the square (your biggest window)",
+       focus:"This is your main block. Photography throughout: dino experience and kids, food stalls as they open, general crowd and atmosphere. Shoot your reel b-roll now: the cook-wants-to-be-customer trend and the face-painting station. Get the day half of the day-vs-night look and one clean wide at each time of day.",
+       shotLabel:"Photography now", shots:[`Quick shot at each stall as it opens — 2:30 Huong Xua, 3:00 Hi Tieu 51, 3:30 Pho Hien, 4:00 Neo Bar, 4:30 Bambu, 5:00 Canley Hotel`,`Dino inflatables and obstacle course, wide and close`,`Face painting, in progress and finished (parental permission)`,`Jumping castle action`,`Food stall close-ups and reps or owners serving`,`Candid family reactions`,`General cutaways and brand signage`],
+       videos:["M3","M6","M4","M5"]},
+      {time:"4:40 to 5:20pm", title:"Pho eating competition",
+       focus:"Everyone converges at the square. This is the peak moment, cover it hard. Competition starts 5:15, winner called around 5:30. Grab your hero-vlog competition segment while you are on it.",
+       shotLabel:"Shoot now", shots:[`Build-up and anticipation before it starts`,`Contestants mid-competition, close and wide`,`Crowd reactions and cheering`,`Winner announcement and prize moment`],
+       videos:["M2"]},
+      {time:"5:20 to 6:50pm", title:"Evening at the square",
+       focus:"Stay on the square for the night shift. Shoot the entertainment and the night atmosphere, then your night drone pass for the night half of the day-vs-night look.",
+       shotLabel:"Shoot now", shots:[`DJ Sticky on set, wide and close`,`Performers Raniel and Michael across their sets`,`Justin-Erbz the magician roving, family reactions`,`Crowd dancing and engaging`,`Night drone pass of the square`,`Night atmosphere and lighting`],
+       videos:["M1"]},
+      {time:"6:50pm", title:"Wrap & backup",
+       focus:"Final atmosphere and group shots. Back up all your footage and photos before you leave, and quick-check against your shot lists.",
+       videos:[]}
+    ]
+  },
+  kendy:{
+    name:"Kendy",
+    role:"9 venue reels, community & street",
+    intro:"You are on the move. You and Rachel work the venue trail while Mike holds the square. You own a reel for each of the nine venues, the community interviews and the day-vs-night street piece. Keep each venue reel tight: get in, get the shots, move on.",
+    deliver:["K7 community interviews","K8 day vs night","V1 to V9 venue reels, plus a photo set for each venue","W1 + W2 WhiteKey internal (with Rachel)"],
+    blocks:[
+      {time:"2:00pm", title:"Kickoff at the square",
+       focus:"Start at the square with the team. Grab your first day footage of the street and square for the day-vs-night piece, ideally with a Canley Heights Nights sign in frame. Then head off on the trail with Rachel.",
+       shotLabel:"Shoot now", shots:[`First day clip of the street, ideally with signage`,`Wide of the square by day for the day-vs-night match`],
+       videos:["K8"]},
+      {time:"2:00 to 4:20pm", title:"Afternoon venue trail (with Rachel)",
+       focus:"Work the venues in walking order: Bambu, Huong Xua, Phuong Nam, Hi Tieu 51, Canley Heights Hotel, Pho Hien. Float Pho Hien whenever Anna signals it is clear, they are understaffed. Every venue needs both a video reel and a photo set. Mike is holding the square, so the venue photos are on you: do not leave a venue until you have both the reel and the photos. Keep collecting day street footage between venues too. While you are with Rachel, start the WhiteKey 'three different stories' piece (W1): pick your spot at the square and shoot your midday clip ending on a fast whip pan, plus a little behind-the-scenes of the team filming. W1 runs across the whole day, so lock in your whip direction and speed now: you come back this evening and at night for the sunset and night whip-pan clips, and they only cut together if the whip matches.",
+       shotLabel:"Walking order (reel + photos each)", shots:[`Bambu Cafe & Desserts: video reel + photo set`,`Huong Xua: video reel + photo set`,`Phuong Nam Noodle House: video reel + photo set`,`Hi Tieu 51: video reel + photo set`,`Canley Heights Hotel: video reel + photo set`,`Pho Hien: video reel + photo set (float when clear)`],
+       videos:["V1","V2","V3","V4","V5","V6","W1"]},
+      {time:"4:40 to 5:20pm", title:"Pho eating competition (at the square)",
+       focus:"Back at the square for the competition. Shoot the community interviews with Rachel presenting: seven quick questions, mix of families, couples and groups at different spots. Grab quick competition coverage too.",
+       videos:["K7"]},
+      {time:"5:20 to 6:50pm", title:"Evening venue crawl (with Rachel)",
+       focus:"The night venues open from 5pm. Crawl through Neo Bar, VIP Karaoke and Ace Shawarma, and pick up any venue you could not get earlier. Same rule as the afternoon: each night venue needs both a video reel and a photo set, and those photos are still on you. Shoot your night street footage too: match the same spots you shot at 2pm. Then close out the WhiteKey pieces with Rachel: shoot your sunset and night whip-pan clips for W1 (same direction and speed as your midday one so they cut together), and the night-light reveal plus the strongest crowd or food moment for the 3-second-test piece (W2).",
+       shotLabel:"Night venues + street (reel + photos each)", shots:[`Neo Bar: video reel + photo set`,`VIP Karaoke: video reel + photo set`,`Ace Shawarma: video reel + photo set`,`Night street footage matching your 2pm spots`,`W1: sunset whip-pan clip, same direction and speed as midday, around 5pm`,`W1: night whip-pan clip, same direction and speed as midday, after dark`],
+       videos:["V7","V8","V9","K8","W1","W2"]},
+      {time:"6:50pm", title:"Wrap & backup",
+       focus:"Back up all your venue and street footage. Check every one of the nine venues has both a video reel and a photo set, that you have both the day and night halves of the street piece, and that W1 has all three whip-pan clips (midday, sunset and night) shot in the same direction so they cut together, before you leave.",
+       videos:[]}
+    ]
+  },
+  rachel:{
+    name:"Rachel",
+    role:"UGC / organic, fast and first-person",
+    intro:"You are the social track. Fast, first-person, phone-style clips. You float between Kendy on the trail and the big moments at the square. Keep it handheld and shareable, and grab b-roll all day.",
+    deliver:["R1 competition UGC","R2 food reaction","R3 dino trend","Hero-vlog talking head","Handheld b-roll"],
+    blocks:[
+      {time:"2:00pm", title:"Kickoff at the square",
+       focus:"Kick off Mike's hero vlog: you are the presenter. Deliver the POV opening talking head, the 'we spent the day at Canley Heights' intro, first-person and to-camera. Then start your own handheld b-roll.",
+       videos:["M2"]},
+      {time:"2:00 to 4:20pm", title:"Afternoon trail (with Kendy)",
+       focus:"Move with Kendy on the venue trail. Grab first-person UGC as you go, including your food reaction at whichever dish stands out. Keep collecting handheld phone-style b-roll: stalls, families, food and atmosphere.",
+       shotLabel:"Handheld b-roll", shots:[`Wide establishing of the full town square setup`,`Each of the six food stalls in a clean, consistent wide (ask them to prep first: gloves, clean space)`,`Parents watching their kids play, candid`,`Close-up food shots from the sampling stalls`,`DJ and performers on stage, wide and close`,`Face painting close-ups (parental permission)`,`Crowd atmosphere at midday, late afternoon and evening`,`Drone-free phone shot of the whole square if you get a high vantage`],
+       videos:["R2"]},
+      {time:"4:40 to 5:20pm", title:"Pho eating competition",
+       focus:"The competition is your hero UGC moment. Shoot the 'come with me to my first ever pho eating competition' vlog: selfie on the countdown, contestants and the crowd. Grab the dino trend reel if you have time.",
+       videos:["R1","R3"]},
+      {time:"5:20 to 6:50pm", title:"Evening",
+       focus:"Stay flexible. Help grab first-person clips at the night venues and finish any UGC or b-roll you are missing. Pull music from the event playlist for your edits.",
+       music:true, videos:[]},
+      {time:"6:50pm", title:"Wrap",
+       focus:"Back up your clips. Make sure you have the competition vlog, the food reaction and your b-roll before you leave.",
+       videos:[]}
+    ]
+  }
+};
+
+const CVRUN = [
+  "2:00pm — Kickoff at the square (all three creators)",
+  "2:00 to 4:20pm — Mike holds the square, Kendy and Rachel work the venue trail",
+  "4:40 to 5:20pm — Pho eating competition, everyone converges",
+  "5:20 to 6:50pm — Evening venue crawl and night coverage at the square",
+  "6:50pm — Wrap and backup"
+];
+
+/* ---- state (safe for sandboxed embeds) ---- */
+const KEY="canley_nights_brief_v2";
+let state={};
+try{state=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){state={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function itemHTML(id,label){
+  const on=state[id]?"checked":"";
+  const cls=state[id]?"item done":"item";
+  return `<label class="${cls}" data-id="${id}"><input type="checkbox" ${on}><span>${label}</span></label>`;
+}
+
+/* video lookup + tab map */
+const ALLV = PRO_VIDEOS.concat(UGC_VIDEOS);
+const VMAP={};ALLV.forEach(v=>VMAP[v.n]=v);
+const VIDEO_TAB={};
+Object.keys(SCHEDULE).forEach(pk=>{SCHEDULE[pk].blocks.forEach(b=>{(b.videos||[]).forEach(n=>{if(!VIDEO_TAB[n])VIDEO_TAB[n]=pk;});});});
+
+/* single expandable video toggle used inside schedules and wkm section */
+function vidToggle(n,inst){
+  const v=VMAP[n];if(!v)return "";
+  const domId=`vt-${v.n}${inst?"-"+inst:""}`;
+  const hookBlock=v.hook?`<div class="rvrow"><b>Hook</b><div class="hook">${esc(v.hook)}</div></div>`:"";
+  const scriptR=v.script?`<div class="rvrow"><b>${esc(v.scriptLabel||"Sample script (WKM-written)")}</b><div class="scriptbox">${v.script.map(l=>`<span>${esc(l)}</span>`).join("")}</div></div>`:"";
+  const listsR=v.lists?v.lists.map(l=>`<div class="rvrow"><b>${esc(l.label)}</b><ul class="tp">${l.items.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>`).join(""):"";
+  const inspoR=(v.inspo&&v.inspo.length)?`<div class="rvrow"><b>Inspo</b><div class="reflink">${v.inspo.map((u,i)=>`<a href="${esc(u)}" target="_blank" rel="noopener">Reference${v.inspo.length>1?" "+(i+1):""}</a>`).join(" · ")}</div></div>`:"";
+  const brollR=(v.broll&&v.broll.length)?`<div class="rvrow"><b>B-roll checklist</b><div class="checkgroup" style="padding:0">${v.broll.map((b,i)=>itemHTML(`broll-${v.n}-${i}`, esc(b))).join("")}</div></div>`:"";
+  return `<details class="rvid" id="${domId}"><summary><span class="rvtag">${esc(v.n)}</span> ${esc(v.t)} <span class="chev">▼</span></summary><div class="rvbody"><div class="rvsub">${esc(v.type)}</div>${v.note?`<div class="rvrow"><b>Notes</b>${esc(v.note)}</div>`:""}${hookBlock}${scriptR}${listsR}${inspoR}${brollR}</div></details>`;
+}
+
+/* render one person's schedule as a perspective timeline */
+function renderPerson(pk){
+  const p=SCHEDULE[pk];
+  const deliver=`<div class="deliverbar">${p.deliver.map(d=>`<span class="badge">${esc(d)}</span>`).join("")}</div>`;
+  const head=`<div class="sec-title">${esc(p.name)} · ${esc(p.role)}</div>`+
+    `<div class="notecall" style="margin-bottom:6px"><div><b>Your day.</b> ${esc(p.intro)}</div></div>`+deliver;
+  const seen={};
+  const blocks=p.blocks.map((b,i)=>{
+    const id=`sched-${pk}-${i}`;
+    const done=state[id]?"done":"";
+    const last=i===p.blocks.length-1;
+    const shots=(b.shots&&b.shots.length)?
+      `<div class="card checkgroup shootnow"><div class="cg-head"><h3>${esc(b.shotLabel||"Shoot now")}</h3><span class="pill">${b.shots.length} shots</span></div>${b.shots.map((s,si)=>itemHTML(`shot-${pk}-${i}-${si}`, esc(s))).join("")}</div>`:"";
+    const vids=(b.videos&&b.videos.length)?`<div class="rvids">${b.videos.map(n=>{const inst=seen[n]?("b"+i):"";seen[n]=(seen[n]||0)+1;return vidToggle(n,inst);}).join("")}</div>`:"";
+    const music=b.music?`<div class="notecall musicnote"><div><b>Music.</b> Pull tracks from the event playlist: <span class="reflink"><a href="${esc(MUSIC_URL)}" target="_blank" rel="noopener">Canley Heights Nights playlist</a></span></div></div>`:"";
+    return `<div class="rblock ${done}" data-id="${id}">
+      <div class="rleft"><div class="rdot">${i+1}</div>${last?"":'<div class="rline"></div>'}</div>
+      <div class="rcontent"><label class="rcard"><input type="checkbox" ${state[id]?"checked":""}>
+        <div style="flex:1"><div class="rtime">${esc(b.time)}</div><div class="rb">${esc(b.title)}</div><div class="blockfocus">${esc(b.focus)}</div></div></label>
+        ${shots}${vids}${music}</div>
+    </div>`;
+  }).join("");
+  return head+`<div class="run">${blocks}</div>`;
+}
+
+Object.keys(SCHEDULE).forEach(pk=>{
+  const el=document.getElementById("sched-"+pk);
+  if(el)el.innerHTML=renderPerson(pk);
+});
+
+/* client view: day in order */
+document.getElementById("cv-run").innerHTML =
+  `<div class="cg-head"><h3>The day, in order</h3><span class="pill">${CVRUN.length} phases</span></div>` +
+  CVRUN.map((r,i)=>itemHTML(`phase-${i}`, `<b>${i+1}.</b> ${esc(r)}`)).join("");
+
+/* WKM internal pieces now live in Kendy's day (shot with Rachel) */
+
+/* events: two-way checkbox sync via shared data-id */
+document.addEventListener("change",e=>{
+  if(e.target.type!=="checkbox"||e.target.disabled)return;
+  const host=e.target.closest("[data-id]");if(!host)return;
+  const id=host.dataset.id;const val=e.target.checked;
+  state[id]=val;
+  document.querySelectorAll('[data-id="'+id+'"]').forEach(el=>{
+    el.classList.toggle("done",val);
+    const cb=el.querySelector('input[type=checkbox]');
+    if(cb&&cb!==e.target)cb.checked=val;
+  });
+  save();
+});
+
+/* tabs */
+function activateTab(b){
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  b.classList.add("active");
+  const panel=document.getElementById(b.dataset.t);if(panel)panel.classList.add("active");
+  window.scrollTo({top:0,behavior:"auto"});
+}
+document.getElementById("tabs").addEventListener("click",e=>{
+  const b=e.target.closest(".tab");if(b)activateTab(b);
+});
+document.getElementById("tabs").addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const b=e.target.closest(".tab");if(b){e.preventDefault();activateTab(b);}
+});
+
+/* cross-links: jump to a person tab, optionally opening a video */
+function switchTab(name){
+  const tab=document.querySelector('.tab[data-t="'+name+'"]');
+  if(tab)activateTab(tab);
+}
+function goToVideo(n){
+  const pk=VIDEO_TAB[n];
+  if(!pk){switchTab("client");return;}
+  switchTab(pk);
+  const el=document.getElementById("vt-"+n);
+  if(!el)return;
+  el.open=true;
+  requestAnimationFrame(()=>{
+    el.scrollIntoView({behavior:"smooth",block:"center"});
+    el.classList.add("flash");
+    setTimeout(()=>el.classList.remove("flash"),1400);
+  });
+}
+document.addEventListener("click",e=>{
+  const t=e.target.closest("[data-tab]");
+  if(t){e.preventDefault();switchTab(t.getAttribute("data-tab"));return;}
+  const a=e.target.closest("[data-goto]");
+  if(a){e.preventDefault();goToVideo(a.getAttribute("data-goto"));}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const t=e.target.closest("[data-tab]");
+  if(t){e.preventDefault();switchTab(t.getAttribute("data-tab"));return;}
+  const a=e.target.closest("[data-goto]");
+  if(a){e.preventDefault();goToVideo(a.getAttribute("data-goto"));}
+});
+</script>
+</body>
+</html>

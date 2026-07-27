@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Soldier's Cut Shoot Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#333132; --orange:#faa62f; --tangerine:#f7b52d; --white:#ffffff;
+    --bg:#1b191a;
+    --text:#f1efed; --text2:#a7a3a1; --canvas:#2a2829; --soft:#242223;
+    --surface:#3a3738; --border:#403d3e; --accent:#faa62f; --accent-soft:rgba(250,166,47,.13);
+    --done:#faa62f; --charcoal2:#403e3f; --charcoal-line:rgba(255,255,255,.14);
+    --line-strong:#5f5c5d;
+    --shadow:0 1px 2px rgba(0,0,0,.30),0 6px 18px rgba(0,0,0,.30);
+    --head:"Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    --sans:"Roboto",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;background:var(--bg);color-scheme:dark}
+  body{font-family:var(--sans);color:var(--text);background:var(--bg);font-size:16px;line-height:1.5;font-weight:400;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  h1,h2,h3,.eyebrow,.sec-title,.wordmark,.chip b{font-family:var(--head)}
+
+  /* wordmark bar */
+  .brandbar{background:var(--charcoal);border-bottom:1px solid var(--charcoal-line)}
+  .brandbar .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px;gap:16px;flex-wrap:wrap}
+  .wordmark{font-weight:800;font-size:20px;letter-spacing:.02em;color:#fff;text-transform:uppercase}
+  .wordmark .mk{color:var(--orange)}
+  .brandbar .tag{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:500}
+
+  /* hero */
+  header .hero{background:var(--charcoal);color:#fff;padding:30px 0 34px}
+  .eyebrow{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:700}
+  .hero h1{font-size:44px;line-height:1.02;margin:12px 0 10px;letter-spacing:.01em;text-transform:uppercase;color:#fff}
+  .hero .sub{color:rgba(255,255,255,.72);font-size:16.5px;max-width:660px;font-weight:300}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .chip{display:flex;align-items:baseline;gap:7px;background:var(--charcoal2);border:1px solid var(--charcoal-line);border-radius:8px;padding:9px 13px}
+  .chip b{font-size:20px;font-weight:800;color:var(--orange);letter-spacing:0}
+  .chip span{color:rgba(255,255,255,.72);font-weight:400;font-size:13.5px}
+  .prog{margin-top:24px;max-width:520px}
+  .prog-top{display:flex;justify-content:space-between;font-size:12.5px;font-weight:500;margin-bottom:6px;color:rgba(255,255,255,.72)}
+  .prog-track{height:8px;background:var(--charcoal2);border-radius:99px;overflow:hidden}
+  .prog-fill{height:100%;width:0;background:var(--orange);border-radius:99px;transition:width .35s ease}
+
+  /* tabs */
+  nav.tabs{position:sticky;top:0;z-index:40;background:rgba(27,25,26,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .tabs-inner{display:flex;gap:2px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tab{border:none;background:none;padding:15px 16px;font-size:15px;font-weight:600;font-family:var(--sans);color:var(--text2);cursor:pointer;border-bottom:2.5px solid transparent;white-space:nowrap;min-height:44px;user-select:none}
+  .tab:hover{color:var(--text)}
+  .tab:focus-visible{outline:2px solid var(--orange);outline-offset:-2px;border-radius:4px}
+  .tab.active{color:#fff;border-bottom-color:var(--orange)}
+
+  main{padding:34px 0 90px}
+  .panel{display:none;animation:fade .3s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .sec-title{font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--text2);font-weight:700;margin:6px 0 15px}
+  .sec-title.mt{margin-top:34px}
+
+  .card{background:var(--canvas);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+  .card + .card{margin-top:16px}
+
+  /* client view */
+  .lead{background:var(--canvas);color:var(--text);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:12px;padding:22px 24px;font-size:17px;font-weight:300;line-height:1.55}
+  .lead b{font-weight:600;color:var(--text)}
+  .lead .hl{color:var(--orange);font-weight:600}
+  .cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+  .cv-block{background:var(--canvas);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);padding:20px 22px}
+  .cv-block h3{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px}
+  .cv-block .big{font-family:var(--head);font-size:19px;font-weight:700;text-transform:uppercase;letter-spacing:.01em;margin-bottom:10px;color:var(--text)}
+  .cv-block p{font-size:15px;color:var(--text);font-weight:300;line-height:1.55}
+  .cv-list{list-style:none;margin-top:10px}
+  .cv-list li{position:relative;padding:5px 0 5px 20px;font-size:14.5px;font-weight:300}
+  .cv-list li::before{content:"";position:absolute;left:0;top:12px;width:7px;height:7px;border-radius:2px;background:var(--orange)}
+  details.more{margin-top:12px;border-top:1px dashed var(--border);padding-top:10px}
+  details.more>summary{list-style:none;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:7px}
+  details.more>summary::-webkit-details-marker{display:none}
+  details.more>summary .chev{font-size:11px;transition:transform .2s}
+  details.more[open]>summary .chev{transform:rotate(180deg)}
+  details.more .inner{padding-top:10px}
+  .pointer{display:flex;gap:11px;align-items:flex-start;background:var(--accent-soft);border:1px solid rgba(250,166,47,.32);border-radius:10px;padding:13px 16px;font-size:14.5px;margin-top:16px;font-weight:400}
+  .pointer .ic{color:var(--done);font-weight:800;font-family:var(--head)}
+
+  /* info table */
+  .info{width:100%;border-collapse:collapse}
+  .info tr+tr{border-top:1px solid var(--border)}
+  .info th{text-align:left;vertical-align:top;padding:14px 18px;width:150px;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);background:var(--soft);font-weight:700;font-family:var(--head)}
+  .info td{padding:14px 18px;font-size:15px;font-weight:300}
+
+  /* checklists */
+  .cg-head{display:flex;align-items:center;justify-content:space-between;padding:15px 16px 9px;gap:10px}
+  .cg-head h3{font-size:15px;font-family:var(--head);text-transform:uppercase;letter-spacing:.03em;font-weight:700}
+  .cg-head .pill{font-size:12px;font-weight:600;color:var(--text2);background:var(--soft);border:1px solid var(--border);border-radius:99px;padding:3px 10px;white-space:nowrap}
+  .checkgroup{padding:2px 8px 12px}
+  .item{display:flex;align-items:flex-start;gap:12px;padding:10px 12px;border-radius:8px;cursor:pointer;transition:background .12s}
+  .item:hover{background:var(--soft)}
+  .item input{appearance:none;-webkit-appearance:none;width:21px;height:21px;min-width:21px;margin-top:1px;border:2px solid var(--line-strong);border-radius:6px;cursor:pointer;position:relative;transition:.15s}
+  .item input:checked{background:var(--done);border-color:var(--done)}
+  .item input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .item span{font-size:15px;flex:1;font-weight:400}
+  .item.done span{color:var(--text2);text-decoration:line-through}
+
+  /* video cards */
+  .grouphead{font-family:var(--head);text-transform:uppercase;letter-spacing:.06em;font-size:12.5px;font-weight:700;color:var(--text2);margin:26px 0 12px}
+  .grouphead:first-child{margin-top:4px}
+  .vcard{margin-bottom:12px}
+  .vcard>summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;gap:15px}
+  .vcard>summary::-webkit-details-marker{display:none}
+  .vnum{width:40px;height:40px;min-width:40px;border-radius:9px;background:var(--accent-soft);color:var(--done);font-family:var(--head);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center}
+  .vhead{flex:1;min-width:0}
+  .vhead .vt{font-size:16.5px;font-weight:600;letter-spacing:0;font-family:var(--head)}
+  .vhead .vm{font-size:12.5px;color:var(--text2);margin-top:3px}
+  .vhead .vm .badge{display:inline-block;background:var(--soft);border:1px solid var(--border);border-radius:5px;padding:1px 7px;margin:2px 6px 0 0;font-weight:500}
+  .chev{color:var(--text2);transition:transform .2s;font-size:12px}
+  .vcard[open] .chev{transform:rotate(180deg)}
+  .vbody{padding:2px 18px 20px;border-top:1px solid var(--border)}
+  .vrow{margin-top:17px}
+  .vrow .rl{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);font-weight:700;font-family:var(--head);margin-bottom:7px}
+  .hook{background:var(--accent-soft);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:11px 14px;font-size:14.5px;font-style:italic}
+  .tp{list-style:none}
+  .tp li{position:relative;padding:5px 0 5px 18px;font-size:14.5px;font-weight:300}
+  .tp li::before{content:"";position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;background:var(--orange)}
+  .cta{font-size:14.5px;font-weight:500;color:var(--done)}
+  .script>summary{cursor:pointer;list-style:none;padding:11px 13px;font-size:14px;font-weight:600;color:var(--done);display:flex;align-items:center;gap:8px;background:var(--soft);border:1px solid var(--border);border-radius:8px}
+  .script>summary::-webkit-details-marker{display:none}
+  .script[open]>summary{border-radius:8px 8px 0 0}
+  .script .stext{padding:12px 14px;font-size:14.5px;line-height:1.7;white-space:pre-wrap;border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;background:var(--canvas)}
+  .notecall{display:flex;gap:9px;align-items:flex-start;background:var(--soft);border:1px solid var(--border);border-radius:8px;padding:11px 14px;font-size:14px;font-weight:300}
+  .notecall .ic{color:var(--done);font-weight:800;font-family:var(--head)}
+  .notecall b{font-weight:600}
+
+  /* run sheet */
+  .run{position:relative;padding-left:4px}
+  .rblock{display:flex;gap:16px;padding:2px 0}
+  .rleft{display:flex;flex-direction:column;align-items:center}
+  .rdot{width:34px;height:34px;min-width:34px;border-radius:50%;background:var(--canvas);border:2px solid var(--line-strong);color:var(--text2);font-family:var(--head);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;transition:.2s;z-index:2}
+  .rline{flex:1;width:2px;background:var(--border);margin:2px 0}
+  .rblock.done .rdot{background:var(--done);border-color:var(--done);color:#fff}
+  .rcontent{flex:1;padding-bottom:16px}
+  .rcard{background:var(--canvas);border:1px solid var(--border);border-radius:10px;padding:13px 16px;cursor:pointer;display:flex;gap:13px;align-items:flex-start;transition:border-color .15s}
+  .rcard:hover{border-color:var(--orange)}
+  .rcard input{appearance:none;-webkit-appearance:none;width:21px;height:21px;min-width:21px;margin-top:2px;border:2px solid var(--line-strong);border-radius:6px;cursor:pointer;position:relative}
+  .rcard input:checked{background:var(--done);border-color:var(--done)}
+  .rcard input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .rtime{font-size:12px;font-weight:700;color:var(--done);font-family:var(--head);letter-spacing:.03em}
+  .rcard .rb{font-size:15px;font-weight:600;margin-top:2px;font-family:var(--head)}
+  .rcard .rn{font-size:13.5px;color:var(--text2);margin-top:4px;font-weight:300}
+  .rblock.done .rb{text-decoration:line-through;color:var(--text2)}
+
+  .foot{text-align:center;color:var(--text2);font-size:13px;margin-top:40px;font-weight:300}
+
+  @media (max-width:720px){
+    .cv-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 16px}
+    .hero h1{font-size:32px}
+    .hero{padding:26px 0 28px}
+    .info th{width:104px;font-size:11.5px;padding:11px 12px}
+    .info td{padding:11px 12px;font-size:14px}
+    .lead{font-size:15.5px;padding:18px}
+    .tab{padding:14px 13px;font-size:14px}
+    .vhead .vt{font-size:15.5px}
+  }
+  @media print{
+    nav.tabs,.prog,.foot{display:none!important}
+    .panel{display:block!important}
+    .brandbar,header .hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .vbody{display:block!important}
+    body{background:#fff}
+  }
+  .vlink{color:var(--orange);cursor:pointer;text-decoration:none;border-bottom:1px solid rgba(250,166,47,.35);transition:.15s}
+  .vlink:hover,.vlink:focus-visible{border-bottom-color:var(--orange);outline:none}
+  .rlinks{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 2px 0}
+  .rlink{font-family:var(--head);font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--orange);background:var(--accent-soft);border:1px solid rgba(250,166,47,.3);border-radius:20px;padding:5px 12px;cursor:pointer;transition:.15s}
+  .rlink:hover,.rlink:focus-visible{background:rgba(250,166,47,.22);outline:none}
+  .rvids{display:flex;flex-direction:column;gap:8px;margin:12px 0 2px 0}
+  .rvid{background:var(--canvas);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .rvid[open]{border-color:rgba(250,166,47,.4)}
+  .rvid>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:9px;padding:9px 13px;font-family:var(--head);font-size:13px;font-weight:600}
+  .rvid>summary::-webkit-details-marker{display:none}
+  .rvid-tag{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--orange);background:var(--accent-soft);border:1px solid rgba(250,166,47,.3);border-radius:20px;padding:3px 9px}
+  .rvid-chev{margin-left:auto;color:var(--text2);font-size:10px;transition:transform .15s}
+  .rvid[open] .rvid-chev{transform:rotate(180deg)}
+  .rvd{padding:2px 15px 14px;border-top:1px solid var(--border)}
+  .rvd-hook{background:var(--accent-soft);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:9px 12px;font-size:13.5px;font-style:italic;margin:12px 0}
+  .rvd-l{font-family:var(--head);font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);margin:12px 0 5px}
+  .rvd-tp{list-style:none;margin:0;padding:0}
+  .rvd-tp li{position:relative;padding:4px 0 4px 16px;font-size:13.5px;font-weight:300}
+  .rvd-tp li::before{content:"";position:absolute;left:0;top:11px;width:5px;height:5px;border-radius:50%;background:var(--orange)}
+  .vcard{scroll-margin-top:72px}
+  .vcard.flash{box-shadow:0 0 0 2px var(--orange),0 8px 22px rgba(0,0,0,.35)}
+</style>
+</head>
+<body>
+<div class="brandbar"><div class="wrap">
+  <div class="wordmark">WhiteKey<span class="mk"> Marketing</span></div>
+  <div class="tag">Shoot Brief</div>
+</div></div>
+
+<header>
+  <div class="hero"><div class="wrap">
+    <h1>The Soldier's Cut</h1>
+    <p class="sub">Brand shoot capturing both arms under one roof, meat raffle trays and food service portion cutting. One 7-hour shoot at the factory, Wednesday 5 August 2026.</p>
+    <div class="chips">
+      <div class="chip"><b>6</b><span>videos</span></div>
+      <div class="chip"><b>60</b><span>photos</span></div>
+      <div class="chip"><b>7</b><span>hr shoot</span></div>
+      <div class="chip"><b>1</b><span>person crew</span></div>
+    </div>
+  </div></div>
+  <nav class="tabs"><div class="wrap"><div class="tabs-inner" id="tabs" role="tablist">
+    <div class="tab active" role="tab" tabindex="0" data-t="client">Client View</div>
+    <div class="tab" role="tab" tabindex="0" data-t="photo">Photography</div>
+    <div class="tab" role="tab" tabindex="0" data-t="videos">Videos (6)</div>
+    <div class="tab" role="tab" tabindex="0" data-t="run">Run Sheet</div>
+  </div></div></nav>
+</header>
+
+<main class="wrap">
+  <!-- CLIENT VIEW / OVERVIEW -->
+  <section class="panel active" id="client">
+    <div class="lead">We're capturing <b class="hl">up to 6 short-form videos</b> and <b class="hl">up to 60 photos</b> in one day at the factory. Both sides of the business get equal weight, the <b>meat raffle trays</b> and the <b>food service portion cutting</b>. Everything below is the short version. Tap any section to open more detail, or use the tabs above for the full shot lists, talking points and timing.</div>
+
+    <div class="sec-title mt">The shoot at a glance</div>
+    <div class="card">
+      <table class="info">
+        <tr><th>Client</th><td>The Soldier's Cut</td></tr>
+        <tr><th>Industry</th><td>Meat processing. Meat raffle trays, plus food service portion cutting for restaurants, clubs and hotels.</td></tr>
+        <tr><th>Location</th><td>U7/197 Power St, Glendenning NSW 2761. Cold site, production room 5 to 7&deg;C, main storage 2&deg;C.</td></tr>
+        <tr><th>Date</th><td>Wednesday 5 August 2026 &middot; 7-hour shoot &middot; 1-person crew.</td></tr>
+        <tr><th>Deliverables</th><td>Up to 6 short-form videos (up to 45s each), plus up to 60 edited photos.</td></tr>
+      </table>
+    </div>
+
+    <div class="sec-title mt">Messaging that shapes the shoot</div>
+    <div class="notecall"><div><b>50/50 split.</b> Give equal airtime to the meat raffle trays and the food service portion cutting across every asset.</div></div>
+    <div class="notecall" style="margin-top:10px"><div><b>Veteran contribution, raffle arm only.</b> The meat trays give a dollar per tray to Wounded Heroes for returned veterans. Keep it on the raffle arm and off every food service asset.</div></div>
+
+    <div class="sec-title mt">What we're capturing</div>
+    <div class="cv-grid">
+      <div class="cv-block">
+        <h3>Photography</h3>
+        <div class="big">Up to 60 photos</div>
+        <p>Real working shots across the floor, the products, the team and a full delivery run. Clean and honest, not staged stock.</p>
+        <ul class="cv-list">
+          <li>Team on the floor and clean headshots</li>
+          <li>Facility, cold storage and key equipment</li>
+          <li>Meat trays and spec-accurate portioned cuts</li>
+          <li>Cutting, packing, handover and delivery</li>
+        </ul>
+        <details class="more"><summary>Show a bit more <span class="chev">&#9660;</span></summary><div class="inner">
+          <ul class="cv-list">
+            <li>Product range for the food service pricelist</li>
+            <li>Signature detail, natural-skin sausages and fresh parsley</li>
+            <li>The delivery run following the driver into a venue kitchen</li>
+            <li>Clean hero images for the website and capability statement</li>
+          </ul>
+        </div></details>
+      </div>
+      <div class="cv-block">
+        <h3>Videography</h3>
+        <div class="big">6 videos</div>
+        <p>Six short videos from the one shoot, plus an optional testimonial if a chef or venue is up for it on the day.</p>
+        <ul class="cv-list">
+          <li><a class="vlink" data-goto="1" tabindex="0" role="link">1. Promo Video</a></li>
+          <li><a class="vlink" data-goto="2" tabindex="0" role="link">2. About Us</a></li>
+          <li><a class="vlink" data-goto="3" tabindex="0" role="link">3. Portion Cutting, Educational</a></li>
+          <li><a class="vlink" data-goto="4" tabindex="0" role="link">4. Meat Trays Product Highlight</a></li>
+          <li><a class="vlink" data-goto="5" tabindex="0" role="link">5. Delivery Interview with Ray - Pt 1</a></li>
+          <li><a class="vlink" data-goto="6" tabindex="0" role="link">6. Delivery Interview with Ray - Pt 2</a></li>
+          <li><a class="vlink" data-goto="T" tabindex="0" role="link">Testimonial (nice to have)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pointer"><div>Click any video above to jump straight to its talking points and shot list, or open the <b>Photography</b> and <b>Videos</b> tabs for everything.</div></div>
+
+    <div class="sec-title mt">The day, start to finish</div>
+    <div class="card"><div class="checkgroup" id="cv-run"></div></div>
+    <div class="pointer"><div>Full timing and shot-by-shot notes are in the <b>Run Sheet</b> tab.</div></div>
+
+    <div class="foot">Tap any item to check it off during the shoot.</div>
+  </section>
+
+  <!-- PHOTO -->
+  <section class="panel" id="photo">
+    <div class="sec-title">Photography, up to 60 frames</div>
+    <div id="photoGroups"></div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section class="panel" id="videos">
+    <div class="sec-title">Tap a video to open its talking points and B-roll checklist</div>
+    <div id="videoCards"></div>
+  </section>
+
+  <!-- RUN SHEET -->
+  <section class="panel" id="run">
+    <div class="sec-title">Shoot day run sheet, suggested order, work top to bottom</div>
+    <div class="run" id="runList"></div>
+    <div class="foot">Times are a guide. Production b-roll is captured while the floor is busiest. The delivery run is shot in the afternoon so it follows a real order out to a venue.</div>
+  </section>
+</main>
+
+<script>
+const PHOTO_GROUPS = [
+  {title:"Team & people", items:[
+    `Team on the floor, individuals and the group`,
+    `Clean headshots against a simple background`,
+    `Ray on camera for the business story`,
+    `Hands and faces at work, natural action`
+  ]},
+  {title:"Facility & equipment", items:[
+    `Processing floor in full operation, wide and tight`,
+    `Cold storage and the production room`,
+    `Key equipment Ray flags in the phone tour`,
+    `Exterior and signage for the openers`
+  ]},
+  {title:"Products", items:[
+    `Meat trays packed and presented`,
+    `Portioned cuts, spec accurate for food service`,
+    `Full product range for the pricelist`,
+    `Signature detail, natural-skin sausages`,
+    `Fresh parsley, six boxes a week from a local farm`
+  ]},
+  {title:"Cutting, packing & delivery", items:[
+    `Cutting and portioning to spec`,
+    `Weighing and precision, 10 gram margins`,
+    `Labelling, packaging and load-out`,
+    `Handover to the delivery vans`,
+    `The delivery run, following the driver into a venue kitchen`
+  ]},
+  {title:"Brand, website & sales assets", items:[
+    `Clean hero images for the website and capability statement`,
+    `Detail shots for ads and the food service pricelist`,
+    `Process and capability shots that show scale and standards`
+  ]}
+];
+
+const VIDEOS = [
+  {n:"1", group:"", t:"Promo Video", meta:["Vertical 9x16","Landscape 16x9 banner","Up to 45s","B-roll only"],
+   type:"B-roll only. Vertical hero cut plus a landscape banner cut for the website.",
+   broll:[`Exterior and signage for the open`,`Processing floor in full operation, wide and tight`,`Hero portioning and knife work`,`Meat trays packed and presented`,`Team at work, faces and hands`,`Packing and a delivery leaving the dock`,`Slow beauty frames for the open and close`]},
+  {n:"2", group:"", t:"About Us", meta:["Vertical 9x16","Up to 45s","Ray on camera"],
+   type:"Ray on camera. The company story and the people behind it.",
+   note:"Answer in full sentences so each line stands alone.",
+   hook:`Meet the team behind The Soldier's Cut`,
+   tp:[`Who is The Soldier's Cut and what do you do?`,`How did the business start and where is it now?`,`What sets The Soldier's Cut apart?`,`Who do you look after, from raffle trays to restaurants and clubs?`,`What are you most proud of in what the team makes?`],
+   broll:[`Team on the floor, individuals and the group`,`Ray on camera for the story`,`Real day to day operation, unstaged`,`Both arms shown evenly`,`Facility details that show scale and standards`]},
+  {n:"3", group:"", t:"Portion Cutting, Educational", meta:["Vertical 9x16","Up to 45s","Educational"],
+   type:"Educational. The food service pitch for restaurants, clubs and hotels.",
+   hook:`If you're looking for a meat distributor, here's what to look for`,
+   tp:[`What should a venue look for in a meat distributor?`,`How do you hit a portion spec, so a 300g order lands 300 to 315g?`,`How do you keep every cut consistent, order after order?`,`What does your labelling, packing and delivery look like?`,`How much can you turn around in a week?`],
+   broll:[`Portioning process walkthrough, start to finish`,`Precision cutting demo and knife work`,`Weighing and spec accuracy`,`Labelling and packaging`,`Volume on the floor that signals capacity`]},
+  {n:"4", group:"", t:"Meat Trays Product Highlight", meta:["Vertical 9x16","Up to 45s","Product highlight"],
+   type:"Product highlight. Recommended, confirm the range with Ray.",
+   hook:`The meat tray built for the weekend raffle`,
+   tp:[`What goes into a tray and what does it feed?`,`What makes your trays better value than a supermarket pack?`,`How do clubs and pubs use these for their weekend raffles?`,`What is the range, and can someone order a custom tray?`],
+   broll:[`Full tray range on display`,`Building and packing a tray`,`Close-up texture and quality of the meat`,`Presentation and labelling`]},
+  {n:"5", group:"", t:"Delivery Interview with Ray - Pt 1", meta:["Vertical 9x16","Up to 45s","Ray on camera","Handheld"],
+   type:"Ray on camera on the delivery run. Part 1 of two, the story and why food service.",
+   note:"Shot on the road. Answer in full sentences so each line stands alone.",
+   hook:`How The Soldier's Cut moved into food service`,
+   tp:[`What made you move into food service for restaurants, clubs and hotels?`,`In your own words, what is The Soldier's Cut about?`,`What do you enjoy most about supplying chefs, clubs and pubs?`,`What does a venue get from you that a big supplier can't?`],
+   broll:[`Ray answering in the van, natural and unscripted`,`Driving b-roll on the way to the venue`,`Arrival and handover at the venue`]},
+  {n:"6", group:"", t:"Delivery Interview with Ray - Pt 2", meta:["Vertical 9x16","Up to 45s","Ray on camera","Handheld"],
+   type:"Ray on camera on the delivery run. Part 2 of two, the reliability promise.",
+   hook:`Why venues keep ordering from The Soldier's Cut`,
+   tp:[`What do you promise on consistency and spec for a portioned order?`,`How do you keep quality the same, order after order?`,`How do you make sure an order lands on time, every time?`,`Why should a new restaurant or club trust you with a standing order?`],
+   broll:[`Ray answering in the van, natural and unscripted`,`Handover and the cut checked at the venue`,`The order landing on time`]},
+  {n:"T", group:"Nice to have (optional)", t:"Testimonial", meta:["Vertical 9x16","Up to 30s","Talking head","If available"],
+   type:"Optional. Only if a chef or venue is willing on the day.",
+   note:"Keep it natural, don't push for a sales line.",
+   tp:[`Introduce yourself and your venue.`,`How did you find The Soldier's Cut?`,`How have they been to work with?`,`What's one thing they do well?`],
+   broll:[`A chef or venue owner on camera at handover`,`Them receiving or using the product in a real kitchen`]}
+];
+
+const RUN = [
+  ["1","8:00","Setup & briefing","Roughly 30 minutes. Walk the floor with Ray, review the phone tour, block backdrops, run a lighting and audio check, confirm PPE and the shot priorities for the day."],
+  ["2","8:30","Processing floor at full production","The floor is busiest early, so capture it first. Wide and tight b-roll of the operation for the Promo, About Us and Portion Cutting videos.",["1","2","3"]],
+  ["3","10:00","Portion cutting & precision demo","Video 3 coverage. Portioning start to finish, the precision cut, weighing to spec, labelling and packaging. This is the food service pitch, keep the veteran angle out.",["3"]],
+  ["4","11:00","Products: meat trays & cuts","Video 4 plus product photos. Full tray range, building a tray, close-up quality, and portioned cuts for the pricelist.",["4"]],
+  ["5","11:45","Ray on camera: interview","The factory interview for the About Us and Promo soundbites. Answer in full sentences so each line stands alone.",["2","1"]],
+  ["6","12:30","Team headshots & people","Clean headshots and natural action shots of the team on the floor."],
+  ["7","13:00","Pack & load the vans","Packing, labelling, load-out and handover to the delivery vans."],
+  ["8","13:30","Delivery run with Ray","Videos 5 and 6. Follow a real order out, handheld, from the factory into a venue kitchen. Ray answers the Part 1 and Part 2 questions on the road.",["5","6"]],
+  ["9","15:00","Opportunistic testimonial","If a chef or venue is willing on the day, grab a short, natural testimonial at handover. Skip if no one is comfortable.",["T"]],
+  ["10","15:30","Wrap & backup","Check the shot list against the brief, back up all footage, and run a quick debrief with Ray."]
+];
+
+const CVRUN = [
+  "Setup & briefing",
+  "Processing floor at full production",
+  "Portion cutting & precision demo",
+  "Products: meat trays & cuts",
+  "Ray on camera: interview",
+  "Team headshots & people",
+  "Pack & load the vans",
+  "Delivery run with Ray",
+  "Opportunistic testimonial",
+  "Wrap & backup"
+];
+
+/* ---- state (safe for sandboxed embeds) ---- */
+const KEY="soldiers_cut_brief_v1";
+let state={};
+try{state=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){state={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function itemHTML(id,label){
+  const on=state[id]?"checked":"";
+  const cls=state[id]?"item done":"item";
+  return `<label class="${cls}" data-id="${id}"><input type="checkbox" ${on}><span>${label}</span></label>`;
+}
+
+/* client-view day-at-a-glance (clickable, shares run-sheet state) */
+document.getElementById("cv-run").innerHTML =
+  `<div class="cg-head"><h3>The day, in order</h3><span class="pill">10 blocks</span></div>` +
+  CVRUN.map((r,i)=>{const id="run-"+(i+1);const on=state[id]?"checked":"";const cls=state[id]?"item done":"item";return `<label class="${cls}" data-id="${id}"><input type="checkbox" ${on}><span><b>${i+1}.</b> ${esc(r)}</span></label>`;}).join("");
+
+/* photo groups */
+document.getElementById("photoGroups").innerHTML = PHOTO_GROUPS.map((g,gi)=>{
+  const items=g.items.map((p,i)=>itemHTML(`photo-${gi}-${i}`, esc(p))).join("");
+  return `<div class="card checkgroup"><div class="cg-head"><h3>${esc(g.title)}</h3><span class="pill" id="pc-${gi}"></span></div>${items}</div>`;
+}).join("");
+
+/* video cards, grouped */
+let lastGroup="";
+document.getElementById("videoCards").innerHTML = VIDEOS.map(v=>{
+  let head="";
+  if(v.group!==lastGroup){head=`<div class="grouphead">${esc(v.group)}</div>`;lastGroup=v.group;}
+  const scriptBlock = v.script ? `<div class="vrow"><div class="rl">Script, client-written, do not alter</div>
+      <details class="script"><summary>Show script</summary><div class="stext">${v.script.map(s=>(s[0]?`<b>${esc(s[0])}</b>\n`:"")+esc(s[1])).join("\n\n")}</div></details></div>` : "";
+  const hookBlock = v.hook ? `<div class="vrow"><div class="rl">Hook</div><div class="hook">${esc(v.hook)}</div></div>` : "";
+  const tpBlock = v.cuts ? v.cuts.map(c=>`<div class="vrow"><div class="rl">${esc(c.l)}</div><ul class="tp">${c.tp.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>`).join("") : (v.tp ? `<div class="vrow"><div class="rl">Talking points</div><ul class="tp">${v.tp.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>` : "");
+  const ctaBlock = v.cta ? `<div class="vrow"><div class="rl">CTA</div><div class="cta">${esc(v.cta)}</div></div>` : "";
+  const broll = v.broll.map((b,i)=>itemHTML(`broll-${v.n}-${i}`, esc(b))).join("");
+  return head + `<details class="card vcard" id="v-${v.n}">
+    <summary>
+      <div class="vnum">${esc(v.n)}</div>
+      <div class="vhead"><div class="vt">${esc(v.t)}</div>
+        <div class="vm">${v.meta.map(m=>`<span class="badge">${esc(m)}</span>`).join("")}</div></div>
+      <div class="chev">▼</div>
+    </summary>
+    <div class="vbody">
+      <div class="vrow"><div class="rl">Type</div><div>${esc(v.type)}</div></div>
+      ${v.note?`<div class="vrow"><div class="notecall"><div><b>Notes.</b> ${esc(v.note)}</div></div></div>`:""}
+      ${hookBlock}
+      ${tpBlock}
+      ${scriptBlock}
+      <div class="vrow"><div class="rl">B-Roll checklist</div><div class="checkgroup" style="padding:0">${broll}</div></div>
+      ${ctaBlock}
+    </div>
+  </details>`;
+}).join("");
+
+/* run sheet */
+const VMAP={};VIDEOS.forEach(v=>{VMAP[v.n]=v;});
+function vidLabel(n){if(n==="T")return "Testimonial";if(/^B/.test(n))return "Bonus "+n;return "Video "+n;}
+function vidToggle(n){
+  const v=VMAP[n];if(!v)return "";
+  const hook=v.hook?`<div class="rvd-hook">${esc(v.hook)}</div>`:"";
+  const tp=v.cuts?v.cuts.map(c=>`<div class="rvd-l">${esc(c.l)}</div><ul class="rvd-tp">${c.tp.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>`).join(""):(v.tp?`<div class="rvd-l">Talking points</div><ul class="rvd-tp">${v.tp.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>`:"");
+  const broll=`<div class="rvd-l">B-roll</div><ul class="rvd-tp">${v.broll.map(b=>`<li>${esc(b)}</li>`).join("")}</ul>`;
+  return `<details class="rvid"><summary><span class="rvid-tag">${esc(vidLabel(n))}</span> ${esc(v.t)}<span class="rvid-chev">\u25BC</span></summary><div class="rvd">${hook}${tp}${broll}</div></details>`;
+}
+document.getElementById("runList").innerHTML = RUN.map((r,i)=>{
+  const id="run-"+r[0];
+  const done=state[id]?"done":"";
+  const last=i===RUN.length-1;
+  const vids=(r[4]&&r[4].length)?`<div class="rvids">${r[4].map(vidToggle).join("")}</div>`:"";
+  return `<div class="rblock ${done}" data-id="${id}">
+    <div class="rleft"><div class="rdot">${esc(r[0])}</div>${last?"":'<div class="rline"></div>'}</div>
+    <div class="rcontent"><label class="rcard"><input type="checkbox" ${state[id]?"checked":""}>
+      <div><div class="rtime">${esc(r[1])}</div><div class="rb">${esc(r[2])}</div><div class="rn">${esc(r[3])}</div></div></label>${vids}</div>
+  </div>`;
+}).join("");
+
+/* counts + progress */
+function updateCounts(){
+  PHOTO_GROUPS.forEach((g,gi)=>{
+    const el=document.getElementById("pc-"+gi);if(!el)return;
+    el.textContent=g.items.length+" shots";
+  });
+}
+
+/* events */
+document.addEventListener("change",e=>{
+  if(e.target.type!=="checkbox"||e.target.disabled)return;
+  const host=e.target.closest("[data-id]");if(!host)return;
+  const id=host.dataset.id;const on=e.target.checked;
+  state[id]=on;
+  document.querySelectorAll('[data-id="'+id+'"]').forEach(el=>{
+    el.classList.toggle("done",on);
+    const cb=el.querySelector('input[type=checkbox]');
+    if(cb&&cb!==e.target)cb.checked=on;
+  });
+  save();updateCounts();
+});
+
+/* tabs */
+function activateTab(b){
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  b.classList.add("active");
+  const panel=document.getElementById(b.dataset.t);if(panel)panel.classList.add("active");
+  window.scrollTo({top:0,behavior:"auto"});
+}
+document.getElementById("tabs").addEventListener("click",e=>{
+  const b=e.target.closest(".tab");if(b)activateTab(b);
+});
+document.getElementById("tabs").addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const b=e.target.closest(".tab");if(b){e.preventDefault();activateTab(b);}
+});
+
+/* cross-links: jump to and open a specific video */
+function goToVideo(n){
+  const tab=document.querySelector('.tab[data-t="videos"]');
+  if(tab)activateTab(tab);
+  const el=document.getElementById("v-"+n);
+  if(!el)return;
+  el.open=true;
+  requestAnimationFrame(()=>{
+    el.scrollIntoView({behavior:"smooth",block:"start"});
+    el.classList.add("flash");
+    setTimeout(()=>el.classList.remove("flash"),1400);
+  });
+}
+document.addEventListener("click",e=>{
+  const a=e.target.closest("[data-goto]");
+  if(a){e.preventDefault();goToVideo(a.getAttribute("data-goto"));}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const a=e.target.closest("[data-goto]");
+  if(a){e.preventDefault();goToVideo(a.getAttribute("data-goto"));}
+});
+
+updateCounts();
+</script>
+</body>
+</html>

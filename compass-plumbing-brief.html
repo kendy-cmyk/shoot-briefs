@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compass Plumbing Shoot Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#333132; --orange:#faa62f; --tangerine:#f7b52d; --white:#ffffff;
+    --bg:#1b191a;
+    --text:#f1efed; --text2:#a7a3a1; --canvas:#2a2829; --soft:#242223;
+    --surface:#3a3738; --border:#403d3e; --accent:#faa62f; --accent-soft:rgba(250,166,47,.13);
+    --done:#faa62f; --charcoal2:#403e3f; --charcoal-line:rgba(255,255,255,.14);
+    --line-strong:#5f5c5d;
+    --shadow:0 1px 2px rgba(0,0,0,.30),0 6px 18px rgba(0,0,0,.30);
+    --head:"Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    --sans:"Roboto",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;background:var(--bg);color-scheme:dark}
+  body{font-family:var(--sans);color:var(--text);background:var(--bg);font-size:16px;line-height:1.5;font-weight:400;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  h1,h2,h3,.eyebrow,.sec-title,.wordmark,.chip b{font-family:var(--head)}
+
+  .brandbar{background:var(--charcoal);border-bottom:1px solid var(--charcoal-line)}
+  .brandbar .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px;gap:16px;flex-wrap:wrap}
+  .wordmark{font-weight:800;font-size:20px;letter-spacing:.02em;color:#fff;text-transform:uppercase}
+  .wordmark .mk{color:var(--orange)}
+  .brandbar .tag{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:500}
+
+  header .hero{background:var(--charcoal);color:#fff;padding:30px 0 34px}
+  .eyebrow{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:700}
+  .hero h1{font-size:44px;line-height:1.02;margin:12px 0 10px;letter-spacing:.01em;text-transform:uppercase;color:#fff}
+  .hero .sub{color:rgba(255,255,255,.72);font-size:16.5px;max-width:660px;font-weight:300}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .chip{display:flex;align-items:baseline;gap:7px;background:var(--charcoal2);border:1px solid var(--charcoal-line);border-radius:8px;padding:9px 13px}
+  .chip b{font-size:20px;font-weight:800;color:var(--orange);letter-spacing:0}
+  .chip span{color:rgba(255,255,255,.72);font-weight:400;font-size:13.5px}
+
+  nav.tabs{position:sticky;top:0;z-index:40;background:rgba(27,25,26,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .tabs-inner{display:flex;gap:2px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tab{border:none;background:none;padding:15px 16px;font-size:15px;font-weight:600;font-family:var(--sans);color:var(--text2);cursor:pointer;border-bottom:2.5px solid transparent;white-space:nowrap;min-height:44px;user-select:none}
+  .tab:hover{color:var(--text)}
+  .tab:focus-visible{outline:2px solid var(--orange);outline-offset:-2px;border-radius:4px}
+  .tab.active{color:#fff;border-bottom-color:var(--orange)}
+
+  main{padding:34px 0 90px}
+  .panel{display:none;animation:fade .3s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .sec-title{font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--text2);font-weight:700;margin:6px 0 15px}
+  .sec-title.mt{margin-top:34px}
+
+  .card{background:var(--canvas);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+  .card + .card{margin-top:16px}
+
+  .lead{background:var(--canvas);color:var(--text);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:12px;padding:22px 24px;font-size:17px;font-weight:300;line-height:1.55}
+  .lead b{font-weight:600;color:var(--text)}
+  .lead .hl{color:var(--orange);font-weight:600}
+  .cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+  .cv-block{background:var(--canvas);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);padding:20px 22px}
+  .cv-block h3{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px}
+  .cv-block .big{font-family:var(--head);font-size:19px;font-weight:700;text-transform:uppercase;letter-spacing:.01em;margin-bottom:10px;color:var(--text)}
+  .cv-block p{font-size:15px;color:var(--text);font-weight:300;line-height:1.55}
+  .cv-list{list-style:none;margin-top:10px}
+  .cv-list li{position:relative;padding:5px 0 5px 20px;font-size:14.5px;font-weight:300}
+  .cv-list li::before{content:"";position:absolute;left:0;top:12px;width:7px;height:7px;border-radius:2px;background:var(--orange)}
+  details.more{margin-top:12px;border-top:1px dashed var(--border);padding-top:10px}
+  details.more>summary{list-style:none;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:7px}
+  details.more>summary::-webkit-details-marker{display:none}
+  details.more>summary .chev{font-size:11px;transition:transform .2s}
+  details.more[open]>summary .chev{transform:rotate(180deg)}
+  details.more .inner{padding-top:10px}
+  .pointer{display:flex;gap:11px;align-items:flex-start;background:var(--accent-soft);border:1px solid rgba(250,166,47,.32);border-radius:10px;padding:13px 16px;font-size:14.5px;margin-top:16px;font-weight:400}
+  .pointer .ic{color:var(--done);font-weight:800;font-family:var(--head)}
+
+  .info{width:100%;border-collapse:collapse}
+  .info tr+tr{border-top:1px solid var(--border)}
+  .info th{text-align:left;vertical-align:top;padding:14px 18px;width:150px;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);background:var(--soft);font-weight:700;font-family:var(--head)}
+  .info td{padding:14px 18px;font-size:15px;font-weight:300}
+
+  .cg-head{display:flex;align-items:center;justify-content:space-between;padding:15px 16px 9px;gap:10px}
+  .cg-head h3{font-size:15px;font-family:var(--head);text-transform:uppercase;letter-spacing:.03em;font-weight:700}
+  .cg-head .pill{font-size:12px;font-weight:600;color:var(--text2);background:var(--soft);border:1px solid var(--border);border-radius:99px;padding:3px 10px;white-space:nowrap}
+  .checkgroup{padding:2px 8px 12px}
+  .item{display:flex;align-items:flex-start;gap:12px;padding:10px 12px;border-radius:8px;cursor:pointer;transition:background .12s}
+  .item:hover{background:var(--soft)}
+  .item input{appearance:none;-webkit-appearance:none;width:21px;height:21px;min-width:21px;margin-top:1px;border:2px solid var(--line-strong);border-radius:6px;cursor:pointer;position:relative;transition:.15s}
+  .item input:checked{background:var(--done);border-color:var(--done)}
+  .item input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .item span{font-size:15px;flex:1;font-weight:400}
+  .item.done span{color:var(--text2);text-decoration:line-through}
+
+  .grouphead{font-family:var(--head);text-transform:uppercase;letter-spacing:.06em;font-size:12.5px;font-weight:700;color:var(--text2);margin:26px 0 12px}
+  .grouphead:first-child{margin-top:4px}
+  .vcard{margin-bottom:12px}
+  .vcard>summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;gap:15px}
+  .vcard>summary::-webkit-details-marker{display:none}
+  .vnum{width:40px;height:40px;min-width:40px;border-radius:9px;background:var(--accent-soft);color:var(--done);font-family:var(--head);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center}
+  .vhead{flex:1;min-width:0}
+  .vhead .vt{font-size:16.5px;font-weight:600;letter-spacing:0;font-family:var(--head)}
+  .vhead .vm{font-size:12.5px;color:var(--text2);margin-top:3px}
+  .vhead .vm .badge{display:inline-block;background:var(--soft);border:1px solid var(--border);border-radius:5px;padding:1px 7px;margin:2px 6px 0 0;font-weight:500}
+  .chev{color:var(--text2);transition:transform .2s;font-size:12px}
+  .vcard[open] .chev{transform:rotate(180deg)}
+  .vbody{padding:2px 18px 20px;border-top:1px solid var(--border)}
+  .vrow{margin-top:17px}
+  .vrow .rl{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);font-weight:700;font-family:var(--head);margin-bottom:7px}
+  .hook{background:var(--accent-soft);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:11px 14px;font-size:14.5px;font-style:italic}
+  .tp{list-style:none}
+  .tp li{position:relative;padding:5px 0 5px 18px;font-size:14.5px;font-weight:300}
+  .tp li::before{content:"";position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;background:var(--orange)}
+  .cta{font-size:14.5px;font-weight:500;color:var(--done)}
+  .notecall{display:flex;gap:9px;align-items:flex-start;background:var(--soft);border:1px solid var(--border);border-radius:8px;padding:11px 14px;font-size:14px;font-weight:300}
+  .notecall .ic{color:var(--done);font-weight:800;font-family:var(--head)}
+  .notecall b{font-weight:600}
+
+  .run{position:relative;padding-left:4px}
+  .rblock{display:flex;gap:16px;padding:2px 0}
+  .rleft{display:flex;flex-direction:column;align-items:center}
+  .rdot{width:34px;height:34px;min-width:34px;border-radius:50%;background:var(--canvas);border:2px solid var(--line-strong);color:var(--text2);font-family:var(--head);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;transition:.2s;z-index:2}
+  .rline{flex:1;width:2px;background:var(--border);margin:2px 0}
+  .rblock.done .rdot{background:var(--done);border-color:var(--done);color:#fff}
+  .rcontent{flex:1;padding-bottom:16px}
+  .rcard{background:var(--canvas);border:1px solid var(--border);border-radius:10px;padding:13px 16px;cursor:pointer;display:flex;gap:13px;align-items:flex-start;transition:border-color .15s}
+  .rcard:hover{border-color:var(--orange)}
+  .rcard input{appearance:none;-webkit-appearance:none;width:21px;height:21px;min-width:21px;margin-top:2px;border:2px solid var(--line-strong);border-radius:6px;cursor:pointer;position:relative}
+  .rcard input:checked{background:var(--done);border-color:var(--done)}
+  .rcard input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .rtime{font-size:12px;font-weight:700;color:var(--done);font-family:var(--head);letter-spacing:.03em}
+  .rcard .rb{font-size:15px;font-weight:600;margin-top:2px;font-family:var(--head)}
+  .rcard .rn{font-size:13.5px;color:var(--text2);margin-top:4px;font-weight:300}
+  .rblock.done .rb{text-decoration:line-through;color:var(--text2)}
+
+  .foot{text-align:center;color:var(--text2);font-size:13px;margin-top:40px;font-weight:300}
+
+  @media (max-width:720px){
+    .cv-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 16px}
+    .hero h1{font-size:32px}
+    .hero{padding:26px 0 28px}
+    .info th{width:104px;font-size:11.5px;padding:11px 12px}
+    .info td{padding:11px 12px;font-size:14px}
+    .lead{font-size:15.5px;padding:18px}
+    .tab{padding:14px 13px;font-size:14px}
+    .vhead .vt{font-size:15.5px}
+  }
+  @media print{
+    nav.tabs,.foot{display:none!important}
+    .panel{display:block!important}
+    .brandbar,header .hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .vbody{display:block!important}
+    body{background:#fff}
+  }
+  .vlink{color:var(--orange);cursor:pointer;text-decoration:none;border-bottom:1px solid rgba(250,166,47,.35);transition:.15s}
+  .vlink:hover,.vlink:focus-visible{border-bottom-color:var(--orange);outline:none}
+  .cvlink{color:var(--orange);cursor:pointer;border-bottom:1px solid rgba(250,166,47,.35)}
+  .cvlink:hover,.cvlink:focus-visible{border-bottom-color:var(--orange);outline:none}
+  .rvids{display:flex;flex-direction:column;gap:8px;margin:12px 0 2px 0}
+  .rvid{background:var(--canvas);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .rvid[open]{border-color:rgba(250,166,47,.4)}
+  .rvid>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:9px;padding:9px 13px;font-family:var(--head);font-size:13px;font-weight:600}
+  .rvid>summary::-webkit-details-marker{display:none}
+  .rvid-tag{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--orange);background:var(--accent-soft);border:1px solid rgba(250,166,47,.3);border-radius:20px;padding:3px 9px}
+  .rvid-chev{margin-left:auto;color:var(--text2);font-size:10px;transition:transform .15s}
+  .rvid[open] .rvid-chev{transform:rotate(180deg)}
+  .rvd{padding:2px 15px 14px;border-top:1px solid var(--border)}
+  .rvd-hook{background:var(--accent-soft);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:9px 12px;font-size:13.5px;font-style:italic;margin:12px 0}
+  .rvd-l{font-family:var(--head);font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);margin:12px 0 5px}
+  .rvd-tp{list-style:none;margin:0;padding:0}
+  .rvd-tp li{position:relative;padding:4px 0 4px 16px;font-size:13.5px;font-weight:300}
+  .rvd-tp li::before{content:"";position:absolute;left:0;top:11px;width:5px;height:5px;border-radius:50%;background:var(--orange)}
+  .vcard{scroll-margin-top:72px}
+  .vcard.flash{box-shadow:0 0 0 2px var(--orange),0 8px 22px rgba(0,0,0,.35)}
+  .rblock{scroll-margin-top:72px}
+  .rblock.flash .rcard{box-shadow:0 0 0 2px var(--orange),0 8px 22px rgba(0,0,0,.35)}
+</style>
+</head>
+<body>
+<div class="brandbar"><div class="wrap">
+  <div class="wordmark">WhiteKey<span class="mk"> Marketing</span></div>
+  <div class="tag">Shoot Brief</div>
+</div></div>
+
+<header>
+  <div class="hero"><div class="wrap">
+    <h1>Compass Plumbing</h1>
+    <p class="sub">Residential shoot for the new one-page website, the Google Ads landing pages and socials. One 4-hour shoot across two homes, plus a team stop with the wrapped vans near Sydney Olympic Park.</p>
+    <div class="chips">
+      <div class="chip"><b>4</b><span>videos</span></div>
+      <div class="chip"><b>45</b><span>photos</span></div>
+      <div class="chip"><b>4</b><span>hr shoot</span></div>
+      <div class="chip"><b>1</b><span>person crew</span></div>
+    </div>
+  </div></div>
+  <nav class="tabs"><div class="wrap"><div class="tabs-inner" id="tabs" role="tablist">
+    <div class="tab active" role="tab" tabindex="0" data-t="client">Client View</div>
+    <div class="tab" role="tab" tabindex="0" data-t="photo">Photography</div>
+    <div class="tab" role="tab" tabindex="0" data-t="videos">Videos (4)</div>
+    <div class="tab" role="tab" tabindex="0" data-t="run">Run Sheet</div>
+  </div></div></nav>
+</header>
+
+<main class="wrap">
+  <section class="panel active" id="client">
+    <div class="lead">We're capturing <b class="hl">4 short-form videos</b> and <b class="hl">up to 45 photos</b> in one day, all in real homes. The shoot covers the jobs homeowners actually call about: <b>sinks and blockages, drains, hot water, bathrooms and pipe re-lining</b>. Everything below is the short version. Tap any section for more, or use the tabs for the full shot lists, talking points and timing.</div>
+
+    <div class="sec-title mt">The shoot at a glance</div>
+    <div class="card">
+      <table class="info">
+        <tr><th>Client</th><td>Compass Plumbing</td></tr>
+        <tr><th>Industry</th><td>Trades. Residential plumbing across sinks and blockages, drains, hot water, bathrooms and pipe re-lining.</td></tr>
+        <tr><th>Location</th><td>Michael's house is the main location. A second house is a 5-minute drive away. One team stop at a parking lot near Sydney Olympic Park.</td></tr>
+        <tr><th>Date</th><td>To be confirmed, targeting the second week of August. 4-hour shoot, 1-person crew.</td></tr>
+        <tr><th>Deliverables</th><td>4 videos up to 45s each, plus up to 45 edited photos with all RAWs supplied.</td></tr>
+        <tr><th>Format</th><td>Landscape 16:9 framed for vertical. The promo also gets a vertical cut for socials.</td></tr>
+      </table>
+    </div>
+
+    <div class="sec-title mt">Two things that shape the shoot</div>
+    <div class="notecall"><div><b>Residential only.</b> No factory and no commercial jobs. Every frame should read as a normal suburban home.</div></div>
+    <div class="notecall" style="margin-top:10px"><div><b>Michael is not doing a talking head.</b> He speaks off bullet points, no script and no teleprompter, and only appears at the open and close of the About Us. The answers get cut as voiceover.</div></div>
+
+    <div class="sec-title mt">What we're capturing</div>
+    <div class="cv-grid">
+      <div class="cv-block">
+        <h3>Photography</h3>
+        <div class="big">Up to 45 photos</div>
+        <p>Real jobs in real homes. Clean sites, tidy tools, the team in uniform and the wrapped vans. Practical, not staged stock.</p>
+        <ul class="cv-list">
+          <li>Michael in uniform, on the job and at the door</li>
+          <li>Team of six with the branded vans</li>
+          <li>Job scenes by service, ready for the landing pages</li>
+          <li>Tight detail shots of hands, tools and fittings</li>
+        </ul>
+        <details class="more"><summary>Show a bit more <span class="chev">&#9660;</span></summary><div class="inner">
+          <ul class="cv-list">
+            <li>Website hero options, wide and vertical safe</li>
+            <li>Before and after pairs if a suitable job is available</li>
+            <li>Gallery frames of finished work and a packed-up site</li>
+            <li>Van exteriors, doors open, gear staged</li>
+          </ul>
+        </div></details>
+      </div>
+      <div class="cv-block">
+        <h3>Videography</h3>
+        <div class="big">4 videos</div>
+        <p>Four short videos from the one shoot. The promo is the website hero, the other three carry trust.</p>
+        <ul class="cv-list">
+          <li><a class="vlink" data-goto="1" tabindex="0" role="link">1. Promo, website hero</a></li>
+          <li><a class="vlink" data-goto="2" tabindex="0" role="link">2. About Us</a></li>
+          <li><a class="vlink" data-goto="3" tabindex="0" role="link">3. Educational tips</a></li>
+          <li><a class="vlink" data-goto="4" tabindex="0" role="link">4. Customer testimonial</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pointer"><div>Click any video above to jump straight to its talking points and shot list, or open the <b>Photography</b> and <b>Videos</b> tabs for everything.</div></div>
+
+    <div class="sec-title mt">The day, start to finish</div>
+    <div class="card"><div class="checkgroup" id="cv-run"></div></div>
+    <div class="pointer"><div>Tap a line to jump to that block. Full timing sits in the <b>Run Sheet</b> tab.</div></div>
+
+    <div class="foot">Tap any item to check it off during the shoot.</div>
+  </section>
+
+  <section class="panel" id="photo">
+    <div class="sec-title">Photography, up to 45 frames</div>
+    <div id="photoGroups"></div>
+  </section>
+
+  <section class="panel" id="videos">
+    <div class="sec-title">Tap a video to open its talking points and B-roll checklist</div>
+    <div id="videoCards"></div>
+  </section>
+
+  <section class="panel" id="run">
+    <div class="sec-title">Shoot day run sheet, timings from call time, work top to bottom</div>
+    <div class="run" id="runList"></div>
+    <div class="foot">Times are a guide from call time. Job areas at both houses should be prepped before the crew arrives or the day runs over.</div>
+  </section>
+</main>
+
+<script>
+const PHOTO_GROUPS = [
+  {title:"Michael & the team", items:[
+    `Michael in uniform, work-ready and approachable`,
+    `Michael at the front door, homeowner handover`,
+    `Team of six with the wrapped vans, cross-arm frame`,
+    `Individual plumbers in uniform on the job`,
+    `Hands and faces at work, natural action`
+  ]},
+  {title:"Vans & kit", items:[
+    `Van in the driveway, wrap and signage clear`,
+    `Van doors open, gear and shelving visible`,
+    `Tools laid out on a drop sheet`,
+    `Michael walking in with the tool bag`
+  ]},
+  {title:"Jobs by service", items:[
+    `Under-sink work, torch on, hands on the fitting`,
+    `Blocked or slow drain, cover off`,
+    `Hot water unit, dials, valves, pressure check`,
+    `Bathroom fixture and tap running clean`,
+    `Kitchen tap and waste`,
+    `Pipe re-lining gear set up and in use`
+  ]},
+  {title:"Detail & trust cues", items:[
+    `Close-up of hands checking a fitting`,
+    `Drop sheets down, site protected`,
+    `Tools packed, floor wiped, site left clean`,
+    `Before and after pair if a suitable job is available`,
+    `Finished work, tight and clean`
+  ]},
+  {title:"Website & ads assets", items:[
+    `Website hero options, wide with vertical-safe framing`,
+    `Landing page frames grouped per service`,
+    `Gallery images for manual upload`,
+    `Clean van and team hero for the banner`
+  ]}
+];
+
+const VIDEOS = [
+  {n:"1", group:"Core deliverables", t:"Promo, website hero", meta:["Landscape 16x9","Vertical cut for socials","Up to 45s","B-roll only"],
+   type:"B-roll only, no talking. Website hero cut plus a vertical cut for socials.",
+   broll:[`Wrapped van pulling into the driveway`,`Michael stepping out, grabbing the tool bag`,`Tools laid out on a drop sheet`,`Under-sink work, torch on, hands on the fitting`,`Hot water unit check, dials and valves`,`Bathroom and kitchen tap running clean`,`Pipe re-lining gear in action`,`Team of six with the vans, cross-arm frame`,`Site packed up, floor wiped, van door closing`]},
+  {n:"2", group:"Core deliverables", t:"About Us", meta:["Landscape 16x9","Up to 45s","Voiceover + b-roll"],
+   type:"Michael's answers cut as voiceover over b-roll. He is only in frame at the open and close.",
+   note:"No direct-to-camera and no teleprompter. Bullet points only. Record clean audio of the answers, then cover it with b-roll.",
+   hook:`Meet the team behind Compass Plumbing`,
+   tp:[`Tell us how Compass Plumbing started and where it is now.`,`Which suburbs do you cover, and what jobs come in most?`,`What do you want a homeowner to feel when your van pulls up?`,`What does your team do on every job that other plumbers skip?`,`Why should someone call you instead of the next plumber on the list?`],
+   broll:[`Michael walking into frame at the front of the house`,`Van in the driveway, gear coming out`,`Team of six with the vans`,`Under-sink, bathroom and hot water work in progress`,`Hands checking fittings, torch on the pipework`,`Michael talking with a homeowner at the door`,`Michael walking back to the van to close`]},
+  {n:"3", group:"Core deliverables", t:"Educational tips", meta:["Landscape 16x9","Up to 45s","Talking head + b-roll"],
+   type:"Michael on camera with practical tips homeowners can use today.",
+   note:"Shoot each tip as its own take so the edit can cut them into separate socials later.",
+   hook:`Three things to check before you call a plumber`,
+   tp:[`Walk us through three things a homeowner can check before they call a plumber.`,`What are the five questions people should ask any plumber before they book?`,`What early sign of a blocked drain do most people miss?`,`How do you know a hot water unit is on the way out?`,`When is a small leak still worth a call-out?`],
+   broll:[`Tight shot of the tap, drain or unit being explained`,`Michael pointing at the part that matters`,`Hands doing the check, shut-off valve or drain cover`,`Blocked drain and slow-draining sink`,`Hot water unit dials and relief valve`,`Clean shot of the correct setup once it is sorted`]},
+  {n:"4", group:"Core deliverables", t:"Customer testimonial", meta:["Landscape 16x9","Up to 45s","Talking head + b-roll","Second location"],
+   type:"A real customer on camera at the second house. Social proof for the website and ads.",
+   note:"Client books the subject and gets the questions in advance. Keep it conversational, don't push for a sales line.",
+   tp:[`Tell us your name and how you came across Compass Plumbing.`,`What was the job, and what state was it in when you called?`,`How quickly did the team get to you?`,`What were they like to have in your home?`,`How did it turn out, and would you call them again?`],
+   broll:[`Customer at their home, front of house and interior`,`Michael working on the area they describe`,`Van parked out front`,`Close-ups of the finished work`,`Easy conversation at the door`]}
+];
+
+const RUN = [
+  ["1","0:00","Setup & walkthrough","Walk both job areas with Michael. Confirm which services are staged, block backdrops, check light and audio, confirm the shot priorities."],
+  ["2","0:20","Arrival & exterior b-roll","Van into the driveway, Michael in with the tool bag, gear out. The opening frames for the promo.",["1"]],
+  ["3","0:45","Kitchen & bathroom job coverage","The busiest block. Under-sink, drain, tap and bathroom work, wide and tight, plus stills as you go.",["1","3"]],
+  ["4","1:20","Michael's audio for About Us","Record the answers clean for voiceover, then grab his open and close frames. No direct-to-camera.",["2"]],
+  ["5","1:45","Educational tips piece","Michael on camera at the fixture he's explaining. One take per tip, then the demo b-roll.",["3"]],
+  ["6","2:10","Photos: hot water, re-lining & details","Hot water unit, pipe re-lining setup, detail frames, before and after if a job suits, clean packed-up site."],
+  ["7","2:30","Travel to the second house","Five-minute drive. Reset and get the customer comfortable before you roll."],
+  ["8","2:40","Customer testimonial","Second location. Interview first while they're fresh, then the b-roll of the job they talk about.",["4"]],
+  ["9","3:15","Team shot with the vans","Parking lot near Sydney Olympic Park. Six of the team in uniform, cross-arm frames, van hero shots, plus promo b-roll.",["1"]],
+  ["10","3:45","Wrap & backup","Check the shot list against the brief, back up all footage, quick debrief with Michael."]
+];
+
+const CVRUN = [
+  "Setup & walkthrough",
+  "Arrival & exterior b-roll",
+  "Kitchen & bathroom job coverage",
+  "Michael's audio for About Us",
+  "Educational tips piece",
+  "Photos: hot water, re-lining & details",
+  "Travel to the second house",
+  "Customer testimonial",
+  "Team shot with the vans",
+  "Wrap & backup"
+];
+
+/* ---- state (safe for sandboxed embeds) ---- */
+const KEY="compass_plumbing_brief_v1";
+let state={};
+try{state=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){state={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function itemHTML(id,label){
+  const on=state[id]?"checked":"";
+  const cls=state[id]?"item done":"item";
+  return `<label class="${cls}" data-id="${id}"><input type="checkbox" ${on}><span>${label}</span></label>`;
+}
+
+/* client-view day list, linked and sharing run-sheet state */
+document.getElementById("cv-run").innerHTML =
+  `<div class="cg-head"><h3>The day, in order</h3><span class="pill">10 blocks</span></div>` +
+  CVRUN.map((r,i)=>{
+    const n=RUN[i][0];const id="run-"+n;const on=state[id]?"checked":"";const cls=state[id]?"item done":"item";
+    return `<div class="${cls}" data-id="${id}"><input type="checkbox" ${on}><span class="cvlink" data-runlink="${n}" tabindex="0" role="link"><b>${i+1}.</b> ${esc(r)}</span></div>`;
+  }).join("");
+
+/* photo groups */
+document.getElementById("photoGroups").innerHTML = PHOTO_GROUPS.map((g,gi)=>{
+  const items=g.items.map((p,i)=>itemHTML(`photo-${gi}-${i}`, esc(p))).join("");
+  return `<div class="card checkgroup"><div class="cg-head"><h3>${esc(g.title)}</h3><span class="pill" id="pc-${gi}"></span></div>${items}</div>`;
+}).join("");
+
+/* video cards, grouped */
+let lastGroup="";
+document.getElementById("videoCards").innerHTML = VIDEOS.map(v=>{
+  let head="";
+  if(v.group!==lastGroup){head=`<div class="grouphead">${esc(v.group)}</div>`;lastGroup=v.group;}
+  const scriptBlock = v.script ? `<div class="vrow"><div class="rl">Script, client-written, do not alter</div>
+      <details class="script"><summary>Show script</summary><div class="stext">${v.script.map(s=>(s[0]?`<b>${esc(s[0])}</b>\n`:"")+esc(s[1])).join("\n\n")}</div></details></div>` : "";
+  const hookBlock = v.hook ? `<div class="vrow"><div class="rl">Hook</div><div class="hook">${esc(v.hook)}</div></div>` : "";
+  const tpBlock = v.tp ? `<div class="vrow"><div class="rl">Talking points</div><ul class="tp">${v.tp.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>` : "";
+  const ctaBlock = v.cta ? `<div class="vrow"><div class="rl">CTA</div><div class="cta">${esc(v.cta)}</div></div>` : "";
+  const broll = v.broll.map((b,i)=>itemHTML(`broll-${v.n}-${i}`, esc(b))).join("");
+  return head + `<details class="card vcard" id="v-${v.n}">
+    <summary>
+      <div class="vnum">${esc(v.n)}</div>
+      <div class="vhead"><div class="vt">${esc(v.t)}</div>
+        <div class="vm">${v.meta.map(m=>`<span class="badge">${esc(m)}</span>`).join("")}</div></div>
+      <div class="chev">\u25BC</div>
+    </summary>
+    <div class="vbody">
+      <div class="vrow"><div class="rl">Type</div><div>${esc(v.type)}</div></div>
+      ${v.note?`<div class="vrow"><div class="notecall"><div><b>Notes.</b> ${esc(v.note)}</div></div></div>`:""}
+      ${hookBlock}
+      ${tpBlock}
+      ${scriptBlock}
+      <div class="vrow"><div class="rl">B-Roll checklist</div><div class="checkgroup" style="padding:0">${broll}</div></div>
+      ${ctaBlock}
+    </div>
+  </details>`;
+}).join("");
+
+/* run sheet with inline video toggles */
+const VMAP={};VIDEOS.forEach(v=>{VMAP[v.n]=v;});
+function vidLabel(n){if(n==="T")return "Testimonial";return "Video "+n;}
+function vidToggle(n){
+  const v=VMAP[n];if(!v)return "";
+  const hook=v.hook?`<div class="rvd-hook">${esc(v.hook)}</div>`:"";
+  const tp=v.tp?`<div class="rvd-l">Talking points</div><ul class="rvd-tp">${v.tp.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>`:"";
+  const broll=`<div class="rvd-l">B-roll</div><ul class="rvd-tp">${v.broll.map(b=>`<li>${esc(b)}</li>`).join("")}</ul>`;
+  return `<details class="rvid"><summary><span class="rvid-tag">${esc(vidLabel(n))}</span> ${esc(v.t)}<span class="rvid-chev">\u25BC</span></summary><div class="rvd">${hook}${tp}${broll}</div></details>`;
+}
+document.getElementById("runList").innerHTML = RUN.map((r,i)=>{
+  const id="run-"+r[0];
+  const done=state[id]?"done":"";
+  const last=i===RUN.length-1;
+  const vids=(r[4]&&r[4].length)?`<div class="rvids">${r[4].map(vidToggle).join("")}</div>`:"";
+  return `<div class="rblock ${done}" data-id="${id}">
+    <div class="rleft"><div class="rdot">${esc(r[0])}</div>${last?"":'<div class="rline"></div>'}</div>
+    <div class="rcontent"><label class="rcard"><input type="checkbox" ${state[id]?"checked":""}>
+      <div><div class="rtime">${esc(r[1])}</div><div class="rb">${esc(r[2])}</div><div class="rn">${esc(r[3])}</div></div></label>${vids}</div>
+  </div>`;
+}).join("");
+
+/* counts */
+function updateCounts(){
+  PHOTO_GROUPS.forEach((g,gi)=>{
+    const el=document.getElementById("pc-"+gi);if(!el)return;
+    el.textContent=g.items.length+" shots";
+  });
+}
+
+/* two-way checkbox sync on shared state ids */
+document.addEventListener("change",e=>{
+  if(e.target.type!=="checkbox"||e.target.disabled)return;
+  const host=e.target.closest("[data-id]");if(!host)return;
+  const id=host.dataset.id;const on=e.target.checked;
+  state[id]=on;
+  document.querySelectorAll('[data-id="'+id+'"]').forEach(el=>{
+    el.classList.toggle("done",on);
+    const cb=el.querySelector('input[type=checkbox]');
+    if(cb&&cb!==e.target)cb.checked=on;
+  });
+  save();updateCounts();
+});
+
+/* tabs */
+function activateTab(b){
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  b.classList.add("active");
+  const panel=document.getElementById(b.dataset.t);if(panel)panel.classList.add("active");
+  window.scrollTo({top:0,behavior:"auto"});
+}
+document.getElementById("tabs").addEventListener("click",e=>{
+  const b=e.target.closest(".tab");if(b)activateTab(b);
+});
+document.getElementById("tabs").addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const b=e.target.closest(".tab");if(b){e.preventDefault();activateTab(b);}
+});
+
+/* cross-link: jump to and open a specific video */
+function goToVideo(n){
+  const tab=document.querySelector('.tab[data-t="videos"]');
+  if(tab)activateTab(tab);
+  const el=document.getElementById("v-"+n);
+  if(!el)return;
+  el.open=true;
+  requestAnimationFrame(()=>{
+    el.scrollIntoView({behavior:"smooth",block:"start"});
+    el.classList.add("flash");
+    setTimeout(()=>el.classList.remove("flash"),1400);
+  });
+}
+
+/* cross-link: jump to a run sheet block */
+function goToRun(n){
+  const tab=document.querySelector('.tab[data-t="run"]');
+  if(tab)activateTab(tab);
+  const el=document.querySelector('.rblock[data-id="run-'+n+'"]');
+  if(!el)return;
+  requestAnimationFrame(()=>{
+    el.scrollIntoView({behavior:"smooth",block:"start"});
+    el.classList.add("flash");
+    setTimeout(()=>el.classList.remove("flash"),1400);
+  });
+}
+
+document.addEventListener("click",e=>{
+  const a=e.target.closest("[data-goto]");
+  if(a){e.preventDefault();goToVideo(a.getAttribute("data-goto"));return;}
+  const r=e.target.closest("[data-runlink]");
+  if(r){e.preventDefault();goToRun(r.getAttribute("data-runlink"));}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const a=e.target.closest("[data-goto]");
+  if(a){e.preventDefault();goToVideo(a.getAttribute("data-goto"));return;}
+  const r=e.target.closest("[data-runlink]");
+  if(r){e.preventDefault();goToRun(r.getAttribute("data-runlink"));}
+});
+
+updateCounts();
+</script>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WKM Shoot Brief Repo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#1b191a; --card:#2a2829; --soft:#242223; --charcoal:#333132;
+  --bd:#403d3e; --line:#5f5c5d; --tx:#f1efed; --mut:#a7a3a1;
+  --acc:#faa62f; --accsoft:rgba(250,166,47,.13);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:Roboto,system-ui,Arial,sans-serif;font-weight:300;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+h1,.brand,.chip,.stat b,th{font-family:Montserrat,system-ui,Arial,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:0 24px}
+@media(max-width:520px){.wrap{padding:0 16px}}
+
+.brandbar{background:var(--charcoal);border-bottom:1px solid var(--bd)}
+.brandbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 24px}
+.brand{font-weight:800;font-size:17px;letter-spacing:.02em}
+.brand span{color:var(--acc)}
+.brandtag{color:var(--mut);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+
+.hero{background:var(--charcoal)}
+.hero .wrap{padding-top:26px;padding-bottom:24px}
+.hero h1{margin:0 0 8px;font-size:32px;line-height:1.1;font-weight:800;text-transform:uppercase;letter-spacing:-.01em}
+.naming{margin:0;color:var(--mut);font-size:14px}
+.naming code{font-family:Menlo,Consolas,monospace;color:var(--acc);font-size:14px}
+@media(max-width:520px){.hero h1{font-size:25px}}
+
+.controls{position:sticky;top:0;z-index:20;background:rgba(27,25,26,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--bd)}
+.controls .wrap{padding-top:14px;padding-bottom:14px}
+.row1{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.search{position:relative;flex:1 1 280px;min-width:0}
+.search input{width:100%;background:var(--card);border:1px solid var(--bd);border-radius:8px;color:var(--tx);font:inherit;font-size:15px;padding:11px 40px 11px 14px;min-height:44px}
+.search input::placeholder{color:var(--mut)}
+.search input:focus{outline:2px solid var(--acc);outline-offset:1px;border-color:var(--acc)}
+.clearx{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:32px;height:32px;border:0;background:transparent;color:var(--mut);font-size:18px;cursor:pointer;border-radius:6px;line-height:1}
+.clearx:hover{color:var(--tx);background:var(--soft)}
+select{background:var(--card);border:1px solid var(--bd);border-radius:8px;color:var(--tx);font:inherit;font-size:14px;padding:10px 12px;min-height:44px;cursor:pointer}
+select:focus{outline:2px solid var(--acc);outline-offset:1px}
+.row2{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:12px}
+.flabel{color:var(--mut);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-right:2px}
+.chip{background:var(--soft);border:1px solid var(--bd);border-radius:999px;color:var(--mut);font-size:12.5px;font-weight:600;padding:7px 13px;cursor:pointer}
+.chip:hover{color:var(--tx);border-color:var(--line)}
+.chip:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.chip.on{background:var(--accsoft);border-color:var(--acc);color:var(--acc)}
+
+main{padding:22px 0 8px}
+.meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.count{color:var(--mut);font-size:13px}
+.reset{background:none;border:0;color:var(--acc);font:inherit;font-size:13px;cursor:pointer;text-decoration:underline;padding:4px 0}
+
+.list{background:var(--card);border:1px solid var(--bd);border-radius:14px;overflow:hidden}
+.item{display:flex;align-items:center;gap:16px;padding:15px 18px;border-bottom:1px solid var(--bd);text-decoration:none;color:inherit;min-height:64px}
+.item:last-child{border-bottom:0}
+.item:hover{background:rgba(255,255,255,.03)}
+.item:focus-visible{outline:2px solid var(--acc);outline-offset:-2px}
+.item.nolink{cursor:default}
+.itxt{flex:1 1 auto;min-width:0}
+.ttl{display:block;font-size:16px;font-weight:500;color:var(--tx)}
+.item:hover .ttl{color:var(--acc)}
+.fn{display:block;font-family:Menlo,Consolas,monospace;font-size:12px;color:var(--mut);margin-top:3px;word-break:break-all}
+.right{flex:0 0 auto;text-align:right}
+.dt{font-size:14px;white-space:nowrap}
+.dt.unset{color:var(--mut);font-style:italic}
+.vr{display:block;font-size:11.5px;color:var(--mut);margin-top:3px;letter-spacing:.06em}
+.tag{display:inline-block;margin-left:9px;font-family:Montserrat,system-ui,sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);background:var(--accsoft);border:1px solid rgba(250,166,47,.35);border-radius:999px;padding:2px 8px;vertical-align:2px;white-space:nowrap}
+
+.empty{background:var(--card);border:1px dashed var(--bd);border-radius:14px;padding:44px 24px;text-align:center;color:var(--mut)}
+.empty b{display:block;color:var(--tx);font-family:Montserrat,sans-serif;font-size:16px;margin-bottom:6px}
+
+footer{padding:24px 0 40px;color:var(--mut);font-size:12.5px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer b{color:var(--acc);font-family:Montserrat,sans-serif}
+</style>
+</head>
+<body>
+
+<div class="brandbar"><div class="wrap">
+  <div class="brand">WhiteKey <span>Marketing</span></div>
+  <div class="brandtag">Shoot Brief Repo</div>
+</div></div>
+
+<header class="hero"><div class="wrap">
+  <h1>Shoot Brief Repo</h1>
+  <p class="naming">Naming convention: <code>client-name_cut_ddmmyyyy_vN</code> &nbsp;e.g. <code>winston-hills-hawks_main_30062026_v2</code> &nbsp;cut = main / by-person / client</p>
+</div></header>
+
+<div class="controls"><div class="wrap">
+  <div class="row1">
+    <div class="search">
+      <input id="q" type="search" autocomplete="off" placeholder="Search client, cut or file name" aria-label="Search briefs">
+      <button class="clearx" id="clearq" type="button" aria-label="Clear search">&times;</button>
+    </div>
+    <select id="month" aria-label="Filter by month"><option value="">All months</option></select>
+    <select id="sort" aria-label="Sort briefs">
+      <option value="date-desc">Newest first</option>
+      <option value="date-asc">Oldest first</option>
+      <option value="name-asc">Client A to Z</option>
+    </select>
+  </div>
+  <div class="row2" id="years"><span class="flabel">Year</span></div>
+  <div class="row2" id="variants"><span class="flabel">Cut</span></div>
+</div></div>
+
+<main><div class="wrap">
+  <div class="meta">
+    <div class="count" id="count">Loading</div>
+    <button class="reset" id="reset" type="button">Reset</button>
+  </div>
+  <div class="list" id="list"></div>
+  <div class="empty" id="empty" hidden><b>Nothing matches</b>Clear the search or reset the filters.</div>
+  <footer>
+    <div id="srcnote"></div>
+    <div><b>We Make Noise.</b></div>
+  </footer>
+</div></main>
+
+<script>
+"use strict";
+
+/* Fallback used only when briefs.json cannot be read. Keep it empty in production. */
+var SEED = {"briefs":[]};
+
+var MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+var SHORT = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+var DATA = [];
+var F = {q:"", years:[], variants:[], month:"", sort:"date-desc"};
+
+function esc(v){ return String(v==null?"":v).replace(/[&<>"']/g,function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+
+/* The naming convention is the data source. client-name_cut_ddmmyyyy_vN */
+function parseName(file){
+  var base = String(file||"").replace(/\.html?$/i,"").replace(/^.*\//,"");
+  var out = {base:base, slug:base, variant:"", y:0, mo:0, d:0, iso:"", version:null, title:""};
+  var t = base.split("_");
+  var di = -1, i;
+  for(i=1;i<t.length;i++){ if(/^\d{8}$/.test(t[i])){ di=i; break; } }
+  if(di>0){
+    var dd = parseInt(t[di].slice(0,2),10), mm = parseInt(t[di].slice(2,4),10), yy = parseInt(t[di].slice(4,8),10);
+    if(yy>1990 && mm>=1 && mm<=12 && dd>=1 && dd<=31){
+      out.slug = t[0];
+      out.variant = t.slice(1,di).join(" ").toLowerCase().replace(/-/g," ").trim();
+      out.y=yy; out.mo=mm; out.d=dd;
+      out.iso = t[di].slice(4,8)+"-"+t[di].slice(2,4)+"-"+t[di].slice(0,2);
+      var vm = String(t[di+1]||"").match(/^v(\d+)$/i);
+      out.version = vm ? parseInt(vm[1],10) : null;
+    }
+  }
+  out.title = out.slug.replace(/[-_]+/g," ").replace(/\s+/g," ").trim()
+    .replace(/\b[a-z]/g, function(c){ return c.toUpperCase(); });
+  return out;
+}
+
+function normalise(b){
+  var file = typeof b === "string" ? b : (b.file || b.slug || "");
+  var p = parseName(file);
+  var title = (typeof b === "object" && b.title) ? b.title : p.title;
+  return {
+    file: p.base, title: title, url: (typeof b === "object" && b.url) ? b.url : "",
+    iso: p.iso, y: p.y, mo: p.mo, version: p.version, variant: p.variant,
+    hay: (title + " " + p.variant + " " + p.base).toLowerCase()
+  };
+}
+
+function fmtDate(b){
+  if(!b.iso) return "Date not in name";
+  return b.d0 || (b.iso.slice(8,10).replace(/^0/,"") + " " + SHORT[b.mo-1] + " " + b.y);
+}
+
+function buildYearChips(){
+  var box = document.getElementById("years");
+  var seen = {}, ys = [];
+  DATA.forEach(function(b){ if(b.y && !seen[b.y]){ seen[b.y]=1; ys.push(b.y); } });
+  ys.sort(function(a,c){ return c-a; });
+  ys.forEach(function(y){
+    var el = document.createElement("button");
+    el.type="button"; el.className="chip"; el.textContent=y;
+    el.setAttribute("data-y", y); el.setAttribute("aria-pressed","false");
+    box.appendChild(el);
+  });
+  if(!ys.length){ box.style.display="none"; }
+}
+
+function buildMonths(){
+  var sel = document.getElementById("month");
+  var seen = {};
+  DATA.forEach(function(b){ if(b.mo) seen[b.mo]=1; });
+  for(var i=1;i<=12;i++){
+    if(!seen[i]) continue;
+    var o=document.createElement("option"); o.value=String(i); o.textContent=MONTHS[i-1]; sel.appendChild(o);
+  }
+}
+
+function buildVariantChips(){
+  var box = document.getElementById("variants");
+  var seen = {}, vs = [];
+  DATA.forEach(function(b){ if(b.variant && !seen[b.variant]){ seen[b.variant]=1; vs.push(b.variant); } });
+  vs.sort();
+  vs.forEach(function(v){
+    var el = document.createElement("button");
+    el.type="button"; el.className="chip"; el.textContent=v;
+    el.setAttribute("data-variant", v); el.setAttribute("aria-pressed","false");
+    box.appendChild(el);
+  });
+  if(vs.length<2){ box.style.display="none"; }
+}
+
+function filtered(){
+  var q = F.q.trim().toLowerCase();
+  var out = DATA.filter(function(b){
+    if(q && b.hay.indexOf(q)===-1) return false;
+    if(F.years.length && F.years.indexOf(String(b.y))===-1) return false;
+    if(F.month && String(b.mo)!==F.month) return false;
+    if(F.variants.length && F.variants.indexOf(b.variant)===-1) return false;
+    return true;
+  });
+  out.sort(function(x,y){
+    if(F.sort==="name-asc") return x.title.localeCompare(y.title) || y.iso.localeCompare(x.iso);
+    if(!x.iso && !y.iso) return x.title.localeCompare(y.title);
+    if(!x.iso) return 1;
+    if(!y.iso) return -1;
+    if(x.iso===y.iso) return x.title.localeCompare(y.title);
+    return F.sort==="date-asc" ? x.iso.localeCompare(y.iso) : y.iso.localeCompare(x.iso);
+  });
+  return out;
+}
+
+function itemHTML(b){
+  var dt = b.iso
+    ? '<span class="dt">'+esc(parseInt(b.iso.slice(8,10),10)+" "+SHORT[b.mo-1]+" "+b.y)+'</span>'
+    : '<span class="dt unset">No date in name</span>';
+  var vr = b.version ? '<span class="vr">v'+esc(b.version)+'</span>' : '';
+  var tag = b.variant ? '<span class="tag">'+esc(b.variant)+'</span>' : '';
+  var inner = '<span class="itxt"><span class="ttl">'+esc(b.title)+tag+'</span><span class="fn">'+esc(b.file)+'</span></span>'+
+              '<span class="right">'+dt+vr+'</span>';
+  return b.url
+    ? '<a class="item" href="'+esc(b.url)+'" target="_blank" rel="noopener">'+inner+'</a>'
+    : '<div class="item nolink">'+inner+'</div>';
+}
+
+function render(){
+  var rows = filtered();
+  document.getElementById("list").innerHTML = rows.map(itemHTML).join("");
+  var none = rows.length===0;
+  document.getElementById("empty").hidden = !none;
+  document.getElementById("list").style.display = none ? "none" : "";
+  document.getElementById("count").textContent = rows.length===DATA.length
+    ? DATA.length+(DATA.length===1?" brief":" briefs")
+    : rows.length+" of "+DATA.length+" briefs";
+}
+
+document.addEventListener("click", function(e){
+  var chip = e.target.closest(".chip");
+  if(chip){
+    var isYear = chip.hasAttribute("data-y");
+    var v = isYear ? chip.getAttribute("data-y") : chip.getAttribute("data-variant");
+    var bucket = isYear ? F.years : F.variants;
+    var i = bucket.indexOf(v);
+    if(i>-1){ bucket.splice(i,1); chip.classList.remove("on"); chip.setAttribute("aria-pressed","false"); }
+    else { bucket.push(v); chip.classList.add("on"); chip.setAttribute("aria-pressed","true"); }
+    render(); return;
+  }
+  if(e.target.id==="clearq"){ document.getElementById("q").value=""; F.q=""; render(); return; }
+  if(e.target.id==="reset"){
+    F.q=""; F.years=[]; F.variants=[]; F.month="";
+    document.getElementById("q").value="";
+    document.getElementById("month").value="";
+    document.querySelectorAll(".chip").forEach(function(c){ c.classList.remove("on"); c.setAttribute("aria-pressed","false"); });
+    render(); return;
+  }
+});
+document.addEventListener("input", function(e){ if(e.target.id==="q"){ F.q=e.target.value; render(); } });
+document.addEventListener("change", function(e){
+  if(e.target.id==="month"){ F.month=e.target.value; render(); }
+  if(e.target.id==="sort"){ F.sort=e.target.value; render(); }
+});
+
+function boot(list, note){
+  DATA = list.map(normalise);
+  buildYearChips(); buildVariantChips(); buildMonths(); render();
+  document.getElementById("srcnote").textContent = note;
+}
+
+(function(){
+  var fallback = function(){
+    boot(SEED.briefs, "Could not read briefs.json. Serve this folder over http, not by opening the file directly.");
+  };
+  if(typeof fetch !== "function"){ fallback(); return; }
+  try{
+    fetch("briefs.json", {cache:"no-store"}).then(function(r){
+      if(!r.ok) throw new Error("no manifest");
+      return r.json();
+    }).then(function(j){
+      var list = Array.isArray(j) ? j : (j && Array.isArray(j.briefs) ? j.briefs : []);
+      boot(list, "Reading briefs.json. "+list.length+" file"+(list.length===1?"":"s")+" indexed.");
+    }).catch(fallback);
+  }catch(err){ fallback(); }
+})();
+</script>
+</body>
+</html>

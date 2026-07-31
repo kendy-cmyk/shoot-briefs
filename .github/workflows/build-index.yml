@@ -1,0 +1,45 @@
+name: Rebuild brief index
+
+on:
+  push:
+    paths:
+      - "briefs/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate briefs.json from the briefs folder
+        run: |
+          python3 - <<'PY'
+          import json, os
+
+          folder = "briefs"
+          items = []
+          if os.path.isdir(folder):
+              for name in sorted(os.listdir(folder)):
+                  if not name.lower().endswith((".html", ".htm")):
+                      continue
+                  base = os.path.splitext(name)[0]
+                  items.append({"file": base, "url": folder + "/" + name})
+
+          with open("briefs.json", "w") as f:
+              json.dump(items, f, indent=2)
+              f.write("\n")
+
+          print("Indexed %d briefs" % len(items))
+          PY
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add briefs.json
+          git diff --staged --quiet || git commit -m "Rebuild brief index"
+          git push

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIP Karaoke Bar Shoot Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#333132; --orange:#faa62f; --tangerine:#f7b52d; --white:#ffffff;
+    --bg:#1b191a;
+    --text:#f1efed; --text2:#a7a3a1; --canvas:#2a2829; --soft:#242223;
+    --surface:#3a3738; --border:#403d3e; --accent:#faa62f; --accent-soft:rgba(250,166,47,.13);
+    --done:#faa62f; --charcoal2:#403e3f; --charcoal-line:rgba(255,255,255,.14);
+    --line-strong:#5f5c5d;
+    --shadow:0 1px 2px rgba(0,0,0,.30),0 6px 18px rgba(0,0,0,.30);
+    --head:"Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    --sans:"Roboto",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;background:var(--bg);color-scheme:dark}
+  body{font-family:var(--sans);color:var(--text);background:var(--bg);font-size:16px;line-height:1.5;font-weight:400;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  h1,h2,h3,.eyebrow,.sec-title,.wordmark,.chip b{font-family:var(--head)}
+
+  .brandbar{background:var(--charcoal);border-bottom:1px solid var(--charcoal-line)}
+  .brandbar .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px;gap:16px;flex-wrap:wrap}
+  .wordmark{font-weight:800;font-size:20px;letter-spacing:.02em;color:#fff;text-transform:uppercase}
+  .wordmark .mk{color:var(--orange)}
+  .brandbar .tag{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:500}
+
+  header .hero{background:var(--charcoal);color:#fff;padding:30px 0 34px}
+  .eyebrow{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:700}
+  .hero h1{font-size:44px;line-height:1.02;margin:12px 0 10px;letter-spacing:.01em;text-transform:uppercase;color:#fff}
+  .hero .sub{color:rgba(255,255,255,.72);font-size:16.5px;max-width:660px;font-weight:300}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .chip{display:flex;align-items:baseline;gap:7px;background:var(--charcoal2);border:1px solid var(--charcoal-line);border-radius:8px;padding:9px 13px}
+  .chip b{font-size:20px;font-weight:800;color:var(--orange);letter-spacing:0}
+  .chip span{color:rgba(255,255,255,.72);font-weight:400;font-size:13.5px}
+
+  nav.tabs{position:sticky;top:0;z-index:40;background:rgba(27,25,26,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .tabs-inner{display:flex;gap:2px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tab{border:none;background:none;padding:15px 16px;font-size:15px;font-weight:600;font-family:var(--sans);color:var(--text2);cursor:pointer;border-bottom:2.5px solid transparent;white-space:nowrap;min-height:44px;user-select:none}
+  .tab:hover{color:var(--text)}
+  .tab:focus-visible{outline:2px solid var(--orange);outline-offset:-2px;border-radius:4px}
+  .tab.active{color:#fff;border-bottom-color:var(--orange)}
+
+  main{padding:34px 0 90px}
+  .panel{display:none;animation:fade .3s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .sec-title{font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--text2);font-weight:700;margin:6px 0 15px}
+  .sec-title.mt{margin-top:34px}
+
+  .card{background:var(--canvas);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+  .card + .card{margin-top:16px}
+
+  .lead{background:var(--canvas);color:var(--text);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:12px;padding:22px 24px;font-size:17px;font-weight:300;line-height:1.55}
+  .lead b{font-weight:600;color:var(--text)}
+  .lead .hl{color:var(--orange);font-weight:600}
+  .cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+  .cv-block{background:var(--canvas);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);padding:20px 22px}
+  .cv-block h3{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px}
+  .cv-block .big{font-family:var(--head);font-size:19px;font-weight:700;text-transform:uppercase;letter-spacing:.01em;margin-bottom:10px;color:var(--text)}
+  .cv-block p{font-size:15px;color:var(--text);font-weight:300;line-height:1.55}
+  .cv-list{list-style:none;margin-top:10px}
+  .cv-list li{position:relative;padding:5px 0 5px 20px;font-size:14.5px;font-weight:300}
+  .cv-list li::before{content:"";position:absolute;left:0;top:12px;width:7px;height:7px;border-radius:2px;background:var(--orange)}
+  details.more{margin-top:12px;border-top:1px dashed var(--border);padding-top:10px}
+  details.more>summary{list-style:none;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:7px}
+  details.more>summary::-webkit-details-marker{display:none}
+  details.more>summary .chev{font-size:11px;transition:transform .2s}
+  details.more[open]>summary .chev{transform:rotate(180deg)}
+  details.more .inner{padding-top:10px}
+  .pointer{display:flex;gap:11px;align-items:flex-start;background:var(--accent-soft);border:1px solid rgba(250,166,47,.32);border-radius:10px;padding:13px 16px;font-size:14.5px;margin-top:16px;font-weight:400}
+
+  .info{width:100%;border-collapse:collapse}
+  .info tr+tr{border-top:1px solid var(--border)}
+  .info th{text-align:left;vertical-align:top;padding:14px 18px;width:150px;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);background:var(--soft);font-weight:700;font-family:var(--head)}
+  .info td{padding:14px 18px;font-size:15px;font-weight:300}
+
+  .cg-head{display:flex;align-items:center;justify-content:space-between;padding:15px 16px 9px;gap:10px}
+  .cg-head h3{font-size:15px;font-family:var(--head);text-transform:uppercase;letter-spacing:.03em;font-weight:700}
+  .cg-head .pill{font-size:12px;font-weight:600;color:var(--text2);background:var(--soft);border:1px solid var(--border);border-radius:99px;padding:3px 10px;white-space:nowrap}
+  .checkgroup{padding:2px 8px 12px}
+  .item{display:flex;align-items:flex-start;gap:12px;padding:10px 12px;border-radius:8px;cursor:pointer;transition:background .12s}
+  .item:hover{background:var(--soft)}
+  .item input{appearance:none;-webkit-appearance:none;width:21px;height:21px;min-width:21px;margin-top:1px;border:2px solid var(--line-strong);border-radius:6px;cursor:pointer;position:relative;transition:.15s}
+  .item input:checked{background:var(--done);border-color:var(--done)}
+  .item input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .item span{font-size:15px;flex:1;font-weight:400}
+  .item.done span{color:var(--text2);text-decoration:line-through}
+
+  .grouphead{font-family:var(--head);text-transform:uppercase;letter-spacing:.06em;font-size:12.5px;font-weight:700;color:var(--text2);margin:26px 0 12px}
+  .grouphead:first-child{margin-top:4px}
+  .vcard{margin-bottom:12px}
+  .vcard>summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;gap:15px}
+  .vcard>summary::-webkit-details-marker{display:none}
+  .vnum{width:40px;height:40px;min-width:40px;border-radius:9px;background:var(--accent-soft);color:var(--done);font-family:var(--head);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center}
+  .vhead{flex:1;min-width:0}
+  .vhead .vt{font-size:16.5px;font-weight:600;letter-spacing:0;font-family:var(--head)}
+  .vhead .vm{font-size:12.5px;color:var(--text2);margin-top:3px}
+  .vhead .vm .badge{display:inline-block;background:var(--soft);border:1px solid var(--border);border-radius:5px;padding:1px 7px;margin:2px 6px 0 0;font-weight:500}
+  .chev{color:var(--text2);transition:transform .2s;font-size:12px}
+  .vcard[open] .chev{transform:rotate(180deg)}
+  .vbody{padding:2px 18px 20px;border-top:1px solid var(--border)}
+  .vrow{margin-top:17px}
+  .vrow .rl{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);font-weight:700;font-family:var(--head);margin-bottom:7px}
+  .hook{background:var(--accent-soft);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:11px 14px;font-size:14.5px;font-style:italic}
+  .tp{list-style:none}
+  .tp li{position:relative;padding:5px 0 5px 18px;font-size:14.5px;font-weight:300}
+  .tp li::before{content:"";position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;background:var(--orange)}
+  .reflink{font-size:14px;color:var(--orange);word-break:break-all}
+  .notecall{display:flex;gap:9px;align-items:flex-start;background:var(--soft);border:1px solid var(--border);border-radius:8px;padding:11px 14px;font-size:14px;font-weight:300}
+  .notecall b{font-weight:600}
+
+  .run{position:relative;padding-left:4px}
+  .rblock{display:flex;gap:16px;padding:2px 0}
+  .rleft{display:flex;flex-direction:column;align-items:center}
+  .rdot{width:34px;height:34px;min-width:34px;border-radius:50%;background:var(--canvas);border:2px solid var(--line-strong);color:var(--text2);font-family:var(--head);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;transition:.2s;z-index:2}
+  .rline{flex:1;width:2px;background:var(--border);margin:2px 0}
+  .rblock.done .rdot{background:var(--done);border-color:var(--done);color:#fff}
+  .rcontent{flex:1;padding-bottom:16px}
+  .rcard{background:var(--canvas);border:1px solid var(--border);border-radius:10px;padding:13px 16px;cursor:pointer;display:flex;gap:13px;align-items:flex-start;transition:border-color .15s}
+  .rcard:hover{border-color:var(--orange)}
+  .rcard input{appearance:none;-webkit-appearance:none;width:21px;height:21px;min-width:21px;margin-top:2px;border:2px solid var(--line-strong);border-radius:6px;cursor:pointer;position:relative}
+  .rcard input:checked{background:var(--done);border-color:var(--done)}
+  .rcard input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .rtime{font-size:12px;font-weight:700;color:var(--done);font-family:var(--head);letter-spacing:.03em}
+  .rcard .rb{font-size:15px;font-weight:600;margin-top:2px;font-family:var(--head)}
+  .rcard .rn{font-size:13.5px;color:var(--text2);margin-top:4px;font-weight:300}
+  .rblock.done .rb{text-decoration:line-through;color:var(--text2)}
+
+  .foot{text-align:center;color:var(--text2);font-size:13px;margin-top:40px;font-weight:300}
+
+  @media (max-width:720px){
+    .cv-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 16px}
+    .hero h1{font-size:32px}
+    .hero{padding:26px 0 28px}
+    .info th{width:104px;font-size:11.5px;padding:11px 12px}
+    .info td{padding:11px 12px;font-size:14px}
+    .lead{font-size:15.5px;padding:18px}
+    .tab{padding:14px 13px;font-size:14px}
+    .vhead .vt{font-size:15.5px}
+  }
+  @media print{
+    nav.tabs,.foot{display:none!important}
+    .panel{display:block!important}
+    .brandbar,header .hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .vbody{display:block!important}
+    body{background:#fff}
+  }
+  .vlink{color:var(--orange);cursor:pointer;text-decoration:none;border-bottom:1px solid rgba(250,166,47,.35);transition:.15s}
+  .vlink:hover,.vlink:focus-visible{border-bottom-color:var(--orange);outline:none}
+  .cvlink{color:var(--text);cursor:pointer}
+  .cvlink:hover,.cvlink:focus-visible{color:var(--orange);outline:none}
+  .rvids{display:flex;flex-direction:column;gap:8px;margin:12px 0 2px 0}
+  .rvid{background:var(--canvas);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .rvid[open]{border-color:rgba(250,166,47,.4)}
+  .rvid>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:9px;padding:9px 13px;font-family:var(--head);font-size:13px;font-weight:600}
+  .rvid>summary::-webkit-details-marker{display:none}
+  .rvid-tag{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--orange);background:var(--accent-soft);border:1px solid rgba(250,166,47,.3);border-radius:20px;padding:3px 9px}
+  .rvid-chev{margin-left:auto;color:var(--text2);font-size:10px;transition:transform .15s}
+  .rvid[open] .rvid-chev{transform:rotate(180deg)}
+  .rvd{padding:2px 15px 14px;border-top:1px solid var(--border)}
+  .rvd-hook{background:var(--accent-soft);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:9px 12px;font-size:13.5px;font-style:italic;margin:12px 0}
+  .rvd-l{font-family:var(--head);font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);margin:12px 0 5px}
+  .rvd-tp{list-style:none;margin:0;padding:0}
+  .rvd-tp li{position:relative;padding:4px 0 4px 16px;font-size:13.5px;font-weight:300}
+  .rvd-tp li::before{content:"";position:absolute;left:0;top:11px;width:5px;height:5px;border-radius:50%;background:var(--orange)}
+  .vcard{scroll-margin-top:72px}
+  .rblock{scroll-margin-top:72px}
+  .vcard.flash,.rblock.flash .rcard{box-shadow:0 0 0 2px var(--orange),0 8px 22px rgba(0,0,0,.35)}
+</style>
+</head>
+<body>
+<div class="brandbar"><div class="wrap">
+  <div class="wordmark">WhiteKey<span class="mk"> Marketing</span></div>
+  <div class="tag">Shoot Brief</div>
+</div></div>
+
+<header>
+  <div class="hero"><div class="wrap">
+    <h1>VIP Karaoke Bar</h1>
+    <p class="sub">Short-form Reels and TikTok content shot at VIP Karaoke Bar on their District V night. One creator, iPhone and mics, one window. Saturday 1 August 2026, 10:30pm to 12:30am.</p>
+    <div class="chips">
+      <div class="chip"><b>11</b><span>client videos</span></div>
+      <div class="chip"><b>1</b><span>internal</span></div>
+      <div class="chip"><b>2</b><span>hr window</span></div>
+      <div class="chip"><b>1</b><span>person crew</span></div>
+    </div>
+  </div></div>
+  <nav class="tabs"><div class="wrap"><div class="tabs-inner" id="tabs" role="tablist">
+    <div class="tab active" role="tab" tabindex="0" data-t="client">Client View</div>
+    <div class="tab" role="tab" tabindex="0" data-t="videos">Videos (11 + 1)</div>
+    <div class="tab" role="tab" tabindex="0" data-t="run">Run Sheet</div>
+  </div></div></nav>
+</header>
+
+<main class="wrap">
+  <section class="panel active" id="client">
+    <div class="lead">Twelve short-form iPhone videos in one <b class="hl">10:30pm to 12:30am</b> window, 11 for release and 1 internal. The night covers the anniversary invite, Tomahawk Tuesdays, Bottomless Sundaze, VietPop Night, private rooms, POV and b-roll reels and a BTS walkthrough.</div>
+
+    <div class="sec-title mt">The shoot at a glance</div>
+    <div class="card">
+      <table class="info">
+        <tr><th>Client</th><td>VIP Karaoke Bar</td></tr>
+        <tr><th>Industry</th><td>Hospitality. Karaoke bar and restaurant.</td></tr>
+        <tr><th>Location</th><td>1/239 Canley Vale Rd, Canley Heights NSW 2166. Main area plus the private rooms.</td></tr>
+        <tr><th>Date</th><td>Saturday 1 August 2026 &middot; 10:30pm to 12:30am &middot; 1 person crew</td></tr>
+        <tr><th>Format</th><td>Vertical 9x16, self-shot on iPhone, mostly sub 30 seconds.</td></tr>
+      </table>
+    </div>
+
+    <div class="sec-title mt">What we're capturing</div>
+    <div class="cv-grid" style="grid-template-columns:1fr">
+      <div class="cv-block">
+        <h3>Videography</h3>
+        <div class="big">11 client, 1 internal</div>
+        <p>Twelve pieces captured in the one window. Eleven go out on the client's channels. Video 11 is the only one that stays internal to WhiteKey.</p>
+        <ul class="cv-list">
+          <li><a class="vlink" data-goto="1" tabindex="0" role="link">1. Anniversary Invite</a></li>
+          <li><a class="vlink" data-goto="2" tabindex="0" role="link">2. District V Experience</a></li>
+          <li><a class="vlink" data-goto="3" tabindex="0" role="link">3. Tomahawk Tuesdays, venue manager</a></li>
+          <li><a class="vlink" data-goto="4" tabindex="0" role="link">4. Tomahawk Tuesdays, creator</a></li>
+          <li><a class="vlink" data-goto="5" tabindex="0" role="link">5. Bottomless Sundaze</a></li>
+          <li><a class="vlink" data-goto="6" tabindex="0" role="link">6. VietPop Night</a></li>
+          <li><a class="vlink" data-goto="7" tabindex="0" role="link">7. POV partying and singing</a></li>
+          <li><a class="vlink" data-goto="8" tabindex="0" role="link">8. Book the coolest private karaoke</a></li>
+          <li><a class="vlink" data-goto="9" tabindex="0" role="link">9. B-Roll Reel 1, VIP Experience</a></li>
+          <li><a class="vlink" data-goto="10" tabindex="0" role="link">10. B-Roll Reel 2, Right Group</a></li>
+          <li><a class="vlink" data-goto="12" tabindex="0" role="link">12. BTS walkthrough</a></li>
+          <li><a class="vlink" data-goto="11" tabindex="0" role="link">11. WKM internal marketing</a> <span style="color:var(--text2)">(internal)</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pointer"><div>Click any video above to jump straight to its talking points and shot list, or open the <b>Videos</b> tab for everything.</div></div>
+
+    <div class="sec-title mt">The night, start to finish</div>
+    <div class="card"><div class="checkgroup" id="cv-run"></div></div>
+    <div class="pointer"><div>Tap a line to jump to that block. Full timing and shot-by-shot notes are in the <b>Run Sheet</b> tab.</div></div>
+
+    <div class="foot">Tap any item to check it off during the shoot.</div>
+  </section>
+
+  <section class="panel" id="videos">
+    <div class="sec-title">Tap a video to open its talking points and B-roll checklist</div>
+    <div id="videoCards"></div>
+  </section>
+
+  <section class="panel" id="run">
+    <div class="sec-title">Run sheet, 10:30pm to 12:30am, work top to bottom</div>
+    <div class="run" id="runList"></div>
+    <div class="foot">Times are a guide. The dinner-look pieces go first while the room is at its calmest. Peak crowd content sits in the middle, rooms and b-roll at the end.</div>
+  </section>
+</main>
+
+<script>
+const VIDEOS = [
+  {n:"1", group:"Client releases", t:"Anniversary Invite", meta:["Vertical 9x16","Sub 30s","Venue manager on camera"],
+   type:"Venue manager on camera. Invite for the anniversary night on August 28.",
+   note:"He can wing the delivery, he just needs to invite everyone.",
+   hook:"On August 28, we're throwing it down.",
+   tp:["Whatever song carried you through this year, bring it.","Sound system, lights, the whole vibe is locked in.","Some surprises we can't spoil yet.","This isn't only our anniversary, it's yours too if you've ever sung a note in this building.","Pull up August 28."],
+   broll:["Karaoke screens mid-song","Mic being passed","Room lights sweeping","A full table mid-cheers"]},
+  {n:"2", group:"Client releases", t:"District V Experience", meta:["Vertical 9x16","Sub 30s","Creator on camera"],
+   type:"Creator on camera. Sells District V as a night you have to be at, not watch.",
+   hook:"If you know, you know. District V is not a normal night out.",
+   tp:["The vibe, the music, the energy hits different.","If you've never experienced it, this is your sign.","Come with your people, come solo, it doesn't matter. You're leaving with a new favourite spot.","Follow so you catch the next date.","Overlay text: District V at VIP Karaoke Bar"],
+   broll:["Venue under club lighting","Creator with a drink","Crowd singing","Speakers and lighting rig"]},
+  {n:"3", group:"Client releases", t:"Tomahawk Tuesdays, venue manager", meta:["Vertical 9x16","Sub 30s","Promo","Tight framing"],
+   type:"Venue manager on camera. Turns a quiet Tuesday into a booked Tuesday, on price and on the band.",
+   note:"No Tomahawk service tonight, so there is no plate to film. Keep the frame tight and warm, no wides of the late room. The $55 and the 5pm to 9pm band times land word for word.",
+   hook:"Tomahawk Tuesdays are about to be your new favourite day of the week.",
+   tp:["Every single Tuesday.","Tomahawk is $55. Say the number out loud, don't bury it in the caption.","Live band every Tuesday, 5pm to 9pm.","Eat, drink, listen, then grab a room.","Bring your friends, make it a whole thing."],
+   broll:["Overlay text over neutral venue b-roll","Tomahawk photos or clips the client sends","Tight warm framing at a dressed table"]},
+  {n:"4", group:"Client releases", t:"Tomahawk Tuesdays, creator", meta:["Vertical 9x16","Sub 30s","Creator on camera","Tight framing"],
+   type:"Creator on camera. Same offer from a regular's point of view, softer sell.",
+   note:"Shoot this in the first 20 minutes, while the room is still at its calmest.",
+   hook:"Ok so Tomahawk Tuesdays at VIP Karaoke Bar. I don't make the rules, I just show up every week.",
+   tp:["$55 for the Tomahawk. React to the price, that's the beat that sells it.","There's a live band from 5pm to 9pm, so you're eating to actual music, not a playlist.","Good food and good people, every single Tuesday.","If your Tuesdays have been kinda mid, this is the fix.","Overlay text: TOMAHAWK TUESDAYS / $55 / LIVE BAND 5PM to 9PM"],
+   broll:["Tight on the creator at a dressed table in the calmest corner","Warm lights kept on over that table","Background thrown out of focus","Plate and band inserts from client-supplied assets"]},
+  {n:"5", group:"Client releases", t:"Bottomless Sundaze", meta:["Vertical 9x16","Sub 30s","Promo","Tight framing"],
+   type:"Promo for the Sunday sitting on August 16. Drives DM bookings.",
+   note:"Daytime offer, so nothing on the night matches it. Overlay text plus client-supplied daylight assets.",
+   hook:"Bottomless Sundaze is back at VIP Karaoke Bar this Sunday.",
+   tp:["Set menu plus unlimited cocktails, full 2 hour session.","$85 a person.","Tables open between 12 and 2pm.","DM to book because these go fast."],
+   broll:["Cocktails being poured and carried","A table of friends mid-laugh","Tight framing, no late-room wides","Client-supplied daylight and set menu shots"]},
+  {n:"6", group:"Client releases", t:"VietPop Night", meta:["Vertical 9x16","Sub 30s","Promo","Peak crowd"],
+   type:"Hype build for August 23. Hook to camera, the rest runs as voiceover.",
+   hook:"VIP Karaoke is doing VietPop Night and it is about to be UNHINGED in the best way.",
+   tp:["All your favourite VietPop tracks.","The crowd singing every word.","The energy of the whole room hyped up together.","August 23. Be in the room, not watching the replay on your feed."],
+   broll:["Packed main area","Crowd hands up","Singers on mic","VietPop signage and decor close-ups","Lighting at full"]},
+  {n:"7", group:"Client releases", t:"POV Partying and Singing", meta:["Vertical 9x16","Sub 30s","B-roll only"],
+   type:"B-roll only. Scroll stopper, pure vibe, no sell.",
+   ref:"https://www.tiktok.com/@sydney/video/7437412911082999048",
+   broll:["Handheld POV moving through the room","Mic grab","Group singing into one mic","Drinks clinking","Lights across faces"]},
+  {n:"8", group:"Client releases", t:"Book the Coolest Private Karaoke", meta:["Vertical 9x16","Sub 30s","Promo","Private rooms"],
+   type:"Promo pushing private room bookings for groups.",
+   ref:"https://www.tiktok.com/@dreamkaraokesydney/video/7629289713031073031",
+   tp:["Overlay: You and your friends book the coolest private karaoke in Sydney.","Location pin: VIP Karaoke Bar, Canley Heights"],
+   broll:["Private room door opening","Group filing in","Screens lighting up","Room from the corner wide","Drinks on the table"]},
+  {n:"9", group:"Client releases", t:"B-Roll Reel 1, Book Your VIP Experience", meta:["Vertical 9x16","Sub 30s","B-roll only"],
+   type:"Cut-down brand reel that ends on the logo.",
+   ref:"https://www.tiktok.com/@liv.saturday/video/7659397659412909332",
+   tp:["Overlay text in order: BOOK YOUR VIP EXPERIENCE / PREMIUM EXPERIENCE / COCKTAILS / GOOD VIBES / END WITH LOGO"],
+   broll:["Room reveal","Cocktail pour","Mic close-up","Screens","Group reaction","Logo card"]},
+  {n:"10", group:"Client releases", t:"B-Roll Reel 2, The Right Group", meta:["Vertical 9x16","Sub 30s","B-roll only"],
+   type:"Group friendship angle, aimed at group bookings.",
+   ref:"https://www.tiktok.com/@liv.saturday/video/7665265966577650965",
+   tp:["Overlay text: Clubbing with the right group of friends"],
+   broll:["Friends entering together","Arms around shoulders","Shared mic","Laughing between songs","Lights on the group"]},
+  {n:"12", group:"Client releases", t:"BTS", meta:["Vertical 9x16","Sub 30s","Creator on camera","Walkthrough"],
+   type:"Creator-led walkthrough of District V night, shot as a come with me piece.",
+   hook:"Hey, it's Natasha from White Key Marketing. Tonight I'm at VIP Karaoke Bar, come with me and let's experience their District V Night!",
+   tp:["Okay so as soon as you walk in you can already feel the energy!","Everyone's partying hard and dancing! No one's shy, this is exactly what District V is about!","If you haven't been to VIP Karaoke Bar yet, you need to fix that!"],
+   broll:["Film the surroundings","Crew prepping","Barista making the drinks","People ordering","People eating and talking","Process of making food and cocktails","Team singing and grabbing the mic","Creator walking into the room, door-entrance reveal","Close-up of any Vietnam Nights decor, lighting or signage","People dancing and vibing","Reacting to the food","People drinking cocktails"]},
+  {n:"11", group:"Internal, not released to the client", t:"WKM Internal Marketing Content", meta:["Vertical 9x16","15 to 20s","Talking head"],
+   type:"Talking head for WhiteKey's own channels. Shows how one shoot becomes three campaigns.",
+   note:"Seated, minimal movement, shot outside the entrance where the audio is cleanest.",
+   hook:"Same venue, three completely different campaigns.",
+   tp:["For the anniversary, we're selling the energy.","For Tomahawk Tuesdays, we're selling the food and the night out.","And now the live band and the $55 plate, so it's a dinner plan, not only a karaoke plan.","For Bottomless Sundaze, we're selling value and urgency.","Same location, different audience, different reason to show up.","That's how White Key turns one shoot into multiple campaigns."],
+   broll:["Venue lighting and karaoke screens","Cocktails and table setup","The creator enjoying the venue","Campaign clips from the venue manager","Tomahawk and band inserts from client assets"]}
+];
+
+const RUN = [
+  ["1","10:30pm","Arrive, check, entrance reveal","Roughly 10 minutes. Mics on and audio checked, grab the door and entrance reveal on the way in, then find the warmest and quietest corner of the main area and ask the venue to keep the lights up over one dressed table."],
+  ["2","10:40pm","Dinner-look pieces, tight framing","Do these first while the room is at its calmest. Tomahawk twice and Bottomless Sundaze. Tight and warm, no wides, background out of focus. This is the block that carries the dining message.",["4","3","5"]],
+  ["3","11:05pm","Anniversary invite","Venue manager to camera. August 28. Short and loose, he can wing it.",["1"]],
+  ["4","11:15pm","WKM internal content","Seated talking head outside the entrance where the audio is cleanest. Punch-ins added in the edit.",["11"]],
+  ["5","11:25pm","BTS walkthrough","Creator-led come with me piece through the room. Loose and handheld, straight to camera, collecting the b-roll list as you go.",["12"]],
+  ["6","11:50pm","Peak floor: District V and VietPop","The room is at its fullest. Grab the crowd energy, the singing, the hands up, the lighting at full.",["2","6"]],
+  ["7","12:05am","Private rooms","Cover a private room properly. Door opening, group filing in, screens lighting up.",["8"]],
+  ["8","12:15am","POV and b-roll reels","Handheld movement through the room, cocktail pours, mic close-ups, group reactions. Collect the logo card frame.",["7","9","10"]],
+  ["9","12:25am","Wrap, backup, asset request","Check the shot list against the brief, back up all footage, and message the client for the Tomahawk plate, live band and daylight dining assets we could not film."]
+];
+
+const CVRUN = [
+  "Arrive, check, entrance reveal",
+  "Dinner-look pieces, tight framing",
+  "Anniversary invite",
+  "WKM internal content",
+  "BTS walkthrough",
+  "Peak floor: District V and VietPop",
+  "Private rooms",
+  "POV and b-roll reels",
+  "Wrap, backup, asset request"
+];
+
+const KEY="vip_karaoke_brief_v1";
+let state={};
+try{state=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){state={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function itemHTML(id,label){
+  const on=state[id]?"checked":"";
+  const cls=state[id]?"item done":"item";
+  return `<label class="${cls}" data-id="${id}"><input type="checkbox" ${on}><span>${label}</span></label>`;
+}
+
+document.getElementById("cv-run").innerHTML =
+  `<div class="cg-head"><h3>The night, in order</h3><span class="pill">${RUN.length} blocks</span></div>` +
+  CVRUN.map((r,i)=>{
+    const n=RUN[i][0];const id="run-"+n;const on=state[id]?"checked":"";const cls=state[id]?"item done":"item";
+    return `<div class="${cls}" data-id="${id}"><input type="checkbox" ${on}><span class="cvlink" data-runlink="${n}" tabindex="0" role="link"><b>${i+1}.</b> ${esc(r)}</span></div>`;
+  }).join("");
+
+let lastGroup="";
+document.getElementById("videoCards").innerHTML = VIDEOS.map(v=>{
+  let head="";
+  if(v.group!==lastGroup){head=v.group?`<div class="grouphead">${esc(v.group)}</div>`:"";lastGroup=v.group;}
+  const hookBlock = v.hook ? `<div class="vrow"><div class="rl">Hook</div><div class="hook">${esc(v.hook)}</div></div>` : "";
+  const tpBlock = v.tp ? `<div class="vrow"><div class="rl">Talking points</div><ul class="tp">${v.tp.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>` : "";
+  const refBlock = v.ref ? `<div class="vrow"><div class="rl">Reference</div><a class="reflink" href="${esc(v.ref)}" target="_blank" rel="noopener">${esc(v.ref)}</a></div>` : "";
+  const broll = v.broll.map((b,i)=>itemHTML(`broll-${v.n}-${i}`, esc(b))).join("");
+  return head + `<details class="card vcard" id="v-${v.n}">
+    <summary>
+      <div class="vnum">${esc(v.n)}</div>
+      <div class="vhead"><div class="vt">${esc(v.t)}</div>
+        <div class="vm">${v.meta.map(m=>`<span class="badge">${esc(m)}</span>`).join("")}</div></div>
+      <div class="chev">\u25BC</div>
+    </summary>
+    <div class="vbody">
+      <div class="vrow"><div class="rl">Type</div><div>${esc(v.type)}</div></div>
+      ${v.note?`<div class="vrow"><div class="notecall"><div><b>Notes.</b> ${esc(v.note)}</div></div></div>`:""}
+      ${hookBlock}
+      ${tpBlock}
+      <div class="vrow"><div class="rl">B-Roll checklist</div><div class="checkgroup" style="padding:0">${broll}</div></div>
+      ${refBlock}
+    </div>
+  </details>`;
+}).join("");
+
+const VMAP={};VIDEOS.forEach(v=>{VMAP[v.n]=v;});
+function vidLabel(n){return "Video "+n;}
+function vidToggle(n){
+  const v=VMAP[n];if(!v)return "";
+  const hook=v.hook?`<div class="rvd-hook">${esc(v.hook)}</div>`:"";
+  const tp=v.tp?`<div class="rvd-l">Talking points</div><ul class="rvd-tp">${v.tp.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>`:"";
+  const broll=`<div class="rvd-l">B-roll</div><ul class="rvd-tp">${v.broll.map(b=>`<li>${esc(b)}</li>`).join("")}</ul>`;
+  return `<details class="rvid"><summary><span class="rvid-tag">${esc(vidLabel(n))}</span> ${esc(v.t)}<span class="rvid-chev">\u25BC</span></summary><div class="rvd">${hook}${tp}${broll}</div></details>`;
+}
+document.getElementById("runList").innerHTML = RUN.map((r,i)=>{
+  const id="run-"+r[0];
+  const done=state[id]?"done":"";
+  const last=i===RUN.length-1;
+  const vids=(r[4]&&r[4].length)?`<div class="rvids">${r[4].map(vidToggle).join("")}</div>`:"";
+  return `<div class="rblock ${done}" data-id="${id}">
+    <div class="rleft"><div class="rdot">${esc(r[0])}</div>${last?"":'<div class="rline"></div>'}</div>
+    <div class="rcontent"><label class="rcard"><input type="checkbox" ${state[id]?"checked":""}>
+      <div><div class="rtime">${esc(r[1])}</div><div class="rb">${esc(r[2])}</div><div class="rn">${esc(r[3])}</div></div></label>${vids}</div>
+  </div>`;
+}).join("");
+
+function updateCounts(){}
+
+document.addEventListener("change",e=>{
+  if(e.target.type!=="checkbox"||e.target.disabled)return;
+  const host=e.target.closest("[data-id]");if(!host)return;
+  const id=host.dataset.id;const on=e.target.checked;
+  state[id]=on;
+  document.querySelectorAll('[data-id="'+id+'"]').forEach(el=>{
+    el.classList.toggle("done",on);
+    const cb=el.querySelector('input[type=checkbox]');
+    if(cb&&cb!==e.target)cb.checked=on;
+  });
+  save();updateCounts();
+});
+
+function activateTab(b){
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  b.classList.add("active");
+  const panel=document.getElementById(b.dataset.t);if(panel)panel.classList.add("active");
+  window.scrollTo({top:0,behavior:"auto"});
+}
+document.getElementById("tabs").addEventListener("click",e=>{
+  const b=e.target.closest(".tab");if(b)activateTab(b);
+});
+document.getElementById("tabs").addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const b=e.target.closest(".tab");if(b){e.preventDefault();activateTab(b);}
+});
+
+function goToVideo(n){
+  const tab=document.querySelector('.tab[data-t="videos"]');
+  if(tab)activateTab(tab);
+  const el=document.getElementById("v-"+n);
+  if(!el)return;
+  el.open=true;
+  requestAnimationFrame(()=>{
+    el.scrollIntoView({behavior:"smooth",block:"start"});
+    el.classList.add("flash");
+    setTimeout(()=>el.classList.remove("flash"),1400);
+  });
+}
+function goToRun(n){
+  const tab=document.querySelector('.tab[data-t="run"]');
+  if(tab)activateTab(tab);
+  const el=document.querySelector('.rblock[data-id="run-'+n+'"]');
+  if(!el)return;
+  requestAnimationFrame(()=>{
+    el.scrollIntoView({behavior:"smooth",block:"start"});
+    el.classList.add("flash");
+    setTimeout(()=>el.classList.remove("flash"),1400);
+  });
+}
+document.addEventListener("click",e=>{
+  const a=e.target.closest("[data-goto]");
+  if(a){e.preventDefault();goToVideo(a.getAttribute("data-goto"));return;}
+  const r=e.target.closest("[data-runlink]");
+  if(r){e.preventDefault();goToRun(r.getAttribute("data-runlink"));}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const a=e.target.closest("[data-goto]");
+  if(a){e.preventDefault();goToVideo(a.getAttribute("data-goto"));return;}
+  const r=e.target.closest("[data-runlink]");
+  if(r){e.preventDefault();goToRun(r.getAttribute("data-runlink"));}
+});
+
+updateCounts();
+</script>
+</body>
+</html>

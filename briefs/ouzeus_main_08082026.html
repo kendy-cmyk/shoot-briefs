@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ouzeus Greek Night UGC Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#333132; --orange:#faa62f; --white:#ffffff;
+    --bg:#1b191a;
+    --text:#f1efed; --text2:#a7a3a1; --canvas:#2a2829; --soft:#242223;
+    --surface:#3a3738; --border:#403d3e; --accent:#faa62f; --accent-soft:rgba(250,166,47,.13);
+    --done:#faa62f; --charcoal2:#403e3f; --charcoal-line:rgba(255,255,255,.14);
+    --line-strong:#5f5c5d;
+    --shadow:0 1px 2px rgba(0,0,0,.30),0 6px 18px rgba(0,0,0,.30);
+    --head:"Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    --sans:"Roboto",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;background:var(--bg);color-scheme:dark}
+  body{font-family:var(--sans);color:var(--text);background:var(--bg);font-size:16px;line-height:1.5;font-weight:400;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  h1,h2,h3,.eyebrow,.sec-title,.wordmark,.chip b{font-family:var(--head)}
+
+  .brandbar{background:var(--charcoal);border-bottom:1px solid var(--charcoal-line)}
+  .brandbar .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px;gap:16px;flex-wrap:wrap}
+  .wordmark{font-weight:800;font-size:20px;letter-spacing:.02em;color:#fff;text-transform:uppercase}
+  .wordmark .mk{color:var(--orange)}
+  .brandbar .tag{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:500}
+
+  header .hero{background:var(--charcoal);color:#fff;padding:30px 0 34px}
+  .hero h1{font-size:44px;line-height:1.02;margin:0 0 10px;letter-spacing:.01em;text-transform:uppercase;color:#fff}
+  .hero .sub{color:rgba(255,255,255,.72);font-size:16.5px;max-width:680px;font-weight:300}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .chip{display:flex;align-items:baseline;gap:7px;background:var(--charcoal2);border:1px solid var(--charcoal-line);border-radius:8px;padding:9px 13px}
+  .chip b{font-size:20px;font-weight:800;color:var(--orange);letter-spacing:0}
+  .chip span{color:rgba(255,255,255,.72);font-weight:400;font-size:13.5px}
+
+  nav.tabs{position:sticky;top:0;z-index:40;background:rgba(27,25,26,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .tabs-inner{display:flex;gap:2px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tab{border:none;background:none;padding:15px 16px;font-size:15px;font-weight:600;font-family:var(--sans);color:var(--text2);cursor:pointer;border-bottom:2.5px solid transparent;white-space:nowrap;min-height:44px;user-select:none}
+  .tab:hover{color:var(--text)}
+  .tab:focus-visible{outline:2px solid var(--orange);outline-offset:-2px;border-radius:4px}
+  .tab.active{color:#fff;border-bottom-color:var(--orange)}
+
+  main{padding:34px 0 90px}
+  .panel{display:none;animation:fade .3s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .sec-title{font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--text2);font-weight:700;margin:6px 0 15px}
+  .sec-title.mt{margin-top:34px}
+
+  .card{background:var(--canvas);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+  .card + .card{margin-top:16px}
+
+  .lead{background:var(--canvas);color:var(--text);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:12px;padding:22px 24px;font-size:17px;font-weight:300;line-height:1.55}
+  .lead b{font-weight:600;color:var(--text)}
+  .lead .hl{color:var(--orange);font-weight:600}
+  .cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+  .cv-block{background:var(--canvas);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);padding:20px 22px}
+  .cv-block h3{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px}
+  .cv-block .big{font-family:var(--head);font-size:19px;font-weight:700;text-transform:uppercase;letter-spacing:.01em;margin-bottom:10px;color:var(--text)}
+  .cv-block p{font-size:15px;color:var(--text);font-weight:300;line-height:1.55}
+  .cv-list{list-style:none;margin-top:10px}
+  .cv-list li{position:relative;padding:5px 0 5px 20px;font-size:14.5px;font-weight:300}
+  .cv-list li::before{content:"";position:absolute;left:0;top:12px;width:7px;height:7px;border-radius:2px;background:var(--orange)}
+  details.more{margin-top:12px;border-top:1px dashed var(--border);padding-top:10px}
+  details.more>summary{list-style:none;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:7px}
+  details.more>summary::-webkit-details-marker{display:none}
+  details.more>summary .chev{font-size:11px;transition:transform .2s}
+  details.more[open]>summary .chev{transform:rotate(180deg)}
+  details.more .inner{padding-top:10px}
+  .pointer{display:flex;gap:11px;align-items:flex-start;background:var(--accent-soft);border:1px solid rgba(250,166,47,.32);border-radius:10px;padding:13px 16px;font-size:14.5px;margin-top:16px;font-weight:400}
+  .pointer .ic{color:var(--done);font-weight:800;font-family:var(--head)}
+
+  .info{width:100%;border-collapse:collapse}
+  .info tr+tr{border-top:1px solid var(--border)}
+  .info th{text-align:left;vertical-align:top;padding:14px 18px;width:150px;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);background:var(--soft);font-weight:700;font-family:var(--head)}
+  .info td{padding:14px 18px;font-size:15px;font-weight:300}
+
+  .cg-head{display:flex;align-items:center;justify-content:space-between;padding:15px 16px 9px;gap:10px}
+  .cg-head h3{font-size:15px;font-family:var(--head);text-transform:uppercase;letter-spacing:.03em;font-weight:700}
+  .cg-head .pill{font-size:12px;font-weight:600;color:var(--text2);background:var(--soft);border:1px solid var(--border);border-radius:99px;padding:3px 10px;white-space:nowrap}
+  .checkgroup{padding:2px 8px 12px}
+  .item{display:flex;align-items:flex-start;gap:12px;padding:10px 12px;border-radius:8px;cursor:pointer;transition:background .12s}
+  .item:hover{background:var(--soft)}
+  .item input{appearance:none;-webkit-appearance:none;width:21px;height:21px;min-width:21px;margin-top:1px;border:2px solid var(--line-strong);border-radius:6px;cursor:pointer;position:relative;transition:.15s}
+  .item input:checked{background:var(--done);border-color:var(--done)}
+  .item input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .item span{font-size:15px;flex:1;font-weight:400}
+  .item.done span{color:var(--text2);text-decoration:line-through}
+
+  .grouphead{font-family:var(--head);text-transform:uppercase;letter-spacing:.06em;font-size:12.5px;font-weight:700;color:var(--text2);margin:26px 0 12px}
+  .grouphead:first-child{margin-top:4px}
+  .vcard{margin-bottom:12px}
+  .vcard>summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;gap:15px}
+  .vcard>summary::-webkit-details-marker{display:none}
+  .vnum{width:40px;height:40px;min-width:40px;border-radius:9px;background:var(--accent-soft);color:var(--done);font-family:var(--head);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center}
+  .vhead{flex:1;min-width:0}
+  .vhead .vt{font-size:16.5px;font-weight:600;letter-spacing:0;font-family:var(--head)}
+  .vhead .vm{font-size:12.5px;color:var(--text2);margin-top:3px}
+  .vhead .vm .badge{display:inline-block;background:var(--soft);border:1px solid var(--border);border-radius:5px;padding:1px 7px;margin:2px 6px 0 0;font-weight:500}
+  .chev{color:var(--text2);transition:transform .2s;font-size:12px}
+  .vcard[open] .chev{transform:rotate(180deg)}
+  .vbody{padding:2px 18px 20px;border-top:1px solid var(--border)}
+  .vrow{margin-top:17px}
+  .vrow .rl{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);font-weight:700;font-family:var(--head);margin-bottom:7px}
+  .hook{background:var(--accent-soft);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:11px 14px;font-size:14.5px;font-style:italic}
+  .tp{list-style:none}
+  .tp li{position:relative;padding:5px 0 5px 18px;font-size:14.5px;font-weight:300}
+  .tp li::before{content:"";position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;background:var(--orange)}
+  .notecall{display:flex;gap:9px;align-items:flex-start;background:var(--soft);border:1px solid var(--border);border-radius:8px;padding:11px 14px;font-size:14px;font-weight:300}
+  .notecall .ic{color:var(--done);font-weight:800;font-family:var(--head)}
+  .notecall b{font-weight:600}
+
+  .run{position:relative;padding-left:4px}
+  .rblock{display:flex;gap:16px;padding:2px 0}
+  .rleft{display:flex;flex-direction:column;align-items:center}
+  .rdot{width:34px;height:34px;min-width:34px;border-radius:50%;background:var(--canvas);border:2px solid var(--line-strong);color:var(--text2);font-family:var(--head);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;transition:.2s;z-index:2}
+  .rline{flex:1;width:2px;background:var(--border);margin:2px 0}
+  .rblock.done .rdot{background:var(--done);border-color:var(--done);color:#fff}
+  .rcontent{flex:1;padding-bottom:16px;min-width:0}
+  .rcard{background:var(--canvas);border:1px solid var(--border);border-radius:10px;padding:13px 16px;cursor:pointer;display:flex;gap:13px;align-items:flex-start;transition:border-color .15s}
+  .rcard:hover{border-color:var(--orange)}
+  .rcard input{appearance:none;-webkit-appearance:none;width:21px;height:21px;min-width:21px;margin-top:2px;border:2px solid var(--line-strong);border-radius:6px;cursor:pointer;position:relative}
+  .rcard input:checked{background:var(--done);border-color:var(--done)}
+  .rcard input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .rtime{font-size:12px;font-weight:700;color:var(--done);font-family:var(--head);letter-spacing:.03em}
+  .rcard .rb{font-size:15px;font-weight:600;margin-top:2px;font-family:var(--head)}
+  .rcard .rn{font-size:13.5px;color:var(--text2);margin-top:4px;font-weight:300}
+  .rblock.done .rb{text-decoration:line-through;color:var(--text2)}
+
+  .foot{text-align:center;color:var(--text2);font-size:13px;margin-top:40px;font-weight:300}
+
+  @media (max-width:720px){ .cv-grid{grid-template-columns:1fr} }
+  @media (max-width:640px){
+    .wrap{padding:0 16px}
+    .hero h1{font-size:30px}
+    header .hero{padding:26px 0 28px}
+    .info th{width:98px;font-size:11.5px;padding:11px 12px}
+    .info td{padding:11px 12px;font-size:14px}
+    .lead{font-size:15.5px;padding:18px}
+    .tab{padding:14px 13px;font-size:14px}
+    .vhead .vt{font-size:15.5px}
+    .vcard>summary{padding:14px 14px;gap:12px}
+    .vbody{padding:2px 14px 18px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{animation:none!important;transition:none!important}
+  }
+  .vlink{color:var(--orange);cursor:pointer;text-decoration:none;border-bottom:1px solid rgba(250,166,47,.35);transition:.15s}
+  .vlink:hover,.vlink:focus-visible{border-bottom-color:var(--orange);outline:none}
+  .vcard{scroll-margin-top:72px}
+  .vcard.flash{box-shadow:0 0 0 2px var(--orange),0 8px 22px rgba(0,0,0,.35)}
+  .cvlink{color:inherit;cursor:pointer;text-decoration:none;border-bottom:1px solid rgba(250,166,47,.35);transition:.15s}
+  .cvlink:hover,.cvlink:focus-visible{color:var(--orange);border-bottom-color:var(--orange);outline:none}
+  .rblock{scroll-margin-top:72px}
+  .rblock.flash .rcard{box-shadow:0 0 0 2px var(--orange),0 8px 22px rgba(0,0,0,.35)}
+  .rvids{display:flex;flex-direction:column;gap:8px;margin:12px 0 2px 0}
+  .rvid{background:var(--accent-soft);border:1px solid rgba(250,166,47,.3);border-radius:10px;overflow:hidden}
+  .rvid>summary{list-style:none;cursor:pointer;padding:9px 13px;display:flex;align-items:center;gap:10px;font-family:var(--head);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--orange)}
+  .rvid>summary::-webkit-details-marker{display:none}
+  .rvid>summary .chev{margin-left:auto;color:var(--orange)}
+  .rvid[open]>summary .chev{transform:rotate(180deg)}
+  .rvtag{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;background:var(--orange);color:#1b191a;border-radius:5px;font-size:11px;font-weight:800}
+  .rvbody{padding:2px 14px 14px;border-top:1px solid rgba(250,166,47,.25)}
+  .rvsub{font-size:11.5px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;font-weight:700;font-family:var(--head);margin:11px 0 2px}
+  .rvrow{margin-top:12px;font-size:14px;font-weight:300;color:var(--text)}
+  .rvrow>b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);font-family:var(--head);font-weight:700;margin-bottom:5px}
+</style>
+</head>
+<body>
+<div class="brandbar"><div class="wrap">
+  <div class="wordmark">WhiteKey<span class="mk"> Marketing</span></div>
+  <div class="tag">Shoot Brief</div>
+</div></div>
+
+<header>
+  <div class="hero"><div class="wrap">
+    <h1>Ouzeus</h1>
+    <p class="sub">Greek Night at Riverside Bar &amp; Dining, Penrith. One UGC creator filming as a real guest on the night, iPhone only. Saturday 8 August 2026, 8:00pm to 10:00pm.</p>
+    <div class="chips">
+      <div class="chip"><b>8</b><span>UGC videos</span></div>
+      <div class="chip"><b>45s</b><span>max each</span></div>
+      <div class="chip"><b>2</b><span>hr coverage</span></div>
+      <div class="chip"><b>1</b><span>creator</span></div>
+    </div>
+  </div></div>
+  <nav class="tabs"><div class="wrap"><div class="tabs-inner" id="tabs" role="tablist">
+    <div class="tab active" role="tab" tabindex="0" data-t="client">Client View</div>
+    <div class="tab" role="tab" tabindex="0" data-t="ugc">UGC</div>
+    <div class="tab" role="tab" tabindex="0" data-t="run">Run Sheet</div>
+  </div></div></nav>
+</header>
+
+<main class="wrap">
+  <section class="panel active" id="client">
+    <div class="lead">Rachel shoots <b class="hl">8 UGC videos</b> at <b class="hl">Greek Night</b>, filmed on an iPhone as a real guest rather than a crew. Priority coverage is the <b class="hl">Ouzeus cocktails and bottles</b>, the <b class="hl">Greek food</b>, and the <b class="hl">live bouzouki player and singer</b>. It should feel warm, loud and unpolished, the way a night out actually looks on someone's phone. What is below is the short version. Open the UGC tab for every hook and shot list, or the Run Sheet for the order on the night.</div>
+
+    <div class="sec-title mt">The shoot at a glance</div>
+    <div class="card">
+      <table class="info">
+        <tr><th>Client</th><td>Ouzeus</td></tr>
+        <tr><th>Industry</th><td>Beverage, Greek spirits, crossed with hospitality, bar and dining.</td></tr>
+        <tr><th>Location</th><td>Riverside Bar &amp; Dining, Penrith. Next to The Coffee Club.</td></tr>
+        <tr><th>Date</th><td>Saturday 8 August 2026, 8:00pm to 10:00pm. Two hour shoot, one UGC creator.</td></tr>
+        <tr><th>Deliverables</th><td>8 UGC videos, each up to 45 seconds. All eight are deliverables.</td></tr>
+        <tr><th>Format</th><td>Vertical, iPhone, handheld. No lighting kit and no crew. Natural venue sound carries the live music clips.</td></tr>
+      </table>
+    </div>
+
+    <div class="pointer"><div><b class="ic">Consent.</b> Get a verbal okay from anyone clearly featured in frame, especially in the crowd and dance floor clips. Skip any table that says no.</div></div>
+
+    <div class="sec-title mt">What we are capturing</div>
+    <div class="cv-grid">
+      <div class="cv-block">
+        <h3>UGC creator</h3>
+        <div class="big">8 videos, up to 45s each</div>
+        <p>The whole night in first person. Tap any title to open its hook, talking points and shot list.</p>
+        <ul class="cv-list">
+          <li><a class="vlink" data-goto="1" tabindex="0" role="link">1. Greek Night walk-in</a></li>
+          <li><a class="vlink" data-goto="2" tabindex="0" role="link">2. Ouzeus cocktail build</a></li>
+          <li><a class="vlink" data-goto="3" tabindex="0" role="link">3. Greek food run</a></li>
+          <li><a class="vlink" data-goto="4" tabindex="0" role="link">4. Live bouzouki moment</a></li>
+        </ul>
+        <details class="more"><summary>Show the other four <span class="chev">&#9660;</span></summary><div class="inner">
+          <ul class="cv-list">
+            <li><a class="vlink" data-goto="5" tabindex="0" role="link">5. What is Ouzeus, bottle feature</a></li>
+            <li><a class="vlink" data-goto="6" tabindex="0" role="link">6. Crowd energy and dance floor</a></li>
+            <li><a class="vlink" data-goto="7" tabindex="0" role="link">7. Rachel's night-out recommendation</a></li>
+            <li><a class="vlink" data-goto="8" tabindex="0" role="link">8. Closing CTA and how to find it</a></li>
+          </ul>
+        </div></details>
+      </div>
+    </div>
+
+    <div class="pointer"><div>Click any video above to jump to its hook, talking points and b-roll list, or open the <b>UGC</b> tab for all eight.</div></div>
+
+    <div class="sec-title mt">The night, start to finish</div>
+    <div class="card"><div class="checkgroup" id="cv-run"></div></div>
+    <div class="pointer"><div>Full timing and shot-by-shot detail are in the <b>Run Sheet</b> tab. Ticking a step here ticks it there.</div></div>
+
+    <div class="foot">Tap any item to check it off during the shoot. Progress saves on this device.</div>
+  </section>
+
+  <section class="panel" id="ugc">
+    <div class="sec-title">UGC creator, tap a video to open its hook, talking points and b-roll checklist</div>
+    <div id="ugcCards"></div>
+  </section>
+
+  <section class="panel" id="run">
+    <div class="sec-title">Run sheet, suggested order across the two hours</div>
+    <div class="run" id="runList"></div>
+    <div class="foot">Times are a guide. Shoot the crowd between 9:00 and 9:45pm when the room is fullest.</div>
+  </section>
+</main>
+
+<script>
+const VIDEOS = [
+  {n:"1", group:"The eight videos", t:"Greek Night Walk-In", meta:["Vertical","Under 30s","Conceptual, viral style"],
+   type:"UGC, POV atmosphere hook",
+   purpose:"The scroll stopper. Sells the room in five seconds.",
+   hook:"You didn't tell me Penrith had a Greek night like this.",
+   broll:[`POV walking through the front door, phone leading`,`Pan across the room: full tables, bar, lights`,`Bouzouki player in frame, even briefly`,`Quick cut to a cocktail landing on a table`,`Rachel's reaction to camera at the end`]},
+  {n:"2", group:"The eight videos", t:"Ouzeus Cocktail Build", meta:["Vertical","Under 30s","Promo"],
+   type:"UGC, product hero",
+   purpose:"Hero the product. Make people want the drink.",
+   hook:"Watch them make this.",
+   tp:[`Ask the bartender what is going in it, film the answer`,`Name the cocktail on camera`,`One line on the taste after the first sip, honest, not scripted`],
+   broll:[`Ouzeus bottle picked up off the shelf, label to camera`,`The pour into the glass, close and slow`,`Ice, garnish, the louche if the ouzo hits water and clouds`,`Bartender sliding the glass across the bar`,`First sip, real reaction`],
+   note:"Ask the bartender for a spot at the quiet end of the bar so the audio is usable."},
+  {n:"3", group:"The eight videos", t:"Greek Food Run", meta:["Vertical","Up to 1 min","Narrative"],
+   type:"UGC, food led",
+   purpose:"Food porn. Drives bookings.",
+   hook:"We ordered everything on the Greek menu. Here's what came out.",
+   tp:[`Name each dish as it lands`,`Pick a favourite and say why in one sentence`,`Rough price or value comment if it is fair to make one`],
+   broll:[`Plates landing on the table, one after another`,`Overhead of the full spread`,`Cheese pull, dip scoop, meat off the skewer, lemon squeeze`,`Hands reaching in across the table`,`Steam and char close-ups`]},
+  {n:"4", group:"The eight videos", t:"Live Bouzouki Moment", meta:["Vertical","Under 30s","Live audio"],
+   type:"UGC, live music",
+   purpose:"Proof the night is actually live. Sound carries this one.",
+   broll:[`Hold a clean 20 to 30 second take of the singer and bouzouki player, no talking over it`,`Close on the bouzouki strings and hands`,`Crowd watching, clapping, singing along`,`Someone at a table filming on their own phone`,`Wide from the back of the room with the whole band and crowd in frame`],
+   note:"Get within a few metres of the performers. The phone mic distorts from the back of a loud room."},
+  {n:"5", group:"The eight videos", t:"What Is Ouzeus", meta:["Vertical","Up to 1 min","Talking head plus b-roll"],
+   type:"UGC, product education",
+   purpose:"The one video Ouzeus can run on its own channel.",
+   hook:"If you've never had Ouzeus, this is what you're missing.",
+   tp:[`What is it and where is it from`,`How do people drink it here: neat, over ice, or in the cocktail`,`What does it actually taste like, in your own words`,`Who should order it on their next night out`],
+   broll:[`Bottle held up in hand, label readable`,`Bottles lined up on the display or back bar`,`Neat pour over ice, clouding`,`Glasses clinking at the table`,`Rachel talking to camera with the bar behind her`]},
+  {n:"6", group:"The eight videos", t:"Crowd Energy", meta:["Vertical","Under 30s","Conceptual, viral style"],
+   type:"UGC, atmosphere",
+   purpose:"FOMO. Show the room at its peak.",
+   broll:[`Dancing, clapping, arms up during a big song`,`Tables singing along`,`Staff moving fast through the room with plates and drinks`,`Quick faces: laughing, cheers-ing, mid-conversation`,`Wide of the packed floor late in the night`],
+   note:"Shoot between 9:00 and 9:45pm when the room is fullest. Get a verbal okay from anyone clearly featured."},
+  {n:"7", group:"The eight videos", t:"Rachel's Night-Out Recommendation", meta:["Vertical","Up to 1 min","Talking head plus b-roll"],
+   type:"UGC, conversion",
+   purpose:"A real person telling Western Sydney to go.",
+   hook:"Stop saying there's nothing to do in Penrith.",
+   tp:[`Where you are and what is on tonight`,`What you ate and what you drank`,`The one thing that surprised you about the night`,`Who you would bring back with you`,`When Greek Night runs next, if the venue confirms it`],
+   broll:[`Rachel to camera outside or near the entrance where it is quieter`,`Cutaways to the food, the cocktail, the band`,`Walking back into the room mid-sentence`]},
+  {n:"8", group:"The eight videos", t:"Closing CTA and How To Find It", meta:["Vertical","Under 30s","Promo"],
+   type:"UGC, venue and CTA",
+   purpose:"Closes the set. Tells people exactly where to go.",
+   hook:"It's right next to The Coffee Club. That's it.",
+   tp:[`Venue name and where it sits`,`Book or walk in`,`Order the Ouzeus cocktail when you get there`],
+   broll:[`Exterior and signage at night`,`The Coffee Club next door as the landmark`,`Walking up to the entrance`,`Last shot back inside with the band playing`],
+   note:"Shoot the exterior on the way in or the way out while the signage is lit, then finish back inside with the band playing."}
+];
+
+const RUN = [
+  {n:"1",time:"7:45pm",title:"Arrive and read the room",note:"Get in before the walk-in shot. Find the quiet end of the bar, check where the band sets up, and note the best angle on the back bar for the bottles.",links:[]},
+  {n:"2",time:"8:00pm",title:"Walk-in POV",note:"Shoot this first, from outside the door, while the room is filling and the light still reads.",links:["1"]},
+  {n:"3",time:"8:10pm",title:"Bar: Ouzeus cocktail build",note:"Talk to the bartender before you roll. Get the pour and the first sip in the same pass.",links:["2"]},
+  {n:"4",time:"8:30pm",title:"Greek food run",note:"Be at the table before the plates land. Overhead of the full spread once everything is out.",links:["3"]},
+  {n:"5",time:"8:55pm",title:"Live bouzouki moment",note:"Move close for clean audio. One unbroken take first, cutaways after.",links:["4"]},
+  {n:"6",time:"9:10pm",title:"Bottle feature to camera",note:"Shoot with the bar behind you while the room is loud but you can still be heard.",links:["5"]},
+  {n:"7",time:"9:20pm",title:"Crowd energy and dance floor",note:"Peak of the night. Short bursts, lots of angles, verbal okay from anyone clearly featured.",links:["6"]},
+  {n:"8",time:"9:40pm",title:"Night-out recommendation",note:"Step near the entrance where it is quieter. Walk back into the room mid-sentence for the last shot.",links:["7"]},
+  {n:"9",time:"9:50pm",title:"Closing CTA and venue exterior",note:"Step outside for the signage and The Coffee Club as the landmark, then walk back in for the last shot with the band.",links:["8"]},
+  {n:"10",time:"10:00pm",title:"Wrap and back up",note:"Check every clip plays back, confirm the audio on the live music take, and back up before leaving.",links:[]}
+];
+
+const CVRUN = [
+  "Arrive and read the room",
+  "Walk-in POV",
+  "Bar: Ouzeus cocktail build",
+  "Greek food run",
+  "Live bouzouki moment",
+  "Bottle feature to camera",
+  "Crowd energy and dance floor",
+  "Night-out recommendation",
+  "Closing CTA and venue exterior",
+  "Wrap and back up"
+];
+
+const KEY="ouzeus_greeknight_brief_v1";
+let state={};
+try{state=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){state={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function itemHTML(id,label){
+  const on=state[id]?"checked":"";
+  const cls=state[id]?"item done":"item";
+  return `<label class="${cls}" data-id="${id}"><input type="checkbox" ${on}><span>${label}</span></label>`;
+}
+
+document.getElementById("cv-run").innerHTML =
+  `<div class="cg-head"><h3>The night, in order</h3><span class="pill">${RUN.length} blocks</span></div>` +
+  CVRUN.map((r,i)=>{const n=RUN[i].n;const id="run-"+n;const done=state[id]?"done":"";return `<div class="item ${done}" data-id="${id}"><input type="checkbox" ${state[id]?"checked":""}><span class="cvlink" data-runlink="${n}" tabindex="0" role="link"><b>${i+1}.</b> ${esc(r)}</span></div>`;}).join("");
+
+let lastGroup="";
+document.getElementById("ugcCards").innerHTML = VIDEOS.map(v=>{
+  let head="";
+  if(v.group!==lastGroup){head=`<div class="grouphead">${esc(v.group)}</div>`;lastGroup=v.group;}
+  const hookBlock = v.hook ? `<div class="vrow"><div class="rl">Hook</div><div class="hook">${esc(v.hook)}</div></div>` : "";
+  const tpBlock = v.tp ? `<div class="vrow"><div class="rl">Talking points</div><ul class="tp">${v.tp.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>` : "";
+  const broll = v.broll.map((b,i)=>itemHTML(`broll-${v.n}-${i}`, esc(b))).join("");
+  return head + `<details class="card vcard" id="v-${v.n}">
+    <summary>
+      <div class="vnum">${esc(v.n)}</div>
+      <div class="vhead"><div class="vt">${esc(v.t)}</div>
+        <div class="vm">${v.meta.map(m=>`<span class="badge">${esc(m)}</span>`).join("")}</div></div>
+      <div class="chev">&#9660;</div>
+    </summary>
+    <div class="vbody">
+      <div class="vrow"><div class="rl">Type</div><div>${esc(v.type)}</div></div>
+      <div class="vrow"><div class="rl">Purpose</div><div>${esc(v.purpose)}</div></div>
+      ${v.note?`<div class="vrow"><div class="notecall"><div><b>Notes.</b> ${esc(v.note)}</div></div></div>`:""}
+      ${hookBlock}
+      ${tpBlock}
+      <div class="vrow"><div class="rl">B-roll checklist</div><div class="checkgroup" style="padding:0">${broll}</div></div>
+    </div>
+  </details>`;
+}).join("");
+
+const VMAP={};VIDEOS.forEach(v=>{VMAP[v.n]=v;});
+function runVidToggle(n){
+  const v=VMAP[n];if(!v)return "";
+  const hookBlock=v.hook?`<div class="rvrow"><b>Hook</b><div class="hook">${esc(v.hook)}</div></div>`:"";
+  const tpBlock=v.tp?`<div class="rvrow"><b>Talking points</b><ul class="tp">${v.tp.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>`:"";
+  const brollBlock=`<div class="rvrow"><b>B-roll checklist</b><div class="checkgroup" style="padding:0">${v.broll.map((b,i)=>itemHTML(`broll-${v.n}-${i}`, esc(b))).join("")}</div></div>`;
+  return `<details class="rvid"><summary><span class="rvtag">${esc(v.n)}</span> ${esc(v.t)} <span class="chev">&#9660;</span></summary><div class="rvbody"><div class="rvsub">${esc(v.type)}</div>${v.note?`<div class="rvrow"><b>Notes</b>${esc(v.note)}</div>`:""}${hookBlock}${tpBlock}${brollBlock}</div></details>`;
+}
+
+document.getElementById("runList").innerHTML = RUN.map((r,i)=>{
+  const id="run-"+r.n;
+  const done=state[id]?"done":"";
+  const last=i===RUN.length-1;
+  const links=(r.links&&r.links.length)?`<div class="rvids">${r.links.map(runVidToggle).join("")}</div>`:"";
+  return `<div class="rblock ${done}" data-id="${id}">
+    <div class="rleft"><div class="rdot">${esc(r.n)}</div>${last?"":'<div class="rline"></div>'}</div>
+    <div class="rcontent"><label class="rcard"><input type="checkbox" ${state[id]?"checked":""}>
+      <div style="flex:1;min-width:0"><div class="rtime">${esc(r.time)}</div><div class="rb">${esc(r.title)}</div><div class="rn">${esc(r.note)}</div></div></label>${links}</div>
+  </div>`;
+}).join("");
+
+document.addEventListener("change",e=>{
+  if(e.target.type!=="checkbox"||e.target.disabled)return;
+  const host=e.target.closest("[data-id]");if(!host)return;
+  const id=host.dataset.id;const val=e.target.checked;
+  state[id]=val;
+  document.querySelectorAll('[data-id="'+id+'"]').forEach(el=>{
+    el.classList.toggle("done",val);
+    const cb=el.querySelector('input[type=checkbox]');
+    if(cb&&cb!==e.target)cb.checked=val;
+  });
+  save();
+});
+
+function activateTab(b){
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  b.classList.add("active");
+  const panel=document.getElementById(b.dataset.t);if(panel)panel.classList.add("active");
+  window.scrollTo({top:0,behavior:"auto"});
+}
+document.getElementById("tabs").addEventListener("click",e=>{
+  const b=e.target.closest(".tab");if(b)activateTab(b);
+});
+document.getElementById("tabs").addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const b=e.target.closest(".tab");if(b){e.preventDefault();activateTab(b);}
+});
+
+function goToVideo(n){
+  const tab=document.querySelector('.tab[data-t="ugc"]');
+  if(tab)activateTab(tab);
+  const el=document.getElementById("v-"+n);
+  if(!el)return;
+  el.open=true;
+  requestAnimationFrame(()=>{
+    el.scrollIntoView({behavior:"smooth",block:"start"});
+    el.classList.add("flash");
+    setTimeout(()=>el.classList.remove("flash"),1400);
+  });
+}
+document.addEventListener("click",e=>{
+  const a=e.target.closest("[data-goto]");
+  if(a){e.preventDefault();goToVideo(a.getAttribute("data-goto"));}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const a=e.target.closest("[data-goto]");
+  if(a){e.preventDefault();goToVideo(a.getAttribute("data-goto"));}
+});
+
+function goToRun(n){
+  const tab=document.querySelector('.tab[data-t="run"]');
+  if(tab)activateTab(tab);
+  const el=document.querySelector('.rblock[data-id="run-'+n+'"]');
+  if(!el)return;
+  requestAnimationFrame(()=>{
+    el.scrollIntoView({behavior:"smooth",block:"start"});
+    el.classList.add("flash");
+    setTimeout(()=>el.classList.remove("flash"),1400);
+  });
+}
+document.addEventListener("click",e=>{
+  const a=e.target.closest("[data-runlink]");
+  if(a){e.preventDefault();goToRun(a.getAttribute("data-runlink"));}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const a=e.target.closest("[data-runlink]");
+  if(a){e.preventDefault();goToRun(a.getAttribute("data-runlink"));}
+});
+</script>
+</body>
+</html>

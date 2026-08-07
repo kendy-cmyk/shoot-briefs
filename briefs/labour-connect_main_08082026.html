@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Labour Connect x JQZ Site BBQ Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#333132; --orange:#faa62f; --tangerine:#f7b52d; --white:#ffffff;
+    --bg:#1b191a;
+    --text:#f1efed; --text2:#a7a3a1; --canvas:#2a2829; --soft:#242223;
+    --surface:#3a3738; --border:#403d3e; --accent:#faa62f; --accent-soft:rgba(250,166,47,.13);
+    --done:#faa62f; --charcoal2:#403e3f; --charcoal-line:rgba(255,255,255,.14);
+    --line-strong:#5f5c5d;
+    --shadow:0 1px 2px rgba(0,0,0,.30),0 6px 18px rgba(0,0,0,.30);
+    --head:"Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    --sans:"Roboto",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;background:var(--bg);color-scheme:dark}
+  body{font-family:var(--sans);color:var(--text);background:var(--bg);font-size:16px;line-height:1.5;font-weight:400;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  h1,h2,h3,.eyebrow,.sec-title,.wordmark,.chip b{font-family:var(--head)}
+
+  .brandbar{background:var(--charcoal);border-bottom:1px solid var(--charcoal-line)}
+  .brandbar .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px;gap:16px;flex-wrap:wrap}
+  .wordmark{font-weight:800;font-size:20px;letter-spacing:.02em;color:#fff;text-transform:uppercase}
+  .wordmark .mk{color:var(--orange)}
+  .brandbar .tag{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:500}
+
+  header .hero{background:var(--charcoal);color:#fff;padding:30px 0 34px}
+  .eyebrow{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:700}
+  .hero h1{font-size:44px;line-height:1.02;margin:12px 0 10px;letter-spacing:.01em;text-transform:uppercase;color:#fff}
+  .hero .sub{color:rgba(255,255,255,.72);font-size:16.5px;max-width:660px;font-weight:300}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .chip{display:flex;align-items:baseline;gap:7px;background:var(--charcoal2);border:1px solid var(--charcoal-line);border-radius:8px;padding:9px 13px}
+  .chip b{font-size:20px;font-weight:800;color:var(--orange);letter-spacing:0}
+  .chip span{color:rgba(255,255,255,.72);font-weight:400;font-size:13.5px}
+
+  nav.tabs{position:sticky;top:0;z-index:40;background:rgba(27,25,26,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .tabs-inner{display:flex;gap:2px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tab{border:none;background:none;padding:15px 16px;font-size:15px;font-weight:600;font-family:var(--sans);color:var(--text2);cursor:pointer;border-bottom:2.5px solid transparent;white-space:nowrap;min-height:44px;user-select:none}
+  .tab:hover{color:var(--text)}
+  .tab:focus-visible{outline:2px solid var(--orange);outline-offset:-2px;border-radius:4px}
+  .tab.active{color:#fff;border-bottom-color:var(--orange)}
+
+  main{padding:34px 0 90px}
+  .panel{display:none;animation:fade .3s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .sec-title{font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--text2);font-weight:700;margin:6px 0 15px}
+  .sec-title.mt{margin-top:34px}
+
+  .card{background:var(--canvas);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+  .card + .card{margin-top:16px}
+
+  .lead{background:var(--canvas);color:var(--text);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:12px;padding:22px 24px;font-size:17px;font-weight:300;line-height:1.55}
+  .lead b{font-weight:600;color:var(--text)}
+  .lead .hl{color:var(--orange);font-weight:600}
+  .cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+  .cv-block{background:var(--canvas);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);padding:20px 22px}
+  .cv-block h3{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px}
+  .cv-block .big{font-family:var(--head);font-size:19px;font-weight:700;text-transform:uppercase;letter-spacing:.01em;margin-bottom:10px;color:var(--text)}
+  .cv-block p{font-size:15px;color:var(--text);font-weight:300;line-height:1.55}
+  .cv-list{list-style:none;margin-top:10px}
+  .cv-list li{position:relative;padding:5px 0 5px 20px;font-size:14.5px;font-weight:300}
+  .cv-list li::before{content:"";position:absolute;left:0;top:12px;width:7px;height:7px;border-radius:2px;background:var(--orange)}
+  details.more{margin-top:12px;border-top:1px dashed var(--border);padding-top:10px}
+  details.more>summary{list-style:none;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:7px}
+  details.more>summary::-webkit-details-marker{display:none}
+  details.more>summary .chev{font-size:11px;transition:transform .2s}
+  details.more[open]>summary .chev{transform:rotate(180deg)}
+  details.more .inner{padding-top:10px}
+  .pointer{display:flex;gap:11px;align-items:flex-start;background:var(--accent-soft);border:1px solid rgba(250,166,47,.32);border-radius:10px;padding:13px 16px;font-size:14.5px;margin-top:16px;font-weight:400}
+  .pointer .ic{color:var(--done);font-weight:800;font-family:var(--head)}
+
+  .info{width:100%;border-collapse:collapse}
+  .info tr+tr{border-top:1px solid var(--border)}
+  .info th{text-align:left;vertical-align:top;padding:14px 18px;width:150px;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);background:var(--soft);font-weight:700;font-family:var(--head)}
+  .info td{padding:14px 18px;font-size:15px;font-weight:300}
+
+  .cg-head{display:flex;align-items:center;justify-content:space-between;padding:15px 16px 9px;gap:10px}
+  .cg-head h3{font-size:15px;font-family:var(--head);text-transform:uppercase;letter-spacing:.03em;font-weight:700}
+  .cg-head .pill{font-size:12px;font-weight:600;color:var(--text2);background:var(--soft);border:1px solid var(--border);border-radius:99px;padding:3px 10px;white-space:nowrap}
+  .checkgroup{padding:2px 8px 12px}
+  .item{display:flex;align-items:flex-start;gap:12px;padding:10px 12px;border-radius:8px;cursor:pointer;transition:background .12s}
+  .item:hover{background:var(--soft)}
+  .item input{appearance:none;-webkit-appearance:none;width:21px;height:21px;min-width:21px;margin-top:1px;border:2px solid var(--line-strong);border-radius:6px;cursor:pointer;position:relative;transition:.15s}
+  .item input:checked{background:var(--done);border-color:var(--done)}
+  .item input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .item span{font-size:15px;flex:1;font-weight:400}
+  .item.done span{color:var(--text2);text-decoration:line-through}
+
+  .grouphead{font-family:var(--head);text-transform:uppercase;letter-spacing:.06em;font-size:12.5px;font-weight:700;color:var(--text2);margin:26px 0 12px}
+  .grouphead:first-child{margin-top:4px}
+  .vcard{margin-bottom:12px}
+  .vcard>summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;gap:15px}
+  .vcard>summary::-webkit-details-marker{display:none}
+  .vnum{width:40px;height:40px;min-width:40px;border-radius:9px;background:var(--accent-soft);color:var(--done);font-family:var(--head);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center}
+  .vhead{flex:1;min-width:0}
+  .vhead .vt{font-size:16.5px;font-weight:600;letter-spacing:0;font-family:var(--head)}
+  .vhead .vm{font-size:12.5px;color:var(--text2);margin-top:3px}
+  .vhead .vm .badge{display:inline-block;background:var(--soft);border:1px solid var(--border);border-radius:5px;padding:1px 7px;margin:2px 6px 0 0;font-weight:500}
+  .chev{color:var(--text2);transition:transform .2s;font-size:12px}
+  .vcard[open] .chev{transform:rotate(180deg)}
+  .vbody{padding:2px 18px 20px;border-top:1px solid var(--border)}
+  .vrow{margin-top:17px}
+  .vrow .rl{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);font-weight:700;font-family:var(--head);margin-bottom:7px}
+  .hook{background:var(--accent-soft);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:11px 14px;font-size:14.5px;font-style:italic}
+  .tp{list-style:none}
+  .tp li{position:relative;padding:5px 0 5px 18px;font-size:14.5px;font-weight:300}
+  .tp li::before{content:"";position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;background:var(--orange)}
+  .notecall{display:flex;gap:9px;align-items:flex-start;background:var(--soft);border:1px solid var(--border);border-radius:8px;padding:11px 14px;font-size:14px;font-weight:300}
+  .notecall .ic{color:var(--done);font-weight:800;font-family:var(--head)}
+  .notecall b{font-weight:600}
+
+  .run{position:relative;padding-left:4px}
+  .rblock{display:flex;gap:16px;padding:2px 0}
+  .rleft{display:flex;flex-direction:column;align-items:center}
+  .rdot{width:34px;height:34px;min-width:34px;border-radius:50%;background:var(--canvas);border:2px solid var(--line-strong);color:var(--text2);font-family:var(--head);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;transition:.2s;z-index:2}
+  .rline{flex:1;width:2px;background:var(--border);margin:2px 0}
+  .rblock.done .rdot{background:var(--done);border-color:var(--done);color:#fff}
+  .rcontent{flex:1;padding-bottom:16px}
+  .rcard{background:var(--canvas);border:1px solid var(--border);border-radius:10px;padding:13px 16px;cursor:pointer;display:flex;gap:13px;align-items:flex-start;transition:border-color .15s}
+  .rcard:hover{border-color:var(--orange)}
+  .rcard input{appearance:none;-webkit-appearance:none;width:21px;height:21px;min-width:21px;margin-top:2px;border:2px solid var(--line-strong);border-radius:6px;cursor:pointer;position:relative}
+  .rcard input:checked{background:var(--done);border-color:var(--done)}
+  .rcard input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .rtime{font-size:12px;font-weight:700;color:var(--done);font-family:var(--head);letter-spacing:.03em}
+  .rcard .rb{font-size:15px;font-weight:600;margin-top:2px;font-family:var(--head)}
+  .rcard .rn{font-size:13.5px;color:var(--text2);margin-top:4px;font-weight:300}
+  .rblock.done .rb{text-decoration:line-through;color:var(--text2)}
+
+  .foot{text-align:center;color:var(--text2);font-size:13px;margin-top:40px;font-weight:300}
+
+  @media (max-width:720px){
+    .cv-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 16px}
+    .hero h1{font-size:32px}
+    .hero{padding:26px 0 28px}
+    .info th{width:104px;font-size:11.5px;padding:11px 12px}
+    .info td{padding:11px 12px;font-size:14px}
+    .lead{font-size:15.5px;padding:18px}
+    .tab{padding:14px 13px;font-size:14px}
+    .vhead .vt{font-size:15.5px}
+  }
+  @media print{
+    nav.tabs,.foot{display:none!important}
+    .panel{display:block!important}
+    .brandbar,header .hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .vbody{display:block!important}
+    body{background:#fff}
+  }
+  .vlink{color:var(--orange);cursor:pointer;text-decoration:none;border-bottom:1px solid rgba(250,166,47,.35);transition:.15s}
+  .vlink:hover,.vlink:focus-visible{border-bottom-color:var(--orange);outline:none}
+  .vcard{scroll-margin-top:72px}
+  .vcard.flash{box-shadow:0 0 0 2px var(--orange),0 8px 22px rgba(0,0,0,.35)}
+  .cvlink{color:inherit;cursor:pointer;text-decoration:none;border-bottom:1px solid rgba(250,166,47,.35);transition:.15s}
+  .cvlink:hover,.cvlink:focus-visible{color:var(--orange);border-bottom-color:var(--orange);outline:none}
+  .rblock{scroll-margin-top:72px}
+  .rblock.flash .rcard{box-shadow:0 0 0 2px var(--orange),0 8px 22px rgba(0,0,0,.35)}
+  .rvids{display:flex;flex-direction:column;gap:8px;margin:12px 0 2px 0}
+  .rvid{background:var(--accent-soft);border:1px solid rgba(250,166,47,.3);border-radius:10px;overflow:hidden}
+  .rvid>summary{list-style:none;cursor:pointer;padding:9px 13px;display:flex;align-items:center;gap:10px;font-family:var(--head);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--orange)}
+  .rvid>summary::-webkit-details-marker{display:none}
+  .rvid>summary .chev{margin-left:auto;color:var(--orange)}
+  .rvid[open]>summary .chev{transform:rotate(180deg)}
+  .rvtag{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;background:var(--orange);color:#1b191a;border-radius:5px;font-size:11px;font-weight:800}
+  .rvbody{padding:2px 14px 14px;border-top:1px solid rgba(250,166,47,.25)}
+  .rvsub{font-size:11.5px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;font-weight:700;font-family:var(--head);margin:11px 0 2px}
+  .rvrow{margin-top:12px;font-size:14px;font-weight:300;color:var(--text)}
+  .rvrow>b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);font-family:var(--head);font-weight:700;margin-bottom:5px}
+</style>
+</head>
+<body>
+<div class="brandbar"><div class="wrap">
+  <div class="wordmark">WhiteKey<span class="mk"> Marketing</span></div>
+  <div class="tag">Shoot Brief</div>
+</div></div>
+
+<header>
+  <div class="hero"><div class="wrap">
+    <h1>Labour Connect</h1>
+    <p class="sub">Site barbecue for JQZ on a live high-rise build in Parramatta. One UGC creator on the ground for eight videos, all shot on iPhone, vertical, sound on. Saturday, 37 Early St Parramatta, 11:00am to 2:00pm, food ready 12:30pm.</p>
+    <div class="chips">
+      <div class="chip"><b>8</b><span>UGC videos</span></div>
+      <div class="chip"><b>1</b><span>backup cut</span></div>
+      <div class="chip"><b>4</b><span>vox pops and interviews</span></div>
+      <div class="chip"><b>250</b><span>people on site</span></div>
+      <div class="chip"><b>40</b><span>Labour Connect workers</span></div>
+      <div class="chip"><b>3</b><span>hr coverage</span></div>
+    </div>
+  </div></div>
+  <nav class="tabs"><div class="wrap"><div class="tabs-inner" id="tabs" role="tablist">
+    <div class="tab active" role="tab" tabindex="0" data-t="client">Client View</div>
+    <div class="tab" role="tab" tabindex="0" data-t="videos">Videos</div>
+    <div class="tab" role="tab" tabindex="0" data-t="ugc">UGC Vox Pop</div>
+    <div class="tab" role="tab" tabindex="0" data-t="run">Run Sheet</div>
+  </div></div></nav>
+</header>
+
+<main class="wrap">
+  <section class="panel active" id="client">
+    <div class="lead">JQZ is putting on a <b class="hl">barbecue for the crew</b> on their Parramatta high-rise site. Around <b class="hl">250 people</b> will be there, about <b class="hl">40 of them Labour Connect workers</b>. Other suppliers have the drinks, <b class="hl">Labour Connect owns the barbecue</b>, catered by Now We Meet. We are sending one creator for three hours to come away with <b class="hl">8 UGC videos</b>: the hype cut, the setup, a worker POV, the queue at 12:30, two worker vox pops and two interviews.</div>
+
+    <div class="sec-title mt">The shoot at a glance</div>
+    <div class="card">
+      <table class="info">
+        <tr><th>Client</th><td>Labour Connect</td></tr>
+        <tr><th>Industry</th><td>Labour hire for construction</td></tr>
+        <tr><th>Location</th><td>37 Early St, Parramatta NSW</td></tr>
+        <tr><th>Date</th><td>Saturday, 11:00am to 2:00pm. Food ready 12:30pm.</td></tr>
+        <tr><th>Format</th><td>iPhone only, vertical 9:16, sound on.</td></tr>
+      </table>
+    </div>
+
+    <div class="sec-title mt">What we are capturing</div>
+    <div class="cv-grid">
+      <div class="cv-block">
+        <h3>Event coverage</h3>
+        <div class="big">Four cuts built from the day</div>
+        <p>The b-roll driven pieces. One rolling capture pass across the three hours feeds all four.</p>
+        <ul class="cv-list">
+          <li><a class="vlink" data-goto="1" tabindex="0" role="link">1. Site BBQ Hype Cut</a></li>
+          <li><a class="vlink" data-goto="2" tabindex="0" role="link">2. Setup POV, empty bay to 250 feeds</a></li>
+          <li><a class="vlink" data-goto="3" tabindex="0" role="link">3. Tradie POV, tools down to first bite</a></li>
+          <li><a class="vlink" data-goto="8" tabindex="0" role="link">8. The Queue at 12:30</a></li>
+        </ul>
+        <details class="more"><summary>Show the backup cut <span class="chev">&#9660;</span></summary><div class="inner">
+          <ul class="cv-list">
+            <li><a class="vlink" data-goto="B" tabindex="0" role="link">Sound On Site Ambience, backup only</a></li>
+            <li>Shot in the last half hour if there is time left</li>
+          </ul>
+        </div></details>
+      </div>
+      <div class="cv-block">
+        <h3>People on camera</h3>
+        <div class="big">Two vox pops, two interviews</div>
+        <p>The voices that sell the job. Two workers on the day, plus the JQZ site lead and a Labour Connect rep.</p>
+        <ul class="cv-list">
+          <li><a class="vlink" data-goto="4" tabindex="0" role="link">4. Worker vox pop, social proof</a></li>
+          <li><a class="vlink" data-goto="5" tabindex="0" role="link">5. Worker vox pop, recruitment angle</a></li>
+          <li><a class="vlink" data-goto="6" tabindex="0" role="link">6. JQZ site lead</a></li>
+          <li><a class="vlink" data-goto="7" tabindex="0" role="link">7. Labour Connect, why we feed the site</a></li>
+        </ul>
+        <details class="more"><summary>How the talking is timed <span class="chev">&#9660;</span></summary><div class="inner">
+          <ul class="cv-list">
+            <li>Site lead and Labour Connect rep before 12:25 while it is quiet enough to hear</li>
+            <li>Worker vox pops after the serve, when people are sitting and relaxed</li>
+            <li>Swap subjects freely, see the <b>UGC Vox Pop</b> tab</li>
+          </ul>
+        </div></details>
+      </div>
+    </div>
+
+    <div class="pointer"><div>Click any video above to open its hook, questions and b-roll list, or use the <b>Videos</b> and <b>Run Sheet</b> tabs for everything.</div></div>
+
+    <div class="sec-title mt">The day, in order</div>
+    <div class="card"><div class="checkgroup" id="cv-run"></div></div>
+    <div class="pointer"><div>Full timing and the video toggles for each block are in the <b>Run Sheet</b> tab.</div></div>
+
+    <div class="sec-title mt">Confirm before Saturday</div>
+    <div class="card checkgroup" id="gaps"></div>
+
+    <div class="foot">Tap any item on the other tabs to check it off during the shoot.</div>
+  </section>
+
+  <section class="panel" id="videos">
+    <div class="sec-title">Tap a video to open its type, hook, questions and b-roll checklist</div>
+    <div id="videoCards"></div>
+  </section>
+
+  <section class="panel" id="ugc">
+    <div class="sec-title">Vox pop script, who to grab, and handheld b-roll</div>
+    <div id="ugcWrap"></div>
+  </section>
+
+  <section class="panel" id="run">
+    <div class="sec-title">Run sheet, three hours, built around the 12:30 serve</div>
+    <div class="run" id="runList"></div>
+    <div class="foot">Times are a guide. The serve between 12:25 and 12:45 is the money window, do not be interviewing anyone through it.</div>
+  </section>
+</main>
+
+<script>
+const VIDEOS = [
+  {n:"1", group:"Event cuts", t:"Site BBQ Hype Cut", meta:["Vertical","Sub 30s","Promo"],
+   type:"IPHONE/UGC, short-form sub 30s, promo",
+   purpose:"The sizzle reel of the day.",
+   broll:["Grills firing, flames up, smoke rolling across the bay","Wide of the site with the high-rise going up behind the crowd","Hi-vis and hard hats moving through the queue","Tongs flipping snags and steak, close and tight","Plates handed over, first bites, reactions","Groups eating on scaffold planks, esky lids, milk crates","Labour Connect and JQZ signage or shirts in frame"]},
+  {n:"2", group:"Event cuts", t:"Setup POV, Empty Bay to 250 Feeds", meta:["Vertical","Sub 30s","Narrative"],
+   type:"IPHONE/UGC, short-form sub 30s, narrative",
+   purpose:"Show the work behind the feed.",
+   hook:"Feeding 250 blokes on a live site. Here is how the morning went.",
+   note:"Lock the same frame at 11:00 and again at 12:30 so the before and after cut lines up. Timestamp overlays go on in the edit.",
+   broll:["Empty bay at 11:00, trestle tables going up","Now We Meet unloading eskies, gas bottles, trays of meat","Grills getting scraped and oiled, first heat","Sauces, buns, tongs and napkins laid out in a line","Same frame at 12:30 with the queue running through it"]},
+  {n:"3", group:"Event cuts", t:"Tradie POV, Tools Down to First Bite", meta:["Vertical","Sub 30s","Narrative"],
+   type:"IPHONE/UGC, short-form sub 30s, narrative",
+   purpose:"The whole break in one POV run. Tools down, plate up, first bite.",
+   hook:"Smoko on a Parramatta high-rise hits different when there is a BBQ on.",
+   note:"Shoot it from the worker eye line, phone at chest height, walking the path a tradie walks. One continuous run if the site allows it, otherwise three or four chunks stitched in the edit. On-screen text beats: tools down, 12:30, first bite. Brace both hands, the walking shot cannot be shaky.",
+   broll:["POV: gloves coming off, tools going down on the deck","POV: walking out of the build, down the ramp toward the smoke","POV: joining the back of the queue, hi-vis backs in front of the lens","POV: plate handed across the line, sauce going on","POV: sitting down with the crew, first bite, mates talking around the frame","Reverse angle of the same worker eating so the edit has a face to cut to"]},
+  {n:"4", group:"People on camera", t:"Worker Vox Pop 1", meta:["Vertical","Sub 30s","Talking head"],
+   type:"IPHONE/UGC, short-form sub 30s, talking head and b-roll",
+   purpose:"Social proof from a Labour Connect worker.",
+   note:"Film after the serve while people are sitting and relaxed. Pull them away from the grill, the noise gets heavy after 12:30.",
+   tp:["What is your name and what do you do on this site?","How long have you been working through Labour Connect?","How did you end up on this job?","What is the food like?","Does this sort of thing happen much on other sites you have worked?"],
+   broll:["The worker in the queue and then eating with their crew","Hard hat and hi-vis detail, boots on concrete","Mates laughing at the table mid-answer","Wide of the crew group they sit with"]},
+  {n:"5", group:"People on camera", t:"Worker Vox Pop 2", meta:["Vertical","Sub 30s","Talking head"],
+   type:"IPHONE/UGC, short-form sub 30s, talking head and b-roll",
+   purpose:"Second worker, pointed at recruitment.",
+   note:"Pick someone who signed up recently. The whole point of this one is how fast they got placed.",
+   tp:["What is your name and your trade?","What were you doing before you signed up with Labour Connect?","How quickly did you get put on a job?","What would you say to someone deciding whether to sign up?","Best part about working on a site like this one?"],
+   broll:["Worker walking in from the site with tools or gear","Grabbing a plate, sitting down with the crew","Handshakes and hellos across the group","The high-rise behind them as they talk"]},
+  {n:"6", group:"People on camera", t:"JQZ Site Lead", meta:["Vertical","Up to 1 min","Talking head"],
+   type:"IPHONE/UGC, medium up to 1 min, talking head and b-roll",
+   purpose:"The client voice. Strongest asset for winning the next builder.",
+   note:"Film before 12:25 while it is still quiet enough to hear. Nobody from JQZ has confirmed on camera yet, so lock a name in pre-prod.",
+   tp:["Can you introduce yourself and what JQZ is building here in Parramatta?","How many people are on this site day to day?","Why put on a barbecue like this for the crew?","How has Labour Connect been to work with on this project?","What does it do for the site when everyone stops and eats together?"],
+   broll:["Wide of the build in progress, cranes and scaffold","Site lead walking the floor, talking to workers","JQZ signage and site hoarding","Crowd from an elevated angle if a safe one is available"]},
+  {n:"7", group:"People on camera", t:"Labour Connect, Why We Feed the Site", meta:["Vertical","Up to 1 min","Talking head"],
+   type:"IPHONE/UGC, medium up to 1 min, talking head and b-roll",
+   purpose:"Conversion video aimed at builders and site managers.",
+   hook:"We put 40 workers on this site. Today we are feeding all 250 of them.",
+   note:"Film before 12:25. This is the rep who also points out which workers will talk, so shoot them first and then work the crowd.",
+   tp:["Who are you and what is your role at Labour Connect?","What does Labour Connect actually do for a builder like JQZ?","Why did you take on the barbecue side of today?","What do you want workers to feel when they walk off this site this afternoon?","If a site manager is short on labour next week, what happens when they call you?"],
+   broll:["Labour Connect rep shaking hands, moving through the crowd","Rep serving or handing plates across the line","Workers in Labour Connect shirts or with branded gear","Wide of the whole event running at full noise"]},
+  {n:"8", group:"The 12:30 moment", t:"The Queue at 12:30", meta:["Vertical","Sub 30s","Viral style"],
+   type:"IPHONE/UGC, short-form sub 30s, conceptual viral style",
+   purpose:"Scale in one shot. 250 people, one line.",
+   hook:"12:30 on a Parramatta site. Watch what happens when the grill opens.",
+   note:"One long walking shot down the queue, then the same bay twenty minutes later. Get both or the payoff does not land.",
+   broll:["One long walking shot down the length of the queue, faces and hi-vis","Tools down, gloves off, hard hats coming off at the table","Servers plating fast, tongs never stopping","Same bay twenty minutes later, everyone sitting and eating","Close on empty trays at the end"]},
+  {n:"B", group:"Backup", t:"Sound On Site Ambience", meta:["Vertical","Sub 30s","Audio led"],
+   type:"IPHONE/UGC, short-form sub 30s, audio atmospheric",
+   purpose:"Backup only. The day told through sound.",
+   note:"Only shoot this if the other eight are in the bag by 1:30.",
+   tpLabel:"Audio to catch",
+   tp:["Meat hitting the hotplate and the hiss that follows","Sauce on that one, mate?","Crowd noise, laughing, boots on gravel","Cranes and site hum underneath everything"],
+   broll:["Tight on the grill, no faces","Hands passing plates","Feet and boots walking past the camera on the ground","Slow pan up the building from the crowd"]}
+];
+
+const UGC_Q = [
+  "Say your name and what you do on this site.",
+  "How did you end up on this job?",
+  "How long have you been working through Labour Connect?",
+  "What is the food like?",
+  "Does this happen much on other sites you have worked?",
+  "One word for today."
+];
+
+const UGC_SLOTS = [
+  "Labour Connect worker, been on the books a while",
+  "Labour Connect worker, recent signup",
+  "JQZ site lead or supervisor",
+  "Labour Connect rep on the ground",
+  "Wildcard, best energy in the queue"
+];
+
+const UGC_BROLL = [
+  "Handheld walk through the crowd",
+  "Workers eating and talking, phone style",
+  "Queue from the back, faces and hi-vis",
+  "Grill and serving line close ups",
+  "Quick pans up the building from the bay",
+  "Crew groups sitting on planks, crates and esky lids"
+];
+
+const GAPS = [
+  "Site induction and PPE cleared with JQZ for the creator",
+  "A named JQZ person agreed to speak on camera",
+  "Now We Meet happy to be filmed and named",
+  "Drinks supplier branding in frame or out",
+  "Music tracks selected for the edit"
+];
+
+const RUN = [
+  {n:"1",time:"11:00am",title:"Arrive, induction, setup b-roll",note:"Get inducted, walk the bay, lock the wide frame you will match at 12:30. Now We Meet will be firing up the grills.",links:["2"]},
+  {n:"2",time:"11:45am",title:"Talking heads while it is quiet",note:"Labour Connect rep first, then the JQZ site lead. Both have to be done before the crowd builds.",links:["7","6"]},
+  {n:"3",time:"12:25pm",title:"The serve, the money window",note:"Queue, plating, first bites. No interviews through this block.",links:["8","3","1"]},
+  {n:"4",time:"12:45pm",title:"Worker vox pops",note:"People are sitting and relaxed. Two on camera, more if the energy is there.",links:["4","5","U"]},
+  {n:"5",time:"1:30pm",title:"Pickups, crowd wides, ambience",note:"Fill the gaps in the hype cut, then the backup if everything else is done.",links:["1","B"]},
+  {n:"6",time:"2:00pm",title:"Wrap and back up",note:"Back up all footage before leaving site and check it against the video list.",links:[]}
+];
+
+const CVRUN = [
+  "Arrive, induction, setup b-roll",
+  "Talking heads while it is quiet",
+  "The serve, the money window",
+  "Worker vox pops",
+  "Pickups, crowd wides, ambience",
+  "Wrap and back up"
+];
+
+/* ---- state (safe for sandboxed embeds) ---- */
+const KEY="labourconnect_jqz_bbq_brief_v1";
+let state={};
+try{state=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){state={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function itemHTML(id,label){
+  const on=state[id]?"checked":"";
+  const cls=state[id]?"item done":"item";
+  return `<label class="${cls}" data-id="${id}"><input type="checkbox" ${on}><span>${label}</span></label>`;
+}
+
+/* client view day list */
+document.getElementById("cv-run").innerHTML =
+  `<div class="cg-head"><h3>The day, in order</h3><span class="pill">${RUN.length} blocks</span></div>` +
+  CVRUN.map((r,i)=>{const n=RUN[i].n;const id="run-"+n;const done=state[id]?"done":"";return `<div class="item ${done}" data-id="${id}"><input type="checkbox" ${state[id]?"checked":""}><span class="cvlink" data-runlink="${n}" tabindex="0" role="link"><b>${i+1}.</b> ${esc(RUN[i].time)} ${esc(r)}</span></div>`;}).join("");
+
+/* gaps checklist */
+document.getElementById("gaps").innerHTML =
+  `<div class="cg-head"><h3>Pre-production checks</h3><span class="pill">${GAPS.length} open</span></div>` +
+  GAPS.map((g,i)=>itemHTML(`gap-${i}`, esc(g))).join("");
+
+/* video cards */
+let lastGroup="";
+document.getElementById("videoCards").innerHTML = VIDEOS.map(v=>{
+  let head="";
+  if(v.group!==lastGroup){head=`<div class="grouphead">${esc(v.group)}</div>`;lastGroup=v.group;}
+  const hookBlock = v.hook ? `<div class="vrow"><div class="rl">Hook</div><div class="hook">${esc(v.hook)}</div></div>` : "";
+  const tpBlock = v.tp ? `<div class="vrow"><div class="rl">${esc(v.tpLabel||"Talking points")}</div><ul class="tp">${v.tp.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>` : "";
+  const broll = v.broll.map((b,i)=>itemHTML(`broll-${v.n}-${i}`, esc(b))).join("");
+  return head + `<details class="card vcard" id="v-${v.n}">
+    <summary>
+      <div class="vnum">${esc(v.n)}</div>
+      <div class="vhead"><div class="vt">${esc(v.t)}</div>
+        <div class="vm">${v.meta.map(m=>`<span class="badge">${esc(m)}</span>`).join("")}</div></div>
+      <div class="chev">&#9660;</div>
+    </summary>
+    <div class="vbody">
+      <div class="vrow"><div class="rl">Type</div><div>${esc(v.type)}</div></div>
+      <div class="vrow"><div class="rl">Purpose</div><div>${esc(v.purpose)}</div></div>
+      ${v.note?`<div class="vrow"><div class="notecall"><div><b>Notes.</b> ${esc(v.note)}</div></div></div>`:""}
+      ${hookBlock}
+      ${tpBlock}
+      <div class="vrow"><div class="rl">B-roll checklist</div><div class="checkgroup" style="padding:0">${broll}</div></div>
+    </div>
+  </details>`;
+}).join("");
+
+/* UGC tab */
+const ugcQuestions = `<ul class="tp" style="padding:2px 16px 14px">${UGC_Q.map(q=>`<li>${esc(q)}</li>`).join("")}</ul>`;
+const ugcSlots = UGC_SLOTS.map((s,i)=>itemHTML(`ugc-slot-${i}`, esc(s))).join("");
+const ugcBroll = UGC_BROLL.map((b,i)=>itemHTML(`ugc-broll-${i}`, esc(b))).join("");
+document.getElementById("ugcWrap").innerHTML =
+  `<div class="notecall" style="margin-bottom:16px"><div><b>How it runs.</b> Ask fast and first person while people are eating. One or two questions each is plenty. Swap the subjects freely, the list below is a guide not a booking.</div></div>
+   <div class="grouphead">Vox pop script</div>
+   <div class="card"><div class="cg-head"><h3>Ask fast, keep it shareable</h3><span class="pill">${UGC_Q.length} questions</span></div>${ugcQuestions}</div>
+   <div class="grouphead">Who to grab</div>
+   <div class="card checkgroup"><div class="cg-head"><h3>Suggested mix, swap freely on the day</h3><span class="pill">${UGC_SLOTS.length} slots</span></div>${ugcSlots}</div>
+   <div class="grouphead">Handheld b-roll</div>
+   <div class="card checkgroup"><div class="cg-head"><h3>Phone style coverage</h3><span class="pill">${UGC_BROLL.length} items</span></div>${ugcBroll}</div>`;
+
+/* run sheet */
+const VMAP={};VIDEOS.forEach(v=>VMAP[v.n]=v);
+function runVidToggle(n){
+  if(n==="U"){
+    return `<details class="rvid"><summary><span class="rvtag">VP</span> Vox pop round <span class="chev">&#9660;</span></summary><div class="rvbody"><div class="rvrow"><b>How it runs</b>Ask fast and first person. One or two questions a person is plenty.</div><div class="rvrow"><b>Questions</b><ul class="tp">${UGC_Q.map(q=>`<li>${esc(q)}</li>`).join("")}</ul></div><div class="rvrow"><b>Handheld b-roll checklist</b><div class="checkgroup" style="padding:0">${UGC_BROLL.map((b,i)=>itemHTML(`ugc-broll-${i}`, esc(b))).join("")}</div></div></div></details>`;
+  }
+  const v=VMAP[n];if(!v)return "";
+  const hookBlock=v.hook?`<div class="rvrow"><b>Hook</b><div class="hook">${esc(v.hook)}</div></div>`:"";
+  const tpBlock=v.tp?`<div class="rvrow"><b>${esc(v.tpLabel||"Talking points")}</b><ul class="tp">${v.tp.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>`:"";
+  const brollBlock=`<div class="rvrow"><b>B-roll checklist</b><div class="checkgroup" style="padding:0">${v.broll.map((b,i)=>itemHTML(`broll-${v.n}-${i}`, esc(b))).join("")}</div></div>`;
+  return `<details class="rvid"><summary><span class="rvtag">${esc(v.n)}</span> ${esc(v.t)} <span class="chev">&#9660;</span></summary><div class="rvbody"><div class="rvsub">${esc(v.type)}</div>${v.note?`<div class="rvrow"><b>Notes</b>${esc(v.note)}</div>`:""}${hookBlock}${tpBlock}${brollBlock}</div></details>`;
+}
+document.getElementById("runList").innerHTML = RUN.map((r,i)=>{
+  const id="run-"+r.n;
+  const done=state[id]?"done":"";
+  const last=i===RUN.length-1;
+  const links=(r.links&&r.links.length)?`<div class="rvids">${r.links.map(runVidToggle).join("")}</div>`:"";
+  return `<div class="rblock ${done}" data-id="${id}">
+    <div class="rleft"><div class="rdot">${esc(r.n)}</div>${last?"":'<div class="rline"></div>'}</div>
+    <div class="rcontent"><label class="rcard"><input type="checkbox" ${state[id]?"checked":""}>
+      <div style="flex:1"><div class="rtime">${esc(r.time)}</div><div class="rb">${esc(r.title)}</div><div class="rn">${esc(r.note)}</div></div></label>${links}</div>
+  </div>`;
+}).join("");
+
+/* events */
+document.addEventListener("change",e=>{
+  if(e.target.type!=="checkbox"||e.target.disabled)return;
+  const host=e.target.closest("[data-id]");if(!host)return;
+  const id=host.dataset.id;const val=e.target.checked;
+  state[id]=val;
+  document.querySelectorAll('[data-id="'+id+'"]').forEach(el=>{
+    el.classList.toggle("done",val);
+    const cb=el.querySelector('input[type=checkbox]');
+    if(cb&&cb!==e.target)cb.checked=val;
+  });
+  save();
+});
+
+/* tabs */
+function activateTab(b){
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  b.classList.add("active");
+  const panel=document.getElementById(b.dataset.t);if(panel)panel.classList.add("active");
+  window.scrollTo({top:0,behavior:"auto"});
+}
+document.getElementById("tabs").addEventListener("click",e=>{
+  const b=e.target.closest(".tab");if(b)activateTab(b);
+});
+document.getElementById("tabs").addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const b=e.target.closest(".tab");if(b){e.preventDefault();activateTab(b);}
+});
+
+/* cross-links to video cards */
+function goToVideo(n){
+  const tab=document.querySelector('.tab[data-t="videos"]');
+  if(tab)activateTab(tab);
+  const el=document.getElementById("v-"+n);
+  if(!el)return;
+  el.open=true;
+  requestAnimationFrame(()=>{
+    el.scrollIntoView({behavior:"smooth",block:"start"});
+    el.classList.add("flash");
+    setTimeout(()=>el.classList.remove("flash"),1400);
+  });
+}
+document.addEventListener("click",e=>{
+  const a=e.target.closest("[data-goto]");
+  if(a){e.preventDefault();goToVideo(a.getAttribute("data-goto"));}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const a=e.target.closest("[data-goto]");
+  if(a){e.preventDefault();goToVideo(a.getAttribute("data-goto"));}
+});
+
+/* cross-links to run blocks */
+function goToRun(n){
+  const tab=document.querySelector('.tab[data-t="run"]');
+  if(tab)activateTab(tab);
+  const el=document.querySelector('.rblock[data-id="run-'+n+'"]');
+  if(!el)return;
+  requestAnimationFrame(()=>{
+    el.scrollIntoView({behavior:"smooth",block:"start"});
+    el.classList.add("flash");
+    setTimeout(()=>el.classList.remove("flash"),1400);
+  });
+}
+document.addEventListener("click",e=>{
+  const a=e.target.closest("[data-runlink]");
+  if(a){e.preventDefault();goToRun(a.getAttribute("data-runlink"));}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const a=e.target.closest("[data-runlink]");
+  if(a){e.preventDefault();goToRun(a.getAttribute("data-runlink"));}
+});
+</script>
+</body>
+</html>

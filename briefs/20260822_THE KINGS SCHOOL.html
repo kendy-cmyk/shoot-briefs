@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The King's School Trivia Night Shoot Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#333132; --orange:#faa62f; --tangerine:#f7b52d; --white:#ffffff;
+    --bg:#1b191a;
+    --text:#f1efed; --text2:#a7a3a1; --canvas:#2a2829; --soft:#242223;
+    --surface:#3a3738; --border:#403d3e; --accent:#faa62f; --accent-soft:rgba(250,166,47,.13);
+    --done:#faa62f; --charcoal2:#403e3f; --charcoal-line:rgba(255,255,255,.14);
+    --line-strong:#5f5c5d;
+    --shadow:0 1px 2px rgba(0,0,0,.30),0 6px 18px rgba(0,0,0,.30);
+    --head:"Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    --sans:"Roboto",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;background:var(--bg);color-scheme:dark}
+  body{font-family:var(--sans);color:var(--text);background:var(--bg);font-size:16px;line-height:1.5;font-weight:400;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  h1,h2,h3,.eyebrow,.sec-title,.wordmark,.chip b{font-family:var(--head)}
+
+  .brandbar{background:var(--charcoal);border-bottom:1px solid var(--charcoal-line)}
+  .brandbar .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px;gap:16px;flex-wrap:wrap}
+  .wordmark{font-weight:800;font-size:20px;letter-spacing:.02em;color:#fff;text-transform:uppercase}
+  .wordmark .mk{color:var(--orange)}
+  .brandbar .tag{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:500}
+
+  header .hero{background:var(--charcoal);color:#fff;padding:30px 0 34px}
+  .eyebrow{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:700}
+  .hero h1{font-size:44px;line-height:1.02;margin:12px 0 10px;letter-spacing:.01em;text-transform:uppercase;color:#fff}
+  .hero .sub{color:rgba(255,255,255,.72);font-size:16.5px;max-width:660px;font-weight:300}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .chip{display:flex;align-items:baseline;gap:7px;background:var(--charcoal2);border:1px solid var(--charcoal-line);border-radius:8px;padding:9px 13px}
+  .chip b{font-size:20px;font-weight:800;color:var(--orange);letter-spacing:0}
+  .chip span{color:rgba(255,255,255,.72);font-weight:400;font-size:13.5px}
+
+  nav.tabs{position:sticky;top:0;z-index:40;background:rgba(27,25,26,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .tabs-inner{display:flex;gap:2px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tab{border:none;background:none;padding:15px 16px;font-size:15px;font-weight:600;font-family:var(--sans);color:var(--text2);cursor:pointer;border-bottom:2.5px solid transparent;white-space:nowrap;min-height:44px;user-select:none}
+  .tab:hover{color:var(--text)}
+  .tab:focus-visible{outline:2px solid var(--orange);outline-offset:-2px;border-radius:4px}
+  .tab.active{color:#fff;border-bottom-color:var(--orange)}
+
+  main{padding:34px 0 90px}
+  .panel{display:none;animation:fade .3s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .sec-title{font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--text2);font-weight:700;margin:6px 0 15px}
+  .sec-title.mt{margin-top:34px}
+
+  .card{background:var(--canvas);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+  .card + .card{margin-top:16px}
+
+  .lead{background:var(--canvas);color:var(--text);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:12px;padding:22px 24px;font-size:17px;font-weight:300;line-height:1.55}
+  .lead b{font-weight:600;color:var(--text)}
+  .lead .hl{color:var(--orange);font-weight:600}
+  .cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+  .cv-block{background:var(--canvas);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);padding:20px 22px}
+  .cv-block h3{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px}
+  .cv-block .big{font-family:var(--head);font-size:19px;font-weight:700;text-transform:uppercase;letter-spacing:.01em;margin-bottom:10px;color:var(--text)}
+  .cv-block p{font-size:15px;color:var(--text);font-weight:300;line-height:1.55}
+  .cv-list{list-style:none;margin-top:10px}
+  .cv-list li{position:relative;padding:5px 0 5px 20px;font-size:14.5px;font-weight:300}
+  .cv-list li::before{content:"";position:absolute;left:0;top:12px;width:7px;height:7px;border-radius:2px;background:var(--orange)}
+  details.more{margin-top:12px;border-top:1px dashed var(--border);padding-top:10px}
+  details.more>summary{list-style:none;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:7px}
+  details.more>summary::-webkit-details-marker{display:none}
+  details.more>summary .chev{font-size:11px;transition:transform .2s}
+  details.more[open]>summary .chev{transform:rotate(180deg)}
+  details.more .inner{padding-top:10px}
+  .pointer{display:flex;gap:11px;align-items:flex-start;background:var(--accent-soft);border:1px solid rgba(250,166,47,.32);border-radius:10px;padding:13px 16px;font-size:14.5px;margin-top:16px;font-weight:400}
+
+  .info{width:100%;border-collapse:collapse}
+  .info tr+tr{border-top:1px solid var(--border)}
+  .info th{text-align:left;vertical-align:top;padding:14px 18px;width:150px;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);background:var(--soft);font-weight:700;font-family:var(--head)}
+  .info td{padding:14px 18px;font-size:15px;font-weight:300}
+
+  .cg-head{display:flex;align-items:center;justify-content:space-between;padding:15px 16px 9px;gap:10px}
+  .cg-head h3{font-size:15px;font-family:var(--head);text-transform:uppercase;letter-spacing:.03em;font-weight:700}
+  .cg-head .pill{font-size:12px;font-weight:600;color:var(--text2);background:var(--soft);border:1px solid var(--border);border-radius:99px;padding:3px 10px;white-space:nowrap}
+  .checkgroup{padding:2px 8px 12px}
+  .item{display:flex;align-items:flex-start;gap:12px;padding:10px 12px;border-radius:8px;cursor:pointer;transition:background .12s}
+  .item:hover{background:var(--soft)}
+  .item input{appearance:none;-webkit-appearance:none;width:21px;height:21px;min-width:21px;margin-top:1px;border:2px solid var(--line-strong);border-radius:6px;cursor:pointer;position:relative;transition:.15s}
+  .item input:checked{background:var(--done);border-color:var(--done)}
+  .item input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .item span{font-size:15px;flex:1;font-weight:400}
+  .item.done span{color:var(--text2);text-decoration:line-through}
+
+  .grouphead{font-family:var(--head);text-transform:uppercase;letter-spacing:.06em;font-size:12.5px;font-weight:700;color:var(--text2);margin:26px 0 12px}
+  .grouphead:first-child{margin-top:4px}
+  .vcard{margin-bottom:12px}
+  .vcard>summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;gap:15px}
+  .vcard>summary::-webkit-details-marker{display:none}
+  .vnum{width:40px;height:40px;min-width:40px;border-radius:9px;background:var(--accent-soft);color:var(--done);font-family:var(--head);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center}
+  .vhead{flex:1;min-width:0}
+  .vhead .vt{font-size:16.5px;font-weight:600;letter-spacing:0;font-family:var(--head)}
+  .vhead .vm{font-size:12.5px;color:var(--text2);margin-top:3px}
+  .vhead .vm .badge{display:inline-block;background:var(--soft);border:1px solid var(--border);border-radius:5px;padding:1px 7px;margin:2px 6px 0 0;font-weight:500}
+  .chev{color:var(--text2);transition:transform .2s;font-size:12px}
+  .vcard[open] .chev{transform:rotate(180deg)}
+  .vbody{padding:2px 18px 20px;border-top:1px solid var(--border)}
+  .vrow{margin-top:17px}
+  .vrow .rl{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);font-weight:700;font-family:var(--head);margin-bottom:7px}
+  .hook{background:var(--accent-soft);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:11px 14px;font-size:14.5px;font-style:italic}
+  .tp{list-style:none}
+  .tp li{position:relative;padding:5px 0 5px 18px;font-size:14.5px;font-weight:300}
+  .tp li::before{content:"";position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;background:var(--orange)}
+  .notecall{display:flex;gap:9px;align-items:flex-start;background:var(--soft);border:1px solid var(--border);border-radius:8px;padding:11px 14px;font-size:14px;font-weight:300}
+  .notecall b{font-weight:600}
+
+  .run{position:relative;padding-left:4px}
+  .rblock{display:flex;gap:16px;padding:2px 0}
+  .rleft{display:flex;flex-direction:column;align-items:center}
+  .rdot{width:34px;height:34px;min-width:34px;border-radius:50%;background:var(--canvas);border:2px solid var(--line-strong);color:var(--text2);font-family:var(--head);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;transition:.2s;z-index:2}
+  .rline{flex:1;width:2px;background:var(--border);margin:2px 0}
+  .rblock.done .rdot{background:var(--done);border-color:var(--done);color:#fff}
+  .rcontent{flex:1;padding-bottom:16px}
+  .rcard{background:var(--canvas);border:1px solid var(--border);border-radius:10px;padding:13px 16px;cursor:pointer;display:flex;gap:13px;align-items:flex-start;transition:border-color .15s}
+  .rcard:hover{border-color:var(--orange)}
+  .rcard input{appearance:none;-webkit-appearance:none;width:21px;height:21px;min-width:21px;margin-top:2px;border:2px solid var(--line-strong);border-radius:6px;cursor:pointer;position:relative}
+  .rcard input:checked{background:var(--done);border-color:var(--done)}
+  .rcard input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .rtime{font-size:12px;font-weight:700;color:var(--done);font-family:var(--head);letter-spacing:.03em;text-transform:uppercase}
+  .rcard .rb{font-size:15px;font-weight:600;margin-top:2px;font-family:var(--head)}
+  .rcard .rn{font-size:13.5px;color:var(--text2);margin-top:4px;font-weight:300}
+  .rblock.done .rb{text-decoration:line-through;color:var(--text2)}
+
+  .foot{text-align:center;color:var(--text2);font-size:13px;margin-top:40px;font-weight:300}
+
+  @media (max-width:720px){
+    .cv-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 16px}
+    .hero h1{font-size:30px}
+    .hero{padding:26px 0 28px}
+    .info th{width:104px;font-size:11.5px;padding:11px 12px}
+    .info td{padding:11px 12px;font-size:14px}
+    .lead{font-size:15.5px;padding:18px}
+    .tab{padding:14px 13px;font-size:14px}
+    .vhead .vt{font-size:15.5px}
+  }
+  @media print{
+    nav.tabs,.foot{display:none!important}
+    .panel{display:block!important}
+    .brandbar,header .hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .vbody{display:block!important}
+    body{background:#fff}
+  }
+  .vlink{color:var(--orange);cursor:pointer;text-decoration:none;border-bottom:1px solid rgba(250,166,47,.35);transition:.15s}
+  .vlink:hover,.vlink:focus-visible{border-bottom-color:var(--orange);outline:none}
+  .cvlink{color:var(--text);cursor:pointer}
+  .cvlink:hover,.cvlink:focus-visible{color:var(--orange);outline:none}
+  .rvids{display:flex;flex-direction:column;gap:8px;margin:12px 0 2px 0}
+  .rvid{background:var(--canvas);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .rvid[open]{border-color:rgba(250,166,47,.4)}
+  .rvid>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:9px;padding:9px 13px;font-family:var(--head);font-size:13px;font-weight:600}
+  .rvid>summary::-webkit-details-marker{display:none}
+  .rvid-tag{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--orange);background:var(--accent-soft);border:1px solid rgba(250,166,47,.3);border-radius:20px;padding:3px 9px}
+  .rvid-chev{margin-left:auto;color:var(--text2);font-size:10px;transition:transform .15s}
+  .rvid[open] .rvid-chev{transform:rotate(180deg)}
+  .rvd{padding:2px 15px 14px;border-top:1px solid var(--border)}
+  .rvd-hook{background:var(--accent-soft);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:9px 12px;font-size:13.5px;font-style:italic;margin:12px 0}
+  .rvd-l{font-family:var(--head);font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);margin:12px 0 5px}
+  .rvd-tp{list-style:none;margin:0;padding:0}
+  .rvd-tp li{position:relative;padding:4px 0 4px 16px;font-size:13.5px;font-weight:300}
+  .rvd-tp li::before{content:"";position:absolute;left:0;top:11px;width:5px;height:5px;border-radius:50%;background:var(--orange)}
+  .vcard{scroll-margin-top:72px}
+  .rblock{scroll-margin-top:72px}
+  .vcard.flash,.rblock.flash .rcard{box-shadow:0 0 0 2px var(--orange),0 8px 22px rgba(0,0,0,.35)}
+</style>
+</head>
+<body>
+<div class="brandbar"><div class="wrap">
+  <div class="wordmark">WhiteKey<span class="mk"> Marketing</span></div>
+  <div class="tag">Shoot Brief</div>
+</div></div>
+
+<header>
+  <div class="hero"><div class="wrap">
+    <div class="eyebrow">The King's School Prep Fathers' Association</div>
+    <h1>Trivia Night 2026</h1>
+    <p class="sub">Event coverage at Horrocks Hall, The King's School, Saturday 22 August 2026. Atmosphere, guests, formalities and sponsor visibility, with strong hero frames throughout.</p>
+    <div class="chips">
+      <div class="chip"><b>1</b><span>video</span></div>
+      <div class="chip"><b>100-150</b><span>photos</span></div>
+      <div class="chip"><b>2</b><span>person crew</span></div>
+    </div>
+  </div></div>
+  <nav class="tabs"><div class="wrap"><div class="tabs-inner" id="tabs" role="tablist">
+    <div class="tab active" role="tab" tabindex="0" data-t="client">Client View</div>
+    <div class="tab" role="tab" tabindex="0" data-t="photo">Photography</div>
+    <div class="tab" role="tab" tabindex="0" data-t="videos">Videos (1)</div>
+    <div class="tab" role="tab" tabindex="0" data-t="run">Run Sheet</div>
+  </div></div></nav>
+</header>
+
+<main class="wrap">
+  <section class="panel active" id="client">
+    <div class="lead">We are covering the Trivia Night with <b class="hl">100 to 150 edited photos</b> and <b class="hl">one highlight reel up to 1 minute</b>. The night has to look full, warm and premium. Everything below is the short version. Use the tabs above for the full shot lists and timing.</div>
+
+    <div class="sec-title mt">The shoot at a glance</div>
+    <div class="card">
+      <table class="info">
+        <tr><th>Client</th><td>The King's School Preparatory Fathers' Association</td></tr>
+        <tr><th>Industry</th><td>Education, school community events</td></tr>
+        <tr><th>Location</th><td>Horrocks Hall, The King's School. Same venue as the Art Prize event, so use the known access and load-in route.</td></tr>
+        <tr><th>Date &amp; time</th><td>Saturday 22 August 2026, 6:00pm to 10:00pm.</td></tr>
+        <tr><th>Format</th><td>Vertical hero cut for social, photos delivered as a full edited gallery.</td></tr>
+      </table>
+    </div>
+
+    <div class="sec-title mt">What we're capturing</div>
+    <div class="cv-grid">
+      <div class="cv-block">
+        <h3>Photography</h3>
+        <div class="big">100 to 150 photos</div>
+        <p>Arrival, atmosphere, people and the formalities, shot candid rather than posed.</p>
+        <ul class="cv-list">
+          <li>Arrival, signage and the room before it fills</li>
+          <li>Mingling: candid guests, families, parents and staff</li>
+          <li>Country and western costumes, full length and detail</li>
+          <li>Live auction: bidding, paddles and reactions</li>
+          <li>Table settings, programs and sponsor detail</li>
+          <li>Hero frames held back for the strongest atmosphere moments</li>
+        </ul>
+        <details class="more"><summary>Show a bit more <span class="chev">&#9660;</span></summary><div class="inner">
+          <ul class="cv-list">
+            <li>Registration and welcome table</li>
+            <li>Trivia in play, teams heads down over answer sheets</li>
+            <li>Crowd reactions, laughter and applause</li>
+            <li>Prizes, winners and group celebrations</li>
+            <li>Group photos where they happen naturally</li>
+            <li>Closing moments, farewells and final crowd energy</li>
+          </ul>
+        </div></details>
+      </div>
+      <div class="cv-block">
+        <h3>Videography</h3>
+        <div class="big">1 video</div>
+        <p>One highlight reel built for post-event sharing.</p>
+        <ul class="cv-list">
+          <li><a class="vlink" data-goto="1" tabindex="0" role="link">1. Event Highlight Reel, up to 1 min</a></li>
+        </ul>
+        <details class="more"><summary>Show a bit more <span class="chev">&#9660;</span></summary><div class="inner">
+          <ul class="cv-list">
+            <li>Arrivals and venue reveal to open</li>
+            <li>Guest energy and community interactions through the middle</li>
+            <li>Formalities, prizes and applause as the payoff</li>
+            <li>Final wide crowd shot to close</li>
+          </ul>
+        </div></details>
+      </div>
+    </div>
+
+    <div class="pointer"><div>Click the video above to jump straight to its B-roll checklist, or open the <b>Photography</b> and <b>Videos</b> tabs for everything.</div></div>
+
+    <div class="sec-title mt">The night, start to finish</div>
+    <div class="card"><div class="checkgroup" id="cv-run"></div></div>
+    <div class="pointer"><div>Tap any line to jump to that block in the <b>Run Sheet</b> tab. Ticking it here ticks it there too.</div></div>
+
+    <div class="foot">Tap any item to check it off during the shoot.</div>
+  </section>
+
+  <section class="panel" id="photo">
+    <div class="sec-title">Photography, 100 to 150 edited frames</div>
+    <div id="photoGroups"></div>
+  </section>
+
+  <section class="panel" id="videos">
+    <div class="sec-title">Tap a video to open its B-roll checklist</div>
+    <div id="videoCards"></div>
+  </section>
+
+  <section class="panel" id="run">
+    <div class="sec-title">Shoot night run sheet, suggested order, work top to bottom</div>
+    <div class="run" id="runList"></div>
+    <div class="foot">Stages are a guide. Lock exact times against the Fathers' Association run sheet before the night.</div>
+  </section>
+</main>
+
+<script>
+const PHOTO_GROUPS = [
+  {title:"Arrival & venue", items:[
+    `Venue exterior and arrival moments`,
+    `Registration, welcome table and event branding`,
+    `Signage, programs and wayfinding detail`,
+    `Wide room establishing shots before the crowd peaks`
+  ]},
+  {title:"People & community", items:[
+    `Mingling: candid guest interactions and natural conversations`,
+    `Small-group moments around tables and the bar`,
+    `Country and western costumes: full-length looks and detail shots (hats, boots, buckles, denim, fringe)`,
+    `Best-dressed and group costume moments`,
+    `Families, parents, staff and community members connecting`,
+    `Group photos where natural and time allows`
+  ]},
+  {title:"Trivia in play", items:[
+    `Teams heads down, collaborating on answers`,
+    `Answer sheets, pens, trivia cards and table numbers`,
+    `Over-the-shoulder quiz moments`,
+    `Crowd reactions, laughter and applause`
+  ]},
+  {title:"Details & sponsors", items:[
+    `Table settings, decorations and program detail`,
+    `Food, drinks and any activations`,
+    `Auction or prize items on display`,
+    `Live auction: auctioneer, raised paddles, bidding wars, winning moments and reactions`,
+    `Sponsor and partner signage framed cleanly, never overpowering the event`
+  ]},
+  {title:"Formalities & prizes", items:[
+    `Host opening the formalities`,
+    `Speeches at the lectern or mic`,
+    `Prize moments and award presentations`,
+    `Winners and group celebrations`
+  ]},
+  {title:"Hero frames", items:[
+    `Full-room atmosphere`,
+    `Packed crowd energy`,
+    `Warm interactions`,
+    `Strong emotional moments`,
+    `Event-defining details`
+  ]},
+  {title:"Close out", items:[
+    `Thank-you moments and farewells`,
+    `Final wide crowd shot`,
+    `Final applause and last of the room energy`
+  ]}
+];
+
+const VIDEOS = [
+  {n:"1", group:"", t:"Event Highlight Reel", meta:["PRO","Up to 1 min","Promo","B-roll led"],
+   type:"Post-event recap. B-roll led, cut to music, natural audio pulled from the formalities where it lands.",
+   note:"Content has to work for attendee sharing. Keep sponsor signage visible and White Key credit below sponsor prominence.",
+   hook:`Open on the venue reveal, then straight into a full room`,
+   tp:[`Arrivals and venue: exterior, entry, guests walking in`,`Room reveal before the crowd peaks, then the room full`,`Guest energy: greetings, chatter, movement through the space`,`Trivia in play: teams working, reactions, applause`,`Formalities: host, speeches, prizes, winners`,`Close: final wide crowd shot or last celebration beat`],
+   broll:[`Venue exterior and guests arriving`,`Welcome table, signage, programs and event branding`,`Wide room reveal before the crowd peaks`,`Guests mingling, greeting each other and moving through the space`,`Country and western costumes, wide and detail`,`Live auction: auctioneer, raised paddles, bidding and winning moments`,`Natural family, parent, staff and community interactions`,`Detail shots: table settings, decorations, food, drinks, prize or auction items`,`Trivia in play, teams collaborating and answer sheets`,`Host opening the formalities`,`Speeches, prize moments and award presentations`,`Applause, laughter, reactions and crowd energy`,`Sponsor signage and partner visibility framed naturally`,`Hero atmosphere shots`,`Final wide crowd shot or closing moment`]}
+];
+
+const RUN = [
+  ["1","Pre-event","Arrive early, clean plates","Get in before guests. Shoot Horrocks Hall empty: room wide, signage, table settings, decorations, prize and auction items, sponsor boards. Check light and audio positions for the formalities.",["1"]],
+  ["2","Arrivals","Exterior, entry and registration","Venue exterior, guests arriving, welcome table and registration. Grab the branding and program detail while the queue is small."],
+  ["3","Room filling","Candids and community","Roaming candids as the room fills. Families, parents, staff and community members. Small groups, natural conversation, no posing unless asked."],
+  ["4","Peak room","Hero atmosphere pass","Deliberate hero pass: full-room wide, packed crowd energy, warm interaction, one event-defining detail. Do not leave this to chance late in the night."],
+  ["5","Formalities","Host, speeches and sponsors","Video lane locks off for the host opening and speeches with clean audio. Photo lane covers the speaker plus audience reactions and sponsor acknowledgement moments."],
+  ["6","Trivia rounds","Teams, answers and reactions","Teams heads down, over-the-shoulder answer sheets, table numbers, laughter and reaction beats between rounds."],
+  ["7","Live auction","Auctioneer, bidding and winners","Client priority. Cover the auctioneer, raised paddles, bidding wars, crowd reactions and the winning moments. Get both wide room energy and tight reaction faces."],
+  ["7b","Prizes","Winners and celebrations","Prize moments, award presentations, winners and group celebrations. Get faces, not just the handover."],
+  ["8","Group photos","Committee, sponsors and tables","Group photos where they happen naturally. Confirm with the Fathers' Association whether committee or sponsor groups are required."],
+  ["9","Close out","Farewells and final energy","Thank-you moments, farewells, final applause and a last wide crowd shot."],
+  ["10","Wrap","Check and back up","Run the shot list against this brief before packing down, then back up all cards."]
+];
+
+const CVRUN = [
+  "Arrive early, clean plates",
+  "Exterior, entry and registration",
+  "Candids and community",
+  "Hero atmosphere pass",
+  "Host, speeches and sponsors",
+  "Teams, answers and reactions",
+  "Auctioneer, bidding and winners",
+  "Winners and celebrations",
+  "Committee, sponsors and tables",
+  "Farewells and final energy",
+  "Check and back up"
+];
+
+const KEY="tks_trivia_night_brief_v1";
+let state={};
+try{state=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){state={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function itemHTML(id,label){
+  const on=state[id]?"checked":"";
+  const cls=state[id]?"item done":"item";
+  return `<label class="${cls}" data-id="${id}"><input type="checkbox" ${on}><span>${label}</span></label>`;
+}
+
+document.getElementById("cv-run").innerHTML =
+  `<div class="cg-head"><h3>The night, in order</h3><span class="pill">${RUN.length} blocks</span></div>` +
+  CVRUN.map((r,i)=>{const n=RUN[i][0];const id="run-"+n;const on=state[id]?"checked":"";const cls=state[id]?"item done":"item";return `<div class="${cls}" data-id="${id}"><input type="checkbox" ${on}><span class="cvlink" data-runlink="${n}" tabindex="0" role="link"><b>${i+1}.</b> ${esc(r)}</span></div>`;}).join("");
+
+document.getElementById("photoGroups").innerHTML = PHOTO_GROUPS.map((g,gi)=>{
+  const items=g.items.map((p,i)=>itemHTML(`photo-${gi}-${i}`, esc(p))).join("");
+  return `<div class="card checkgroup"><div class="cg-head"><h3>${esc(g.title)}</h3><span class="pill" id="pc-${gi}"></span></div>${items}</div>`;
+}).join("");
+
+let lastGroup="";
+document.getElementById("videoCards").innerHTML = VIDEOS.map(v=>{
+  let head="";
+  if(v.group!==lastGroup){head=v.group?`<div class="grouphead">${esc(v.group)}</div>`:"";lastGroup=v.group;}
+  const hookBlock = v.hook ? `<div class="vrow"><div class="rl">Hook</div><div class="hook">${esc(v.hook)}</div></div>` : "";
+  const tpBlock = v.tp ? `<div class="vrow"><div class="rl">Story beats</div><ul class="tp">${v.tp.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>` : "";
+  const broll = v.broll.map((b,i)=>itemHTML(`broll-${v.n}-${i}`, esc(b))).join("");
+  return head + `<details class="card vcard" id="v-${v.n}">
+    <summary>
+      <div class="vnum">${esc(v.n)}</div>
+      <div class="vhead"><div class="vt">${esc(v.t)}</div>
+        <div class="vm">${v.meta.map(m=>`<span class="badge">${esc(m)}</span>`).join("")}</div></div>
+      <div class="chev">\u25BC</div>
+    </summary>
+    <div class="vbody">
+      ${hookBlock}
+      ${tpBlock}
+      <div class="vrow"><div class="rl">B-Roll checklist</div><div class="checkgroup" style="padding:0">${broll}</div></div>
+    </div>
+  </details>`;
+}).join("");
+
+const VMAP={};VIDEOS.forEach(v=>{VMAP[v.n]=v;});
+function vidLabel(n){if(n==="T")return "Testimonial";return "Video "+n;}
+function vidToggle(n){
+  const v=VMAP[n];if(!v)return "";
+  const hook=v.hook?`<div class="rvd-hook">${esc(v.hook)}</div>`:"";
+  const tp=v.tp?`<div class="rvd-l">Story beats</div><ul class="rvd-tp">${v.tp.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>`:"";
+  const broll=`<div class="rvd-l">B-roll</div><ul class="rvd-tp">${v.broll.map(b=>`<li>${esc(b)}</li>`).join("")}</ul>`;
+  return `<details class="rvid"><summary><span class="rvid-tag">${esc(vidLabel(n))}</span> ${esc(v.t)}, full brief<span class="rvid-chev">\u25BC</span></summary><div class="rvd">${hook}${tp}${broll}</div></details>`;
+}
+document.getElementById("runList").innerHTML = RUN.map((r,i)=>{
+  const id="run-"+r[0];
+  const done=state[id]?"done":"";
+  const last=i===RUN.length-1;
+  const vids=(r[4]&&r[4].length)?`<div class="rvids">${r[4].map(vidToggle).join("")}</div>`:"";
+  return `<div class="rblock ${done}" data-id="${id}">
+    <div class="rleft"><div class="rdot">${esc(r[0])}</div>${last?"":'<div class="rline"></div>'}</div>
+    <div class="rcontent"><label class="rcard"><input type="checkbox" ${state[id]?"checked":""}>
+      <div><div class="rtime">${esc(r[1])}</div><div class="rb">${esc(r[2])}</div><div class="rn">${esc(r[3])}</div></div></label>${vids}</div>
+  </div>`;
+}).join("");
+
+function updateCounts(){
+  PHOTO_GROUPS.forEach((g,gi)=>{
+    const el=document.getElementById("pc-"+gi);if(!el)return;
+    el.textContent=g.items.length+" shots";
+  });
+}
+
+document.addEventListener("change",e=>{
+  if(e.target.type!=="checkbox"||e.target.disabled)return;
+  const host=e.target.closest("[data-id]");if(!host)return;
+  const id=host.dataset.id;const on=e.target.checked;
+  state[id]=on;
+  document.querySelectorAll('[data-id="'+id+'"]').forEach(el=>{
+    el.classList.toggle("done",on);
+    const cb=el.querySelector('input[type=checkbox]');
+    if(cb&&cb!==e.target)cb.checked=on;
+  });
+  save();updateCounts();
+});
+
+function activateTab(b){
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  b.classList.add("active");
+  const panel=document.getElementById(b.dataset.t);if(panel)panel.classList.add("active");
+  window.scrollTo({top:0,behavior:"auto"});
+}
+document.getElementById("tabs").addEventListener("click",e=>{
+  const b=e.target.closest(".tab");if(b)activateTab(b);
+});
+document.getElementById("tabs").addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const b=e.target.closest(".tab");if(b){e.preventDefault();activateTab(b);}
+});
+
+function goToVideo(n){
+  const tab=document.querySelector('.tab[data-t="videos"]');
+  if(tab)activateTab(tab);
+  const el=document.getElementById("v-"+n);
+  if(!el)return;
+  el.open=true;
+  requestAnimationFrame(()=>{
+    el.scrollIntoView({behavior:"smooth",block:"start"});
+    el.classList.add("flash");
+    setTimeout(()=>el.classList.remove("flash"),1400);
+  });
+}
+function goToRun(n){
+  const tab=document.querySelector('.tab[data-t="run"]');
+  if(tab)activateTab(tab);
+  const el=document.querySelector('.rblock[data-id="run-'+n+'"]');
+  if(!el)return;
+  requestAnimationFrame(()=>{
+    el.scrollIntoView({behavior:"smooth",block:"start"});
+    el.classList.add("flash");
+    setTimeout(()=>el.classList.remove("flash"),1400);
+  });
+}
+document.addEventListener("click",e=>{
+  const a=e.target.closest("[data-goto]");
+  if(a){e.preventDefault();goToVideo(a.getAttribute("data-goto"));return;}
+  const r=e.target.closest("[data-runlink]");
+  if(r){e.preventDefault();goToRun(r.getAttribute("data-runlink"));}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const a=e.target.closest("[data-goto]");
+  if(a){e.preventDefault();goToVideo(a.getAttribute("data-goto"));return;}
+  const r=e.target.closest("[data-runlink]");
+  if(r){e.preventDefault();goToRun(r.getAttribute("data-runlink"));}
+});
+
+updateCounts();
+</script>
+</body>
+</html>

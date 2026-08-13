@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHEETH Shoot Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#333132; --orange:#faa62f; --tangerine:#f7b52d; --white:#ffffff;
+    --bg:#1b191a;
+    --text:#f1efed; --text2:#a7a3a1; --canvas:#2a2829; --soft:#242223;
+    --surface:#3a3738; --border:#403d3e; --accent:#faa62f; --accent-soft:rgba(250,166,47,.13);
+    --done:#faa62f; --charcoal2:#403e3f; --charcoal-line:rgba(255,255,255,.14);
+    --line-strong:#5f5c5d;
+    --shadow:0 1px 2px rgba(0,0,0,.30),0 6px 18px rgba(0,0,0,.30);
+    --head:"Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    --sans:"Roboto",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;background:var(--bg);color-scheme:dark}
+  body{font-family:var(--sans);color:var(--text);background:var(--bg);font-size:16px;line-height:1.5;font-weight:400;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  h1,h2,h3,.eyebrow,.sec-title,.wordmark,.chip b{font-family:var(--head)}
+
+  /* wordmark bar */
+  .brandbar{background:var(--charcoal);border-bottom:1px solid var(--charcoal-line)}
+  .brandbar .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px;gap:16px;flex-wrap:wrap}
+  .wordmark{font-weight:800;font-size:20px;letter-spacing:.02em;color:#fff;text-transform:uppercase}
+  .wordmark .mk{color:var(--orange)}
+  .brandbar .tag{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:500}
+
+  /* hero */
+  header .hero{background:var(--charcoal);color:#fff;padding:30px 0 34px}
+  .eyebrow{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);font-weight:700}
+  .hero h1{font-size:44px;line-height:1.02;margin:12px 0 10px;letter-spacing:.01em;text-transform:uppercase;color:#fff}
+  .hero .sub{color:rgba(255,255,255,.72);font-size:16.5px;max-width:660px;font-weight:300}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .chip{display:flex;align-items:baseline;gap:7px;background:var(--charcoal2);border:1px solid var(--charcoal-line);border-radius:8px;padding:9px 13px}
+  .chip b{font-size:20px;font-weight:800;color:var(--orange);letter-spacing:0}
+  .chip span{color:rgba(255,255,255,.72);font-weight:400;font-size:13.5px}
+  .prog{margin-top:24px;max-width:520px}
+  .prog-top{display:flex;justify-content:space-between;font-size:12.5px;font-weight:500;margin-bottom:6px;color:rgba(255,255,255,.72)}
+  .prog-track{height:8px;background:var(--charcoal2);border-radius:99px;overflow:hidden}
+  .prog-fill{height:100%;width:0;background:var(--orange);border-radius:99px;transition:width .35s ease}
+
+  /* tabs */
+  nav.tabs{position:sticky;top:0;z-index:40;background:rgba(27,25,26,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .tabs-inner{display:flex;gap:2px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tab{border:none;background:none;padding:15px 16px;font-size:15px;font-weight:600;font-family:var(--sans);color:var(--text2);cursor:pointer;border-bottom:2.5px solid transparent;white-space:nowrap;min-height:44px;user-select:none}
+  .tab:hover{color:var(--text)}
+  .tab:focus-visible{outline:2px solid var(--orange);outline-offset:-2px;border-radius:4px}
+  .tab.active{color:#fff;border-bottom-color:var(--orange)}
+
+  main{padding:34px 0 90px}
+  .panel{display:none;animation:fade .3s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .sec-title{font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--text2);font-weight:700;margin:6px 0 15px}
+  .sec-title.mt{margin-top:34px}
+
+  .card{background:var(--canvas);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+  .card + .card{margin-top:16px}
+
+  /* client view */
+  .lead{background:var(--canvas);color:var(--text);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:12px;padding:22px 24px;font-size:17px;font-weight:300;line-height:1.55}
+  .lead b{font-weight:600;color:var(--text)}
+  .lead .hl{color:var(--orange);font-weight:600}
+  .cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+  .cv-block{background:var(--canvas);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);padding:20px 22px}
+  .cv-block h3{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px}
+  .cv-block .big{font-family:var(--head);font-size:19px;font-weight:700;text-transform:uppercase;letter-spacing:.01em;margin-bottom:10px;color:var(--text)}
+  .cv-block p{font-size:15px;color:var(--text);font-weight:300;line-height:1.55}
+  .cv-list{list-style:none;margin-top:10px}
+  .cv-list li{position:relative;padding:5px 0 5px 20px;font-size:14.5px;font-weight:300}
+  .cv-list li::before{content:"";position:absolute;left:0;top:12px;width:7px;height:7px;border-radius:2px;background:var(--orange)}
+  details.more{margin-top:12px;border-top:1px dashed var(--border);padding-top:10px}
+  details.more>summary{list-style:none;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:7px}
+  details.more>summary::-webkit-details-marker{display:none}
+  details.more>summary .chev{font-size:11px;transition:transform .2s}
+  details.more[open]>summary .chev{transform:rotate(180deg)}
+  details.more .inner{padding-top:10px}
+  .pointer{display:flex;gap:11px;align-items:flex-start;background:var(--accent-soft);border:1px solid rgba(250,166,47,.32);border-radius:10px;padding:13px 16px;font-size:14.5px;margin-top:16px;font-weight:400}
+  .pointer .ic{color:var(--done);font-weight:800;font-family:var(--head)}
+
+  /* info table */
+  .info{width:100%;border-collapse:collapse}
+  .info tr+tr{border-top:1px solid var(--border)}
+  .info th{text-align:left;vertical-align:top;padding:14px 18px;width:150px;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);background:var(--soft);font-weight:700;font-family:var(--head)}
+  .info td{padding:14px 18px;font-size:15px;font-weight:300}
+
+  /* checklists */
+  .cg-head{display:flex;align-items:center;justify-content:space-between;padding:15px 16px 9px;gap:10px}
+  .cg-head h3{font-size:15px;font-family:var(--head);text-transform:uppercase;letter-spacing:.03em;font-weight:700}
+  .cg-head .pill{font-size:12px;font-weight:600;color:var(--text2);background:var(--soft);border:1px solid var(--border);border-radius:99px;padding:3px 10px;white-space:nowrap}
+  .checkgroup{padding:2px 8px 12px}
+  .item{display:flex;align-items:flex-start;gap:12px;padding:10px 12px;border-radius:8px;cursor:pointer;transition:background .12s}
+  .item:hover{background:var(--soft)}
+  .item input{appearance:none;-webkit-appearance:none;width:21px;height:21px;min-width:21px;margin-top:1px;border:2px solid var(--line-strong);border-radius:6px;cursor:pointer;position:relative;transition:.15s}
+  .item input:checked{background:var(--done);border-color:var(--done)}
+  .item input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .item span{font-size:15px;flex:1;font-weight:400}
+  .item.done span{color:var(--text2);text-decoration:line-through}
+
+  /* video cards */
+  .grouphead{font-family:var(--head);text-transform:uppercase;letter-spacing:.06em;font-size:12.5px;font-weight:700;color:var(--text2);margin:26px 0 12px}
+  .grouphead:first-child{margin-top:4px}
+  .vcard{margin-bottom:12px}
+  .vcard>summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;gap:15px}
+  .vcard>summary::-webkit-details-marker{display:none}
+  .vnum{width:40px;height:40px;min-width:40px;border-radius:9px;background:var(--accent-soft);color:var(--done);font-family:var(--head);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center}
+  .vhead{flex:1;min-width:0}
+  .vhead .vt{font-size:16.5px;font-weight:600;letter-spacing:0;font-family:var(--head)}
+  .vhead .vm{font-size:12.5px;color:var(--text2);margin-top:3px}
+  .vhead .vm .badge{display:inline-block;background:var(--soft);border:1px solid var(--border);border-radius:5px;padding:1px 7px;margin:2px 6px 0 0;font-weight:500}
+  .chev{color:var(--text2);transition:transform .2s;font-size:12px}
+  .vcard[open] .chev{transform:rotate(180deg)}
+  .vbody{padding:2px 18px 20px;border-top:1px solid var(--border)}
+  .vrow{margin-top:17px}
+  .vrow .rl{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);font-weight:700;font-family:var(--head);margin-bottom:7px}
+  .hook{background:var(--accent-soft);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:11px 14px;font-size:14.5px;font-style:italic}
+  .tp{list-style:none}
+  .tp li{position:relative;padding:5px 0 5px 18px;font-size:14.5px;font-weight:300}
+  .tp li::before{content:"";position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;background:var(--orange)}
+  .cta{font-size:14.5px;font-weight:500;color:var(--done)}
+  .script>summary{cursor:pointer;list-style:none;padding:11px 13px;font-size:14px;font-weight:600;color:var(--done);display:flex;align-items:center;gap:8px;background:var(--soft);border:1px solid var(--border);border-radius:8px}
+  .script>summary::-webkit-details-marker{display:none}
+  .script[open]>summary{border-radius:8px 8px 0 0}
+  .script .stext{padding:12px 14px;font-size:14.5px;line-height:1.7;white-space:pre-wrap;border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;background:var(--canvas)}
+  .notecall{display:flex;gap:9px;align-items:flex-start;background:var(--soft);border:1px solid var(--border);border-radius:8px;padding:11px 14px;font-size:14px;font-weight:300}
+  .notecall .ic{color:var(--done);font-weight:800;font-family:var(--head)}
+  .notecall b{font-weight:600}
+
+  /* run sheet */
+  .run{position:relative;padding-left:4px}
+  .rblock{display:flex;gap:16px;padding:2px 0}
+  .rleft{display:flex;flex-direction:column;align-items:center}
+  .rdot{width:34px;height:34px;min-width:34px;border-radius:50%;background:var(--canvas);border:2px solid var(--line-strong);color:var(--text2);font-family:var(--head);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;transition:.2s;z-index:2}
+  .rline{flex:1;width:2px;background:var(--border);margin:2px 0}
+  .rblock.done .rdot{background:var(--done);border-color:var(--done);color:#fff}
+  .rcontent{flex:1;padding-bottom:16px}
+  .rcard{background:var(--canvas);border:1px solid var(--border);border-radius:10px;padding:13px 16px;cursor:pointer;display:flex;gap:13px;align-items:flex-start;transition:border-color .15s}
+  .rcard:hover{border-color:var(--orange)}
+  .rcard input{appearance:none;-webkit-appearance:none;width:21px;height:21px;min-width:21px;margin-top:2px;border:2px solid var(--line-strong);border-radius:6px;cursor:pointer;position:relative}
+  .rcard input:checked{background:var(--done);border-color:var(--done)}
+  .rcard input:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .rtime{font-size:12px;font-weight:700;color:var(--done);font-family:var(--head);letter-spacing:.03em}
+  .rcard .rb{font-size:15px;font-weight:600;margin-top:2px;font-family:var(--head)}
+  .rcard .rn{font-size:13.5px;color:var(--text2);margin-top:4px;font-weight:300}
+  .rblock.done .rb{text-decoration:line-through;color:var(--text2)}
+
+  .foot{text-align:center;color:var(--text2);font-size:13px;margin-top:40px;font-weight:300}
+
+  @media (max-width:720px){
+    .cv-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 16px}
+    .hero h1{font-size:32px}
+    .hero{padding:26px 0 28px}
+    .info th{width:104px;font-size:11.5px;padding:11px 12px}
+    .info td{padding:11px 12px;font-size:14px}
+    .lead{font-size:15.5px;padding:18px}
+    .tab{padding:14px 13px;font-size:14px}
+    .vhead .vt{font-size:15.5px}
+  }
+  @media print{
+    nav.tabs,.prog,.foot{display:none!important}
+    .panel{display:block!important}
+    .brandbar,header .hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .vbody{display:block!important}
+    body{background:#fff}
+  }
+  .vlink{color:var(--orange);cursor:pointer;text-decoration:none;border-bottom:1px solid rgba(250,166,47,.35);transition:.15s}
+  .vlink:hover,.vlink:focus-visible{border-bottom-color:var(--orange);outline:none}
+  .rlinks{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 2px 0}
+  .rlink{font-family:var(--head);font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--orange);background:var(--accent-soft);border:1px solid rgba(250,166,47,.3);border-radius:20px;padding:5px 12px;cursor:pointer;transition:.15s}
+  .rlink:hover,.rlink:focus-visible{background:rgba(250,166,47,.22);outline:none}
+  .rvids{display:flex;flex-direction:column;gap:8px;margin:12px 0 2px 0}
+  .rvid{background:var(--canvas);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .rvid[open]{border-color:rgba(250,166,47,.4)}
+  .rvid>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:9px;padding:9px 13px;font-family:var(--head);font-size:13px;font-weight:600}
+  .rvid>summary::-webkit-details-marker{display:none}
+  .rvid-tag{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--orange);background:var(--accent-soft);border:1px solid rgba(250,166,47,.3);border-radius:20px;padding:3px 9px}
+  .rvid-chev{margin-left:auto;color:var(--text2);font-size:10px;transition:transform .15s}
+  .rvid[open] .rvid-chev{transform:rotate(180deg)}
+  .rvd{padding:2px 15px 14px;border-top:1px solid var(--border)}
+  .rvd-hook{background:var(--accent-soft);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:9px 12px;font-size:13.5px;font-style:italic;margin:12px 0}
+  .rvd-l{font-family:var(--head);font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);margin:12px 0 5px}
+  .rvd-tp{list-style:none;margin:0;padding:0}
+  .rvd-tp li{position:relative;padding:4px 0 4px 16px;font-size:13.5px;font-weight:300}
+  .rvd-tp li::before{content:"";position:absolute;left:0;top:11px;width:5px;height:5px;border-radius:50%;background:var(--orange)}
+  .vcard{scroll-margin-top:72px}
+  .vcard.flash{box-shadow:0 0 0 2px var(--orange),0 8px 22px rgba(0,0,0,.35)}
+</style>
+</head>
+<body>
+<div class="brandbar"><div class="wrap">
+  <div class="wordmark">WhiteKey<span class="mk"> Marketing</span></div>
+  <div class="tag">Shoot Brief</div>
+</div></div>
+
+<header>
+  <div class="hero"><div class="wrap">
+    <h1>SHEETH</h1>
+    <p class="sub">Completed commercial fit-out for S. Kidman and Co, 175 Eagle Street, Brisbane. One 2-hour visit on an occupied site, Friday 14 August 2026, 8:00 to 10:00am AEST.</p>
+    <div class="chips">
+      <div class="chip"><b>2</b><span>promo videos</span></div>
+      <div class="chip"><b>30</b><span>photos</span></div>
+      <div class="chip"><b>2</b><span>hr on site</span></div>
+      <div class="chip"><b>8:00</b><span>am start, AEST</span></div>
+    </div>
+  </div></div>
+  <nav class="tabs"><div class="wrap"><div class="tabs-inner" id="tabs" role="tablist">
+    <div class="tab active" role="tab" tabindex="0" data-t="client">Client View</div>
+    <div class="tab" role="tab" tabindex="0" data-t="photo">Photography</div>
+    <div class="tab" role="tab" tabindex="0" data-t="videos">Videos (2)</div>
+    <div class="tab" role="tab" tabindex="0" data-t="run">Run Sheet</div>
+  </div></div></nav>
+</header>
+
+<main class="wrap">
+  <!-- CLIENT VIEW / OVERVIEW -->
+  <section class="panel active" id="client">
+    <div class="lead">We're capturing <b class="hl">2 promo videos</b> and <b class="hl">30 photos</b> of the completed S. Kidman and Co fit-out in one 2-hour visit. The floor is live and occupied, so we work quietly around their team. Everything below is the short version. Tap any section to open more detail, or use the tabs above for the full shot lists and timing.</div>
+
+    <div class="sec-title mt">The shoot at a glance</div>
+    <div class="card">
+      <table class="info">
+        <tr><th>Client</th><td>SHEETH</td></tr>
+        <tr><th>Industry</th><td>Commercial construction and fit-out. A completed, occupied job site for S. Kidman and Co.</td></tr>
+        <tr><th>Location</th><td>S. Kidman and Co, 175 Eagle Street, Brisbane QLD 4000.</td></tr>
+        <tr><th>Date</th><td>Friday 14 August 2026 &middot; 8:00 to 10:00am AEST &middot; 2 hours on site.</td></tr>
+        <tr><th>Deliverables</th><td>2 promo videos, both B-roll only, plus 30 edited photos.</td></tr>
+        <tr><th>Format</th><td>B-roll only coverage, no interviews. Every hero wide shot twice, landscape and vertical.</td></tr>
+      </table>
+    </div>
+
+    <div class="sec-title mt">What we're capturing</div>
+    <div class="cv-grid">
+      <div class="cv-block">
+        <h3>Photography</h3>
+        <div class="big">30 photos</div>
+        <p>The completed fit-out covered wide to close. Establishing frames, vignettes, material details and branding.</p>
+        <ul class="cv-list">
+          <li>Hero wides of every main space, landscape and vertical</li>
+          <li>Sightlines and mid-range vignettes between spaces</li>
+          <li>Detail close ups of joinery, finishes and lighting</li>
+          <li>Client signage and SHEETH site branding</li>
+        </ul>
+        <details class="more"><summary>Show a bit more <span class="chev">&#9660;</span></summary><div class="inner">
+          <ul class="cv-list">
+            <li>The main built elements in context: reception desk, bar, counter, joinery run</li>
+            <li>Seating and furniture groupings that give the space scale</li>
+            <li>Any custom or one off element worth calling out</li>
+          </ul>
+        </div></details>
+      </div>
+      <div class="cv-block">
+        <h3>Videography</h3>
+        <div class="big">2 videos</div>
+        <p>Two B-roll only promos from the one visit. One steady walkthrough, one fast vertical detail cut.</p>
+        <ul class="cv-list">
+          <li><a class="vlink" data-goto="1" tabindex="0" role="link">1. Promo Video 1, steady walkthrough</a></li>
+          <li><a class="vlink" data-goto="2" tabindex="0" role="link">2. Promo Video 2, vertical detail cut</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pointer"><div>Click any video above to jump straight to its shot list, or open the <b>Photography</b> and <b>Videos</b> tabs for everything.</div></div>
+
+    <div class="sec-title mt">The day, start to finish</div>
+    <div class="card"><div class="checkgroup" id="cv-run"></div></div>
+    <div class="pointer"><div>Full timing and shot-by-shot notes are in the <b>Run Sheet</b> tab.</div></div>
+
+    <div class="foot">Tap any item to check it off during the shoot.</div>
+  </section>
+
+  <!-- PHOTO -->
+  <section class="panel" id="photo">
+    <div class="sec-title">Photography, 30 frames</div>
+    <div id="photoGroups"></div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section class="panel" id="videos">
+    <div class="sec-title">Tap a video to open its B-roll checklist</div>
+    <div id="videoCards"></div>
+  </section>
+
+  <!-- RUN SHEET -->
+  <section class="panel" id="run">
+    <div class="sec-title">Shoot day run sheet, suggested order, work top to bottom</div>
+    <div class="run" id="runList"></div>
+    <div class="foot">Times are a guide. The site is occupied, so keep the kit tight, work around the team, and be wrapped by 10:00am.</div>
+  </section>
+</main>
+
+<script>
+const PHOTO_GROUPS = [
+  {title:"Hero wides", items:[
+    `One corner to corner establishing frame per main space`,
+    `The entry and arrival point`,
+    `The largest or most impressive volume in the fit-out`,
+    `Every hero wide shot twice, once landscape and once vertical`
+  ]},
+  {title:"Mid-range vignettes", items:[
+    `Sightlines through doorways, glazed partitions and openings between spaces`,
+    `The main built element in context: reception desk, bar, counter, joinery run, workstation cluster`,
+    `Seating and furniture groupings that give the space scale`
+  ]},
+  {title:"Detail close ups", items:[
+    `Joinery edges, reveals and shadow lines`,
+    `Benchtops, stone, tile and splashback finishes`,
+    `Timber grain, veneer and laminate surfaces`,
+    `Material transitions where two finishes meet`,
+    `Feature and integrated lighting`,
+    `Hardware: handles, hinges, tapware, door furniture`,
+    `Any custom or one off element worth calling out`
+  ]},
+  {title:"Branding", items:[
+    `Client signage, logo wall or reception branding`,
+    `SHEETH signage or site branding if it is on site`
+  ]}
+];
+
+const VIDEOS = [
+  {n:"1", group:"", t:"Promo Video 1", meta:["B-roll only"],
+   type:"B-roll only. A slow, steady pass through the completed fit-out, from the entry to a final held wide of the space.",
+   broll:[`Wide establishing shot of the entry and arrival point`,`Slow reveal into the main space, corner to corner`,`Natural flow through the space, one room leading into the next`,`The main built element in context: reception desk, joinery run, counter`,`Joinery edges, reveals and shadow lines`,`Benchtops, stone, tile and timber finishes`,`Material transitions where two finishes meet`,`Feature and integrated lighting`,`Final held wide of the completed space`,`Steady and quiet the whole way through`]},
+  {n:"2", group:"", t:"Promo Video 2", meta:["B-roll only","Vertical 9:16"],
+   type:"B-roll only. Vertical 9:16, framed and shot on the day. Fast detail coverage that finishes on a hero wide.",
+   broll:[`Tight punch in on a joinery edge or a lighting line to open`,`Fast detail cuts: finishes, hardware, material transitions`,`Hard cuts between spaces to show the range`,`Quick pans and reveals through doorways and openings`,`Finish on a hero wide of the completed space`]}
+];
+
+const RUN = [
+  ["1","8:00","Arrive & walk the site","Roughly 10 minutes. Check in, walk the fit-out, confirm the hero angles and the main built elements, and run a quick lighting check. Occupied site, keep the kit tight."],
+  ["2","8:10","Hero wides","The establishing frames. One corner to corner wide per main space, the entry and arrival point, and the largest volume. Shoot every hero wide twice, landscape and vertical.",["1"]],
+  ["3","8:40","Flow through the spaces","Video 1 coverage. The slow reveal into the main space and the natural flow, one room leading into the next. Steady and quiet the whole way through.",["1"]],
+  ["4","9:00","Details & finishes","Photo close ups plus Video 1 detail coverage. Joinery edges, benchtops, stone, tile, timber, material transitions, lighting and hardware.",["1"]],
+  ["5","9:30","Vertical pass","Video 2. Vertical 9:16 punch-ins, fast detail cuts, hard cuts between spaces, and quick pans through doorways and openings.",["2"]],
+  ["6","9:45","Branding & final wides","Client signage, logo wall or reception branding, plus SHEETH site branding if it is on site. Finish both videos on a held hero wide of the completed space.",["1","2"]],
+  ["7","9:55","Wrap & backup","Check the coverage against the brief, then back up all cards before leaving site."]
+];
+
+const CVRUN = [
+  "Arrive & walk the site",
+  "Hero wides",
+  "Flow through the spaces",
+  "Details & finishes",
+  "Vertical pass",
+  "Branding & final wides",
+  "Wrap & backup"
+];
+
+/* ---- state (safe for sandboxed embeds) ---- */
+const KEY="sheeth_skidman_brief_v1";
+let state={};
+try{state=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){state={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function itemHTML(id,label){
+  const on=state[id]?"checked":"";
+  const cls=state[id]?"item done":"item";
+  return `<label class="${cls}" data-id="${id}"><input type="checkbox" ${on}><span>${label}</span></label>`;
+}
+
+/* client-view day-at-a-glance (clickable, shares run-sheet state) */
+document.getElementById("cv-run").innerHTML =
+  `<div class="cg-head"><h3>The day, in order</h3><span class="pill">${CVRUN.length} blocks</span></div>` +
+  CVRUN.map((r,i)=>{const id="run-"+(i+1);const on=state[id]?"checked":"";const cls=state[id]?"item done":"item";return `<label class="${cls}" data-id="${id}"><input type="checkbox" ${on}><span><b>${i+1}.</b> ${esc(r)}</span></label>`;}).join("");
+
+/* photo groups */
+document.getElementById("photoGroups").innerHTML = PHOTO_GROUPS.map((g,gi)=>{
+  const items=g.items.map((p,i)=>itemHTML(`photo-${gi}-${i}`, esc(p))).join("");
+  return `<div class="card checkgroup"><div class="cg-head"><h3>${esc(g.title)}</h3><span class="pill" id="pc-${gi}"></span></div>${items}</div>`;
+}).join("");
+
+/* video cards, grouped */
+let lastGroup="";
+document.getElementById("videoCards").innerHTML = VIDEOS.map(v=>{
+  let head="";
+  if(v.group!==lastGroup){head=`<div class="grouphead">${esc(v.group)}</div>`;lastGroup=v.group;}
+  const scriptBlock = v.script ? `<div class="vrow"><div class="rl">Script, client-written, do not alter</div>
+      <details class="script"><summary>Show script</summary><div class="stext">${v.script.map(s=>(s[0]?`<b>${esc(s[0])}</b>\n`:"")+esc(s[1])).join("\n\n")}</div></details></div>` : "";
+  const hookBlock = v.hook ? `<div class="vrow"><div class="rl">Hook</div><div class="hook">${esc(v.hook)}</div></div>` : "";
+  const tpBlock = v.cuts ? v.cuts.map(c=>`<div class="vrow"><div class="rl">${esc(c.l)}</div><ul class="tp">${c.tp.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>`).join("") : (v.tp ? `<div class="vrow"><div class="rl">Talking points</div><ul class="tp">${v.tp.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>` : "");
+  const ctaBlock = v.cta ? `<div class="vrow"><div class="rl">CTA</div><div class="cta">${esc(v.cta)}</div></div>` : "";
+  const broll = v.broll.map((b,i)=>itemHTML(`broll-${v.n}-${i}`, esc(b))).join("");
+  return head + `<details class="card vcard" id="v-${v.n}">
+    <summary>
+      <div class="vnum">${esc(v.n)}</div>
+      <div class="vhead"><div class="vt">${esc(v.t)}</div>
+        <div class="vm">${v.meta.map(m=>`<span class="badge">${esc(m)}</span>`).join("")}</div></div>
+      <div class="chev">▼</div>
+    </summary>
+    <div class="vbody">
+      <div class="vrow"><div class="rl">Type</div><div>${esc(v.type)}</div></div>
+      ${v.note?`<div class="vrow"><div class="notecall"><div><b>Notes.</b> ${esc(v.note)}</div></div></div>`:""}
+      ${hookBlock}
+      ${tpBlock}
+      ${scriptBlock}
+      <div class="vrow"><div class="rl">B-Roll checklist</div><div class="checkgroup" style="padding:0">${broll}</div></div>
+      ${ctaBlock}
+    </div>
+  </details>`;
+}).join("");
+
+/* run sheet */
+const VMAP={};VIDEOS.forEach(v=>{VMAP[v.n]=v;});
+function vidLabel(n){if(n==="T")return "Testimonial";if(/^B/.test(n))return "Bonus "+n;return "Video "+n;}
+function vidToggle(n){
+  const v=VMAP[n];if(!v)return "";
+  const hook=v.hook?`<div class="rvd-hook">${esc(v.hook)}</div>`:"";
+  const tp=v.cuts?v.cuts.map(c=>`<div class="rvd-l">${esc(c.l)}</div><ul class="rvd-tp">${c.tp.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>`).join(""):(v.tp?`<div class="rvd-l">Talking points</div><ul class="rvd-tp">${v.tp.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>`:"");
+  const broll=`<div class="rvd-l">B-roll</div><ul class="rvd-tp">${v.broll.map(b=>`<li>${esc(b)}</li>`).join("")}</ul>`;
+  return `<details class="rvid"><summary><span class="rvid-tag">${esc(vidLabel(n))}</span> ${esc(v.t)}<span class="rvid-chev">\u25BC</span></summary><div class="rvd">${hook}${tp}${broll}</div></details>`;
+}
+document.getElementById("runList").innerHTML = RUN.map((r,i)=>{
+  const id="run-"+r[0];
+  const done=state[id]?"done":"";
+  const last=i===RUN.length-1;
+  const vids=(r[4]&&r[4].length)?`<div class="rvids">${r[4].map(vidToggle).join("")}</div>`:"";
+  return `<div class="rblock ${done}" data-id="${id}">
+    <div class="rleft"><div class="rdot">${esc(r[0])}</div>${last?"":'<div class="rline"></div>'}</div>
+    <div class="rcontent"><label class="rcard"><input type="checkbox" ${state[id]?"checked":""}>
+      <div><div class="rtime">${esc(r[1])}</div><div class="rb">${esc(r[2])}</div><div class="rn">${esc(r[3])}</div></div></label>${vids}</div>
+  </div>`;
+}).join("");
+
+/* counts + progress */
+function updateCounts(){
+  PHOTO_GROUPS.forEach((g,gi)=>{
+    const el=document.getElementById("pc-"+gi);if(!el)return;
+    el.textContent=g.items.length+" shots";
+  });
+}
+
+/* events */
+document.addEventListener("change",e=>{
+  if(e.target.type!=="checkbox"||e.target.disabled)return;
+  const host=e.target.closest("[data-id]");if(!host)return;
+  const id=host.dataset.id;const on=e.target.checked;
+  state[id]=on;
+  document.querySelectorAll('[data-id="'+id+'"]').forEach(el=>{
+    el.classList.toggle("done",on);
+    const cb=el.querySelector('input[type=checkbox]');
+    if(cb&&cb!==e.target)cb.checked=on;
+  });
+  save();updateCounts();
+});
+
+/* tabs */
+function activateTab(b){
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  b.classList.add("active");
+  const panel=document.getElementById(b.dataset.t);if(panel)panel.classList.add("active");
+  window.scrollTo({top:0,behavior:"auto"});
+}
+document.getElementById("tabs").addEventListener("click",e=>{
+  const b=e.target.closest(".tab");if(b)activateTab(b);
+});
+document.getElementById("tabs").addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const b=e.target.closest(".tab");if(b){e.preventDefault();activateTab(b);}
+});
+
+/* cross-links: jump to and open a specific video */
+function goToVideo(n){
+  const tab=document.querySelector('.tab[data-t="videos"]');
+  if(tab)activateTab(tab);
+  const el=document.getElementById("v-"+n);
+  if(!el)return;
+  el.open=true;
+  requestAnimationFrame(()=>{
+    el.scrollIntoView({behavior:"smooth",block:"start"});
+    el.classList.add("flash");
+    setTimeout(()=>el.classList.remove("flash"),1400);
+  });
+}
+document.addEventListener("click",e=>{
+  const a=e.target.closest("[data-goto]");
+  if(a){e.preventDefault();goToVideo(a.getAttribute("data-goto"));}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Enter"&&e.key!==" ")return;
+  const a=e.target.closest("[data-goto]");
+  if(a){e.preventDefault();goToVideo(a.getAttribute("data-goto"));}
+});
+
+updateCounts();
+</script>
+</body>
+</html>
